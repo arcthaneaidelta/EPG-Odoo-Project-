@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_assistant,ai.assistant.access,model_ai_assistant,base.group_user,1,1,1,1
+access_ai_assistant_own,ai.assistant.access.own,model_ai_assistant,base.group_user,1,1,1,1
+access_ai_message,ai.message.access,model_ai_message,base.group_user,1,1,1,1
+access_ai_message_own,ai.message.access.own,model_ai_message,base.group_user,1,1,1,1

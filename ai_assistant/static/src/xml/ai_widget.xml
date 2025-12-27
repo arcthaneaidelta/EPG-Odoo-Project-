@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ai_assistant.AiAssistantWidget" owl="1">
+        <!-- Floating Button -->
+        <button class="ai-floating-button" t-on-click="toggleWidget">
+            <span style="margin-top: -5px;" class="ai-icon">🤖</span>
+            <t t-if="state.unreadCount > 0" class="unread-badge">
+                <t t-esc="Math.min(state.unreadCount, 9)"/>
+                <t t-if="state.unreadCount > 9">+</t>
+            </t>
+        </button>
+        
+        <!-- Chat Widget -->
+        <t t-if="state.isOpen">
+            <div t-att-class="state.isLoading ? 'ai-chat-box loading' : 'ai-chat-box'">
+                <!-- Header -->
+                <div class="ai-chat-header">
+                    <div class="header-left">
+                        <strong>🤖 AI Assistant</strong>
+                        <!-- <t t-if="state.currentContext" class="context-info">
+                            <small t-esc="contextInfo"/>
+                        </t> -->
+                        <t t-if="!state.isConfigured" class="config-warning">
+                            <small>⚙️ Needs configuration</small>
+                        </t>
+                    </div>
+                    <div class="header-right">
+                        <button class="btn-clear" t-on-click="clearChat" title="Clear chat">
+                            🗑️
+                        </button>
+                        <button class="btn-retry" t-on-click="retryLastMessage" title="Retry last message">
+                            ↩️
+                        </button>
+                        <button class="btn-close" t-on-click="toggleWidget" title="Close">
+                            ✕
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Messages Area -->
+                <div class="ai-messages">
+                    <!-- Welcome/System Messages -->
+                    <t t-foreach="state.messages" t-as="msg" t-key="msg_index">
+                        <div t-att-class="'ai-message ' + msg.sender + (msg.isError ? ' error' : '') + (msg.isWarning ? ' warning' : '')">
+                            <div class="message-header">
+                                <span class="message-sender">
+                                    <t t-if="msg.sender === 'user'">You</t>
+                                    <t t-elif="msg.sender === 'ai'">AI Assistant</t>
+                                    <t t-else="">System</t>
+                                </span>
+                                <small class="message-time">
+                                    <t t-esc="msg.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})"/>
+                                </small>
+                            </div>
+                            <div class="message-text" t-esc="msg.text"/>
+                            <div class="message-actions">
+                                <t t-if="msg.sender === 'ai'">
+                                    <button 
+                                        class="btn-copy" 
+                                        t-on-click="() => copyToClipboard(msg.text)"
+                                        title="Copy to clipboard"
+                                    >
+                                        📋
+                                    </button>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                    
+                    <!-- Loading Indicator -->
+                    <t t-if="state.isLoading">
+                        <div class="ai-message ai loading">
+                            <div class="loading-indicator">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                            <div class="loading-text">Thinking...</div>
+                        </div>
+                    </t>
+                    
+                    <!-- Empty State -->
+                    <t t-if="state.messages.length === 0 and !state.isLoading">
+                        <div class="welcome-message">
+                            <div class="welcome-icon">🤖</div>
+                            <h4>Hello! I'm your AI Assistant</h4>
+                            <p>I can help you with:</p>
+                            <ul>
+                                <li>Questions about the current record</li>
+                                <li>CRM lead analysis</li>
+                                <li>General business advice</li>
+                                <li>Odoo-related questions</li>
+                            </ul>
+                            <p class="hint">
+                                <small>💡 Ask me about the current CRM lead, contact, or any other record!</small>
+                            </p>
+                            <!-- <t t-if="state.currentContext">
+                                <div class="current-context">
+                                    <small>📌 Currently viewing: <strong t-esc="contextInfo"/></small>
+                                </div>
+                            </t> -->
+                        </div>
+                    </t>
+                </div>
+                
+                <!-- Input Area -->
+                <div class="ai-input-area">
+                    <textarea 
+                        class="ai-input" 
+                        placeholder="Escribe tu pregunta aquí... (Shift+Enter para nueva línea)"
+                        t-model="state.inputText"
+                        t-on-keydown="handleKeyPress"
+                        t-att-disabled="state.isLoading or !state.isConfigured"
+                        rows="1"
+                        autocomplete="off"
+                        autocorrect="off"
+                        spellcheck="true"
+                    />
+                    <button 
+                        class="ai-send" 
+                        t-on-click="sendMessage"
+                        t-att-disabled="state.isLoading or !state.inputText.trim() or !state.isConfigured"
+                        t-att-class="state.isLoading ? 'sending' : ''"
+                        title="Send message (Enter)"
+                    >
+                        <t t-if="state.isLoading">
+                            <span class="spinner"></span>
+                        </t>
+                        <t t-else="">➤</t>
+                    </button>
+                </div>
+                
+                <!-- Footer -->
+                <div class="ai-chat-footer">
+                    <t t-if="!state.isConfigured">
+                        <div class="config-alert">
+                            <small>⚙️ Please configure API key in System Parameters</small>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <small class="hint">
+                            Press Enter to send • Shift+Enter for new line
+                        </small>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </t>
+</templates>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- AI Assistant Form View -->
+    <record id="view_ai_assistant_form" model="ir.ui.view">
+        <field name="name">ai.assistant.form</field>
+        <field name="model">ai.assistant</field>
+        <field name="arch" type="xml">
+            <form string="AI Assistant Session">
+                <header>
+                    <button name="action_test_llm" string="Test AI" type="object" class="btn-primary"/>
+                    <button name="action_clear_history" string="Clear History" type="object" class="btn-secondary"/>
+                    <field name="active"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_test_llm" type="object" class="oe_stat_button"
+                            icon="fa fa-brain">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Test AI</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="AI Session Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="create_date" readonly="1"/>
+                            <field name="write_date" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Conversation">
+                            <field name="message_ids">
+                                <list editable="bottom">
+                                    <field name="timestamp" widget="datetime"/>
+                                    <field name="question"/>
+                                    <field name="answer" widget="text"/>
+                                    <field name="model_context"/>
+                                    <field name="record_id"/>
+                                </list>
+                                <form>
+                                    <group>
+                                        <field name="timestamp" readonly="1"/>
+                                        <field name="question" readonly="1"/>
+                                        <field name="answer" readonly="1" nolabel="1"/>
+                                        <field name="model_context" readonly="1"/>
+                                        <field name="record_id" readonly="1"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Configuration">
+                            <div class="alert alert-info">
+                                <h4>⚙️ AI Configuration</h4>
+                                <p>
+                                    To use the AI Assistant, you need to configure:
+                                </p>
+                                <ol>
+                                    <li>Go to <strong>Settings → Technical → Parameters → System Parameters</strong></li>
+                                    <li>Create a parameter with key: <code>ai_assistant.api_key</code> and value: <em>your OpenAI API key</em></li>
+                                    <li>Create a parameter with key: <code>ai_assistant.endpoint</code> and value: <code>https://api.openai.com/v1/chat/completions</code></li>
+                                </ol>
+                                <p>
+                                    <strong>Note:</strong> The AI widget automatically appears in the bottom-right corner of your Odoo interface.
+                                </p>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- AI Assistant Tree View -->
+    <record id="view_ai_assistant_tree" model="ir.ui.view">
+        <field name="name">ai.assistant.tree</field>
+        <field name="model">ai.assistant</field>
+        <field name="arch" type="xml">
+            <list string="AI Assistants">
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="message_ids" widget="badge" decoration-info="message_ids.length > 0"/>
+                <field name="create_date"/>
+                <field name="active" invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- AI Message Form View -->
+    <record id="view_ai_message_form" model="ir.ui.view">
+        <field name="name">ai.message.form</field>
+        <field name="model">ai.message</field>
+        <field name="arch" type="xml">
+            <form string="AI Message">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="timestamp" readonly="1"/>
+                            <field name="assistant_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="model_context" readonly="1"/>
+                            <field name="record_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <separator string="Conversation"/>
+                    <group>
+                        <group string="👤 User Question">
+                            <field name="question" readonly="1" nolabel="1"/>
+                        </group>
+                        <group string="🤖 AI Response">
+                            <field name="answer" readonly="1" nolabel="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for AI Assistant -->
+    <record id="action_ai_assistant" model="ir.actions.act_window">
+        <field name="name">AI Assistants</field>
+        <field name="res_model">ai.assistant</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first AI Assistant session
+            </p>
+            <p>
+                The AI Assistant provides contextual help based on the record you're viewing.
+                The widget appears in the bottom-right corner of your screen.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action for AI Messages -->
+    <record id="action_ai_message" model="ir.actions.act_window">
+        <field name="name">AI Messages</field>
+        <field name="res_model">ai.message</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu Structure -->
+    <menuitem id="menu_ai_assistant_root" name="AI Assistant" sequence="100"/>
+    
+    <menuitem id="menu_ai_assistant_sessions" 
+              name="My Sessions" 
+              parent="menu_ai_assistant_root" 
+              action="action_ai_assistant" 
+              sequence="10"/>
+    
+    <menuitem id="menu_ai_assistant_messages" 
+              name="All Messages" 
+              parent="menu_ai_assistant_root" 
+              action="action_ai_message" 
+              sequence="20"/>
+</odoo>

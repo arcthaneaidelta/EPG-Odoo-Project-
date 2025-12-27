@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="website_contact_form" name="Website Contact Form">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h2>Contact Us</h2>
+
+                <form
+                    action="/website/form/"
+                    method="post"
+                    class="o_website_form"
+                    data-model="crm.lead"
+                    data-success-mode="redirect"
+                >
+
+                    <!-- CSRF -->
+                    <input type="hidden"
+                           name="csrf_token"
+                           t-att-value="request.csrf_token()"/>
+
+                    <!-- Redirect -->
+                    <input type="hidden"
+                           name="redirect"
+                           value="/thank-you"/>
+
+                    <!-- Lead name -->
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text"
+                               name="name"
+                               required="1"/>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email"
+                               name="email_from"/>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text"
+                               name="phone"/>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="description"/>
+                    </div>
+
+                    <!-- Source -->
+                    <input type="hidden"
+                           name="source_type"
+                           value="web"/>
+
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Send Message
+                    </button>
+
+                </form>
+            </div>
+        </t>
+    </template>
+
+</odoo>

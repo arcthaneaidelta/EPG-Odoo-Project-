@@ -1,0 +1,7 @@
+<odoo>
+    <template id="contactus_form_inherit" inherit_id="website_crm.contactus_form">
+        <xpath expr="//form" position="inside">
+            <input type="hidden" name="source_type" value="web"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,21 @@
+<odoo>
+    <record id="website_page_home" model="website.page">
+        <field name="name">Home</field>
+        <field name="url">/</field>
+        <field name="website_published">True</field>
+        <field name="view_id" ref="website_corporate.home_template"/>
+    </record>
+    <record id="page_contact" model="website.page">
+        <field name="name">Contact</field>
+        <field name="url">/contact</field>
+        <field name="website_published">True</field>
+        <field name="view_id"
+               ref="website_corporate.website_contact_form"/>
+    </record>
+    <record id="page_thank_you" model="website.page">
+        <field name="name">Thank You</field>
+        <field name="url">/thank-you</field>
+        <field name="website_published">True</field>
+        <field name="view_id" ref="website_corporate.thank_you"/>
+    </record>
+</odoo>

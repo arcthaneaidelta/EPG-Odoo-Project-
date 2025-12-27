@@ -1,0 +1,16 @@
+<odoo>
+    <record id="email_lead_created" model="mail.template">
+        <field name="name">Lead Created</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="subject">New Lead: {{ object.name }}</field>
+        <field name="email_from">{{ user.email }}</field>
+        <field name="email_to">{{ object.user_id.email }}</field>
+        <field name="body_html">
+            <![CDATA[
+            <p>A new lead has been created.</p>
+            <p><strong>Customer:</strong> {{ object.partner_id.name }}</p>
+            <p><strong>Score:</strong> {{ object.score }}</p>
+            ]]>
+        </field>
+    </record>
+</odoo>
