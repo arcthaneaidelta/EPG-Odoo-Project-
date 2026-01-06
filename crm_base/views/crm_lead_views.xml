@@ -1,0 +1,44 @@
+<odoo>
+    <record id="crm_lead_form_saas" model="ir.ui.view">
+        <field name="name">crm.lead.form.saas</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="before">
+                <field name="score" readonly="1"/>
+                <field name="source_type"/>
+            </xpath>
+            <!-- <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="contact_name"
+                       placeholder="Contact name (if not an existing customer)"/>
+            </xpath> -->
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_whatsapp"
+                    type="object"
+                    string="WhatsApp"
+                    class="oe_highlight"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_tree_drag_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.tree.drag.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/> 
+        <field name="arch" type="xml">
+            
+            <xpath expr="//list" position="attributes">
+                <attribute name="default_order">sequence, id desc</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="sequence" widget="handle"/>
+            </xpath>
+            
+        </field>
+    </record>
+
+
+</odoo>
