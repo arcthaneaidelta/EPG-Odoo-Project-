@@ -1,0 +1,545 @@
+/* --------------------------------------------CUSTOM CHANGES UI/UX---------------------------------------------------*/
+.o_main_navbar {
+    background: black;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    
+    // Logo container - first child in navbar
+    .mk_navbar_logo_container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 3px 3px;
+        background-color: black;
+        flex-shrink: 0;
+        
+        .mk_navbar_logo {
+            max-height: 34px;
+            max-width: 150px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+    }
+}
+
+.o_loading_indicator {
+	background-color: black;
+}
+
+// Hide logo when website app is active
+body.mk_apps_website_active {
+    .mk_navbar_logo_container {
+        display: none !important;
+    }
+}
+
+// Hide in fullscreen/home menu
+.o_home_menu_background,
+.o_fullscreen,
+.editor_has_snippets_hide_backend_navbar {
+    .mk_navbar_logo_container {
+        display: none !important;
+    }
+}
+
+// Responsive
+@media (max-width: 991px) {
+    .o_main_navbar .mk_navbar_logo_container {
+        padding: 5px 10px;
+        
+        .mk_navbar_logo {
+            max-height: 28px;
+            max-width: 100px;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .o_main_navbar .mk_navbar_logo_container {
+        display: none !important;
+    }
+}
+
+
+body:not(.mk_apps_website_active) {
+    .o_menu_sections {
+        display: none !important;
+    }
+    .o-dropdown-item {
+
+    }
+    .o_navbar_apps_menu {
+        display: none !important;
+    }
+
+    .o_menu_brand {
+    	display: none !important;
+    }
+}
+
+.o_main_navbar{
+	background: black;
+    border-bottom: none;
+}
+
+.btn-primary {
+	--btn-color: #FFFFFF;
+    --btn-bg: #004D7E;
+    --btn-border-color: #004D7E;
+    --btn-hover-color: #FFFFFF;
+    --btn-hover-bg: #023f66;
+    --btn-hover-border-color: #023f66;
+    --btn-focus-shadow-rgb: 134, 122, 173;
+    --btn-active-color: #FFFFFF;
+    --btn-active-bg: #023f66;
+    --btn-active-border-color: #023f66;
+    --btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --btn-disabled-color: #FFFFFF;
+    --btn-disabled-bg: #004D7E;
+    --btn-disabled-border-color: #004D7E;
+}
+
+
+
+.btn-outline-primary {
+    --btn-color: #023f66;
+    --btn-border-color: #023f66;
+    --btn-hover-color: #FFFFFF;
+    --btn-hover-bg: #023f66;
+    --btn-hover-border-color: #023f66;
+    --btn-focus-shadow-rgb: 113, 99, 158;
+    --btn-active-color: #FFFFFF;
+    --btn-active-bg: #023f66;
+    --btn-active-border-color: #023f66;
+    --btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --btn-disabled-color: #004D7E;
+    --btn-disabled-bg: transparent;
+    --btn-disabled-border-color: #004D7E;
+    --gradient: none;
+}
+
+a {
+	color: #023f66;
+}
+
+.btn-outline-secondary {
+    --btn-color: #495057;
+    --btn-bg: transparent;
+    --btn-border-color: #dee2e6;
+    --btn-hover-color: #343a40;
+    --btn-hover-bg: #e9ecef;
+    --btn-hover-border-color: #dee2e6;
+    --btn-focus-shadow-rgb: 200, 204, 209;
+    --btn-active-color: #212529;
+    --btn-active-bg: #dddbe8;
+    --btn-active-border-color: #71639e;
+    --btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --btn-disabled-color: #000000;
+    --btn-disabled-bg: transparent;
+    --btn-disabled-border-color: #dee2e6;
+}
+
+.o-form-buttonbox .oe_stat_button .o_button_icon {
+    font-size: 1.5em;
+    color: #023f66;
+}
+
+.form-check-input:checked {
+    background-color: #023f66;
+    border-color: #023f66;
+}
+
+.btn-link {
+    --btn-color: #023f66;
+    --btn-hover-color: #023f66;
+    --btn-active-color: #023f66;
+}
+
+
+.text-primary {
+    color: #023f66 !important;
+}
+
+.text-action {
+	color: #023f66 !important;
+}
+
+.bg-action, .text-bg-action {
+	background-color: #023f66 !important;
+}
+
+.o-dropdown.btn-secondary.show, .o-dropdown.btn-outline-secondary.show {
+    border-color: #023f66;
+}
+
+:not(.dropstart) > .dropdown-item.active:not(.dropdown-item_active_noarrow):before, :not(.dropstart) > .dropdown-item.selected:not(.dropdown-item_active_noarrow):before {
+	color: #023f66;
+}
+
+.nav-link {
+	color: #023f66;
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: #023f66;
+}
+
+.o_form_view .o_form_uri > span:first-child {
+    color: #023f66;
+}
+
+.o_form_view .o_form_uri {
+    color: #023f66;
+}
+
+.o_field_statusbar > .o_statusbar_status, .o_field_statusbar_duration > .o_statusbar_status {
+    --o-statusbar-border-active: #023f66;
+}
+
+.o_required_modifier {
+    --o-input-border-color: #023f66;
+    --o-caret-color: #023f66;
+}
+
+.o-form-buttonbox .o_pie_value, .o-form-buttonbox .oe_stat_button .o_stat_info .o_stat_value, .o-form-buttonbox .oe_stat_button > span .o_stat_value, .o-form-buttonbox .oe_stat_button .o_field_statinfo .o_stat_value {
+	color: #023f66;
+}
+
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+    border-color: #023f66;
+}
+
+.o_main_navbar .o_menu_sections .o_nav_entry, .o_main_navbar .o_menu_sections .dropdown-toggle {
+    background: black;
+    border: 1px solid transparent;
+}
+
+.o-website-btn-custo-secondary {
+    --btn-bg: #023f66;
+    --btn-border-color: #023f66;
+    --btn-hover-bg: #023656;
+    --btn-hover-border-color: #023656;
+    --btn-active-bg: #023f66;
+    --btn-active-border-color: #023f66;
+}
+
+#oe_snippets .o_we_website_top_actions .btn.btn-primary {
+    --btn-bg: #023f66 !important;
+    --btn-border-color: #023f66 !important;
+    --btn-hover-bg: #023656 !important;
+    --btn-hover-border-color: #023656 !important;
+    --btn-active-bg: #023f66 !important;
+    --btn-active-border-color: #023f66 !important;
+}
+
+#oe_snippets > .o_we_customize_panel we-select.o_we_user_value_widget we-selection-items.o_we_has_pager .o_pager_nav_angle.o_we_bg_brand_primary:not([disabled]), #oe_snippets > #o_scroll #snippet_custom .oe_snippet we-input.o_we_user_value_widget we-button.o_we_bg_brand_primary:not([disabled]), #oe_manipulators .oe_overlay > .o_handles > .o_overlay_options_wrap .o_overlay_move_options > .o_we_bg_brand_primary:not([disabled]), #oe_manipulators .oe_overlay > .o_handles > .o_overlay_options_wrap .o_overlay_edit_options > .o_we_bg_brand_primary:not([disabled]):not(span), #oe_manipulators .oe_overlay > .o_handles > .o_overlay_options_wrap .o_overlay_edit_options > span > .o_we_bg_brand_primary:not([disabled]), #oe_manipulators .oe_overlay > .o_handles > .o_overlay_options_wrap > we-button.o_we_bg_brand_primary:not([disabled]), #oe_snippets .colorpicker .o_colorpicker_reset.o_we_bg_brand_primary:not([disabled]), #oe_snippets > .o_we_customize_panel #oe-table-options .btn.o_we_bg_brand_primary:not([disabled]), #oe_snippets > .o_we_customize_panel .oe-toolbar .btn.o_we_bg_brand_primary:not([disabled]), #oe_snippets > .o_we_customize_panel we-button.o_we_bg_brand_primary:not([disabled]), #oe_snippets > .o_we_customize_panel we-toggler.o_we_bg_brand_primary:not([disabled]), #oe_snippets > .o_we_customize_panel .o_we_fold_icon.o_we_bg_brand_primary:not([disabled]), #oe_snippets > .o_we_customize_panel #removeFormat.o_we_bg_brand_primary:not([disabled]), #oe_snippets > .o_we_customize_panel #oe-table-delete-table.o_we_bg_brand_primary:not([disabled]), #oe_snippets > #o_scroll #snippet_custom .oe_snippet .btn.o_we_bg_brand_primary:not([disabled]), #oe_snippets .colorpicker .o_we_colorpicker_switch_pane_btn.o_we_bg_brand_primary:not([disabled]), #oe_snippets > .o_we_customize_panel we-select.o_we_user_value_widget we-selection-items.o_we_has_pager .o_pager_nav_btn.o_we_bg_brand_primary:not([disabled]), #oe_snippets #snippets_menu > button.o_we_bg_brand_primary:not([disabled]) {
+	background-color: #023f66 !important;
+}
+
+body .o_frontend_to_backend_nav::before,
+html .o_frontend_to_backend_nav::before,
+.o_frontend_to_backend_nav::before {
+    border-top-color: #023F66 !important;
+    border-left-color: #023F66 !important;
+}
+
+.o_frontend_to_backend_nav
+.o_frontend_to_backend_apps_btn {
+	background_color: #023f66 !important;
+}
+
+.o_frontend_to_backend_nav
+.o_frontend_to_backend_apps_btn:hover {
+	background_color: #023f66 !important;
+}
+
+.o_menu_systray.o_website_systray {
+    --border-color: black;
+}
+
+
+/* --------------------------------------------------------------------------------------------------*/
+
+// Hide sidebar when Website app is active
+body.mk_apps_website_active {
+    .mk_apps_sidebar_panel {
+        display: none !important;
+    }
+}
+
+.o_main_navbar {
+    z-index: 10;
+}
+
+.mk_apps_sidebar_panel {
+    @include mk-disable-scrollbar();
+    background-color: black;
+    width: var(--mk-sidebar-width, 0);
+    pointer-events: none;
+    z-index: 5;
+    overflow-y: auto;
+    
+    .mk_apps_sidebar {
+        height: 100%;
+        display: flex;
+        pointer-events: auto;
+        flex-direction: column;
+        justify-content: space-between;
+        white-space: nowrap;
+        
+        .mk_apps_sidebar_menu {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            
+            > li > a {
+                cursor: pointer;
+                font-size: 13px;
+                font-weight: 300;
+                overflow: hidden;
+                padding: 8px 11px;
+                text-decoration: none;
+                color: $mk-appbar-color;
+                text-overflow: ellipsis;
+                
+                .mk_apps_sidebar_icon {
+                    width: 22px;
+                    height: 22px;
+                    margin-right: 5px;
+                }
+            }
+            
+            > li.active > a {
+                background: #2E2E3A;
+                color: #dee2e6;
+            }
+            
+            > li:hover > a {
+                background: #2E2E3A;
+                color: #dee2e6;
+            }
+        }
+    }
+}
+
+.mk_sidebar_type_large {
+    --mk-sidebar-width: 198px;
+}
+
+.mk_sidebar_type_small {
+    --mk-sidebar-width: #{$mk-sidebar-small-width};
+    .mk_apps_sidebar_name {
+        display: none;
+    }
+    .mk_apps_sidebar_icon {
+        margin-right: 0 !important;
+    }
+    .mk_apps_sidebar_logo {
+        display: none;
+    }
+    .mk_apps_group_header {
+        display: none;
+    }
+}
+
+
+.mk_sidebar_type_invisible {
+    --mk-sidebar-width: 0;
+}
+
+.editor_has_snippets_hide_backend_navbar,
+.o_home_menu_background,
+.o_fullscreen {
+    --mk-sidebar-width: 0;
+}
+
+.editor_has_snippets_hide_backend_navbar .mk_apps_sidebar_panel {
+    transition: width 300ms;
+}
+
+@include media-breakpoint-only(md) {
+    .mk_sidebar_type_large {
+        --mk-sidebar-width: #{$mk-sidebar-small-width};
+        .mk_apps_sidebar_name {
+            display: none;
+        }
+        .mk_apps_sidebar_icon {
+            margin-right: 0 !important;
+        }
+        .mk_apps_sidebar_logo {
+            display: none;
+        }
+        .mk_apps_group_header {
+            display: none;
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .mk_sidebar_type_large, .mk_sidebar_type_small {
+        --mk-sidebar-width: 0;
+    }
+}
+
+// Back to Apps Button
+.mk_apps_back_item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.25rem;
+    
+    .mk_apps_back_link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.875rem 1rem;
+        color: #adb5bd;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        
+        &:hover {
+            background-color: #2E2E3A;
+            color: #dee2e6;
+            text-decoration: none;
+        }
+        
+        i.fa-arrow-left {
+            font-size: 14px;
+        }
+        
+        .mk_apps_sidebar_name {
+            flex: 1;
+        }
+    }
+}
+
+// Current App Header
+.mk_apps_current_app {
+    margin-bottom: 0.5rem;
+    padding: 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    
+    .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 1rem;
+        pointer-events: none;
+        background-color: transparent !important;
+        
+        .mk_apps_sidebar_icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+        
+        .mk_apps_sidebar_name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #dee2e6;
+            flex: 1;
+        }
+    }
+}
+
+// Group Headers (for showing where menu came from)
+.mk_apps_group_header {
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+    display: none;
+    
+    .mk_apps_group_label {
+        padding: 0.5rem 1rem;
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #6c757d;
+        background-color: rgba(255, 255, 255, 0.03);
+        border-left: 3px solid #004D7E;
+        
+        span {
+            opacity: 0.8;
+        }
+    }
+}
+
+// Actionable Menu Items
+.mk_apps_menu_item {
+    margin-bottom: 1px;
+    cursor: move;
+    transition: all 0.2s ease;
+    
+    &.mk_apps_dragging {
+        opacity: 0.4;
+    }
+    
+    &.mk_apps_drag_over {
+        border-top: 2px solid #004D7E;
+    }
+    
+    > .nav-link {
+        display: flex;
+        align-items: center;
+        padding: 0.65rem 1rem;
+        color: #dee2e6;
+        transition: all 0.2s ease;
+        border-left: 3px solid transparent;
+        cursor: pointer;
+        
+        .mk_apps_drag_handle {
+            opacity: 0.2;
+            margin-right: 8px;
+            font-size: 11px;
+            cursor: grab;
+            transition: opacity 0.2s ease;
+            
+            &:active {
+                cursor: grabbing;
+            }
+        }
+        
+        .mk_apps_sidebar_name {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        
+        &:hover {
+            background-color: #2E2E3A;
+            color: #fff;
+            text-decoration: none;
+            
+            .mk_apps_drag_handle {
+                opacity: 0.7;
+            }
+        }
+    }
+    
+    &.active > .nav-link {
+        background-color: #2E2E3A;
+        border-left-color: #004D7E;
+        color: #fff;
+        font-weight: 500;
+        
+        .mk_apps_sidebar_name {
+            font-weight: 500;
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .mk_apps_sidebar_name {
+        font-size: 0.9rem !important;
+    }
+    
+    .mk_apps_menu_item > .nav-link {
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .mk_apps_group_header {
+        display: none;
+    }
+}
