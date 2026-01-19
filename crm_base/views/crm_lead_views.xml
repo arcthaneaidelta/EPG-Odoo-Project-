@@ -20,6 +20,18 @@
                     class="oe_highlight"
                 />
             </xpath>
+
+            <!-- Add lost_reason_text field after lost_reason_id -->
+            <xpath expr="//field[@name='lost_reason_id']" position="after">
+                <field name="lost_reason_text" 
+                       invisible="active"
+                       readonly="1"/>
+            </xpath>
+            
+            <!-- Optional: Hide the original lost_reason_id field -->
+            <xpath expr="//field[@name='lost_reason_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
         </field>
     </record>
 
@@ -37,6 +49,19 @@
                 <field name="sequence" widget="handle"/>
             </xpath>
             
+        </field>
+    </record>
+
+    <record id="res_partner_form_remove_website_placeholder" model="ir.ui.view">
+        <field name="name">res.partner.form.remove.website.placeholder</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="placeholder"/>
+            </xpath>
+
         </field>
     </record>
 

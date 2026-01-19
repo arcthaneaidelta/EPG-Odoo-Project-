@@ -13,6 +13,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/crm_lead_views.xml",
+        "views/crm_lead_lost_views.xml",
         # "data/crm_automation.xml",
         "data/mail_templates.xml",
     ],

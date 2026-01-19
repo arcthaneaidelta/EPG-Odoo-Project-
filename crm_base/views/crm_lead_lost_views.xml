@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Inherit the Lost Lead form view -->
+        <record id="crm_lead_lost_view_form_inherited" model="ir.ui.view">
+            <field name="name">crm.lead.lost.form.inherited</field>
+            <field name="model">crm.lead.lost</field>
+            <field name="inherit_id" ref="crm.crm_lead_lost_view_form"/>
+            <field name="arch" type="xml">
+                
+                <!-- Hide the original Many2one field -->
+                <xpath expr="//field[@name='lost_reason_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <!-- Add the new Char field in its place -->
+                <xpath expr="//field[@name='lost_reason_id']" position="after">
+                    <field name="lost_reason_text" placeholder="Enter the reason why this lead was lost" required="1"/>
+                </xpath>
+                
+            </field>
+        </record>
+        
+    </data>
+</odoo>

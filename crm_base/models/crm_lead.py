@@ -16,6 +16,7 @@ class CrmLeadInherit(models.Model):
 	)
 	sequence = fields.Integer(string='Sequence', default=10)
 	visitor_name = fields.Char("Name")
+	lost_reason_text = fields.Char(string='Lost Reason', readonly=True, copy=False)
 
 	@api.depends("source_type", "partner_id")
 	def _compute_score(self):
