@@ -3,7 +3,9 @@
     <t t-name="ai_assistant.AiAssistantWidget" owl="1">
         <!-- Floating Button -->
         <button class="ai-floating-button" t-on-click="toggleWidget">
-            <span style="margin-top: -5px;" class="ai-icon">🤖</span>
+            <span style="margin-top: -5px;" class="ai-icon"><img src="/ai_assistant/static/description/aiicon.png" 
+                             alt="AI" 
+                             style="width: 24px; height: 28px; border-radius: 28px;"/></span>
             <t t-if="state.unreadCount > 0" class="unread-badge">
                 <t t-esc="Math.min(state.unreadCount, 9)"/>
                 <t t-if="state.unreadCount > 9">+</t>
@@ -16,12 +18,15 @@
                 <!-- Header -->
                 <div class="ai-chat-header">
                     <div class="header-left">
-                        <strong>🤖 AI Assistant</strong>
+                        <img src="/ai_assistant/static/description/aiicon.png" 
+                             alt="AI" 
+                             style="width: 24px; height: 24px; margin-right: 8px; border-radius: 4px;"/>
+                        <strong>Asistente de IA</strong>
                         <!-- <t t-if="state.currentContext" class="context-info">
                             <small t-esc="contextInfo"/>
                         </t> -->
                         <t t-if="!state.isConfigured" class="config-warning">
-                            <small>⚙️ Needs configuration</small>
+                            <small>⚙️ Necesita configuración</small>
                         </t>
                     </div>
                     <div class="header-right">
@@ -44,9 +49,9 @@
                         <div t-att-class="'ai-message ' + msg.sender + (msg.isError ? ' error' : '') + (msg.isWarning ? ' warning' : '')">
                             <div class="message-header">
                                 <span class="message-sender">
-                                    <t t-if="msg.sender === 'user'">You</t>
-                                    <t t-elif="msg.sender === 'ai'">AI Assistant</t>
-                                    <t t-else="">System</t>
+                                    <t t-if="msg.sender === 'user'">Tú</t>
+                                    <t t-elif="msg.sender === 'ai'">Asistente de IA</t>
+                                    <t t-else="">Sistema</t>
                                 </span>
                                 <small class="message-time">
                                     <t t-esc="msg.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})"/>
@@ -57,9 +62,8 @@
                                 <t t-if="msg.sender === 'ai'">
                                     <button 
                                         class="btn-copy" 
-                                        t-on-click="() => copyToClipboard(msg.text)"
-                                        title="Copy to clipboard"
-                                    >
+                                        t-on-click="() => this.copyToClipboard(msg.text)"
+                                        title="Copy to clipboard">
                                         📋
                                     </button>
                                 </t>
@@ -75,7 +79,7 @@
                                 <div class="dot"></div>
                                 <div class="dot"></div>
                             </div>
-                            <div class="loading-text">Thinking...</div>
+                            <div class="loading-text">Pensamiento...</div>
                         </div>
                     </t>
                     
@@ -83,22 +87,14 @@
                     <t t-if="state.messages.length === 0 and !state.isLoading">
                         <div class="welcome-message">
                             <div class="welcome-icon">🤖</div>
-                            <h4>Hello! I'm your AI Assistant</h4>
-                            <p>I can help you with:</p>
+                            <h4>Asistente Profesional</h4>
+                            <p><strong>Aviso:</strong> La IA está diseñada para ayudarle a trabajar mejor en su negocio, no como entretenimiento.</p>
+                            <p>Puedo ayudarle con:</p>
                             <ul>
-                                <li>Questions about the current record</li>
-                                <li>CRM lead analysis</li>
-                                <li>General business advice</li>
-                                <li>Odoo-related questions</li>
+                                <li>Optimización de tareas en el CRM</li>
+                                <li>Información de registros de Odoo</li>
+                                <li>Conceptos generales de negocio</li>
                             </ul>
-                            <p class="hint">
-                                <small>💡 Ask me about the current CRM lead, contact, or any other record!</small>
-                            </p>
-                            <!-- <t t-if="state.currentContext">
-                                <div class="current-context">
-                                    <small>📌 Currently viewing: <strong t-esc="contextInfo"/></small>
-                                </div>
-                            </t> -->
                         </div>
                     </t>
                 </div>
@@ -107,7 +103,7 @@
                 <div class="ai-input-area">
                     <textarea 
                         class="ai-input" 
-                        placeholder="Escribe tu pregunta aquí... (Shift+Enter para nueva línea)"
+                        placeholder="Pregúnteme"
                         t-model="state.inputText"
                         t-on-keydown="handleKeyPress"
                         t-att-disabled="state.isLoading or !state.isConfigured"
@@ -134,12 +130,12 @@
                 <div class="ai-chat-footer">
                     <t t-if="!state.isConfigured">
                         <div class="config-alert">
-                            <small>⚙️ Please configure API key in System Parameters</small>
+                            <small>⚙️ Configure la clave API en los parámetros del sistema</small>
                         </div>
                     </t>
                     <t t-else="">
                         <small class="hint">
-                            Press Enter to send • Shift+Enter for new line
+                            Presione Enter para enviar • Shift+Enter para nueva línea
                         </small>
                     </t>
                 </div>

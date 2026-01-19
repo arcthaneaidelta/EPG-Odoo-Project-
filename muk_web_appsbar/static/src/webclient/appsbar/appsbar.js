@@ -222,6 +222,7 @@ export class AppsBar extends Component {
         const menus = this.state.flattenedMenus;
         const result = [];
         let currentGroup = '';
+        let groupCounter = 0; // ← ADD THIS COUNTER
         
         menus.forEach(menu => {
             const groupName = menu.groupName || '';
@@ -231,7 +232,7 @@ export class AppsBar extends Component {
                     result.push({
                         isGroupHeader: true,
                         groupName: groupName,
-                        id: `group_${groupName}`,
+                        id: `group_${groupCounter++}`, // ← USE COUNTER FOR UNIQUE IDs
                     });
                 }
                 currentGroup = groupName;

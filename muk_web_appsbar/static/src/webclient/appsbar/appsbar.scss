@@ -1,4 +1,117 @@
 /* --------------------------------------------CUSTOM CHANGES UI/UX---------------------------------------------------*/
+
+
+
+/* --------------------------------------------CRM LEAD RAINBOW MAN---------------------------------------------------*/
+/* Hide the face elements */
+.o_reward_face_group > * {
+    display: none !important;
+}
+.o_reward_rainbow {
+    animation: fadeOut 1s ease-out 60s forwards !important;
+}
+
+/* Add your logo */
+.o_reward_face_group {
+    background-image: url('/web/image/res.company/1/logo') !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Hide ALL child elements of the rainbow container except message */
+.o_reward_rainbow > *:not(.o_reward_msg_container) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Make sure message stays visible */
+.o_reward_msg_container {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Keep only the face group visible for logo */
+.o_reward_face_group {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* HIDE STARS - All possible star elements */
+.o_reward_rainbow [class*="star"],
+.o_reward_rainbow .fa-star,
+.o_reward_star,
+[class*="o_reward_star"] {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Hide stars created with pseudo-elements */
+.o_reward_rainbow *::before,
+.o_reward_rainbow *::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* But keep the face group and message pseudo-elements if needed */
+.o_reward_face_group::before,
+.o_reward_face_group::after,
+.o_reward_msg_container::before,
+.o_reward_msg_container::after {
+    content: normal !important;
+}
+
+/* Add "Congratulations!" text below the logo */
+.o_reward_face_group::after {
+    content: "Congratulations!" !important;
+    display: block !important;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: #056594;
+    text-align: center;
+    white-space: nowrap;
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Make room for the congratulations text */
+.o_reward_face_group {
+    position: relative;
+    margin-bottom: 30px !important;
+}
+
+/* Animation for congratulations text */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+/*-------------------------------------------------------------------------------------------------------------*/
+
 .o_main_navbar {
     background: black;
     border-bottom: none;
@@ -85,10 +198,15 @@ body:not(.mk_apps_website_active) {
     border-bottom: none;
 }
 
+/*---------------------------------------------For Enterprise button in Settings---------------------------------------------------*/
+.text-bg-primary {
+    background-color: #010057 !important;
+}
+
 .btn-primary {
 	--btn-color: #FFFFFF;
-    --btn-bg: #004D7E;
-    --btn-border-color: #004D7E;
+    --btn-bg: #010057;
+    --btn-border-color: #010057;
     --btn-hover-color: #FFFFFF;
     --btn-hover-bg: #023f66;
     --btn-hover-border-color: #023f66;
@@ -98,8 +216,8 @@ body:not(.mk_apps_website_active) {
     --btn-active-border-color: #023f66;
     --btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
     --btn-disabled-color: #FFFFFF;
-    --btn-disabled-bg: #004D7E;
-    --btn-disabled-border-color: #004D7E;
+    --btn-disabled-bg: #010057;
+    --btn-disabled-border-color: #010057;
 }
 
 
@@ -115,9 +233,9 @@ body:not(.mk_apps_website_active) {
     --btn-active-bg: #023f66;
     --btn-active-border-color: #023f66;
     --btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --btn-disabled-color: #004D7E;
+    --btn-disabled-color: #010057;
     --btn-disabled-bg: transparent;
-    --btn-disabled-border-color: #004D7E;
+    --btn-disabled-border-color: #010057;
     --gradient: none;
 }
 
@@ -259,9 +377,7 @@ html .o_frontend_to_backend_nav::before,
 .o_menu_systray.o_website_systray {
     --border-color: black;
 }
-
-
-/* --------------------------------------------------------------------------------------------------*/
+/* ------------------------------------------------------------------------------------------------------------------------------*/
 
 // Hide sidebar when Website app is active
 body.mk_apps_website_active {
@@ -457,7 +573,7 @@ body.mk_apps_website_active {
         letter-spacing: 0.5px;
         color: #6c757d;
         background-color: rgba(255, 255, 255, 0.03);
-        border-left: 3px solid #004D7E;
+        border-left: 3px solid #010057;
         
         span {
             opacity: 0.8;
@@ -476,7 +592,7 @@ body.mk_apps_website_active {
     }
     
     &.mk_apps_drag_over {
-        border-top: 2px solid #004D7E;
+        border-top: 2px solid #010057;
     }
     
     > .nav-link {
@@ -519,7 +635,7 @@ body.mk_apps_website_active {
     
     &.active > .nav-link {
         background-color: #2E2E3A;
-        border-left-color: #004D7E;
+        border-left-color: #010057;
         color: #fff;
         font-weight: 500;
         

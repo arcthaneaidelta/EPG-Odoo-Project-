@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
-
+    <!-- Email from Website -->
     <record id="email_template_new_lead_notification" model="mail.template">
         <field name="name">Notificación de Nuevo Lead</field>
         <field name="model_id" ref="crm.model_crm_lead"/>
         <field name="email_from">
-            "Notificaciones del Sitio Web" &lt;info@eficienciayproductividadglobal.com&gt;
+            "Notificaciones del Sitio Web" &lt;usmank123428@gmail.com&gt;
         </field>
-        <field name="email_to">info@eficienciayproductividadglobal.com</field>
+        <field name="email_to">usmank123428@gmail.com</field>
 
         <field name="subject">Nuevo lead creado: {{ object.name }}</field>
 
@@ -109,6 +109,45 @@
             </div>
         </field>
 
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <!-- Email when a new customer is created -->
+    <record id="email_template_welcome_new_customer" model="mail.template">
+        <field name="name">Bienvenida - Nuevo Cliente EPG</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="email_from">info@eficienciayproductividadglobal.com</field>
+        <field name="email_to">{{ object.email }}</field>
+        <field name="subject">Hemos recibido tu registro - Eficiencia y Productividad Global</field>
+
+        <field name="body_html" type="html">
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;">
+                
+                <div style="background-color: #005082; padding: 25px; text-align: center;">
+                    <h1 style="color: white; margin: 0; font-size: 24px;">Bienvenido a EPG</h1>
+                </div>
+
+                <div style="padding: 30px; background-color: #ffffff; border: 1px solid #ddd;">
+                    <p style="font-size: 16px;">Hola <strong><t t-out="object.name"/></strong>,</p>
+                    
+                    <p>Gracias por completar este primer paso. Hemos recibido correctamente tu registro.</p>
+                    
+                    <p>Debido al alto volumen de solicitudes, nuestro equipo está atendiendo cada caso de forma individualizada para poder realizar un estudio personalizado, garantizando así la máxima calidad en el análisis.</p>
+                    
+                    <p>En breve nos pondremos en contacto contigo para informarte del estado de tu solicitud y los siguientes pasos a seguir.</p>
+                    
+                    <p style="margin-top: 30px;">Gracias por tu confianza.</p>
+                    
+                    <p style="color: #005082; font-weight: bold;">El equipo de Eficiencia y Productividad Global</p>
+                </div>
+
+                <div style="background-color: #f4f4f4; padding: 15px; text-align: center; color: #777; font-size: 12px; border: 1px solid #ddd; border-top: none;">
+                    <p style="margin: 0;">© 2026 Eficiencia y Productividad Global S.L.U.</p>
+                    <p style="margin: 5px 0 0 0;">C/ Lepant 270, Nexus Coworking, España</p>
+                </div>
+
+            </div>
+        </field>
         <field name="auto_delete" eval="False"/>
     </record>
 

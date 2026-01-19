@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="web.RainbowMan" t-inherit="web.RainbowMan" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_reward_face_group')]" position="replace">
+            <div class="o_reward_face_group h-100 w-75 mx-auto d-flex align-items-center justify-content-center">
+                <img src="/muk_web_appsbar/static/description/company_logo.png" 
+                     alt="Congratulations" 
+                     class="o_company_logo_reward"
+                     style="max-height: 180px; max-width: 100%; object-fit: contain;"/>
+            </div>
+        </xpath>
+    </t>
+</templates>

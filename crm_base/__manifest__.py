@@ -15,7 +15,6 @@
         "views/crm_lead_views.xml",
         # "data/crm_automation.xml",
         "data/mail_templates.xml",
-        # 'data/website_crm_data.xml',
     ],
     "application": True,
 }

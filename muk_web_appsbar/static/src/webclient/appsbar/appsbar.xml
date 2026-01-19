@@ -3,11 +3,6 @@
 <templates xml:space="preserve">
 
     <t t-name="muk_web_appsbar.AppsBar">
-        <!-- Company Logo in Top Navbar -->
-        <!-- <div t-if="sidebarImageUrl" class="mk_apps_navbar_logo">
-            <img t-att-src="sidebarImageUrl" alt="Logo"/>
-        </div> -->
-        
         <div class="mk_apps_sidebar_panel">
             <div class="mk_apps_sidebar">
                 <ul class="mk_apps_sidebar_menu">
