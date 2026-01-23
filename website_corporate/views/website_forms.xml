@@ -14,53 +14,71 @@
                     data-success-mode="redirect"
                 >
 
-                    <!-- CSRF -->
                     <input type="hidden"
                            name="csrf_token"
                            t-att-value="request.csrf_token()"/>
 
-                    <!-- Redirect -->
                     <input type="hidden"
                            name="redirect"
                            value="/thank-you"/>
 
-                    <!-- Lead name -->
-                    <div class="form-group">
-                        <label>Your Name</label>
+                    <div class="form-group mb-3">
+                        <label class="control-label" for="name">Motivo de consulta</label>
+                        <select name="name" class="form-control" required="1" id="name">
+                            <option value="" disabled="disabled" selected="selected">Seleccione un motivo...</option>
+                            <option value="Consultoría en eficiencia empresarial">Consultoría en eficiencia empresarial</option>
+                            <option value="Implementación de CRM">Implementación de CRM</option>
+                            <option value="CRM Eficiencia y Productividad (nuestro CRM)">CRM Eficiencia y Productividad (nuestro CRM)</option>
+                            <option value="Módulo Contabilidad/Gestoría">Módulo Contabilidad/Gestoría</option>
+                            <option value="Módulo Real Estate">Módulo Real Estate</option>
+                            <option value="Desarrollo de software a medida">Desarrollo de software a medida</option>
+                            <option value="Desarrollo de aplicaciones personalizadas">Desarrollo de aplicaciones personalizadas</option>
+                            <option value="Automatización de procesos">Automatización de procesos</option>
+                            <option value="Integraciones tecnológicas">Integraciones tecnológicas</option>
+                            <option value="Información general">Información general</option>
+                            <option value="Otros motivos">Otros motivos</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="control-label" for="contact_name">Su Nombre</label>
                         <input type="text"
-                               name="name"
+                               name="contact_name"
+                               class="form-control"
+                               required="1"
+                               id="contact_name"/>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="control-label">Email</label>
+                        <input type="email"
+                               name="email_from"
+                               class="form-control"
                                required="1"/>
                     </div>
 
-                    <!-- Email -->
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email"
-                               name="email_from"/>
-                    </div>
-
-                    <!-- Phone -->
-                    <div class="form-group">
-                        <label>Phone</label>
+                    <div class="form-group mb-3">
+                        <label class="control-label">Phone</label>
                         <input type="text"
-                               name="phone"/>
+                               name="phone"
+                               class="form-control"/>
                     </div>
 
-                    <!-- Message -->
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea name="description"/>
+                    <div class="form-group mb-3">
+                        <label class="control-label">Message</label>
+                        <textarea name="description" class="form-control" rows="4"></textarea>
                     </div>
 
-                    <!-- Source -->
                     <input type="hidden"
                            name="source_type"
                            value="web"/>
 
-                    <button type="submit"
-                            class="btn btn-primary">
-                        Send Message
-                    </button>
+                    <div class="form-group mt-4">
+                        <button type="submit"
+                                class="btn btn-primary btn-lg">
+                            Send Message
+                        </button>
+                    </div>
 
                 </form>
             </div>
