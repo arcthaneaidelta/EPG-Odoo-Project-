@@ -98,9 +98,6 @@
     <record id="om_account_followup.menu_finance_followup" model="ir.ui.menu"> <!-- FollowUps Removed -->
         <field name="active">False</field>
     </record>
-    <record id="account.menu_finance_configuration" model="ir.ui.menu"> <!-- Configuration Removed -->
-        <field name="active">False</field>
-    </record>
     <record id="om_account_accountant.menu_finance_entries_accounting_journals" model="ir.ui.menu"> <!-- Accounting/Journals Removed -->
         <field name="active">False</field>
     </record>
@@ -194,9 +191,9 @@
     <record id="account.menu_action_account_form" model="ir.ui.menu">
         <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Accounting/Chart of Accountants -->
     </record>
-    <record id="om_account_accountant.menu_account_group" model="ir.ui.menu">
-        <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Accounting/Account Groups -->
-    </record>
+    <!-- <record id="om_account_accountant.menu_account_group" model="ir.ui.menu">
+        <field name="parent_id" ref="account.menu_finance_entries"/>
+    </record> -->
     <record id="accounting_pdf_reports.menu_account_reports" model="ir.ui.menu">
         <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Accounting/Account Reports -->
     </record>
@@ -219,6 +216,10 @@
     </record>
     <record id="accounting_pdf_reports.menu_general_ledger" model="ir.ui.menu">
         <field name="parent_id" ref="account.menu_finance_reports"/> <!-- Report/General Ledger -->
+    </record>
+
+    <record id="account.menu_finance_configuration" model="ir.ui.menu"> <!-- Configuration Removed -->
+        <field name="active">False</field>
     </record>
     
 
@@ -279,6 +280,7 @@
     <record id="sale.menu_sale_config" model="ir.ui.menu"> <!-- Configuration/To Invoice Removed -->
         <field name="active">False</field>
     </record>
+
 
 
 </odoo>

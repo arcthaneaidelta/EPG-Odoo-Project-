@@ -11,6 +11,6 @@
     <menuitem id="menu_account_group"
               action="action_account_group_action"
               sequence="50"
-              parent="account.account_account_menu"/>
+              parent="account.menu_finance_entries"/>
 
 </odoo>
