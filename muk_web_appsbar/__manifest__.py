@@ -60,7 +60,6 @@
             ),
             'muk_web_appsbar/static/src/webclient/webclient.scss',
             'muk_web_appsbar/static/src/webclient/appsbar/appsbar.xml',
-            # 'muk_web_appsbar/static/src/webclient/appsbar/rainbowman_template.xml',
             'muk_web_appsbar/static/src/webclient/appsbar/appsbar.scss',
         ],
     },

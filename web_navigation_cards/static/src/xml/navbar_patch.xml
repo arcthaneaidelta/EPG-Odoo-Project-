@@ -1,0 +1,20 @@
+<templates xml:space="preserve">
+    <t t-inherit="web.NavBar" t-inherit-mode="extension">
+        
+        <xpath expr="//div[contains(@class, 'o_menu_systray')]" position="before">
+            
+            <div class="o_menu_sections o_custom_menu_sections d-flex flex-grow-1 flex-shrink-1 w-0" role="menu">
+                <t t-foreach="currentAppSections" t-as="section" t-key="section.id">
+                    <button class="o_nav_entry o_menu_header_level_1 nav-link"
+                            t-att-class="{ 'active': currentAppSections.includes(section) }"
+                            t-on-click="() => this.onSectionClick(section)"
+                            role="menuitem">
+                        <t t-esc="section.name"/>
+                    </button>
+                </t>
+            </div>
+            
+        </xpath>
+
+    </t>
+</templates>

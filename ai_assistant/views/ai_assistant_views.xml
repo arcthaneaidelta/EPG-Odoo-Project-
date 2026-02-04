@@ -145,7 +145,7 @@
     </record>
 
     <!-- Menu Structure -->
-    <menuitem id="menu_ai_assistant_root" name="AI Assistant" sequence="100"/>
+    <menuitem id="menu_ai_assistant_root" name="AI Assistant" web_icon="ai_assistant,static/description/aiicon.png" />
     
     <menuitem id="menu_ai_assistant_sessions" 
               name="My Sessions" 

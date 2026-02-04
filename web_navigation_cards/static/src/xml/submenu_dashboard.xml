@@ -1,0 +1,42 @@
+<templates xml:space="preserve">
+    <t t-name="web_navigation_cards.SubmenuDashboard">
+        <div class="o_submenu_dashboard_container p-4 h-100 overflow-auto">
+            <div class="container-fluid">
+                
+                <h2 class="mb-4 text-muted">
+                    <t t-if="parentMenuId and menuService.getMenu(parentMenuId)">
+                        <t t-esc="menuService.getMenu(parentMenuId).name"/>
+                    </t>
+                    <t t-else="">
+                        Dashboard
+                    </t>
+                </h2>
+
+                <div class="row">
+                    <t t-foreach="submenus" t-as="menu" t-key="menu.id">
+                        <div class="col-6 col-md-3 col-lg-2 mb-3 d-flex align-items-stretch">
+                            <div class="card w-100 shadow-sm o_home_menu_card cursor-pointer" 
+                                 t-on-click="() => this.onCardClick(menu.id)"
+                                 style="transition: transform 0.2s; cursor: pointer;">
+                                
+                                <div class="card-body text-center d-flex flex-column align-items-center justify-content-center p-3">
+                                    <div t-if="menu.webIconData" class="mb-3">
+                                        <img t-att-src="menu.webIconData" style="max-width: 50px; max-height: 50px; object-fit: contain;"/>
+                                    </div>
+                                    <div t-else="" class="mb-3 text-primary">
+                                        <i class="fa fa-folder-open fa-3x"></i>
+                                    </div>
+                                    
+                                    <h6 class="card-title font-weight-bold text-wrap mb-0" 
+                                        style="white-space: normal; line-height: 1.4; word-break: break-word; hyphens: auto;">
+                                        <t t-esc="menu.name"/>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

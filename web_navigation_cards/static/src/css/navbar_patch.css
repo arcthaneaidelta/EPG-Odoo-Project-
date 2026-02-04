@@ -1,0 +1,5 @@
+/* Hide the original Odoo menu sections to prevent duplicates.
+   We only show our custom one (which will have the class 'o_custom_menu_sections') */
+.o_main_navbar .o_menu_sections:not(.o_custom_menu_sections) {
+    display: none !important;
+}

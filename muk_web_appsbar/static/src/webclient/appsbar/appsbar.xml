@@ -2,113 +2,44 @@
 
 <templates xml:space="preserve">
 
-    <t t-name="muk_web_appsbar.AppsBar">
-        <div class="mk_apps_sidebar_panel">
-            <div class="mk_apps_sidebar">
-                <ul class="mk_apps_sidebar_menu">
-                    <!-- Show main apps when in 'apps' view -->
-                    <t t-if="state.currentView === 'apps'">
-                        <t t-foreach="this.appMenuService.getAppsMenuItems()" t-as="app" t-key="app.id">
-                            <li t-attf-class="nav-item {{ app.id === this.appMenuService.getCurrentApp()?.id ? 'active' : '' }}">
-                                <a 
-                                    t-att-href="app.href"
-                                    t-att-data-menu-id="app.id" 
-                                    t-att-data-menu-xmlid="app.xmlid" 
-                                    t-att-data-action-id="app.actionID"
-                                    t-on-click.prevent="() => this._onAppClick(app)"
-                                    class="nav-link" 
-                                    role="menuitem"
-                                >
-                                    <img 
-                                        t-if="app.webIconData" 
-                                        class="mk_apps_sidebar_icon" 
-                                        t-att-src="app.webIconData"
-                                    />
-                                    <img  
-                                        t-else="" 
-                                        class="mk_apps_sidebar_icon" 
-                                        src="/base/static/description/icon.png"
-                                    />
-                                    <span class="mk_apps_sidebar_name">
-                                        <t t-out="app.label"/>
-                                    </span>
-                                </a>
-                            </li>
-                        </t>
-                    </t>
-
-                    <!-- Show flattened menus when in 'children' view -->
-                    <t t-if="state.currentView === 'children'">
-                        <!-- Back to Apps Button -->
-                        <li class="nav-item mk_apps_back_item">
-                            <a 
-                                href="#"
-                                class="nav-link mk_apps_back_link"
-                                t-on-click.prevent="() => this._onBackToApps()"
-                            >
-                                <i class="fa fa-arrow-left"/>
-                                <span class="mk_apps_sidebar_name">Back to Apps</span>
-                            </a>
-                        </li>
-
-                        <!-- Selected App Header -->
-                        <li class="nav-item mk_apps_current_app">
-                            <div class="nav-link">
-                                <img 
-                                    t-if="state.selectedApp and state.selectedApp.webIconData"
-                                    class="mk_apps_sidebar_icon" 
-                                    t-att-src="state.selectedApp.webIconData"
-                                />
-                                <img  
-                                    t-else="" 
-                                    class="mk_apps_sidebar_icon" 
-                                    src="/base/static/description/icon.png"
-                                />
-                                <span class="mk_apps_sidebar_name">
-                                    <t t-if="state.selectedApp" t-out="state.selectedApp.label || state.selectedApp.name"/>
-                                </span>
-                            </div>
-                        </li>
-
-                        <!-- Flattened Menu Items -->
-                        <t t-foreach="this._getMenusWithGroups()" t-as="menu" t-key="menu.id">
-                            <!-- Group Header (non-clickable, just a label) -->
-                            <li t-if="menu.isGroupHeader" class="nav-item mk_apps_group_header">
-                                <div class="mk_apps_group_label">
-                                    <span><t t-out="menu.groupName"/></span>
-                                </div>
-                            </li>
-                            
-                            <!-- Actionable Menu Item -->
-                            <li 
-                                t-else=""
-                                t-attf-class="nav-item mk_apps_menu_item {{ this._isMenuActive(menu) ? 'active' : '' }} {{ state.draggedItemId === menu.id ? 'mk_apps_dragging' : '' }}"
-                                draggable="true"
-                                t-att-data-menu-id="menu.id"
-                                t-on-dragstart="(e) => this._onDragStart(e, menu)"
-                                t-on-dragend="(e) => this._onDragEnd(e)"
-                                t-on-dragover="(e) => this._onDragOver(e, menu)"
-                                t-on-drop="(e) => this._onDrop(e, menu)"
-                                t-on-dragleave="(e) => this._onDragLeave(e)"
-                            >
-                                <a 
-                                    t-att-href="menu.href"
-                                    t-att-data-menu-id="menu.id"
-                                    t-on-click.prevent="(e) => this._onMenuClick(menu, e)"
-                                    class="nav-link" 
-                                    role="menuitem"
-                                >
-                                    <i class="fa fa-grip-vertical mk_apps_drag_handle" title="Drag to reorder"/>
-                                    <span class="mk_apps_sidebar_name">
-                                        <t t-out="menu.name"/>
-                                    </span>
-                                </a>
-                            </li>
-                        </t>
-                    </t>
-                </ul>
-            </div>
-        </div>
-    </t>
-    
+	<t t-name="muk_web_appsbar.AppsBar">
+		<div class="mk_apps_sidebar_panel">
+			<div class="mk_apps_sidebar">
+				<ul class="mk_apps_sidebar_menu">
+				    <t t-foreach="this.appMenuService.getAppsMenuItems()" t-as="app" t-key="app.id">
+			            <li t-attf-class="nav-item {{ app.id === this.appMenuService.getCurrentApp()?.id ? 'active' : '' }} {{ app.isPlaceholder ? 'mk_placeholder_app' : '' }}">
+			            	<a 
+			            		t-att-href="app.isPlaceholder ? '#' : app.href"
+		            			t-att-data-menu-id="app.id" 
+		            			t-att-data-menu-xmlid="app.xmlid" 
+		            			t-att-data-action-id="app.actionID"
+								t-on-click.prevent="() => this._onAppClick(app)"
+		            			class="nav-link" 
+		            			role="menuitem"
+		            		>
+			                	<img 
+			                		t-if="app.webIconData" 
+			                		class="mk_apps_sidebar_icon" 
+			                		t-att-src="app.webIconData"
+			                	/>
+			                	<img  
+			                		t-else="" 
+			                		class="mk_apps_sidebar_icon" 
+			                		src="/base/static/description/icon.png"
+			                	/>
+						        <span class="mk_apps_sidebar_name">
+						            <t t-out="app.label"/>
+						            <span t-if="app.isPlaceholder" class="mk_coming_soon_badge">Coming Soon</span>
+						        </span>
+			            	 </a>
+			            </li>
+			    	</t>
+				</ul>
+				<div t-if="sidebarImageUrl" class="mk_apps_sidebar_logo p-2">
+					<img class="img-fluid mx-auto" t-att-src="sidebarImageUrl" alt="Logo"/>
+				</div>
+			</div>
+		</div>
+	</t>
+	
 </templates>

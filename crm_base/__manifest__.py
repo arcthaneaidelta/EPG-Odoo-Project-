@@ -16,6 +16,7 @@
         "views/crm_lead_lost_views.xml",
         # "data/crm_automation.xml",
         "data/mail_templates.xml",
+        "data/menu_order.xml",
     ],
     "application": True,
 }
