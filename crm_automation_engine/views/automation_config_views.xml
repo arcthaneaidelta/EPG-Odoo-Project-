@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Res Config Settings View -->
+    <record id="res_config_settings_view_form_crm_auto" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.crm.auto</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="CRM Automations" string="CRM Automations" name="crm_automation_engine">
+                    
+                    <block title="Lead Automations" name="lead_auto_setting">
+                        <setting id="lead_auto_assign" help="Automatically assign sales rep to new leads">
+                            <field name="enable_lead_auto_assign"/>
+                        </setting>
+                        <setting id="lead_auto_task" help="Create 'Contact within 24h' task for new leads">
+                            <field name="enable_lead_auto_task"/>
+                        </setting>
+                        <setting id="lead_auto_email" help="Send confirmation email to new leads">
+                            <field name="enable_lead_auto_email"/>
+                        </setting>
+                        <setting id="lead_cold_alert" help="Alert if lead is untouched for X hours">
+                            <field name="enable_lead_cold_alert"/>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="lead_cold_hours" class="col-lg-3 o_light_label"/>
+                                    <field name="lead_cold_hours"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="lead_no_activity_alert" help="Warn if lead has NO logged activities (messages/tasks) for X days">
+                            <field name="enable_lead_no_activity_alert"/>
+                            <div class="content-group">
+                                <div class="row mt16" invisible="not enable_lead_no_activity_alert">
+                                    <label for="lead_no_activity_days" class="col-lg-3 o_light_label"/>
+                                    <field name="lead_no_activity_days"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="stuck_opportunity_alert" help="Warn if Opportunity is stuck in the same stage for X days">
+                            <field name="enable_stuck_opportunity_alert"/>
+                            <div class="content-group">
+                                <div class="row mt16" invisible="not enable_stuck_opportunity_alert">
+                                    <label for="opportunity_stuck_days" class="col-lg-3 o_light_label"/>
+                                    <field name="opportunity_stuck_days"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="action_recommendations" help="Auto-schedule best next action when Lead stage changes">
+                            <field name="enable_action_recommendations"/>
+                        </setting>
+                    </block>
+
+                    <!-- <block title="Correct CRM Use" name="correct_crm_auto_setting">
+                        <setting id="lead_no_activity_alert" help="Warn if lead has NO logged activities (messages/tasks) for X days">
+                            <field name="enable_lead_no_activity_alert"/>
+                            <div class="content-group">
+                                <div class="row mt16" invisible="not enable_lead_no_activity_alert">
+                                    <label for="lead_no_activity_days" class="col-lg-3 o_light_label"/>
+                                    <field name="lead_no_activity_days"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="stuck_opportunity_alert" help="Warn if Opportunity is stuck in the same stage for X days">
+                            <field name="enable_stuck_opportunity_alert"/>
+                            <div class="content-group">
+                                <div class="row mt16" invisible="not enable_stuck_opportunity_alert">
+                                    <label for="opportunity_stuck_days" class="col-lg-3 o_light_label"/>
+                                    <field name="opportunity_stuck_days"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="action_recommendations" help="Auto-schedule best next action when Lead stage changes">
+                            <field name="enable_action_recommendations"/>
+                        </setting>
+                    </block> -->
+
+                    <block title="Team Control" name="team_control_auto_setting">
+                        <setting id="opportunity_overload_alert" help="Alert Manager/Rep if they exceed open opportunity limit">
+                            <field name="enable_opportunity_overload_alert"/>
+                            <div class="content-group">
+                                <div class="row mt16" invisible="not enable_opportunity_overload_alert">
+                                    <label for="opportunity_overload_threshold" class="col-lg-3 o_light_label"/>
+                                    <field name="opportunity_overload_threshold"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="salesperson_inactivity_warning" help="Alert Manager if salesperson logs zero CRM activity for X days">
+                            <field name="enable_salesperson_inactivity_warning"/>
+                            <div class="content-group">
+                                <div class="row mt16" invisible="not enable_salesperson_inactivity_warning">
+                                    <label for="salesperson_inactivity_days" class="col-lg-3 o_light_label"/>
+                                    <field name="salesperson_inactivity_days"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+
+                    <block title="Sale Automations" name="sale_auto_setting">
+                        <setting id="quote_followup" help="Create follow-up task X days after quote sent">
+                            <field name="enable_quote_followup"/>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="quote_followup_days" class="col-lg-3 o_light_label"/>
+                                    <field name="quote_followup_days"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="quote_notify" help="Notify rep when quote is confirmed">
+                            <field name="enable_quote_confirmed_notify"/>
+                        </setting>
+                    </block>
+
+                    <block title="Invoice Automations" name="invoice_auto_setting">
+                        <setting id="inv_auto_send" help="Automatically send invoice by email after posting">
+                            <field name="enable_invoice_auto_send"/>
+                        </setting>
+                        <setting id="inv_paid_notify" help="Notify when invoice is paid">
+                            <field name="enable_invoice_paid_notify"/>
+                        </setting>
+                        <setting id="inv_overdue_alert" help="Create activity when invoice is 1 day overdue">
+                            <field name="enable_invoice_overdue_alert"/>
+                        </setting>
+                    </block>
+
+                    <block title="Client Automations" name="client_auto_setting">
+                        <setting id="client_welcome" help="Send welcome email to new clients">
+                            <field name="enable_client_welcome_email"/>
+                        </setting>
+                        <setting id="client_inactive" help="Alert when client is inactive for X days">
+                            <field name="enable_client_inactive_alert"/>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="client_inactive_days" class="col-lg-3 o_light_label"/>
+                                    <field name="client_inactive_days"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    
+                    <!-- <block title="Temporal Automations" name="temporal_auto_setting">
+                        <setting id="temporal_events" help="Log start/end of month and quarter events">
+                            <field name="enable_temporal_events"/>
+                        </setting>
+                    </block> -->
+
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

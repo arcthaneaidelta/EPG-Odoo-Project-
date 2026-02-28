@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_crm_health_report_form" model="ir.ui.view">
+        <field name="name">crm.health.report.form</field>
+        <field name="model">crm.health.report</field>
+        <field name="arch" type="xml">
+            <form string="Business Health">
+                <header>
+                    <button name="action_calculate_health" type="object" string="Refresh Metrics" class="oe_highlight"/>
+                    <field name="health_status" widget="statusbar" statusbar_visible="healthy,attention,risk"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Business Health Index - <field name="company_id" readonly="1" options="{'no_open': True}"/></h1>
+                        <h5>Last Updated: <field name="last_calculated" readonly="1"/></h5>
+                    </div>
+                    
+                    <div class="alert alert-danger"
+     role="alert"
+     style="margin-bottom:20px;"
+     invisible="health_status != 'risk'">
+    <strong>Warning!</strong>
+    Your business health index is at Risk.
+</div>
+
+<div class="alert alert-warning"
+     role="alert"
+     style="margin-bottom:20px;"
+     invisible="health_status != 'attention'">
+    <strong>Attention!</strong>
+    Your business health index requires attention.
+</div>
+
+<div class="alert alert-success"
+     role="alert"
+     style="margin-bottom:20px;"
+     invisible="health_status != 'healthy'">
+    <strong>Great Job!</strong>
+    Your business health is currently optimal.
+</div>
+
+                    <group>
+                        <group string="Financial Health">
+                            <label for="unpaid_invoices_count" string="Unpaid Invoices"/>
+                            <div>
+                                <field name="unpaid_invoices_count" class="oe_inline"/> 
+                                (<field name="unpaid_invoices_amount" class="oe_inline" widget="monetary"/>)
+                                <button name="action_view_unpaid_invoices" type="object" string="View" class="btn-link" invisible="unpaid_invoices_count == 0"/>
+                            </div>
+                            
+                            <label for="bank_unreconciled_count" string="Bank Unreconciled"/>
+                            <div>
+                                <field name="bank_unreconciled_count" class="oe_inline"/> Lines
+                                <button name="action_view_bank_reconciliation" type="object" string="View" class="btn-link" invisible="bank_unreconciled_count == 0"/>
+                            </div>
+                            
+                            <label for="pending_fiscal_models_count" string="Pending Fiscal Models"/>
+                            <div>
+                                <field name="pending_fiscal_models_count" class="oe_inline"/> Models
+                            </div>
+                        </group>
+                        
+                        <group string="Sales Health">
+                            <label for="leads_no_followup_count" string="Leads Without Follow-up"/>
+                            <div>
+                                <field name="leads_no_followup_count" class="oe_inline"/> Leads
+                                <button name="action_view_leads_no_followup" type="object" string="View" class="btn-link" invisible="leads_no_followup_count == 0"/>
+                            </div>
+                            
+                            <label for="overdue_sales_activity_count" string="Overdue Activities (Leads)"/>
+                            <div>
+                                <field name="overdue_sales_activity_count" class="oe_inline"/> Activities
+                                <button name="action_view_overdue_activities" type="object" string="View" class="btn-link" invisible="overdue_sales_activity_count == 0"/>
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Kanban View for Dashboard -->
+    <record id="view_crm_health_report_kanban" model="ir.ui.view">
+        <field name="name">crm.health.report.kanban</field>
+        <field name="model">crm.health.report</field>
+        <field name="arch" type="xml">
+            <kanban create="0" edit="0" >
+                <field name="company_id"/>
+                <field name="health_status"/>
+                <field name="unpaid_invoices_count"/>
+                <field name="leads_no_followup_count"/>
+                <field name="bank_unreconciled_count"/>
+                <field name="last_calculated"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click oe_kanban_card rounded #{record.health_status.raw_value == 'risk' ? 'bg-danger-light' : record.health_status.raw_value == 'attention' ? 'bg-warning-light' : 'bg-success-light'}">
+                            <div class="o_kanban_record_top mb-2 d-flex align-items-start">
+    
+    <!-- Left side (Title) -->
+    <div class="o_kanban_record_headings">
+        <strong class="o_kanban_record_title h4">
+            <field name="company_id"/> Health
+        </strong>
+    </div>
+
+    <!-- Right side (Badge) -->
+    <div class="ms-auto">
+        <span t-if="record.health_status.raw_value == 'healthy'"
+              class="badge text-bg-success">
+            Healthy 🟢
+        </span>
+
+        <span t-if="record.health_status.raw_value == 'attention'"
+              class="badge text-bg-warning">
+            Attention 🟡
+        </span>
+
+        <span t-if="record.health_status.raw_value == 'risk'"
+              class="badge text-bg-danger">
+            Risk 🔴
+        </span>
+    </div>
+
+</div>
+                            <div class="row mt-3 text-center">
+                                <div class="col-4 border-end">
+                                    <strong><field name="unpaid_invoices_count"/></strong>
+                                    <div class="text-muted small">Unpaid Invs</div>
+                                </div>
+                                <div class="col-4 border-end">
+                                    <strong><field name="leads_no_followup_count"/></strong>
+                                    <div class="text-muted small">Lost Leads</div>
+                                </div>
+                                <div class="col-4">
+                                    <strong><field name="bank_unreconciled_count"/></strong>
+                                    <div class="text-muted small">Bank Lines</div>
+                                </div>
+                            </div>
+                            <div class="text-end text-muted small mt-2">
+                                Updated: <field name="last_calculated"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_crm_health_report" model="ir.actions.act_window">
+        <field name="name">Business Health</field>
+        <field name="res_model">crm.health.report</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Initialize your Business Health Dashboard!
+            </p>
+            <p>
+                Click "Refresh Metrics" inside to calculate for the first time.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item (Top level in CRM before Configuration) -->
+    <menuitem 
+        id="menu_crm_health_report" 
+        name="Business Health" 
+        parent="crm.crm_menu_root" 
+        sequence="5" 
+        action="action_crm_health_report"/>
+
+</odoo>

@@ -1,7 +1,20 @@
-from odoo import models, api
+from odoo import models, fields, api
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+
+    client_type = fields.Selection([
+        ('individual', 'Individual'),
+        ('company', 'Company'),
+        ('freelancer', 'Freelancer'),
+        ('sales_rep', 'Sales representative'),
+        ('supplier', 'Supplier'),
+        ('other', 'Others')
+    ], string="Client Type")
+    
+    referrer_user_id = fields.Many2one('res.users', string="Referrer")
+    referral_code = fields.Char(string="Referral Code")
+    referral_code_used = fields.Char()
 
     @api.model_create_multi
     def create(self, vals_list):

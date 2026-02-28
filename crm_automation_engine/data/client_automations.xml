@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- 1. Client Created -> Welcome Email -->
+    <record id="action_client_welcome_email" model="ir.actions.server">
+        <field name="name">Client: Welcome Email Action</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+# Only for customers (rank > 0) with email
+if record.customer_rank > 0 and record.email and record.company_id.enable_client_welcome_email:
+    template = env.ref('crm_automation_engine.email_template_client_welcome', raise_if_not_found=False)
+    if template:
+        template.send_mail(record.id, force_send=False)
+        env['automation.log'].log_automation(
+            name='Client Welcome Email', 
+            automation_type='client', 
+            trigger_event='client_inactive', # Using existing enum
+            model_name='res.partner', 
+            record_id=record.id, 
+            action_taken='Sent welcome email'
+        )
+]]></field>
+    </record>
+
+    <record id="auto_client_welcome_email" model="base.automation">
+        <field name="name">Client: Welcome Email</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="trigger">on_create</field>
+        <field name="action_server_ids" eval="[(4, ref('action_client_welcome_email'))]"/>
+    </record>
+
+    <!-- 2. Client Inactive x Days -> Cron Job handles this -->
+
+</odoo>

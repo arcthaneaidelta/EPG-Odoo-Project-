@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- 1. Lead Confirmation Email -->
+    <record id="email_template_lead_confirmation" model="mail.template">
+        <field name="name">Lead Confirmation</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="subject">We received your request: {{ object.name }}</field>
+        <field name="email_from">{{ (object.company_id.email or user.email_formatted) }}</field>
+        <field name="email_to">{{ object.email_from }}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p>Hello,</p>
+                <p>Thank you for your interest! We have received your inquiry regarding <strong><t t-out="object.name or ''"/></strong>.</p>
+                <p>One of our representatives will contact you shortly.</p>
+                <p>Best regards,</p>
+                <p><t t-out="object.company_id.name"/></p>
+            </div>
+        </field>
+    </record>
+
+    <!-- 2. Quote Follow-up Reminder (Internal) -->
+    <!-- Not an email template, but activity will be created. -->
+
+    <!-- 3. Quote Confirmed Notification (Internal to Rep) -->
+    <record id="email_template_quote_confirmed_internal" model="mail.template">
+        <field name="name">Quote Confirmed (Internal)</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="subject">Order Confirmed: {{ object.name }}</field>
+        <field name="email_to">{{ object.user_id.email_formatted }}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p>Hi <t t-out="object.user_id.name"/>,</p>
+                <p>Great news! The quotation <strong><t t-out="object.name"/></strong> has been confirmed by the customer.</p>
+                <p>Amount: <t t-out="object.amount_total"/></p>
+            </div>
+        </field>
+    </record>
+
+    <!-- 4. Invoice Auto-send -->
+    <record id="email_template_invoice_auto_send" model="mail.template">
+        <field name="name">Invoice Auto-send</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="subject">Invoice {{ object.name }} from {{ object.company_id.name }}</field>
+        <field name="email_from">{{ (object.company_id.email or user.email_formatted) }}</field>
+        <field name="partner_to">{{ object.partner_id.id }}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p>Dear <t t-out="object.partner_id.name"/>,</p>
+                <p>Please find attached invoice <strong><t t-out="object.name"/></strong> for <t t-out="format_amount(object.amount_total, object.currency_id)"/>.</p>
+                <p>Due date: <t t-out="object.invoice_date_due"/></p>
+                <p>Best regards,</p>
+                <p><t t-out="object.company_id.name"/></p>
+            </div>
+        </field>
+        <field name="report_template_ids" eval="[(4, ref('account.account_invoices'))]"/>
+    </record>
+
+    <!-- 5. Client Welcome Email -->
+    <record id="email_template_client_welcome" model="mail.template">
+        <field name="name">Client Welcome</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="subject">Welcome to {{ object.company_id.name }}!</field>
+        <field name="email_from">{{ (object.company_id.email or user.email_formatted) }}</field>
+        <field name="email_to">{{ object.email }}</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p>Welcome <t t-out="object.name"/>,</p>
+                <p>We are thrilled to have you as a client at <strong><t t-out="object.company_id.name"/></strong>.</p>
+                <p>Feel free to reach out if you have any questions.</p>
+            </div>
+        </field>
+    </record>
+
+</odoo>

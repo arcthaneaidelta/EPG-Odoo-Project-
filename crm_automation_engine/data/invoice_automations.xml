@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- 1. Invoice Generated Log -->
+    <record id="action_invoice_created_log" model="ir.actions.server">
+        <field name="name">Invoice: Created Log Action</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+env['automation.log'].log_automation(
+    name='Invoice Generated', 
+    automation_type='invoice', 
+    trigger_event='invoice_generated',
+    model_name='account.move', 
+    record_id=record.id, 
+    action_taken='Invoice draft created'
+)
+]]></field>
+    </record>
+
+    <record id="auto_invoice_created_log" model="base.automation">
+        <field name="name">Invoice: Created Log</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="trigger">on_create</field>
+        <field name="filter_domain">[('move_type', '=', 'out_invoice')]</field>
+        <field name="action_server_ids" eval="[(4, ref('action_invoice_created_log'))]"/>
+    </record>
+
+    <!-- 2. Invoice Posted -> Auto-send Email -->
+    <record id="action_invoice_posted_send" model="ir.actions.server">
+        <field name="name">Invoice: Auto-send Action</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+if record.company_id.enable_invoice_auto_send and record.partner_id.email:
+    template = env.ref('crm_automation_engine.email_template_invoice_auto_send', raise_if_not_found=False)
+    if template:
+        template.send_mail(record.id, force_send=False)
+        record.message_post(body="System: Invoice auto-sent via email.")
+        
+        env['automation.log'].log_automation(
+            name='Invoice Sent', 
+            automation_type='invoice', 
+            trigger_event='invoice_sent',
+            model_name='account.move', 
+            record_id=record.id, 
+            action_taken='Auto-sent via email'
+        )
+]]></field>
+    </record>
+
+    <!-- DEACTIVATED: Replaced by saas_provisioning.auto_saas_invoice_payment_confirmation
+         which fires only for SaaS-linked invoices with the full EPG CRM branded template. -->
+    <record id="auto_invoice_posted_send" model="base.automation">
+        <field name="name">Invoice: Auto-send on Post [REPLACED by SaaS module]</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="trigger">on_write</field>
+        <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_move__state')])]"/>
+        <field name="filter_domain">[('state', '=', 'posted'), ('move_type', '=', 'out_invoice')]</field>
+        <field name="action_server_ids" eval="[(4, ref('action_invoice_posted_send'))]"/>
+        <field name="active">False</field>
+    </record>
+
+    <!-- 3. Invoice Paid Log -->
+    <record id="action_invoice_paid_log" model="ir.actions.server">
+        <field name="name">Invoice: Paid Log Action</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+env['automation.log'].log_automation(
+    name='Invoice Paid', 
+    automation_type='invoice', 
+    trigger_event='invoice_paid',
+    model_name='account.move', 
+    record_id=record.id, 
+    action_taken='Invoice fully paid'
+)
+if record.company_id.enable_invoice_paid_notify:
+    pass
+]]></field>
+    </record>
+
+    <record id="auto_invoice_paid_log" model="base.automation">
+        <field name="name">Invoice: Paid Log</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="trigger">on_write</field>
+        <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_move__payment_state')])]"/>
+        <field name="filter_domain">[('payment_state', '=', 'paid'), ('move_type', '=', 'out_invoice')]</field>
+        <field name="action_server_ids" eval="[(4, ref('action_invoice_paid_log'))]"/>
+    </record>
+
+    <!-- 4. Invoice Overdue Alert (Scheduled) -->
+    <record id="action_invoice_overdue_alert" model="ir.actions.server">
+        <field name="name">Invoice: Overdue Alert Action</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+if record.company_id.enable_invoice_overdue_alert:
+    # Schedule activity for salesperson/collector
+    user = record.user_id or record.invoice_user_id or env.user
+    record.activity_schedule(
+        'mail.mail_activity_data_warning',
+        summary='Invoice Overdue',
+        note='Invoice is 1 day overdue. Please follow up.',
+        user_id=user.id,
+        date_deadline=datetime.date.today()
+    )
+    env['automation.log'].log_automation(
+        name='Invoice Overdue Alert', 
+        automation_type='invoice', 
+        trigger_event='invoice_overdue',
+        model_name='account.move', 
+        record_id=record.id, 
+        action_taken='Created overdue activity'
+    )
+]]></field>
+    </record>
+
+    <record id="auto_invoice_overdue_alert" model="base.automation">
+        <field name="name">Invoice: Overdue Alert</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="trigger">on_time</field>
+        <field name="trg_date_id" ref="account.field_account_move__invoice_date_due"/>
+        <field name="trg_date_range">1</field>
+        <field name="trg_date_range_type">day</field>
+        <field name="filter_domain">[('payment_state', 'not in', ['paid', 'reversed']), ('state', '=', 'posted'), ('move_type', '=', 'out_invoice')]</field>
+        <field name="action_server_ids" eval="[(4, ref('action_invoice_overdue_alert'))]"/>
+    </record>
+
+</odoo>

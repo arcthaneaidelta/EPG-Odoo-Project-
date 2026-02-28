@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_users_form_inherit_crm_base" model="ir.ui.view">
+            <field name="name">res.users.form.inherit.crm.base</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='access_rights']" position="inside">
+                    <group string="Sales Representative Info">
+                        <field name="is_sales_representative"/>
+                        <field name="referral_code" invisible="not is_sales_representative" required="is_sales_representative"/>
+                    </group>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Referred Sales Orders" invisible="not is_sales_representative">
+                        <field name="sale_order_ids" readonly="1">
+                            <list>
+                                <field name="name"/>
+                                <field name="partner_id"/>
+                                <field name="currency_id" column_invisible="True"/>
+                                <field name="amount_total" sum="Total Sales"/>
+                                <field name="commission_amount" sum="Total Commissions"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Rename OdooBot Partner -->
+        <record id="base.partner_root" model="res.partner">
+            <field name="name">Asistente de EPG</field>
+        </record>
+
+        <!-- Rename OdooBot User -->
+        <record id="base.user_root" model="res.users">
+            <field name="name">Asistente de EPG</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,71 @@
+<odoo>
+    <record id="view_company_form_inherit_real_estate_automations" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.real.estate.automations</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string=" Automations">
+                    <group>
+                        <group >
+                            <field name="enable_lead_auto_assign"/>
+                            <field name="enable_lead_auto_task"/>
+                            <field name="enable_lead_auto_email"/>
+                            <field name="enable_lead_cold_alert"/>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="lead_cold_hours" class="col-lg-3 o_light_label"/>
+                                    <field name="lead_cold_hours"/>
+                                </div>
+                            </div>
+                            <field name="enable_action_recommendations"/>
+                            <field name="enable_stuck_opportunity_alert"/>
+                            <div class="content-group">
+                                <div class="row mt16" invisible="not enable_stuck_opportunity_alert">
+                                    <label for="opportunity_stuck_days" class="col-lg-3 o_light_label"/>
+                                    <field name="opportunity_stuck_days"/>
+                                </div>
+                            </div>
+                            <field name="enable_lead_no_activity_alert"/>
+                            <div class="content-group">
+                                <div class="row mt16" invisible="not enable_lead_no_activity_alert">
+                                    <label for="lead_no_activity_days" class="col-lg-3 o_light_label"/>
+                                    <field name="lead_no_activity_days"/>
+                                </div>
+                            </div>
+                        </group>
+
+                        <group>
+                            <field name="enable_quote_followup"/>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="quote_followup_days" class="col-lg-3 o_light_label"/>
+                                    <field name="quote_followup_days"/>
+                                </div>
+                            </div>
+                            <field name="enable_quote_confirmed_notify"/>
+                        </group>
+
+                        <group>
+                            <field name="enable_invoice_auto_send"/>
+                            <field name="enable_invoice_paid_notify"/>
+                            <field name="enable_invoice_overdue_alert"/>
+                        </group>
+                            
+                        <group>
+                            <field name="enable_client_welcome_email"/>
+                            <field name="enable_client_inactive_alert"/>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="client_inactive_days" class="col-lg-3 o_light_label"/>
+                                    <field name="client_inactive_days"/>
+                                </div>
+                            </div>
+                            <!-- <field name="enable_temporal_events"/> -->
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

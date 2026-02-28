@@ -7,11 +7,12 @@
             <xpath expr="//field[@name='tag_ids']" position="before">
                 <field name="score" readonly="1"/>
                 <field name="source_type"/>
+                <field name="referral_code"/>
+                <field name="referrer_user_id"/>
             </xpath>
-            <!-- <xpath expr="//field[@name='partner_id']" position="before">
-                <field name="contact_name"
-                       placeholder="Contact name (if not an existing customer)"/>
-            </xpath> -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                
+            </xpath>
             <xpath expr="//header" position="inside">
                 <button
                     name="action_whatsapp"
@@ -77,4 +78,23 @@
     </record>
 
 
+
+
+    <!-- <record id="view_company_form_inherit_real_estate_automations" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.real.estate.automations</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string=" Automations">
+                    <group>
+                        <group string="CRM Automations" name="crm_automations">
+                            <field name="enable_lead_automation"/>
+                        </group>
+                        
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record> -->
 </odoo>

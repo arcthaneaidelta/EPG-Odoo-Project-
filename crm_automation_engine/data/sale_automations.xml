@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- 1. Quote Sent -> Create Follow-up Task -->
+    <record id="action_quote_sent_followup" model="ir.actions.server">
+        <field name="name">Quote: Follow-up Task Action</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+if record.company_id.enable_quote_followup:
+    days = record.company_id.quote_followup_days or 3
+    deadline = datetime.date.today() + datetime.timedelta(days=days)
+    record.activity_schedule(
+        'mail.mail_activity_data_todo',
+        summary='Quote Follow-up',
+        note='Quote Sent. Follow up in %s days.' % days,
+        user_id=record.user_id.id or env.uid,
+        date_deadline=deadline
+    )
+    env['automation.log'].log_automation(
+        name='Quote Sent Follow-up', 
+        automation_type='sale', 
+        trigger_event='quote_sent',
+        model_name='sale.order', 
+        record_id=record.id, 
+        action_taken='Scheduled follow-up task'
+    )
+]]></field>
+    </record>
+
+    <record id="auto_quote_sent_followup" model="base.automation">
+        <field name="name">Quote: Follow-up Task on Send</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="trigger">on_write</field>
+        <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order__state')])]"/>
+        <field name="filter_domain">[('state', '=', 'sent')]</field>
+        <field name="action_server_ids" eval="[(4, ref('action_quote_sent_followup'))]"/>
+    </record>
+
+    <!-- 2. Quote Accepted (Order Confirmed) -> Notify Rep & Log -->
+    <record id="action_quote_confirmed" model="ir.actions.server">
+        <field name="name">Quote: Order Confirmed Action</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+# Log to audit
+env['automation.log'].log_automation(
+    name='Order Confirmed', 
+    automation_type='invoice',
+    trigger_event='order_confirmed',
+    model_name='sale.order', 
+    record_id=record.id, 
+    action_taken='Order confirmed'
+)
+
+# Notify Rep
+if record.company_id.enable_quote_confirmed_notify and record.user_id:
+    template = env.ref('crm_automation_engine.email_template_quote_confirmed_internal', raise_if_not_found=False)
+    if template:
+        template.send_mail(record.id, force_send=False)
+]]></field>
+    </record>
+
+    <record id="auto_quote_confirmed" model="base.automation">
+        <field name="name">Quote: Order Confirmed Actions</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="trigger">on_write</field>
+        <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order__state')])]"/>
+        <field name="filter_domain">[('state', '=', 'sale')]</field>
+        <field name="action_server_ids" eval="[(4, ref('action_quote_confirmed'))]"/>
+    </record>
+
+    <!-- 3. Quote Rejected (Cancelled) -> Log -->
+    <record id="action_quote_cancelled" model="ir.actions.server">
+        <field name="name">Quote: Rejected/Cancelled Action</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+env['automation.log'].log_automation(
+    name='Quote Rejected', 
+    automation_type='sale', 
+    trigger_event='quote_rejected',
+    model_name='sale.order', 
+    record_id=record.id, 
+    action_taken='Quote cancelled/rejected'
+)
+]]></field>
+    </record>
+
+    <record id="auto_quote_cancelled" model="base.automation">
+        <field name="name">Quote: Rejected/Cancelled Log</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="trigger">on_write</field>
+        <field name="trigger_field_ids" eval="[(6, 0, [ref('sale.field_sale_order__state')])]"/>
+        <field name="filter_domain">[('state', '=', 'cancel')]</field>
+        <field name="action_server_ids" eval="[(4, ref('action_quote_cancelled'))]"/>
+    </record>
+
+    <!-- 4. Quote Created Log -->
+    <record id="action_quote_created_log" model="ir.actions.server">
+        <field name="name">Quote: Created Log Action</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+env['automation.log'].log_automation(
+    name='Quote Created', 
+    automation_type='sale', 
+    trigger_event='quote_created',
+    model_name='sale.order', 
+    record_id=record.id, 
+    action_taken='Quote created'
+)
+]]></field>
+    </record>
+
+    <record id="auto_quote_created_log" model="base.automation">
+        <field name="name">Quote: Created Log</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="trigger">on_create</field>
+        <field name="action_server_ids" eval="[(4, ref('action_quote_created_log'))]"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_move_form_inherit_crm_base" model="ir.ui.view">
+            <field name="name">account.move.form.inherit.crm.base</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="referrer_user_id" invisible="move_type not in ('out_invoice', 'out_refund')"/>
+                    <field name="referral_code" invisible="move_type not in ('out_invoice', 'out_refund')"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

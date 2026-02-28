@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- ==========================================
+         1. Lead Created -> Auto-assign Sales Rep 
+         ========================================== -->
+    <record id="action_lead_assign_webapp" model="ir.actions.server">
+        <field name="name">Lead: Auto-assign Sales Rep Action</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+# Logic: If web source, assign to website team. Default behavior.
+if record.company_id.enable_lead_auto_assign:
+    if not record.user_id and record.type == 'lead':
+         # Find "Website" team or default team
+        team = env['crm.team'].search([('name', 'ilike', 'Website')], limit=1)
+        if team:
+            record['team_id'] = team.id
+            if team.user_id:
+                record['user_id'] = team.user_id.id
+            
+        env['automation.log'].log_automation(
+            name='Lead Auto-assign', 
+            automation_type='lead', 
+            trigger_event='lead_cold',
+            model_name='crm.lead', 
+            record_id=record.id, 
+            action_taken='Assigned team %s' % (team.name if team else 'None')
+        )
+]]></field>
+    </record>
+
+    <record id="auto_lead_assign" model="base.automation">
+        <field name="name">Lead: Auto-assign Sales Rep</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="trigger">on_create</field>
+        <field name="action_server_ids" eval="[(4, ref('action_lead_assign_webapp'))]"/>
+    </record>
+
+
+    <!-- ==================================================
+         2. Lead Created -> "Contact within 24h" Task 
+         ================================================== -->
+    <record id="action_lead_task_24h" model="ir.actions.server">
+        <field name="name">Lead: Create 24h Task Action</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+if record.company_id.enable_lead_auto_task:
+    deadline = datetime.date.today() + datetime.timedelta(days=1)
+    user = record.user_id or env.user
+    record.activity_schedule(
+        'mail.mail_activity_data_todo',
+        summary='🚀 New Lead: Contact within 24h',
+        note='System generated task.',
+        user_id=user.id,
+        date_deadline=deadline
+    )
+    env['automation.log'].log_automation(
+        name='Lead Task Created', 
+        automation_type='lead', 
+        trigger_event='lead_cold',
+        model_name='crm.lead', 
+        record_id=record.id, 
+        action_taken='Created 24h contact task'
+    )
+]]></field>
+    </record>
+
+    <record id="auto_lead_task_24h" model="base.automation">
+        <field name="name">Lead: Create "Contact within 24h" Task</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="trigger">on_create</field>
+        <field name="action_server_ids" eval="[(4, ref('action_lead_task_24h'))]"/>
+    </record>
+
+
+    <!-- ==============================================
+         3. Lead Created -> Confirmation Email 
+         ============================================== -->
+    <record id="action_lead_confirmation_email" model="ir.actions.server">
+        <field name="name">Lead: Send Confirmation Email Action</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+if record.company_id.enable_lead_auto_email and record.email_from:
+    template = env.ref('crm_automation_engine.email_template_lead_confirmation', raise_if_not_found=False)
+    if template:
+        template.send_mail(record.id, force_send=True)
+        env['automation.log'].log_automation(
+            name='Lead Confirmation Email', 
+            automation_type='lead', 
+            trigger_event='lead_cold',
+            model_name='crm.lead', 
+            record_id=record.id, 
+            action_taken='Sent confirmation email to %s' % record.email_from
+        )
+]]></field>
+    </record>
+
+    <record id="auto_lead_confirmation_email" model="base.automation">
+        <field name="name">Lead: Send Confirmation Email</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="trigger">on_create</field>
+        <field name="action_server_ids" eval="[(4, ref('action_lead_confirmation_email'))]"/>
+    </record>
+
+
+    <!-- ==============================================
+         4. Lead Cold after X Hours (Alert) 
+         ============================================== -->
+    <record id="action_lead_cold_alert" model="ir.actions.server">
+        <field name="name">Lead: Cold Alert Action</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+hours_config = record.company_id.lead_cold_hours or 24
+delta = datetime.datetime.now() - record.create_date
+if delta.total_seconds() / 3600 >= hours_config:
+    if record.company_id.enable_lead_cold_alert:
+        if not record.activity_ids and record.stage_id.sequence == 1:
+             record.activity_schedule(
+                'mail.mail_activity_data_warning',
+                summary='Cold Lead Alert',
+                note='Lead has been untouched for %s hours.' % hours_config,
+                user_id=record.user_id.id or env.uid
+            )
+             env['automation.log'].log_automation(
+                name='Lead Cold Alert', 
+                automation_type='lead', 
+                trigger_event='lead_cold',
+                model_name='crm.lead', 
+                record_id=record.id, 
+                action_taken='Created cold lead activity'
+            )
+]]></field>
+    </record>
+
+    <record id="auto_lead_cold_alert" model="base.automation">
+        <field name="name">Lead: Cold Alert (No Contact)</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="trigger">on_time</field>
+        <field name="trg_date_id" ref="crm.field_crm_lead__create_date"/>
+        <field name="trg_date_range">24</field>
+        <field name="trg_date_range_type">hour</field>
+        <field name="action_server_ids" eval="[(4, ref('action_lead_cold_alert'))]"/>
+    </record>
+
+
+    <!-- ==============================================
+         5. Lead Converted to Client 
+         ============================================== -->
+    <record id="action_lead_won_log" model="ir.actions.server">
+        <field name="name">Lead: Won/Converted Logger Action</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+env['automation.log'].log_automation(
+    name='Lead Won/Converted', 
+    automation_type='lead', 
+    trigger_event='lead_converted',
+    model_name='crm.lead', 
+    record_id=record.id, 
+    action_taken='Lead marked as Won. Partner: %s' % (record.partner_id.name if record.partner_id else 'None')
+)
+]]></field>
+    </record>
+
+    <record id="auto_lead_won_log" model="base.automation">
+        <field name="name">Lead: Won/Converted Logger</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="trigger">on_write</field>
+        <field name="trigger_field_ids" eval="[(6, 0, [ref('crm.field_crm_lead__stage_id')])]"/>
+        <field name="filter_domain">[('probability', '=', 100)]</field>
+        <field name="action_server_ids" eval="[(4, ref('action_lead_won_log'))]"/>
+    </record>
+
+    <!-- ==============================================
+         6. Action Recommendations (8.3)
+         ============================================== -->
+    <record id="action_recommendation_stage_change" model="ir.actions.server">
+        <field name="name">Lead: Auto Action Recommendation</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+if record.company_id.enable_action_recommendations:
+    # Example logic: recommend actions based on the stage it just entered
+    stage = record.stage_id
+    recommendation = ""
+    deadline_days = 2
+    
+    if stage.name and 'Proposition' in stage.name:
+        recommendation = "Prepare customized proposal document and schedule review with manager."
+        deadline_days = 2
+    elif stage.name and 'Qualified' in stage.name:
+        recommendation = "Schedule initial discovery call and research competitor landscape."
+        deadline_days = 3
+
+    if recommendation:
+        deadline = datetime.date.today() + datetime.timedelta(days=deadline_days)
+        record.activity_schedule(
+            'mail.mail_activity_data_todo',
+            summary='💡 Recommended Action',
+            note=recommendation,
+            user_id=record.user_id.id or env.uid,
+            date_deadline=deadline
+        )
+        env['automation.log'].log_automation(
+            name='Action Recommendation', 
+            automation_type='lead', 
+            trigger_event='stage_change',
+            model_name='crm.lead', 
+            record_id=record.id, 
+            action_taken='Scheduled recommendation: %s' % recommendation
+        )
+]]></field>
+    </record>
+
+    <record id="auto_action_recommendation" model="base.automation">
+        <field name="name">Lead: Action Recommendations</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="trigger">on_write</field>
+        <field name="trigger_field_ids" eval="[(6, 0, [ref('crm.field_crm_lead__stage_id')])]"/>
+        <field name="action_server_ids" eval="[(4, ref('action_recommendation_stage_change'))]"/>
+    </record>
+
+    <!-- ==============================================
+         7. CRON: Detect Leads Without Logged Activities (8.3)
+         ============================================== -->
+    <record id="action_cron_lead_no_activity" model="ir.actions.server">
+        <field name="name">CRM Auto: Check Leads No Activity</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+companies = env['res.company'].search([('enable_lead_no_activity_alert', '=', True)])
+for comp in companies:
+    days = comp.lead_no_activity_days or 3
+    cutoff = datetime.datetime.now() - datetime.timedelta(days=days)
+    
+    leads = env['crm.lead'].search([
+        ('company_id', '=', comp.id),
+        ('active', '=', True),
+        ('type', '=', 'opportunity'),
+        ('create_date', '<', cutoff),
+        ('activity_ids', '=', False) # No planned activities
+    ])
+    
+    for lead in leads:
+        # Check if they have ANY messages/logs in the last X days
+        recent_msgs = env['mail.message'].search([
+            ('model', '=', 'crm.lead'),
+            ('res_id', '=', lead.id),
+            ('date', '>=', cutoff)
+        ], limit=1)
+        
+        if not recent_msgs:
+            lead.activity_schedule(
+                'mail.mail_activity_data_warning',
+                summary='⚠️ Action Required: Neglected Lead',
+                note=f'No activities or messages logged in the last {days} days.',
+                user_id=lead.user_id.id or env.uid,
+                date_deadline=datetime.date.today()
+            )
+            env['automation.log'].log_automation(
+                name='Neglected Lead Alert', 
+                automation_type='lead', 
+                trigger_event='cron_daily',
+                model_name='crm.lead', 
+                record_id=lead.id, 
+                action_taken='Created neglected warning task'
+            )
+]]></field>
+    </record>
+
+    <record id="ir_cron_lead_no_activity" model="ir.cron">
+        <field name="name">CRM Auto: Detect Neglected Leads</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="state">code</field>
+        <field name="code">env.ref('crm_automation_engine.action_cron_lead_no_activity').sudo().write({'state': 'code'}); env.ref('crm_automation_engine.action_cron_lead_no_activity').sudo().run()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+
+    <!-- ==============================================
+         8. CRON: Alerts for Non-Updated Funnels (8.3)
+         ============================================== -->
+    <record id="action_cron_stuck_opportunity" model="ir.actions.server">
+        <field name="name">CRM Auto: Check Stuck Opportunities</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+companies = env['res.company'].search([('enable_stuck_opportunity_alert', '=', True)])
+for comp in companies:
+    days = comp.opportunity_stuck_days or 14
+    cutoff = datetime.datetime.now() - datetime.timedelta(days=days)
+    
+    # Needs to be an active opportunity, not won/lost, and stage hasn't changed
+    leads = env['crm.lead'].search([
+        ('company_id', '=', comp.id),
+        ('active', '=', True),
+        ('type', '=', 'opportunity'),
+        ('probability', '<', 100),
+        ('date_last_stage_update', '<', cutoff)
+    ])
+    
+    for lead in leads:
+        lead.activity_schedule(
+            'mail.mail_activity_data_warning',
+            summary='🛑 Stuck Opportunity Alert',
+            note=f'This opportunity has been in stage "{lead.stage_id.name}" for over {days} days.',
+            user_id=lead.user_id.id or env.uid,
+            date_deadline=datetime.date.today()
+        )
+        env['automation.log'].log_automation(
+            name='Stuck Opportunity Alert', 
+            automation_type='lead', 
+            trigger_event='cron_daily',
+            model_name='crm.lead', 
+            record_id=lead.id, 
+            action_taken='Created stuck opportunity task'
+        )
+]]></field>
+    </record>
+
+    <record id="ir_cron_stuck_opportunity" model="ir.cron">
+        <field name="name">CRM Auto: Detect Stuck Opportunities</field>
+        <field name="model_id" ref="crm.model_crm_lead"/>
+        <field name="state">code</field>
+        <field name="code">env.ref('crm_automation_engine.action_cron_stuck_opportunity').sudo().write({'state': 'code'}); env.ref('crm_automation_engine.action_cron_stuck_opportunity').sudo().run()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+</odoo>

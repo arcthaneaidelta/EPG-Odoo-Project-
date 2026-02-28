@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Automation Log Tree View -->
+    <record id="view_automation_log_tree" model="ir.ui.view">
+        <field name="name">automation.log.tree</field>
+        <field name="model">automation.log</field>
+        <field name="arch" type="xml">
+            <list string="Automation Logs" create="0" delete="0" decoration-danger="result == 'fail'">
+                <field name="create_date"/>
+                <field name="name"/>
+                <field name="automation_type" optional="show"/>
+                <field name="trigger_event" optional="show"/>
+                <field name="model_name" optional="hide"/>
+                <field name="record_ref" optional="hide"/>
+                <field name="result" widget="badge" decoration-success="result == 'success'" decoration-danger="result == 'fail'"/>
+                <field name="company_id" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Automation Log Form View -->
+    <record id="view_automation_log_form" model="ir.ui.view">
+        <field name="name">automation.log.form</field>
+        <field name="model">automation.log</field>
+        <field name="arch" type="xml">
+            <form string="Automation Log" create="0" delete="0" edit="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="automation_type"/>
+                            <field name="trigger_event"/>
+                            <field name="create_date"/>
+                        </group>
+                        <group>
+                            <field name="model_name"/>
+                            <field name="record_ref"/>
+                            <field name="result"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Details">
+                            <group string="Action Taken">
+                                <field name="action_taken" nolabel="1"/>
+                            </group>
+                            <group string="Error Details" invisible="result != 'fail'">
+                                <field name="error_message" nolabel="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_automation_log_search" model="ir.ui.view">
+        <field name="name">automation.log.search</field>
+        <field name="model">automation.log</field>
+        <field name="arch" type="xml">
+            <search string="Automation Logs">
+                <field name="name"/>
+                <field name="automation_type"/>
+                <field name="trigger_event"/>
+                <field name="result"/>
+                <filter string="Failed" name="failed" domain="[('result', '=', 'fail')]"/>
+                <filter string="Leads" name="leads" domain="[('automation_type', '=', 'lead')]"/>
+                <filter string="Sales" name="sales" domain="[('automation_type', '=', 'sale')]"/>
+                <filter string="Invoices" name="invoices" domain="[('automation_type', '=', 'invoice')]"/>
+                <filter string="Clients" name="clients" domain="[('automation_type', '=', 'client')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Type" name="group_type" context="{'group_by': 'automation_type'}"/>
+                    <filter string="Event" name="group_event" context="{'group_by': 'trigger_event'}"/>
+                    <filter string="Result" name="group_result" context="{'group_by': 'result'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_automation_log" model="ir.actions.act_window">
+        <field name="name">Automation Logs</field>
+        <field name="res_model">automation.log</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No automation logs found yet.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item (Settings > Technical > Automation Logs) -->
+    <menuitem id="menu_automation_log"
+              parent="base.menu_custom"
+              action="action_automation_log"
+              sequence="50"/>
+
+</odoo>

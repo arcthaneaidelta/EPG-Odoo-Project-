@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- 1. Client Inactive Cron -->
+    <record id="ir_cron_client_inactive_alert" model="ir.cron">
+        <field name="name">CRM Auto: Client Inactive Alert</field>
+        <field name="model_id" ref="crm_automation_engine.model_automation_log"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_client_inactive()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- 2. Start of Month Cron -->
+    <record id="ir_cron_temporal_month_start" model="ir.cron">
+        <field name="name">CRM Auto: Start of Month Event</field>
+        <field name="model_id" ref="crm_automation_engine.model_automation_log"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_start_of_month()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- 3. End of Month Cron -->
+    <record id="ir_cron_temporal_month_end" model="ir.cron">
+        <field name="name">CRM Auto: End of Month Event</field>
+        <field name="model_id" ref="crm_automation_engine.model_automation_log"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_end_of_month()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- 4. Start of Quarter Cron -->
+    <record id="ir_cron_temporal_quarter_start" model="ir.cron">
+        <field name="name">CRM Auto: Start of Quarter Event</field>
+        <field name="model_id" ref="crm_automation_engine.model_automation_log"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_start_of_quarter()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- 5. End of Quarter Cron -->
+    <record id="ir_cron_temporal_quarter_end" model="ir.cron">
+        <field name="name">CRM Auto: End of Quarter Event</field>
+        <field name="model_id" ref="crm_automation_engine.model_automation_log"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_end_of_quarter()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- 6. Opportunity Overload Alert (8.6) -->
+    <record id="action_cron_opportunity_overload" model="ir.actions.server">
+        <field name="name">CRM Auto: Check Opportunity Overload</field>
+        <field name="model_id" ref="crm_automation_engine.model_automation_log"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+companies = env['res.company'].search([('enable_opportunity_overload_alert', '=', True)])
+for comp in companies:
+    threshold = comp.opportunity_overload_threshold or 50
+    users = env['res.users'].search([('company_ids', 'in', comp.id), ('share', '=', False)])
+    for user in users:
+        count = env['crm.lead'].search_count([
+            ('user_id', '=', user.id),
+            ('active', '=', True),
+            ('type', '=', 'opportunity'),
+            ('probability', '<', 100),
+            ('company_id', '=', comp.id)
+        ])
+        if count > threshold:
+            has_emp = True if user.employee_id else False
+            manager = user.employee_id.parent_id.user_id if has_emp and user.employee_id.parent_id else user
+            log_msg = f'User {user.name} has {count} open opportunities (Threshold: {threshold}).'
+            env['automation.log'].log_automation(
+                name='Opportunity Overload Alert', 
+                automation_type='user', 
+                trigger_event='cron_daily',
+                model_name='res.users', 
+                record_id=user.id, 
+                action_taken=log_msg
+            )
+            # Create a simple next activity (To-Do) on the user's Employee record, or log it centrally
+            if has_emp:
+                user.employee_id.activity_schedule(
+                    'mail.mail_activity_data_warning',
+                    summary='⚠️ Opportunity Overload',
+                    note=log_msg,
+                    user_id=manager.id or env.uid,
+                    date_deadline=datetime.date.today()
+                )
+]]></field>
+    </record>
+
+    <record id="ir_cron_opportunity_overload" model="ir.cron">
+        <field name="name">CRM Auto: Detect Opportunity Overload</field>
+        <field name="model_id" ref="crm_automation_engine.model_automation_log"/>
+        <field name="state">code</field>
+        <field name="code">env.ref('crm_automation_engine.action_cron_opportunity_overload').sudo().write({'state': 'code'}); env.ref('crm_automation_engine.action_cron_opportunity_overload').sudo().run()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- 7. Salesperson Inactivity Alert (8.6) -->
+    <record id="action_cron_salesperson_inactivity" model="ir.actions.server">
+        <field name="name">CRM Auto: Check Salesperson Inactivity</field>
+        <field name="model_id" ref="crm_automation_engine.model_automation_log"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+companies = env['res.company'].search([('enable_salesperson_inactivity_warning', '=', True)])
+for comp in companies:
+    days = comp.salesperson_inactivity_days or 7
+    cutoff = datetime.datetime.now() - datetime.timedelta(days=days)
+    # Check users who are in the Sales team
+    users = env['res.users'].search([('company_ids', 'in', comp.id), ('share', '=', False)])
+    for user in users:
+        # User has open leads
+        has_leads = env['crm.lead'].search_count([('user_id', '=', user.id), ('active', '=', True)])
+        if has_leads:
+            # Did they log any messages on CRM Leads recently?
+            recent_msgs = env['mail.message'].search([
+                ('model', '=', 'crm.lead'),
+                ('author_id', '=', user.partner_id.id),
+                ('date', '>=', cutoff)
+            ], limit=1)
+            if not recent_msgs:
+                has_emp = True if user.employee_id else False
+                manager = user.employee_id.parent_id.user_id if has_emp and user.employee_id.parent_id else user
+                log_msg = f'User {user.name} has not logged any CRM activity in the last {days} days.'
+                env['automation.log'].log_automation(
+                    name='Salesperson Inactivity Warning', 
+                    automation_type='user', 
+                    trigger_event='cron_daily',
+                    model_name='res.users', 
+                    record_id=user.id, 
+                    action_taken=log_msg
+                )
+                if has_emp:
+                    user.employee_id.activity_schedule(
+                        'mail.mail_activity_data_warning',
+                        summary='🛑 Salesperson Inactivity',
+                        note=log_msg,
+                        user_id=manager.id or env.uid,
+                        date_deadline=datetime.date.today()
+                    )
+]]></field>
+    </record>
+
+    <record id="ir_cron_salesperson_inactivity" model="ir.cron">
+        <field name="name">CRM Auto: Detect Salesperson Inactivity</field>
+        <field name="model_id" ref="crm_automation_engine.model_automation_log"/>
+        <field name="state">code</field>
+        <field name="code">env.ref('crm_automation_engine.action_cron_salesperson_inactivity').sudo().write({'state': 'code'}); env.ref('crm_automation_engine.action_cron_salesperson_inactivity').sudo().run()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
+</odoo>
