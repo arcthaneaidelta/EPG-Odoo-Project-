@@ -1,96 +1,179 @@
+// ==========================================
+// BASE / LIGHT MODE STYLES (Default)
+// ==========================================
+// ==========================================
+// UNIVERSAL SIDEBAR (Same for light & dark)
+// ==========================================
+// ==========================================
+// UNIVERSAL DARK-STYLE SIDEBAR (applies to all themes)
+// ==========================================
 .mk_apps_sidebar_panel {
     @include mk-disable-scrollbar();
-    background-color: $mk-appbar-background;
+    background: linear-gradient(90deg, #041424 0%, #152534 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
     width: var(--mk-sidebar-width, 0);
     overflow-y: auto;
+    margin-top: -50px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+
     .mk_apps_sidebar {
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-	    white-space: nowrap;
-	    .mk_apps_sidebar_menu {
-	    	padding: 0;
-		    > li > a {
-		        cursor: pointer;
-	            font-size: 13px;
-	            font-weight: 300;
-	            overflow: hidden;
-	            padding: 8px 11px;
-	            text-decoration: none;
-	            color: $mk-appbar-color;
-	            text-overflow: ellipsis;
-	            .mk_apps_sidebar_icon {
-				    width: 22px;
-				    height: 22px;
-	    			margin-right: 5px;
-				}
-		    }
-	        > li.active > a {
-			    background: $mk-appbar-active;
-	        }
-	        > li:hover > a {
-			    background: $mk-appbar-active;
-	        }
-	        // Placeholder app styles
-	        > li.mk_placeholder_app > a {
-	        	cursor: default;
-	        	opacity: 0.7;
-	        }
-	        > li.mk_placeholder_app:hover > a {
-	        	opacity: 0.85;
-	        }
-	        > li.mk_placeholder_app.active > a {
-	        	background: none;
-	        }
-	    }
-	}
+        white-space: nowrap;
+
+        .mk_apps_sidebar_menu {
+            padding: 0;
+            margin-top: 10px;
+
+            > li > a {
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+                overflow: hidden;
+                padding: 10px 15px;
+                text-decoration: none;
+                color: #8a9bb5; // muted blue-grey for idle items
+                text-overflow: ellipsis;
+                border-left: 3px solid transparent;
+                transition: all 0.2s ease-in-out;
+                display: flex;
+                align-items: center;
+
+                .mk_apps_sidebar_icon {
+                    width: 22px;
+                    height: 22px;
+                    margin-right: 10px;
+                    border-radius: 4px;
+                    filter: brightness(1.1);
+                }
+            }
+
+            > li.active > a {
+                background: linear-gradient(
+                    90deg,
+                    rgba(0, 210, 255, 0.18) 0%,
+                    rgba(0, 210, 255, 0.04) 60%,
+                    transparent 100%
+                );
+                border-left-color: #0070c9;
+                color: #ffffff;
+                font-weight: 600;
+                text-shadow: 0 0 12px rgba(0, 210, 255, 0.4);
+
+                .mk_apps_sidebar_icon {
+                    filter: brightness(1.3) drop-shadow(0 0 4px rgba(0, 210, 255, 0.5));
+                }
+            }
+
+            > li:hover:not(.active) > a {
+                background: rgba(255, 255, 255, 0.04);
+                color: #c9d6e8;
+            }
+
+            > li.mk_placeholder_app > a {
+                cursor: default;
+                opacity: 0.45;
+            }
+
+            > li.mk_placeholder_app:hover > a {
+                opacity: 0.6;
+                background: transparent;
+            }
+
+            > li.mk_placeholder_app.active > a {
+                background: none;
+                border-left-color: transparent;
+                text-shadow: none;
+            }
+        }
+    }
 }
 
-// Coming Soon badge styling
+.o_view_nocontent .o_nocontent_help .o_view_nocontent_smiling_face:before {
+        /* Remove default smiling face */
+        content: "";
+        background: url('/muk_web_appsbar/static/src/img/company_logo.png') no-repeat center center !important;
+        background-size: contain !important;
+        width: 150px !important;
+        height: 150px !important;
+        display: block;
+        margin: 0 auto 10px auto;
+    }
+
+
+
+// ==========================================
+// BADGE STYLES
+// ==========================================
 .mk_coming_soon_badge {
-	display: inline-block;
-	font-size: 9px;
-	font-weight: 600;
-	background: rgba(255, 152, 0, 0.9);
-	color: white;
-	padding: 2px 6px;
-	border-radius: 10px;
-	margin-left: 6px;
-	text-transform: uppercase;
-	letter-spacing: 0.5px;
-	vertical-align: middle;
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    background: rgba(255, 152, 0, 0.9);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
 }
 
+[data-bs-theme="dark"] .mk_coming_soon_badge {
+    background: rgba(255, 152, 0, 0.15);
+    color: #ffb74d;
+    border: 1px solid rgba(255, 152, 0, 0.35);
+}
+
+// ==========================================
+// RESPONSIVE / LAYOUT
+// ==========================================
 .mk_sidebar_type_large {
-	--mk-sidebar-width: #{$mk-sidebar-large-width};
+    --mk-sidebar-width: #{$mk-sidebar-large-width};
 }
 
 .mk_sidebar_type_small {
-	--mk-sidebar-width: #{$mk-sidebar-small-width};
-	.mk_apps_sidebar_name {
-		display: none;
-	}
-	.mk_apps_sidebar_icon {
-		margin-right: 0 !important;
-	}
-   	.mk_apps_sidebar_logo {
-		display: none;
-	}
-	// Hide coming soon badge in small sidebar
-	.mk_coming_soon_badge {
-		display: none;
-	}
+    --mk-sidebar-width: #{$mk-sidebar-small-width};
+    .mk_apps_sidebar_name,
+    .mk_apps_sidebar_logo,
+    .mk_coming_soon_badge {
+        display: none;
+    }
+    .mk_apps_sidebar_icon {
+        margin-right: 0 !important;
+    }
+}
+.mk_apps_sidebar_logo {
+    text-align: center;
+    padding: 16px 0 12px 0;
 }
 
-.mk_sidebar_type_invisible {
-	--mk-sidebar-width: 0;
+.mk_apps_sidebar_logo img {
+    width: 90px;        // 👈 adjust size here
+    max-height: 70px;
+    object-fit: contain;
 }
 
+.o_navbar_apps_menu{
+    display: none;
+}
+
+
+.o_navbar{
+    margin-left: 230px;    
+}
+
+.o-dropdown-item.dropdown-item.o-navigable.o_menu_brand.d-flex{
+    display: none !important;
+}
+
+.mk_sidebar_type_invisible,
 .editor_has_snippets_hide_backend_navbar,
 .o_home_menu_background,
 .o_fullscreen {
-	--mk-sidebar-width: 0;
+    --mk-sidebar-width: 0;
 }
 
 .editor_has_snippets_hide_backend_navbar .mk_apps_sidebar_panel {
@@ -98,25 +181,21 @@
 }
 
 @include media-breakpoint-only(md) {
-	.mk_sidebar_type_large {
-		--mk-sidebar-width: #{$mk-sidebar-small-width};
-		.mk_apps_sidebar_name {
-			display: none;
-		}
-		.mk_apps_sidebar_icon {
-			margin-right: 0 !important;
-		}
-	   	.mk_apps_sidebar_logo {
-			display: none;
-		}
-		.mk_coming_soon_badge {
-			display: none;
-		}
-	}
+    .mk_sidebar_type_large {
+        --mk-sidebar-width: #{$mk-sidebar-small-width};
+        .mk_apps_sidebar_name,
+        .mk_apps_sidebar_logo,
+        .mk_coming_soon_badge {
+            display: none;
+        }
+        .mk_apps_sidebar_icon {
+            margin-right: 0 !important;
+        }
+    }
 }
 
 @include media-breakpoint-down(md) {
-	.mk_sidebar_type_large, .mk_sidebar_type_small {
-		--mk-sidebar-width: 0;
-	}
+    .mk_sidebar_type_large, .mk_sidebar_type_small {
+        --mk-sidebar-width: 0;
+    }
 }

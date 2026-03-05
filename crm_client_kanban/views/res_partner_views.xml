@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        CRM Client Kanban – Dark Profile Card
+        ══════════════════════════════════════
+        Strategy: Instead of inheriting & patching the base kanban view
+        (which causes xpath conflicts with calendar, crm, sale, pos modules
+        that all target //footer/div), we define a STANDALONE kanban view
+        with no_open="True" and wire it to the Contacts action via an
+        action override. This completely sidesteps the inheritance chain.
+    -->
+
+    <!-- 1. Standalone kanban view – no inherit, full arch -->
+    <record id="res_partner_kanban_view_dark" model="ir.ui.view">
+        <field name="name">res.partner.kanban.dark</field>
+        <field name="model">res.partner</field>
+        <!-- Higher priority number = lower priority, so we set 999 to make
+             this the fallback; we override the action below to force it. -->
+        <field name="priority" eval="999"/>
+        <field name="arch" type="xml">
+            <kanban
+                class="o_partner_kanban client_kanban_dark"
+                sample="1">
+
+                <field name="id"/>
+                <field name="name"/>
+                <field name="image_128"/>
+                <field name="city"/>
+                <field name="country_id"/>
+                <field name="website"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="mobile"/>
+                <field name="function"/>
+                <field name="category_id"/>
+                <!-- <field name="contact_name"/> -->
+                <field name="is_company"/>
+                <field name="kanban_total_sales"/>
+                <field name="kanban_sales_growth"/>
+                <field name="kanban_invoice_count"/>
+                <field name="kanban_invoice_count_month"/>
+                <field name="kanban_call_count"/>
+                <field name="kanban_call_count_month"/>
+                <field name="kanban_meeting_count"/>
+                <field name="kanban_meeting_count_month"/>
+                <field name="currency_id"/>
+
+                <field name="parent_id"/>
+                <t t-name="card">
+                    <div class="ckd_card">
+
+                        <!-- ── TOP ROW: Logo · Company Info · Buttons ── -->
+                        <div class="ckd_top_row">
+
+                            <div class="ckd_logo_wrap">
+                                <t t-if="record.image_128.raw_value and record.is_company.raw_value">
+                                    <img t-att-src="'/web/image/res.partner/' + record.id.raw_value + '/image_128'"
+                                         class="ckd_logo_img" alt="Logo"/>
+                                </t>
+                                <t t-elif="record.parent_id.raw_value">
+                                    <img t-att-src="'/web/image/res.partner/' + record.parent_id.raw_value + '/image_128'"
+                                         class="ckd_logo_img" alt="Logo"/>
+                                </t>
+                                <t t-else="">
+                                    <div class="ckd_logo_placeholder">
+                                        <t t-esc="record.name.raw_value and record.name.raw_value[0].toUpperCase()"/>
+                                    </div>
+                                </t>
+                            </div>
+
+                            <div class="ckd_company_info">
+                                <div class="ckd_company_name">
+                                    <t t-if="record.parent_id.value" t-out="record.parent_id.value"/>
+                                    <t t-else="" t-out="record.name.value"/>
+                                </div>
+                                <div class="ckd_location">
+                                    <t t-if="record.city.value" t-out="record.city.value"/>
+                                    <t t-if="record.city.value and record.country_id.value">, </t>
+                                    <t t-if="record.country_id.value" t-out="record.country_id.value"/>
+                                </div>
+                                <t t-if="record.website.value">
+                                    <div class="ckd_website">
+                                        <i class="fa fa-globe" style="color: #0ea5e9; margin-right:4px;"></i> 
+                                        <t t-out="record.website.value"/>
+                                    </div>
+                                </t>
+                            </div>
+
+                            <!-- <div class="ckd_actions">
+                                <button class="ckd_btn_edit" type="edit">
+                                    <i class="fa fa-pencil"></i> Edit
+                                </button>
+                                <button class="ckd_btn_deal"
+                                        type="object"
+                                        name="action_new_opportunity"
+                                        groups="sales_team.group_sale_salesman">
+                                    + New Deal
+                                </button>
+                            </div> -->
+                        </div>
+
+                        <!-- ── CATEGORY CHIPS ── -->
+                        <t t-if="record.category_id.value">
+                            <div class="ckd_tags">
+                                <t t-foreach="record.category_id.value.split(',')" t-as="tag">
+                                    <span class="ckd_chip ckd_chip_blue" t-out="tag.trim()"/>
+                                </t>
+                            </div>
+                        </t>
+
+                        <!-- ── SEPARATOR ── -->
+                        <div class="ckd_separator"></div>
+
+                        <!-- ── BOTTOM ROW ── -->
+                        <div class="ckd_bottom_row">
+                            
+                            <!-- Contact Info -->
+                            <div class="ckd_contact_section">
+                                <div class="ckd_contact_name">
+                                    <t t-if="record.parent_id.value" t-out="record.name.value"/>
+                                    <t t-else="">Contact Person</t>
+                                </div>
+                                <t t-if="record.function.value">
+                                    <div class="ckd_contact_role" t-out="record.function.value"/>
+                                </t>
+                                <div class="ckd_contact_meta">
+                                    <t t-if="record.email.value">
+                                        <span class="ckd_email"><i class="fa fa-envelope" style="color: #3b82f6; margin-right:4px;"></i> <t t-out="record.email.value"/></span>
+                                    </t>
+                                    <t t-if="record.phone.value">
+                                        <span class="ckd_phone"><i class="fa fa-phone" style="color: #64748b; margin-right:4px;"></i> <t t-out="record.phone.value"/></span>
+                                    </t>
+                                </div>
+                            </div>
+                            
+                            <!-- Stats Grid -->
+                            <div class="ckd_stats_row">
+                                <div class="ckd_stat_box">
+                                    <div class="ckd_stat_value">
+                                        <field name="kanban_total_sales" widget="monetary"/>
+                                    </div>
+                                    <div class="ckd_stat_label_group">
+                                        <span class="ckd_stat_label">Total Sales</span>
+                                        <t t-if="record.kanban_sales_growth.value">
+                                            <span t-attf-class="ckd_stat_trend #{record.kanban_sales_growth.value >= 0 ? 'ckd_trend_up' : 'ckd_trend_down'}">
+                                                <i t-attf-class="fa #{record.kanban_sales_growth.value >= 0 ? 'fa-arrow-up' : 'fa-arrow-down'}"></i>
+                                                <t t-out="record.kanban_sales_growth.value"/>%
+                                            </span>
+                                        </t>
+                                    </div>
+                                </div>
+
+                                <div class="ckd_stat_box">
+                                    <div class="ckd_stat_value" t-out="record.kanban_invoice_count.value"/>
+                                    <div class="ckd_stat_label_group">
+                                        <span class="ckd_stat_label">Total Invoices</span>
+                                        <t t-if="record.kanban_invoice_count_month.value">
+                                            <span class="ckd_stat_trend ckd_trend_neutral">
+                                                +<t t-out="record.kanban_invoice_count_month.value"/> este mes
+                                            </span>
+                                        </t>
+                                    </div>
+                                </div>
+
+                                <div class="ckd_stat_box">
+                                    <div class="ckd_stat_value" t-out="record.kanban_call_count.value"/>
+                                    <div class="ckd_stat_label_group">
+                                        <span class="ckd_stat_label">Total Calls</span>
+                                        <t t-if="record.kanban_call_count_month.value">
+                                            <span class="ckd_stat_trend ckd_trend_neutral">
+                                                +<t t-out="record.kanban_call_count_month.value"/> este mes
+                                            </span>
+                                        </t>
+                                    </div>
+                                </div>
+
+                                <div class="ckd_stat_box">
+                                    <div class="ckd_stat_value" t-out="record.kanban_meeting_count.value"/>
+                                    <div class="ckd_stat_label_group">
+                                        <span class="ckd_stat_label">Total Meetings</span>
+                                        <t t-if="record.kanban_meeting_count_month.value">
+                                            <span class="ckd_stat_trend ckd_trend_neutral">
+                                                +<t t-out="record.kanban_meeting_count_month.value"/> este mes
+                                            </span>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Absolute Avatar -->
+                        <div class="ckd_avatar_absolute">
+                           <t t-if="!record.is_company.raw_value and record.image_128.raw_value">
+                                <img t-att-src="'/web/image/res.partner/' + record.id.raw_value + '/image_128'" 
+                                     class="ckd_avatar_img" alt="Avatar"/>
+                            </t>
+                            <t t-else="">
+                                <div t-attf-class="ckd_avatar_placeholder #{record.is_company.value ? 'ckd_avatar_blue' : 'ckd_avatar_purple'}">
+                                    <t t-out="record.name.value ? record.name.value[0].toUpperCase() : '?'"/>
+                                </div>
+                            </t>
+                        </div>
+
+                    </div><!-- /.ckd_card -->
+                </t>
+
+            </kanban>
+        </field>
+    </record>
+
+    <!--
+        2. Override the Contacts window action to inject our view.
+           We prepend our kanban view_id so it becomes the default kanban,
+           while leaving list/form views untouched.
+    -->
+    <record id="action_contacts_dark_kanban" model="ir.actions.act_window">
+        <field name="name">Contacts</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="view_id" ref="res_partner_kanban_view_dark"/>
+        <field name="domain">[('active', '=', True)]</field>
+        <field name="context">{
+            'default_is_company': True,
+            'search_default_customer': 1
+        }</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No clients found. Create your first contact!
+            </p>
+        </field>
+    </record>
+
+    <!--
+        3. Add a menu item under Contacts that opens the dark kanban view.
+           This avoids overriding the system Contacts menu entirely, so
+           other modules stay intact.
+    -->
+    <menuitem
+        id="menu_contacts_dark_kanban"
+        name="Profiles"
+        parent="contacts.menu_contacts"
+        action="action_contacts_dark_kanban"
+        sequence="0"/>
+
+</odoo>
+

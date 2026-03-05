@@ -22,6 +22,7 @@
         'templates/webclient.xml',
         'views/res_users.xml',
         'views/res_config_settings.xml',
+
     ],
     'assets': {
         'web._assets_primary_variables': [
@@ -30,13 +31,24 @@
         'web._assets_backend_helpers': [
             'muk_web_appsbar/static/src/scss/mixins.scss',
         ],
+
+        # ---------------------------------------------------------------
+        # DARK MODE ASSETS
+        # Odoo loads web.assets_web_dark only when color_scheme=dark cookie
+        # is set. Both files below are scoped to [data-bs-theme="dark"].
+        # ---------------------------------------------------------------
         'web.assets_web_dark': [
             (
                 'after',
                 'muk_web_appsbar/static/src/scss/variables.scss',
+                # 1. Variable overrides — must come before any SCSS that
+                #    consumes $body-bg, $input-bg etc.
                 'muk_web_appsbar/static/src/scss/variables.dark.scss',
             ),
+            # 2. Full component dark styles (form, list, kanban, modals…)
+            'muk_web_appsbar/static/src/scss/dark.scss',
         ],
+
         'web.assets_backend': [
             (
                 'after',
@@ -61,6 +73,10 @@
             'muk_web_appsbar/static/src/webclient/webclient.scss',
             'muk_web_appsbar/static/src/webclient/appsbar/appsbar.xml',
             'muk_web_appsbar/static/src/webclient/appsbar/appsbar.scss',
+            'muk_web_appsbar/static/src/webclient/appsbar/fluid.scss',
+
+            'muk_web_appsbar/static/src/webclient/theme_toggle/theme_toggle.js',
+            'muk_web_appsbar/static/src/webclient/theme_toggle/theme_toggle.xml',
         ],
     },
     'images': [

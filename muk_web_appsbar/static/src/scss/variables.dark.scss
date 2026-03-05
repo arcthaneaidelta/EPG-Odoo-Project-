@@ -1,2 +1,165 @@
-$mk-appbar-color: #E4E4E4 !default;
-$mk-appbar-background: #3C3E4B !default;
+// =============================================================================
+// MUK WEB APPSBAR — variables.dark.scss
+// Deep Navy + Cyan dark theme for Odoo 18
+// Palette: bg #081028 · surface #0d1a3a · border #1a2f5a · accent #0088ff
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// CORE BACKGROUND LAYERS
+// -----------------------------------------------------------------------------
+$body-bg:                       #081028;   // deepest navy — page background
+$body-color:                    #c9d6e8;   // body text — soft blue-grey
+
+// -----------------------------------------------------------------------------
+// SURFACE / CARD LAYERS
+// -----------------------------------------------------------------------------
+$o-view-background-color:       #0d1a3a;   // form/list view background
+$o-webclient-background-color:  #081028;
+$card-bg:                       #0d1a3a;
+$card-border-color:             #1a2f5a;
+$card-cap-bg:                   #0a1428;
+
+// -----------------------------------------------------------------------------
+// TYPOGRAPHY
+// -----------------------------------------------------------------------------
+$headings-color:                #e8edf5;
+$text-muted:                    #5a7099;
+$link-color:                    #0088ff;
+$link-hover-color:              #33ddff;
+
+// -----------------------------------------------------------------------------
+// BORDERS
+// -----------------------------------------------------------------------------
+$border-color:                  #1a2f5a;
+$hr-border-color:               #1a2f5a;
+$table-border-color:            #1a2f5a;
+
+// -----------------------------------------------------------------------------
+// INPUTS & FORM CONTROLS
+// -----------------------------------------------------------------------------
+$input-bg:                      #0a1428;
+$input-disabled-bg:             #0a1830;
+$input-border-color:            #1a2f5a;
+$input-focus-border-color:      #0088ff;
+$input-color:                   #c9d6e8;
+$input-placeholder-color:       #3d5a80;
+$input-focus-box-shadow:        0 0 0 2px rgba(0, 210, 255, 0.18);
+$input-group-addon-bg:          #0d1a3a;
+$input-group-addon-border-color:#1a2f5a;
+$input-group-addon-color:       #5a7099;
+$form-check-input-bg:           #0a1428;
+$form-check-input-border:       1px solid #1a2f5a;
+
+// -----------------------------------------------------------------------------
+// BUTTONS
+// Primary = cyan accent, Secondary = subtle navy surface
+// -----------------------------------------------------------------------------
+$btn-primary-bg:                #0088ff;
+$btn-primary-border:            #0088ff;
+$btn-primary-color:             #03080f;   // near-black text on bright cyan
+$btn-secondary-bg:              #0d1a3a;
+$btn-secondary-border:          #1a2f5a;
+$btn-secondary-color:           #c9d6e8;
+
+// -----------------------------------------------------------------------------
+// NAVBAR / HEADER
+// -----------------------------------------------------------------------------
+$o-navbar-color:                #e8edf5;
+$o-main-navbar-color:           #e8edf5;
+$o-main-navbar-background:      #040d1e;  // even darker strip at top
+$o-main-navbar-border-color:    #0f1f40;
+
+// -----------------------------------------------------------------------------
+// DROPDOWN
+// -----------------------------------------------------------------------------
+$dropdown-bg:                   #0d1a3a;
+$dropdown-border-color:         #1a2f5a;
+$dropdown-link-color:           #c9d6e8;
+$dropdown-link-hover-bg:        rgba(0, 210, 255, 0.1);
+$dropdown-link-hover-color:     #0088ff;
+$dropdown-link-active-bg:       rgba(0, 210, 255, 0.18);
+$dropdown-link-active-color:    #0088ff;
+$dropdown-header-color:         #5a7099;
+$dropdown-divider-bg:           #1a2f5a;
+
+// -----------------------------------------------------------------------------
+// TABLE
+// -----------------------------------------------------------------------------
+$table-bg:                      transparent;
+$table-striped-bg:              rgba(0, 210, 255, 0.03);
+$table-hover-bg:                rgba(0, 210, 255, 0.06);
+$table-active-bg:               rgba(0, 210, 255, 0.1);
+$table-color:                   #c9d6e8;
+$table-head-bg:                 #0a1428;
+$table-head-color:              #8aaac8;
+
+// -----------------------------------------------------------------------------
+// MODAL
+// -----------------------------------------------------------------------------
+$modal-content-bg:              #0d1a3a;
+$modal-content-border-color:    #1a2f5a;
+$modal-header-border-color:     #1a2f5a;
+$modal-footer-border-color:     #1a2f5a;
+$modal-backdrop-bg:             #020812;
+$modal-backdrop-opacity:        0.75;
+
+// -----------------------------------------------------------------------------
+// LIST GROUP
+// -----------------------------------------------------------------------------
+$list-group-bg:                 #0d1a3a;
+$list-group-border-color:       #1a2f5a;
+$list-group-color:              #c9d6e8;
+$list-group-action-color:       #c9d6e8;
+$list-group-hover-bg:           rgba(0, 210, 255, 0.07);
+$list-group-active-bg:          rgba(0, 210, 255, 0.15);
+$list-group-active-color:       #0088ff;
+$list-group-active-border-color:#0088ff;
+$list-group-disabled-color:     #3d5a80;
+
+// -----------------------------------------------------------------------------
+// BADGES & ALERTS (status colours — slightly desaturated for dark bg)
+// -----------------------------------------------------------------------------
+$success:                       #22c55e;
+$danger:                        #ef4444;
+$warning:                       #f59e0b;
+$info:                          #0088ff;
+
+// -----------------------------------------------------------------------------
+// PAGINATION
+// -----------------------------------------------------------------------------
+$pagination-bg:                 #0d1a3a;
+$pagination-border-color:       #1a2f5a;
+$pagination-color:              #8aaac8;
+$pagination-hover-bg:           rgba(0, 210, 255, 0.1);
+$pagination-hover-color:        #0088ff;
+$pagination-hover-border-color: #1a2f5a;
+$pagination-active-bg:          #0088ff;
+$pagination-active-color:       #03080f;
+$pagination-active-border-color:#0088ff;
+$pagination-disabled-bg:        #081028;
+$pagination-disabled-color:     #3d5a80;
+
+// -----------------------------------------------------------------------------
+// TOOLTIP / POPOVER
+// -----------------------------------------------------------------------------
+$tooltip-bg:                    #0d1a3a;
+$tooltip-color:                 #c9d6e8;
+$popover-bg:                    #0d1a3a;
+$popover-border-color:          #1a2f5a;
+$popover-header-bg:             #0a1428;
+$popover-header-color:          #e8edf5;
+$popover-body-color:            #c9d6e8;
+
+// -----------------------------------------------------------------------------
+// PROGRESS
+// -----------------------------------------------------------------------------
+$progress-bg:                   #0a1428;
+$progress-bar-bg:               #0088ff;
+
+// -----------------------------------------------------------------------------
+// BREADCRUMB
+// -----------------------------------------------------------------------------
+$breadcrumb-bg:                 transparent;
+$breadcrumb-divider-color:      #3d5a80;
+$breadcrumb-active-color:       #c9d6e8;
+$breadcrumb-color:              #0088ff;

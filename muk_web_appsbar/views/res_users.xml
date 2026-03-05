@@ -13,4 +13,14 @@
         </field>
     </record>
 
+    <record id="custom_remove_about_section" model="ir.ui.view">
+        <field name="name">res.config.settings.form.remove.about</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Remove the about div -->
+            <xpath expr="//div[@id='about']" position="replace"/>
+        </field>
+    </record>
+
 </odoo>

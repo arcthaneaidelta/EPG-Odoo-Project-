@@ -24,16 +24,16 @@ export const appMenuService = {
 				
 				// Add placeholder apps for Dashboard, Documents and Training
 				const placeholderApps = [
-					{
-						id: 'placeholder_dashboard',
-						label: 'Dashboard',
-						xmlid: 'placeholder.dashboard',
-						webIconData: '/base/static/description/icon.png', // You can replace with custom icon
-						href: '#',
-						actionID: null,
-						isPlaceholder: true,
-						order: 0
-					},
+					// {
+					// 	id: 'placeholder_dashboard',
+					// 	label: 'Dashboard',
+					// 	xmlid: 'placeholder.dashboard',
+					// 	webIconData: '/base/static/description/icon.png', // You can replace with custom icon
+					// 	href: '#',
+					// 	actionID: null,
+					// 	isPlaceholder: true,
+					// 	order: 0
+					// },
 					{
 						id: 'placeholder_documents',
 						label: 'Documents',
@@ -58,7 +58,8 @@ export const appMenuService = {
 				
 				// Define custom order mapping
 				const customOrder = {
-					'placeholder_dashboard': 0,
+					'Dashboard': 0,
+					'crm_dashboard': 0,
 					'Contacts': 1,
 					'contacts': 1, // lowercase variant
 					'CRM': 2,
@@ -72,13 +73,15 @@ export const appMenuService = {
 					'placeholder_documents': 5,
 					'placeholder_training': 6,
 					'AI Assistant': 7,
-					'ai_assistant': 7, // lowercase variant
-					'Website': 8,
-					'website': 8, // lowercase variant
-					'Settings': 9,
-					'settings': 9, // lowercase variant
-					'Apps': 10,
-					'apps': 10 // lowercase variant
+					'ai_assistant': 7,
+					'Real Estate': 8, 
+					'real_estate_crm': 8, // lowercase variant
+					'Website': 9,
+					'website': 9, // lowercase variant
+					'Settings': 10,
+					'settings': 10, // lowercase variant
+					'Apps': 11,
+					'apps': 11 // lowercase variant
 				};
 				
 				// Assign order to existing apps

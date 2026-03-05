@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="muk_web_appsbar.ThemeToggle">
+        <div class="o_nav_entry dropdown" t-on-click="toggleTheme" style="cursor: pointer;" title="Toggle Dark/Light Mode">
+            <a class="dropdown-toggle o-no-caret o_nav_entry" role="button">
+                <i t-attf-class="fa fa-lg {{ state.isDark ? 'fa-sun-o' : 'fa-moon-o' }}"/>
+            </a>
+        </div>
+    </t>
+</templates>

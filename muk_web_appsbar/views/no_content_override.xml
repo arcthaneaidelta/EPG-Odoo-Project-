@@ -1,0 +1,11 @@
+<odoo>
+    <template id="no_content_override" inherit_id="web.NoContent">
+        <xpath expr="//p[contains(@class,'o_view_nocontent_smiling_face')]" position="replace">
+            <p class="o_view_nocontent_logo">
+                <img src="/muk_web_appsbar/static/src/img/company_logo.png"
+                     alt="Company Logo"
+                     style="max-width:150px; max-height:150px;"/>
+            </p>
+        </xpath>
+    </template>
+</odoo>

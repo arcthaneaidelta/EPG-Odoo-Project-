@@ -1,0 +1,468 @@
+// ═══════════════════════════════════════════════════════════════════
+//  CRM Client Kanban – Theme Aware Profile Card
+//  File: crm_client_kanban/static/src/scss/client_kanban.scss
+// ═══════════════════════════════════════════════════════════════════
+
+
+// ── Globals ─────────────────────────────────────────────────────────
+$ckd-accent-blue: #3b82f6;
+$ckd-accent-cyan: #06b6d4;
+$ckd-accent-green: #10b981;
+$ckd-accent-red: #f43f5e;
+$ckd-radius: 16px;
+$ckd-font: 'Inter', 'Helvetica Neue', sans-serif;
+
+// ── Theme Variables ─────────────────────────────────────────────────
+:root {
+    --ckd-bg-card: #ffffff;
+    --ckd-bg-card-mid: #fdfdfd;
+    --ckd-bg-card-end: #f8fafc;
+    --ckd-border: #e2e8f0;
+    --ckd-border-hover: #93c5fd;
+    --ckd-text-primary: #1e293b;
+    --ckd-text-secondary: #475569;
+    --ckd-text-muted: #64748b;
+    --ckd-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --ckd-shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --ckd-kanban-bg: transparent;
+    --ckd-separator: #e2e8f0;
+    --ckd-avatar-border: #ffffff;
+    --ckd-avatar-bg: #f8fafc;
+    --ckd-card-hover-bg: #f1f5f9;
+}
+
+[data-bs-theme="dark"] {
+    --ckd-bg-card: #152857;
+    --ckd-bg-card-mid: #112147;
+    --ckd-bg-card-end: #0d1d40;
+    --ckd-border: rgba(255, 255, 255, 0.12);
+    --ckd-border-hover: rgba(59, 130, 246, 0.40);
+    --ckd-text-primary: #ffffff;
+    --ckd-text-secondary: #cbd5e1;
+    --ckd-text-muted: #94a3b8;
+    --ckd-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --ckd-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.4);
+    --ckd-kanban-bg: #030b20;
+    --ckd-separator: rgba(255, 255, 255, 0.08);
+    --ckd-avatar-border: #1a2c5a;
+    --ckd-avatar-bg: #0f1a30;
+    --ckd-card-hover-bg: rgba(59, 130, 246, 0.08);
+}
+
+// ── Kanban column background ────────────────────────────────────────
+.client_kanban_dark {
+    background: var(--ckd-kanban-bg) !important;
+    padding: 20px !important;
+
+    .o_kanban_group {
+        background: transparent !important;
+    }
+
+    .o_kanban_record {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin-bottom: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+
+    // Ensure column doesn’t try to grid them
+    .o_kanban_renderer {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    // Remove default wrapping behavior
+    .o_kanban_group {
+        display: block !important;
+    }
+}
+
+// ── Main Card ───────────────────────────────────────────────────────
+.ckd_card {
+    background: linear-gradient(135deg, var(--ckd-bg-card) 0%, var(--ckd-bg-card-mid) 50%, var(--ckd-bg-card-end) 100%);
+    border: 1px solid var(--ckd-border);
+    border-radius: $ckd-radius;
+    padding: 24px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    box-shadow: var(--ckd-shadow);
+    font-family: $ckd-font;
+    display: flex;
+    flex-direction: column;
+    min-width: 800px;
+    /* Force wide layout to match image */
+
+    // Glowing top edge on hover
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, $ckd-accent-blue, $ckd-accent-cyan, transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+        border-color: var(--ckd-border-hover);
+        box-shadow: var(--ckd-shadow-hover);
+
+        &::before {
+            opacity: 1;
+        }
+    }
+}
+
+// ── Top Row ─────────────────────────────────────────────────────────
+.ckd_top_row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+}
+
+.ckd_logo_wrap {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border: 1px solid var(--ckd-border);
+}
+
+.ckd_logo_img,
+.ckd_logo_placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.ckd_logo_placeholder {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 28px;
+    color: #4285f4;
+}
+
+.ckd_company_info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ckd_company_name {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ckd-text-primary);
+    margin-bottom: 2px;
+}
+
+.ckd_location {
+    font-size: 13px;
+    color: var(--ckd-text-muted);
+}
+
+.ckd_website {
+    font-size: 12px;
+    color: $ckd-accent-cyan;
+    margin-top: 2px;
+}
+
+// .o_kanban_renderer.o_kanban_ungrouped .o_kanban_record {
+//     width: var(--KanbanRecord-width);
+//     margin: calc(var(--KanbanRecord-margin-v) * 0) var(--KanbanRecord-margin-h);
+// }
+
+.o_kanban_renderer.o_kanban_ungrouped .o_kanban_record {
+    flex-grow:   0 !important;
+    flex-shrink: 0 !important;
+    align-self:  flex-start !important;
+    width:     calc(50% - (var(--KanbanRecord-margin-h, 8px) * 2)) !important;
+    max-width: calc(50% - (var(--KanbanRecord-margin-h, 8px) * 2)) !important;
+    margin: var(--KanbanRecord-margin-v, 8px) var(--KanbanRecord-margin-h, 8px) !important;
+}
+
+//
+//  Step 2: Re-override — ONLY when the kanban renderer is a descendant
+//  of .o_partner_kanban (which sits on .o_kanban_view in the DOM).
+//  This is the most specific and reliable selector possible because it
+//  mirrors the exact HTML structure from the browser.
+//
+.o_partner_kanban .o_kanban_renderer.o_kanban_ungrouped .o_kanban_record {
+    flex-grow:   1 !important;
+    flex-shrink: 1 !important;
+    align-self:  stretch !important;
+    width:       100% !important;
+    max-width:   100% !important;
+    margin:      0 0 20px 0 !important;
+}
+
+// ── Action Buttons ──────────────────────────────────────────────────
+.ckd_actions {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+%ckd_btn_base {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ckd_btn_edit {
+    @extend %ckd_btn_base;
+    background: rgba(59, 130, 246, 1);
+    color: white;
+
+    &:hover {
+        background: lighten($ckd-accent-blue, 5%);
+    }
+}
+
+.ckd_btn_deal {
+    @extend %ckd_btn_base;
+    background: #10b981;
+    color: white;
+
+    &:hover {
+        filter: brightness(1.1);
+    }
+}
+
+// ── Tag Chips ───────────────────────────────────────────────────────
+.ckd_tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.ckd_chip {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.ckd_chip_blue {
+    background: rgba(59, 130, 246, 0.15);
+    color: $ckd-accent-blue;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+// ── Separator ───────────────────────────────────────────────────────
+.ckd_separator {
+    height: 1px;
+    background: var(--ckd-separator);
+    margin: 20px 0;
+    width: 100%;
+}
+
+// ── Bottom Row ──────────────────────────────────────────────────────
+.ckd_bottom_row {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-right: 120px;
+    /* Make space for absolute avatar */
+}
+
+// ── Contact Section ─────────────────────────────────────────────────
+.ckd_contact_section {
+    width: 35%;
+    /* Left part for contact */
+    min-width: 250px;
+    padding-right: 20px;
+}
+
+.ckd_contact_name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ckd-text-primary);
+}
+
+.ckd_contact_role {
+    font-size: 13px;
+    color: var(--ckd-text-muted);
+    margin-bottom: 6px;
+}
+
+.ckd_contact_meta {
+    font-size: 12px;
+    color: var(--ckd-text-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    span {
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+// ── Stats Grid ──────────────────────────────────────────────────────
+.ckd_stats_row {
+    display: flex;
+    gap: 30px;
+    flex: 1;
+}
+
+.ckd_stat_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+
+    &:hover {
+        background: var(--ckd-card-hover-bg);
+    }
+}
+
+.ckd_stat_value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ckd-text-primary);
+    margin-bottom: 2px;
+}
+
+.ckd_stat_label_group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ckd_stat_label {
+    font-size: 12px;
+    color: var(--ckd-text-secondary);
+    font-weight: 400;
+}
+
+.ckd_stat_trend {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.ckd_trend_up {
+    color: $ckd-accent-green;
+}
+
+.ckd_trend_down {
+    color: $ckd-accent-red;
+}
+
+.ckd_trend_neutral {
+    color: var(--ckd-text-muted);
+}
+
+// ── Absolute Avatar ─────────────────────────────────────────────────
+.ckd_avatar_absolute {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--ckd-avatar-border);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    background: var(--ckd-avatar-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.ckd_avatar_img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ckd_avatar_placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: white;
+}
+
+.ckd_avatar_blue {
+    background: linear-gradient(135deg, $ckd-accent-blue, #818cf8);
+}
+
+.ckd_avatar_purple {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+}
+
+// ── Search View Facets (Dark Theme Fix) ─────────────────────────────
+// Overrides the default light-themed search facets in the control panel
+// ONLY when dark mode is enabled natively in Odoo.
+[data-bs-theme="dark"] {
+    .o_control_panel .o_searchview .o_searchview_facet {
+        background-color: #112147 !important;
+        border: 1px solid rgba(59, 130, 246, 0.4) !important;
+        color: #e2e8f0 !important;
+
+        .o_searchview_facet_label {
+            background-color: #3b82f6 !important;
+            color: #ffffff !important;
+            border-right: 1px solid rgba(59, 130, 246, 0.4);
+        }
+
+        .o_facet_values {
+            background-color: transparent !important;
+            color: #e2e8f0 !important;
+
+            .o_facet_value {
+                color: #e2e8f0 !important;
+            }
+        }
+
+        .o_facet_remove {
+            color: #94a3b8 !important;
+
+            &:hover {
+                color: #f43f5e !important;
+            }
+        }
+    }
+
+    .o_control_panel .o_searchview_input_container .o_searchview_input {
+        color: #e2e8f0;
+
+        &::placeholder {
+            color: #94a3b8;
+        }
+    }
+}

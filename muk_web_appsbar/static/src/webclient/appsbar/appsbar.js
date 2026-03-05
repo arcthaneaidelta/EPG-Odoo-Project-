@@ -12,7 +12,7 @@ export class AppsBar extends Component {
         if (this.companyService.currentCompany.has_appsbar_image) {
             this.sidebarImageUrl = url('/web/image', {
                 model: 'res.company',
-                field: 'appbar_image',
+                field: 'logo',
                 id: this.companyService.currentCompany.id,
             });
         }

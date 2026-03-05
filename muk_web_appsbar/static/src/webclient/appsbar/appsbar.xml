@@ -4,7 +4,12 @@
 
 	<t t-name="muk_web_appsbar.AppsBar">
 		<div class="mk_apps_sidebar_panel">
+			<div t-if="sidebarImageUrl" class="mk_apps_sidebar_logo p-2">
+					<img class="img-fluid mx-auto" t-att-src="sidebarImageUrl" alt="Logo"/>
+					<div class="company-name mt-1">Productividad Global</div>
+				</div>
 			<div class="mk_apps_sidebar">
+				
 				<ul class="mk_apps_sidebar_menu">
 				    <t t-foreach="this.appMenuService.getAppsMenuItems()" t-as="app" t-key="app.id">
 			            <li t-attf-class="nav-item {{ app.id === this.appMenuService.getCurrentApp()?.id ? 'active' : '' }} {{ app.isPlaceholder ? 'mk_placeholder_app' : '' }}">
@@ -35,9 +40,7 @@
 			            </li>
 			    	</t>
 				</ul>
-				<div t-if="sidebarImageUrl" class="mk_apps_sidebar_logo p-2">
-					<img class="img-fluid mx-auto" t-att-src="sidebarImageUrl" alt="Logo"/>
-				</div>
+				
 			</div>
 		</div>
 	</t>

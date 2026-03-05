@@ -1,0 +1,659 @@
+// =============================================================================
+// MUK WEB APPSBAR — fluid.scss
+// Fluid UI enhancements for Odoo 18
+// Works in both light and dark themes
+// Register in __manifest__.py under 'web.assets_backend'
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// DESIGN TOKENS
+// -----------------------------------------------------------------------------
+:root {
+    --fluid-radius:          12px;
+    --fluid-radius-sm:       8px;
+    --fluid-radius-xs:       6px;
+    --fluid-row-radius:      8px;
+    --fluid-spacing-x:       20px;   // horizontal breathing room from edges
+    --fluid-spacing-y:       12px;
+    --fluid-shadow-card:     0 2px 12px rgba(0, 0, 0, 0.07);
+    --fluid-shadow-hover:    0 6px 24px rgba(0, 0, 0, 0.12);
+    --fluid-transition:      all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --fluid-transition-fast: all 0.15s ease;
+}
+
+[data-bs-theme="dark"] {
+    --fluid-shadow-card:     0 2px 12px rgba(0, 0, 0, 0.3);
+    --fluid-shadow-hover:    0 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+
+// =============================================================================
+// 1. LIST VIEW — Floating card with rounded corners & side spacing
+// =============================================================================
+
+
+.o_list_view {
+    padding: var(--fluid-spacing-y) var(--fluid-spacing-x) !important;
+    background: transparent !important;
+
+    // The inner table wrapper — becomes a floating card
+    .o_list_table_ungrouped,
+    > .o_list_renderer,
+    .o_list_renderer {
+        background: var(--bs-body-bg, #fff);
+        border-radius: 0 0 var(--fluid-radius) var(--fluid-radius) !important;
+        border: none !important;
+        box-shadow: var(--fluid-shadow-card);
+        overflow: hidden;
+        transition: var(--fluid-transition);
+    }
+
+    // Actual table — remove its own borders so the wrapper card handles them
+
+
+    table.o_list_table {
+        border-radius: 0 0 var(--fluid-radius) var(--fluid-radius) !important;
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        overflow: hidden;
+        border: 1px solid white !important;
+
+        // Header
+        thead tr {
+            th {
+                padding: 10px 14px !important;
+                font-size: 0.72rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-weight: 700;
+                border-bottom: 1px solid var(--bs-border-color, #1c304c) !important;
+                border-top: none !important;
+
+                &:first-child { padding-left: 20px !important; }
+                &:last-child  { padding-right: 20px !important; }
+            }
+        }
+
+        // Body rows
+        tbody tr {
+            transition: var(--fluid-transition-fast);
+
+            td {
+                padding: 10px 14px !important;
+                border-bottom: 1px solid var(--bs-border-color, #1c304c) !important;
+                border-top: none !important;
+                vertical-align: middle !important;
+                transition: background-color 0.15s ease;
+
+                &:first-child { padding-left: 20px !important; }
+                &:last-child  { padding-right: 20px !important; }
+            }
+
+            &:last-child td {
+                border-bottom: none !important;
+            }
+
+            // Hover — subtle lift effect
+            &:hover td {
+                background-color: var(--bs-tertiary-bg, rgba(0, 0, 0, 0.025)) !important;
+            }
+
+            // Selected row
+            &.o_selected_row td,
+            &.table-active td {
+                background-color: rgba(var(--bs-primary-rgb, 0, 136, 255), 0.07) !important;
+            }
+
+            // Striped — very subtle
+            &:nth-child(even) td {
+                background-color: rgba(0, 0, 0, 0.018);
+            }
+        }
+
+        // Footer aggregate row
+        tfoot tr td {
+            padding: 10px 14px !important;
+            font-weight: 700;
+            border-top: 2px solid var(--bs-border-color, #1c304c) !important;
+            border-bottom: none !important;
+
+            &:first-child { padding-left: 20px !important; }
+            &:last-child  { padding-right: 20px !important; }
+        }
+    }
+
+
+    // Grouped list — each group gets its own card
+    .o_group_header {
+        border-radius: var(--fluid-radius-sm) !important;
+        transition: var(--fluid-transition-fast);
+        cursor: pointer;
+
+        td {
+            padding: 10px 14px !important;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+
+            &:first-child { padding-left: 20px !important; }
+        }
+
+        &:hover td {
+            background-color: rgba(var(--bs-primary-rgb, 0, 136, 255), 0.06) !important;
+        }
+    }
+
+    // "Add a line" row
+    .o_field_one2many .o_list_renderer tfoot {
+        .o_list_footer_add_new td {
+            padding: 8px 20px !important;
+        }
+    }
+}
+
+.o_kanban_renderer.o_kanban_ungrouped .o_kanban_record.o_kanban_ghost {
+    max-height: 0 !important;
+    display: none;
+}
+
+// Dark theme list adjustments
+[data-bs-theme="dark"] {
+    .o_list_view {
+        .o_list_table_ungrouped,
+        .o_list_renderer {
+            background: #0d1a3a;
+            border-color: #1a2f5a !important;
+        }
+
+        table.o_list_table {
+            tbody tr:nth-child(even) td {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+}
+
+
+// =============================================================================
+// 2. KANBAN VIEW — Refined columns & cards with fluid motion
+// =============================================================================
+
+.o_kanban_view {
+    padding: var(--fluid-spacing-y) var(--fluid-spacing-x) !important;
+    gap: 14px !important;
+
+    // Each column
+    .o_kanban_group {
+        border-radius: var(--fluid-radius) !important;
+        border: 1px solid var(--bs-border-color, #e2e8f0) !important;
+        background: var(--bs-tertiary-bg, #f8fafc) !important;
+        box-shadow: var(--fluid-shadow-card);
+        min-width: 260px;
+        max-width: 300px;
+        transition: var(--fluid-transition);
+
+        &:hover {
+            box-shadow: var(--fluid-shadow-hover);
+        }
+    }
+
+    // Column header
+    .o_kanban_header {
+        padding: 14px 14px 10px !important;
+        border-bottom: 1px solid var(--bs-border-color, #e2e8f0) !important;
+        border-radius: var(--fluid-radius) var(--fluid-radius) 0 0;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: inherit;
+
+        .o_kanban_header_title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        // Record count badge
+        .o_kanban_config_buttons,
+        .o_column_quick_add {
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+        &:hover .o_column_quick_add { opacity: 1; }
+    }
+
+    // Cards container — custom scrollbar
+    .o_kanban_records_wrapper,
+    .o_kanban_record_wrapper {
+        padding: 10px 10px !important;
+        gap: 8px !important;
+        display: flex;
+        flex-direction: column;
+
+        scrollbar-width: thin;
+        scrollbar-color: var(--bs-border-color, #e2e8f0) transparent;
+        &::-webkit-scrollbar { width: 4px; }
+        &::-webkit-scrollbar-thumb { background: var(--bs-border-color, #cbd5e1); border-radius: 4px; }
+    }
+
+    // Individual card
+    .o_kanban_record {
+        border-radius: var(--fluid-radius-sm) !important;
+        border: 1px solid var(--bs-border-color, #e2e8f0) !important;
+        background: var(--bs-body-bg, #fff) !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        padding: 12px 14px !important;
+        transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.18s ease,
+                    border-color 0.18s ease !important;
+        cursor: pointer;
+        will-change: transform;
+
+        &:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
+            border-color: var(--bs-primary, #0088ff) !important;
+        }
+
+        &:active {
+            transform: translateY(0) !important;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        // Card title
+        .o_kanban_record_title {
+            font-weight: 600;
+            font-size: 0.88rem;
+            margin-bottom: 4px;
+        }
+
+        // Bottom row (avatar, tags, status)
+        .o_kanban_record_bottom {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid var(--bs-border-color, #f1f5f9);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    // Ghost / new card placeholder
+    .o_kanban_ghost {
+        border-radius: var(--fluid-radius-sm) !important;
+        border: 2px dashed var(--bs-border-color, #cbd5e1) !important;
+        background: transparent !important;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+        &:hover { opacity: 1; }
+    }
+
+    // Quick create form
+    .o_kanban_quick_create {
+        border-radius: var(--fluid-radius-sm) !important;
+        border: 1px solid var(--bs-primary, #0088ff) !important;
+        box-shadow: 0 0 0 3px rgba(0, 136, 255, 0.1) !important;
+        padding: 12px 14px !important;
+        animation: fluid-pop-in 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    // Folded column
+    .o_kanban_group.o_column_folded {
+        min-width: 48px;
+        max-width: 48px;
+        border-radius: var(--fluid-radius) !important;
+        transition: min-width 0.25s ease, max-width 0.25s ease;
+    }
+}
+
+// Dark kanban refinements
+[data-bs-theme="dark"] {
+    .o_kanban_view {
+        .o_kanban_group {
+            background: linear-gradient(135deg, #152857 0%, #112147 50%, #0d1d40 100%) !important;
+            border-color: #1a2f5a !important;
+        }
+        .o_kanban_record {
+            background: linear-gradient(135deg, #152857 0%, #112147 50%, #0d1d40 100%) !important;
+            border-color: #1a2f5a !important;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+            &:hover {
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+            }
+
+            .o_kanban_record_bottom {
+                border-top-color: #1a2f5a;
+            }
+        }
+        .o_kanban_header {
+            border-bottom-color: #1a2f5a !important;
+        }
+    }
+}
+
+
+// =============================================================================
+// 3. FORM VIEW — Smoother sheet, animated field focus
+// =============================================================================
+
+.o_form_view {
+    .o_form_sheet_bg {
+        padding: var(--fluid-spacing-y) var(--fluid-spacing-x) !important;
+    }
+
+    .o_form_sheet {
+        border-radius: var(--fluid-radius) !important;
+        box-shadow: var(--fluid-shadow-card);
+        transition: box-shadow 0.3s ease;
+        overflow: hidden;
+
+        &:focus-within {
+            box-shadow: var(--fluid-shadow-hover);
+        }
+    }
+
+    // Tabs (notebook)
+    .o_notebook .nav-tabs .nav-link {
+        transition: var(--fluid-transition-fast) !important;
+        border-radius: var(--fluid-radius-xs) var(--fluid-radius-xs) 0 0 !important;
+
+        &.active {
+            font-weight: 600;
+        }
+    }
+
+    // Chatter / messaging
+    .o-mail-Chatter {
+        border-top: 1px solid var(--bs-border-color, #e2e8f0);
+        padding-top: 16px;
+    }
+
+    // Status bar
+    .o_form_statusbar {
+        border-bottom: 1px solid var(--bs-border-color, #e2e8f0);
+        border-radius: 0;
+        padding: 6px 20px !important;
+    }
+
+    // Stat buttons
+    .oe_stat_button {
+        border-radius: var(--fluid-radius-xs) !important;
+        transition: var(--fluid-transition-fast);
+        &:hover { transform: translateY(-1px); }
+    }
+}
+
+
+// =============================================================================
+// 4. CONTROL PANEL — Floating pill feel
+// =============================================================================
+
+.o_control_panel {
+    padding: 8px var(--fluid-spacing-x) !important;
+    border-radius: 0 !important;
+
+    .o_control_panel_main_buttons {
+        gap: 6px !important;
+
+        .btn {
+            border-radius: var(--fluid-radius-xs) !important;
+            transition: var(--fluid-transition-fast) !important;
+            font-weight: 500;
+        }
+    }
+
+    // Search bar
+    .o_searchview {
+        border-radius: 20px !important;
+        transition: var(--fluid-transition-fast);
+
+        &:focus-within {
+            box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb, 0, 136, 255), 0.15) !important;
+        }
+    }
+
+    // View switcher buttons
+    .o_switch_view {
+        border-radius: var(--fluid-radius-xs) !important;
+        transition: var(--fluid-transition-fast) !important;
+        &:hover { transform: scale(1.08); }
+    }
+
+    // Breadcrumbs
+    .o_breadcrumb {
+        .breadcrumb-item {
+            transition: var(--fluid-transition-fast);
+        }
+        .o_back_button {
+            border-radius: var(--fluid-radius-xs) !important;
+            padding: 2px 8px;
+            transition: var(--fluid-transition-fast) !important;
+            &:hover {
+                background: rgba(var(--bs-primary-rgb, 0, 136, 255), 0.08) !important;
+            }
+        }
+    }
+}
+
+
+// =============================================================================
+// 5. GLOBAL MICRO-INTERACTIONS
+// =============================================================================
+
+// All buttons — consistent radius & spring
+.btn {
+    border-radius: var(--fluid-radius-xs) !important;
+    transition: var(--fluid-transition-fast) !important;
+
+    &:not(:disabled):active {
+        transform: scale(0.97);
+    }
+}
+
+// Input fields — smooth focus ring
+.o_input,
+input.o_input,
+textarea.o_input,
+.o_field_widget input,
+.o_field_widget textarea,
+.o_field_widget select {
+    border-radius: var(--fluid-radius-xs) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+
+    &:focus {
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb, 0, 136, 255), 0.15) !important;
+    }
+}
+
+// Dropdown menus — slide-in animation
+.dropdown-menu,
+.o_dropdown_menu {
+    border-radius: var(--fluid-radius-sm) !important;
+    animation: fluid-dropdown-in 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: top center;
+
+    .dropdown-item {
+        border-radius: var(--fluid-radius-xs) !important;
+        margin: 1px 4px !important;
+        width: calc(100% - 8px) !important;
+        transition: background-color 0.12s ease !important;
+    }
+}
+
+// Tags / badges — pill shape
+.badge,
+.o_tag {
+    border-radius: 20px !important;
+    font-weight: 500;
+    font-size: 0.72rem;
+    padding: 3px 10px !important;
+    transition: var(--fluid-transition-fast);
+}
+
+// Modals — smooth entry
+.modal.show .modal-dialog {
+    animation: fluid-modal-in 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-content {
+    border-radius: var(--fluid-radius) !important;
+}
+
+// Notifications toast
+.o_notification {
+    border-radius: var(--fluid-radius-sm) !important;
+    animation: fluid-slide-in-right 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Avatar images — consistent round shape
+.o_avatar,
+.o_field_image img,
+img.o_avatar {
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+    &:hover { transform: scale(1.06); }
+}
+
+
+// =============================================================================
+// 6. CALENDAR & ACTIVITY VIEWS — fluid borders
+// =============================================================================
+
+.o_calendar_view {
+    border-radius: var(--fluid-radius) !important;
+    overflow: hidden;
+    border: 1px solid var(--bs-border-color, #e2e8f0) !important;
+    box-shadow: var(--fluid-shadow-card);
+
+    .fc-event {
+        border-radius: var(--fluid-radius-xs) !important;
+        transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+        &:hover {
+            transform: scale(1.02);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15) !important;
+        }
+    }
+}
+
+.o_activity_view {
+    border-radius: var(--fluid-radius) !important;
+    overflow: hidden;
+    border: 1px solid var(--bs-border-color, #e2e8f0) !important;
+    box-shadow: var(--fluid-shadow-card);
+}
+
+
+// =============================================================================
+// 7. PIVOT & GRAPH VIEWS — card treatment
+// =============================================================================
+
+.o_pivot_view,
+.o_graph_view {
+    padding: var(--fluid-spacing-y) var(--fluid-spacing-x) !important;
+
+    > * {
+        border-radius: var(--fluid-radius) !important;
+        border: 1px solid var(--bs-border-color, #e2e8f0) !important;
+        box-shadow: var(--fluid-shadow-card);
+        overflow: hidden;
+    }
+}
+
+.o_pivot_view table {
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+
+    td, th {
+        transition: background-color 0.15s ease !important;
+    }
+
+    tr:hover td {
+        background-color: rgba(var(--bs-primary-rgb, 0, 136, 255), 0.04) !important;
+    }
+}
+
+
+// =============================================================================
+// 8. SEARCH PANEL — smoother sidebar
+// =============================================================================
+
+.o_search_panel {
+    border-radius: 0 var(--fluid-radius) var(--fluid-radius) 0 !important;
+    padding: 12px 8px !important;
+
+    .o_search_panel_label {
+        border-radius: var(--fluid-radius-xs) !important;
+        padding: 5px 10px !important;
+        transition: var(--fluid-transition-fast) !important;
+    }
+
+    .o_search_panel_section_header {
+        padding: 10px 10px 4px !important;
+    }
+}
+
+
+// =============================================================================
+// 9. KEYFRAME ANIMATIONS
+// =============================================================================
+
+@keyframes fluid-dropdown-in {
+    from {
+        opacity: 0;
+        transform: scaleY(0.92) translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1) translateY(0);
+    }
+}
+
+@keyframes fluid-modal-in {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes fluid-pop-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fluid-slide-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+// =============================================================================
+// 10. UTILITY — reduced motion accessibility
+// =============================================================================
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -1,0 +1,1171 @@
+// =============================================================================
+// MUK WEB APPSBAR — dark.scss
+// Complete Odoo 18 dark mode override
+// Navy #081028 · Surface #0d1a3a · Border #1a2f5a · Accent #0088ff
+// Place in: muk_web_appsbar/static/src/scss/dark.scss
+// Register in __manifest__.py under 'web.assets_web_dark'
+// =============================================================================
+
+// Shorthand mixins used throughout
+@mixin dark-surface($bg: #0d1a3a, $border: #1a2f5a) {
+    background-color: $bg !important;
+    border-color: $border !important;
+}
+
+@mixin dark-text($color: #c9d6e8) {
+    color: $color !important;
+}
+
+@mixin cyan-glow($opacity: 0.2) {
+    box-shadow: 0 0 0 2px rgba(0, 210, 255, $opacity) !important;
+}
+
+// =============================================================================
+// 1. BASE / BODY
+// =============================================================================
+[data-bs-theme="dark"] {
+    background-color: #081028;
+    color: #c9d6e8;
+
+    // Scrollbars — webkit
+    * {
+        scrollbar-color: #1a2f5a #081028;
+        scrollbar-width: thin;
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #081028; }
+    ::-webkit-scrollbar-thumb { background: #1a2f5a; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #2a4070; }
+
+    // Global link
+    a:not(.btn) { color: #0088ff; }
+    a:not(.btn):hover { color: #33ddff; }
+
+    // Horizontal rules
+    hr { border-color: #1a2f5a; opacity: 1; }
+
+    // Code
+    code { color: #0088ff; background: rgba(0,210,255,0.08); border-radius: 3px; padding: 0 4px; }
+    pre { background: #040d1e; border: 1px solid #1a2f5a; border-radius: 6px; color: #c9d6e8; }
+}
+
+// =============================================================================
+// 2. NAVBAR / TOP BAR
+// =============================================================================
+[data-bs-theme="dark"] {
+    .o_main_navbar,
+    .o_navbar {
+        background-color: #040d1e !important;
+        border-bottom: 1px solid #0f1f40 !important;
+        box-shadow: 0 1px 8px rgba(0,0,0,0.5);
+
+        // All text/icons in navbar
+        .o_menu_brand,
+        .o_nav_entry,
+        .o_menu_sections > *,
+        .o_dropdown_title,
+        a, span, i, button {
+            color: #c9d6e8 !important;
+        }
+
+        // Active / hover nav items
+        .o_nav_entry:hover,
+        .o_menu_sections .o_dropdown:hover > .o_dropdown_title {
+            color: #0088ff !important;
+        }
+
+        // Search bar in navbar
+        /*.o_searchview {
+            background: #081028 !important;
+            border: 1px solid #1a2f5a !important;
+            border-radius: 6px;
+
+            .o_searchview_input {
+                color: #c9d6e8 !important;
+                &::placeholder { color: #3d5a80 !important; }
+            }
+
+            .o_searchview_facet {
+                background: rgba(0,210,255,0.12) !important;
+                border: 1px solid rgba(0,210,255,0.25) !important;
+                color: #0088ff !important;
+                border-radius: 4px;
+
+                .o_delete { color: #0088ff !important; }
+            }
+
+        }*/
+
+
+
+
+
+
+        .o_main_navbar .o_menu_sections .o_nav_entry, .o_main_navbar .o_menu_sections .dropdown-toggle {
+        background: transparent;
+        }
+
+        // Company / user avatar area
+        .o_menu_systray {
+            .o_user_menu,
+            .o_company_menu { color: #c9d6e8 !important; }
+        }
+
+        
+    }
+
+    [data-bs-theme="dark"] {
+
+        .o_searchview .o_facet_values,
+        .o_searchview .o_facet_values.bg-200,
+        .o_searchview .o_facet_values.text-bg-200 {
+
+            all: unset;
+            display: flex;
+            align-items: center;
+            padding-left: 0.5rem;
+            border-radius: 0.375rem;
+
+            background: #081028 !important;
+            color: #c9d6e8 !important;
+            border: 1px solid #1a2f5a !important;
+        }
+
+    }
+
+    .o_column_title {
+            color: #c9d6e8 !important;
+
+            span.text-truncate {
+                color: inherit !important;
+            }
+        }
+
+    // Breadcrumbs
+    .o_breadcrumb {
+        .o_breadcrumb_item, 
+        .breadcrumb-item,
+        .o_back_button {
+            color: #0088ff !important;
+            &:hover { color: #33ddff !important; }
+        }
+        .o_breadcrumb_item.active,
+        .breadcrumb-item.active { color: #c9d6e8 !important; }
+        .breadcrumb-item + .breadcrumb-item::before { color: #3d5a80 !important; }
+    }
+
+    .o_view_nocontent .o_nocontent_help .o_view_nocontent_smiling_face:before {
+        /* Remove default smiling face */
+        content: "";
+        background: url('/muk_web_appsbar/static/src/img/company_logo.png') no-repeat center center !important;
+        background-size: contain !important;
+        width: 150px !important;
+        height: 150px !important;
+        display: block;
+        margin: 0 auto 10px auto;
+    }
+
+    /* For the folder/search panel icon */
+    .fa.fa-folder.o_search_panel_section_icon.text-primary.me-2 {
+        color: #c9d6e8 !important;
+    }
+
+    /* For the "me-2 text-action oi oi-group" icons */
+    .me-2.text-action.oi.oi-group {
+        color: #c9d6e8 !important;
+    }
+
+    /* "me-2 text-primary fa fa-filter" icon */
+    .me-2.text-primary.fa.fa-filter {
+        color: #c9d6e8 !important;
+    }
+}
+
+// =============================================================================
+// 3. CONTROL PANEL (search bar row + action buttons)
+// =============================================================================
+[data-bs-theme="dark"] {
+    .o_control_panel {
+        background-color: #081028 !important;
+
+        border-bottom: 1px solid #1a2f5a !important;
+
+        .o_control_panel_main_buttons .btn,
+        .o_control_panel_actions .btn {
+            // handled in buttons section below
+        }
+
+        // View switcher icons (list/kanban/etc)
+        .o_switch_view {
+            color: #5a7099 !important;
+            &.active, &:hover {
+                color: #0088ff !important;
+                background: rgba(0,210,255,0.1) !important;
+            }
+        }
+    }
+
+    /* Override the kanban record border colors */
+    .o_kanban_renderer .o_kanban_record:not(.o_legacy_kanban_record).o_kanban_color_11::after {
+        border-left: 1px solid #c9d6e8 !important;
+        border-right: 2px solid #c9d6e8 !important;
+    }
+}
+
+// =============================================================================
+// 4. BUTTONS
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    // Primary — cyan with dark text for contrast
+    .btn-primary {
+        background-color: #0088ff !important;
+        border-color: #0088ff !important;
+        color: #03080f !important;
+        font-weight: 600;
+        &:hover { background-color: #00bde8 !important; border-color: #00bde8 !important; }
+        &:active, &:focus { background-color: #00a8d0 !important; @include cyan-glow(0.3); }
+        &:disabled { background-color: rgba(0,210,255,0.3) !important; color: rgba(3,8,15,0.5) !important; }
+    }
+
+    // Secondary — navy surface with border
+    .btn-secondary {
+        background-color: #0d1a3a !important;
+        border-color: #1a2f5a !important;
+        color: #c9d6e8 !important;
+        &:hover { background-color: #1a2f5a !important; border-color: #2a4070 !important; color: #e8edf5 !important; }
+        &:active, &:focus { @include cyan-glow(0.15); }
+    }
+
+    // Outline primary
+    .btn-outline-primary {
+        color: #0088ff !important;
+        border-color: #0088ff !important;
+        background: transparent !important;
+        &:hover { background: rgba(0,210,255,0.12) !important; }
+    }
+
+    // Link buttons
+    .btn-link {
+        color: #0088ff !important;
+        &:hover { color: #33ddff !important; }
+    }
+
+    // Danger
+    .btn-danger {
+        background-color: #ef4444 !important;
+        border-color: #ef4444 !important;
+        color: #fff !important;
+        &:hover { background-color: #dc2626 !important; }
+    }
+
+    // Warning
+    .btn-warning {
+        background-color: #f59e0b !important;
+        border-color: #f59e0b !important;
+        color: #03080f !important;
+        &:hover { background-color: #d97706 !important; }
+    }
+
+    // Success
+    .btn-success {
+        background-color: #22c55e !important;
+        border-color: #22c55e !important;
+        color: #03080f !important;
+        &:hover { background-color: #16a34a !important; }
+    }
+
+    // Odoo-specific action buttons in control panel
+    .o_form_button_save,
+    .o_form_button_cancel {
+        transition: all .2s ease;
+    }
+
+    // Generic icon buttons / toolbar buttons
+    .btn-icon, .o_icon_button {
+        color: #5a7099 !important;
+        &:hover { color: #0088ff !important; background: rgba(0,210,255,0.1) !important; }
+    }
+
+    // Odoo status buttons (e.g. Kanban state button)
+    .o_status {
+        &.o_status_green { background: #22c55e !important; }
+        &.o_status_red   { background: #ef4444 !important; }
+        &.o_status_grey  { background: #3d5a80 !important; }
+    }
+
+    .o_form_view .o_form_statusbar,
+    .o_form_view .o-form-buttonbox {
+
+        .oe_stat_button .o_button_icon {
+            color: #0088ff !important;
+        }
+
+        /* Optional: glow effect */
+        .oe_stat_button:hover .o_button_icon {
+            color: #00a2ff !important;
+            text-shadow: 0 0 6px rgba(0, 136, 255, 0.6);
+        }
+    }
+}
+
+// =============================================================================
+// 5. FORM VIEWS
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .card-body.text-center.d-flex.flex-column.align-items-center.justify-content-center.p-3 {
+        background: linear-gradient(
+            135deg,
+            #152857 0%,
+            #112147 50%,
+            #0d1d40 100%
+        ) !important;
+    }
+
+        .fa-folder-open {
+        color: #3b82f6 !important;
+    }
+
+    .o_model_field_selector > .o_model_field_selector_value > .o_model_field_selector_chain_part{
+        background: transparent;
+    }
+    .o_model_field_selector_popover .o_model_field_selector_popover_body .o_model_field_selector_popover_page > .o_model_field_selector_popover_item.active button {
+        background: rgba(0, 210, 255, 0.1);
+        color: white;
+    }
+
+    .o_model_field_selector_popover_title {
+        color: #ffffff !important;
+    }
+
+    .o-mail-DiscussSystray-class:hover {
+        background: transparent !important;
+    }
+
+    .o_field_statusbar > .o_statusbar_status .btn.o_arrow_button.o_arrow_button_current,
+    .o_field_statusbar_duration > .o_statusbar_status .btn.o_arrow_button.o_arrow_button_current {
+        --o-statusbar-border-active: #3b82f6 !important; 
+    }
+
+    .o_field_statusbar_duration > .o_statusbar_status {
+        --o-statusbar-border-active: #3b82f6 !important;
+    }
+
+    .btn-outline-secondary {
+        --btn-hover-bg: transparent;
+    }
+
+    o_previous btn btn-light flex-grow-0{
+        background: #3b82f6 !important;
+        border: #3b82f6 !important;
+    }
+
+    /* Calendar header */
+    .o_calendar_header.d-flex.align-items-center.gap-1.px-3.pe-md-1.py-2.px-print-0.pt-print-0.border-bottom {
+        background-color: #081028 !important;
+    }
+
+    /* Sidebar toggler */
+    .o_sidebar_toggler.d-none.d-md-flex.d-print-none.align-items-center.border-bottom.pe-3 {
+        background-color: #081028 !important;
+    }
+
+    /* Calendar sidebar container */
+    .o_calendar_sidebar_container.d-print-none.position-relative.w-100.w-md-auto.bg-view.overflow-x-hidden.overflow-y-auto {
+        background-color: #081028 !important;
+    }
+
+    /* Previous button */
+    .o_previous.btn.btn-light.flex-grow-0 {
+        background: #0088ff !important;
+        border-color: #0088ff !important;
+    }
+
+    /* Next button */
+    .o_next.btn.btn-light.flex-grow-0 {
+        background: #0088ff !important;
+        border-color: #0088ff !important;
+    }
+
+    .form-check-input:checked {
+        background-color: #0088ff !important;
+        border-color: #0088ff !important;
+    }
+
+    .o_datetime_picker .o_select_start:before, .o_datetime_picker .o_select_end:before {
+        box-shadow: inset 0 0 0 1px #0088ff !important;
+    }
+
+    .o_searchview_dropdown_toggler.d-print-none.btn.btn-outline-secondary.o-dropdown-caret.rounded-start-0.o-dropdown.dropdown {
+        border-color: #0088ff !important;
+    }
+
+    .o_date_picker.d-grid.flex-grow-1.bg-view.rounded.overflow-auto {
+        background: linear-gradient(
+            135deg,
+            #152857 0%,
+            #112147 50%,
+            #0d1d40 100%
+        ) !important;
+    }
+
+    .o_form_view {
+        background-color: #081028 !important;
+        color: #c9d6e8 !important;
+
+        // Sheet (the white card)
+        .o_form_sheet_bg {
+            background-color: #081028 !important;
+        }
+        .o_form_sheet {
+            background-color: #0d1a3a !important;
+            border: 1px solid #1a2f5a !important;
+            border-radius: 8px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+        }
+
+        // Field labels
+        .o_field_widget label,
+        .o_form_label,
+        label {
+            color: #8aaac8 !important;
+            font-weight: 500;
+        }
+
+        // Field values
+        .o_field_widget .o_field_char,
+        .o_field_widget .o_field_text,
+        .o_field_widget span:not(.badge) {
+            color: #c9d6e8 !important;
+        }
+
+        // Input fields
+        .o_field_widget input,
+        .o_field_widget textarea,
+        .o_field_widget select,
+        input.o_input,
+        textarea.o_input {
+            background-color: #0a1428 !important;
+            border: 1px solid #1a2f5a !important;
+            color: #c9d6e8 !important;
+            border-radius: 5px;
+            transition: border-color .2s, box-shadow .2s;
+
+            &::placeholder { color: #3d5a80 !important; }
+            &:focus {
+                border-color: #0088ff !important;
+                @include cyan-glow(0.18);
+                outline: none !important;
+            }
+            &:disabled, &[readonly] {
+                background-color: #0a1830 !important;
+                color: #5a7099 !important;
+            }
+        }
+
+        // Many2one / Select2 style
+        .o_field_widget .o_form_input_dropdown,
+        .o_field_many2one .o_external_button {
+            color: #0088ff !important;
+        }
+
+        // Section separators / group titles
+        .o_group_name,
+        .o_horizontal_separator,
+        .o_form_label_empty,
+        .o_inner_group > tbody > tr > td.o_wrap_label {
+            color: #5a7099 !important;
+        }
+
+        .o_horizontal_separator {
+            border-top: 1px solid #1a2f5a !important;
+            &:not(:empty) { color: #0088ff !important; font-size: .75rem; letter-spacing: .5px; text-transform: uppercase; }
+        }
+
+        // Chatter / messaging area
+        .o-mail-Message-avatarContainer {
+            background-color: transparent !important;
+        }
+
+        // Stat buttons (top right of form)
+        .o_stat_button {
+            background-color: #0a1428 !important;
+            border: 1px solid #1a2f5a !important;
+            color: #c9d6e8 !important;
+            transition: all .2s;
+            &:hover {
+                background-color: rgba(0,210,255,0.1) !important;
+                border-color: #0088ff !important;
+                color: #0088ff !important;
+            }
+            .o_field_widget { color: inherit !important; }
+        }
+
+        // Tags / many2many tags
+        .badge,
+        .o_tag {
+            background-color: rgba(0,210,255,0.12) !important;
+            border: 1px solid rgba(0,210,255,0.25) !important;
+            color: #0088ff !important;
+        }
+
+        // Boolean toggle / checkbox
+        .o_field_boolean .o_checkbox input:checked + .o_checkbox_label::before {
+            background-color: #0088ff !important;
+            border-color: #0088ff !important;
+        }
+    }
+}
+
+// =============================================================================
+// 6. LIST / TREE VIEWS
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .o_list_view {
+        background-color: #0d1a3a !important;
+        color: #c9d6e8 !important;
+
+        // Header row
+        thead tr th,
+        .o_list_table thead th {
+            background-color: #0a1428 !important;
+            color: #8aaac8 !important;
+            border-bottom: 1px solid #1a2f5a !important;
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            font-weight: 600;
+        }
+
+        // All rows
+        tbody tr td {
+            border-bottom: 1px solid rgba(26,47,90,0.6) !important;
+            color: #c9d6e8 !important;
+        }
+
+        // Hover
+        tbody tr:hover td {
+            background-color: rgba(0,210,255,0.05) !important;
+        }
+
+        // Selected row
+        tbody tr.o_data_row.o_selected_row td,
+        tbody tr.o_data_row.table-active td {
+            background-color: rgba(0,210,255,0.1) !important;
+        }
+
+        // Striped
+        tbody tr:nth-child(even) td {
+            background-color: rgba(0,0,0,0.12);
+        }
+
+        // Optional columns toggle
+        .o_optional_columns_dropdown {
+            color: #5a7099 !important;
+        }
+
+        // Editable cells
+        td.o_field_cell input,
+        td.o_field_cell textarea {
+            background: #0a1428 !important;
+            border-color: #0088ff !important;
+            color: #c9d6e8 !important;
+        }
+
+        // Record status dot
+        .o_list_record_selector { color: #3d5a80 !important; }
+
+        // Footer / aggregate row
+        tfoot tr td {
+            background-color: #0a1428 !important;
+            color: #8aaac8 !important;
+            border-top: 1px solid #1a2f5a !important;
+            font-weight: 600;
+        }
+    }
+}
+
+// =============================================================================
+// 7. KANBAN VIEW
+// =============================================================================
+[data-bs-theme="dark"] {
+
+
+    .o_kanban_renderer{
+        --Kanban-background: none !important;
+    }
+
+    .o_kanban_view {
+        background-color: #081028 !important;
+
+        // Column / group
+        .o_kanban_group {
+            background-color: #0a1428 !important;
+            border: 1px solid #1a2f5a !important;
+            border-radius: 8px;
+        }
+
+        // Column header
+        .o_kanban_header {
+            .o_kanban_header_title {
+                color: #e8edf5 !important;
+                font-weight: 600;
+            }
+            .o_column_quick_add { color: #5a7099 !important; &:hover { color: #0088ff !important; } }
+        }
+
+        // Card
+        .o_kanban_record {
+            background-color: none !important;
+            border: 1px solid none !important;
+            border-radius: 6px;
+            color: #c9d6e8 !important;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+            transition: border-color .2s, box-shadow .2s, transform .15s;
+
+            &:hover {
+                border-color: #0088ff !important;
+                box-shadow: 0 0 0 1px rgba(0,210,255,0.2), 0 4px 16px rgba(0,0,0,0.4) !important;
+                transform: translateY(-1px);
+            }
+
+            // Card title / name
+            .o_kanban_record_title,
+            strong, b {
+                color: #e8edf5 !important;
+            }
+
+            // Secondary text
+            .o_kanban_record_body,
+            .o_kanban_record_bottom {
+                color: #8aaac8 !important;
+            }
+
+            // Tags in card
+            .badge, .o_tag {
+                background: rgba(0,210,255,0.1) !important;
+                border: 1px solid rgba(0,210,255,0.2) !important;
+                color: #0088ff !important;
+            }
+
+            // Progress bar inside card
+            .o_kanban_record .progress,
+            .progress {
+                background-color: #0a1428 !important;
+                .progress-bar { background-color: #0088ff !important; }
+            }
+
+            // Kanban state button
+            .o_kanban_state_label { color: #5a7099 !important; }
+        }
+
+        // Ghost / empty card (add new)
+        .o_kanban_quick_create,
+        .o_kanban_ghost {
+            display: none;
+            background-color: rgba(0,210,255,0.04) !important;
+            border: 1px dashed #1a2f5a !important;
+            border-radius: 6px;
+        }
+
+        // Column quick add button
+        .o_column_quick_add { color: #3d5a80 !important; &:hover { color: #0088ff !important; } }
+
+        // Unfold button
+        .o_kanban_group.o_column_folded {
+            background-color: #0a1428 !important;
+            border-color: #1a2f5a !important;
+            .o_kanban_header_title { color: #5a7099 !important; }
+        }
+    }
+}
+
+// =============================================================================
+// 8. DROPDOWNS & MENUS
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .dropdown-menu,
+    .o_dropdown_menu,
+    .o_menu_sections .dropdown-menu {
+        background-color: #0d1a3a !important;
+        border: 1px solid #1a2f5a !important;
+        border-radius: 8px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+        padding: 4px !important;
+
+        .dropdown-item,
+        .o_dropdown_item,
+        .o_item_option {
+            color: #c9d6e8 !important;
+            border-radius: 5px;
+            padding: .45rem .9rem !important;
+            transition: background .15s;
+
+            &:hover, &:focus {
+                background-color: rgba(0,210,255,0.1) !important;
+                color: #0088ff !important;
+            }
+            &.active, &.selected {
+                background-color: rgba(0,210,255,0.15) !important;
+                color: #0088ff !important;
+            }
+        }
+
+        .dropdown-divider { border-top: 1px solid #1a2f5a !important; margin: 4px 0 !important; }
+        .dropdown-header  { color: #3d5a80 !important; font-size: .7rem; text-transform: uppercase; letter-spacing: .5px; }
+    }
+
+    // Autocomplete
+    .o_autocomplete_dropdown_menu,
+    .ui-autocomplete {
+        background: #0d1a3a !important;
+        border: 1px solid #1a2f5a !important;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
+
+        .o_m2o_dropdown_option,
+        .ui-menu-item-wrapper {
+            color: #c9d6e8 !important;
+            &:hover, &.ui-state-active {
+                background: rgba(0,210,255,0.1) !important;
+                color: #0088ff !important;
+            }
+        }
+    }
+}
+
+// =============================================================================
+// 9. MODALS & DIALOGS
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .modal-content,
+    .o_dialog .modal-content {
+        background-color: #0d1a3a !important;
+        border: 1px solid #1a2f5a !important;
+        border-radius: 10px;
+        box-shadow: 0 16px 64px rgba(0,0,0,0.7) !important;
+        color: #c9d6e8 !important;
+    }
+
+    .modal-header {
+        background-color: #0a1428 !important;
+        border-bottom: 1px solid #1a2f5a !important;
+        border-radius: 10px 10px 0 0;
+
+        .modal-title { color: #e8edf5 !important; font-weight: 600; }
+        .btn-close {
+            filter: invert(1) brightness(0.6);
+            &:hover { filter: invert(1) brightness(1); }
+        }
+    }
+
+    .modal-body {
+        color: #c9d6e8 !important;
+
+        // Any form inside modal
+        label { color: #8aaac8 !important; }
+        input, textarea, select {
+            background: #0a1428 !important;
+            border-color: #1a2f5a !important;
+            color: #c9d6e8 !important;
+            &:focus { border-color: #0088ff !important; @include cyan-glow(0.18); }
+        }
+    }
+
+    .modal-footer {
+        background-color: #0a1428 !important;
+        border-top: 1px solid #1a2f5a !important;
+        border-radius: 0 0 10px 10px;
+    }
+
+    // Backdrop
+    .modal-backdrop { background-color: #020812 !important; }
+
+    // Alert dialogs
+    .o_dialog_warning .modal-header { background-color: rgba(245,158,11,0.1) !important; }
+    .o_dialog_danger  .modal-header { background-color: rgba(239,68,68,0.1)  !important; }
+}
+
+// =============================================================================
+// 10. SEARCH PANEL (left filter panel)
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .o_search_panel {
+        background-color: #0a1428 !important;
+        border-right: 1px solid #1a2f5a !important;
+
+        .o_search_panel_section_header {
+            color: #5a7099 !important;
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            font-weight: 700;
+        }
+
+        .o_search_panel_label {
+            color: #c9d6e8 !important;
+            border-radius: 5px;
+            &:hover { background: rgba(0,210,255,0.07) !important; color: #0088ff !important; }
+        }
+
+        .o_search_panel_label.active,
+        .o_search_panel_category_value.active > .o_search_panel_label {
+            background: rgba(0,210,255,0.12) !important;
+            color: #0088ff !important;
+        }
+
+        .o_search_panel_filter_value .o_search_panel_label::before {
+            border-color: #1a2f5a !important;
+        }
+    }
+
+    // Search dropdown from control panel
+    .o_searchview_dropdown_toggler { color: #5a7099 !important; &:hover { color: #0088ff !important; } }
+}
+
+// =============================================================================
+// 11. PIVOT VIEW
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .o_pivot_view {
+        background-color: #0d1a3a !important;
+
+        table {
+            border-color: #1a2f5a !important;
+        }
+
+        th, td {
+            border: 1px solid #1a2f5a !important;
+            color: #c9d6e8 !important;
+        }
+
+        th {
+            background-color: #0a1428 !important;
+            color: #8aaac8 !important;
+            font-weight: 600;
+        }
+
+        // Measure cells
+        td.o_pivot_cell_value { text-align: right; }
+
+        // Total row/col
+        .o_pivot_origin_row th,
+        td.o_pivot_header_cell_closed,
+        td.o_pivot_header_cell_opened {
+            background-color: #0a1428 !important;
+            color: #0088ff !important;
+        }
+
+        tr:hover td { background-color: rgba(0,210,255,0.05) !important; }
+    }
+}
+
+// =============================================================================
+// 12. GRAPH / CHART VIEW
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .o_graph_view {
+        background-color: #0d1a3a !important;
+
+        // Chart.js canvas background via wrapper
+        .o_graph_canvas_container { background-color: #0d1a3a !important; }
+
+        // Legend text (if rendered as HTML)
+        .o_graph_legend { color: #8aaac8 !important; }
+    }
+}
+
+// =============================================================================
+// 13. REPORTING / PRINT VIEWS
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    // In-browser report preview
+    .o_report_layout,
+    .o_action_manager .report_view,
+    .o_report_view {
+        background-color: #081028 !important;
+
+        .page, .o_report_page {
+            background-color: #0d1a3a !important;
+            border: 1px solid #1a2f5a !important;
+            border-radius: 4px;
+            color: #c9d6e8 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+
+        // Tables inside report
+        table {
+            border-color: #1a2f5a !important;
+            color: #c9d6e8 !important;
+        }
+        th { background-color: #0a1428 !important; color: #8aaac8 !important; }
+        tr:nth-child(even) td { background-color: rgba(0,210,255,0.03) !important; }
+    }
+
+    // @media print — restore legible colours for physical printing
+    @media print {
+        body, [data-bs-theme="dark"] {
+            background: #fff !important;
+            color: #000 !important;
+        }
+        .o_form_sheet,
+        .modal-content,
+        table, th, td { background: #fff !important; color: #000 !important; border-color: #ddd !important; }
+    }
+}
+
+// =============================================================================
+// 14. ACTIVITY VIEW
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .o_activity_view {
+        background-color: #0d1a3a !important;
+
+        th { background-color: #0a1428 !important; color: #8aaac8 !important; }
+        td { border-color: #1a2f5a !important; color: #c9d6e8 !important; }
+        tr:hover td { background-color: rgba(0,210,255,0.05) !important; }
+
+        .o_activity_record { color: #c9d6e8 !important; }
+        .o_activity_summary { color: #8aaac8 !important; }
+    }
+}
+
+// =============================================================================
+// 15. CALENDAR VIEW
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .o_calendar_view {
+        background-color: #0d1a3a !important;
+        border-color: #1a2f5a !important;
+
+        // Day / week / month headers
+        .fc-col-header-cell {
+            background-color: #0a1428 !important;
+            color: #8aaac8 !important;
+            border-color: #1a2f5a !important;
+        }
+
+        .fc-daygrid-day,
+        .fc-timegrid-slot {
+            background-color: #0d1a3a !important;
+            border-color: #1a2f5a !important;
+        }
+
+        // Today highlight
+        .fc-day-today { background-color: rgba(0,210,255,0.06) !important; }
+
+        // Events
+        .fc-event {
+            border-radius: 4px !important;
+            border: none !important;
+            font-size: .78rem;
+        }
+    }
+}
+
+// =============================================================================
+// 16. TABS / NOTEBOOK
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .o_notebook,
+    .nav-tabs {
+        border-bottom: 1px solid #1a2f5a !important;
+
+        .nav-link {
+            color: #8aaac8 !important;
+            border-color: transparent !important;
+            border-radius: 6px 6px 0 0 !important;
+            transition: all .2s;
+
+            &:hover { color: #c9d6e8 !important; background: rgba(255,255,255,0.04) !important; }
+
+            &.active {
+                background-color: #0d1a3a !important;
+                border-color: #1a2f5a #1a2f5a #0d1a3a !important;
+                color: #0088ff !important;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .tab-content { background-color: #0d1a3a !important; }
+}
+
+// =============================================================================
+// 17. ALERTS / NOTIFICATIONS / TOASTS
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .alert {
+        border-radius: 7px;
+        border-left-width: 3px;
+    }
+    .alert-info    { background: rgba(0,210,255,0.08) !important; border-color: #0088ff !important; color: #c9d6e8 !important; }
+    .alert-success { background: rgba(34,197,94,0.08) !important; border-color: #22c55e !important; color: #c9d6e8 !important; }
+    .alert-warning { background: rgba(245,158,11,0.08) !important; border-color: #f59e0b !important; color: #c9d6e8 !important; }
+    .alert-danger  { background: rgba(239,68,68,0.08) !important; border-color: #ef4444 !important; color: #c9d6e8 !important; }
+
+    // Odoo notification toast
+    .o_notification {
+        background: #0d1a3a !important;
+        border: 1px solid #1a2f5a !important;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
+        color: #c9d6e8 !important;
+
+        .o_notification_title { color: #e8edf5 !important; font-weight: 600; }
+        .o_notification_close { color: #5a7099 !important; &:hover { color: #c9d6e8 !important; } }
+
+        &.o_notification_success { border-left: 3px solid #22c55e !important; }
+        &.o_notification_danger  { border-left: 3px solid #ef4444 !important; }
+        &.o_notification_warning { border-left: 3px solid #f59e0b !important; }
+        &.o_notification_info    { border-left: 3px solid #0088ff !important; }
+    }
+}
+
+// =============================================================================
+// 18. SIDEBAR / ACTION MENU (kebab ⋮ / cog menus)
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    .o_action_manager_content,
+    .o_cp_action_menus {
+        .dropdown-menu { // already handled in section 8
+        }
+    }
+
+    // Chatter action buttons
+    .o_mail_chatter_topbar .btn-light,
+    .o_mail_chatter_topbar .btn-secondary {
+        background: #0a1428 !important;
+        border-color: #1a2f5a !important;
+        color: #8aaac8 !important;
+        &:hover { color: #0088ff !important; border-color: #0088ff !important; background: rgba(0,210,255,0.07) !important; }
+    }
+}
+
+// =============================================================================
+// 19. MISC ODOO WIDGETS
+// =============================================================================
+[data-bs-theme="dark"] {
+
+    // Loading spinner overlay
+    .o_loading {
+        background: rgba(4,13,30,0.8) !important;
+        .o_loading_spinner { color: #0088ff !important; }
+    }
+
+    // Date picker
+    .o_datepicker_root,
+    .datepicker,
+    .o_datetime_picker {
+        background: #0d1a3a !important;
+        border: 1px solid #1a2f5a !important;
+        border-radius: 8px;
+        color: #c9d6e8 !important;
+
+        .day, .month, .year, .hour, .minute {
+            color: #c9d6e8 !important;
+            &:hover { background: rgba(0,210,255,0.1) !important; color: #0088ff !important; }
+        }
+        .active, .today { background: #0088ff !important; color: #03080f !important; border-radius: 4px; }
+        .disabled { color: #3d5a80 !important; }
+        .datepicker-days thead tr th { color: #8aaac8 !important; background: #0a1428 !important; }
+    }
+
+    // Color picker
+    .o_colorlist {
+        .o_colorlist_item_color { border-color: #1a2f5a !important; }
+    }
+
+    // Many2many checkboxes
+    .o_field_many2many_checkboxes .o_checkbox input:checked + label::before {
+        background: #0088ff !important;
+        border-color: #0088ff !important;
+    }
+
+    // Priority stars
+    .o_priority .o_priority_star {
+        color: #3d5a80 !important;
+        &.fa-star { color: #f59e0b !important; }
+    }
+
+    // Web client home menu
+    .o_home_menu {
+        background: #081028 !important;
+        .o_app { 
+            .o_app_icon { border-radius: 12px; }
+            .o_app_name { color: #c9d6e8 !important; }
+            &:hover .o_app_name { color: #0088ff !important; }
+        }
+    }
+
+    // Settings page sections
+    .o_settings_container {
+        .o_setting_box {
+            border-color: #1a2f5a !important;
+            &:hover { background: rgba(0,210,255,0.03) !important; }
+        }
+        .o_setting_left_pane { color: #8aaac8 !important; }
+    }
+
+    .o_base_settings_view .o_form_renderer .o_setting_container .settings > .app_settings_block h2,
+    .o_base_settings_view .o_form_renderer .o_setting_container .settings > .app_settings_block .h2 {
+        background-color: #0a1428 !important; /* ensures no fallback color */
+    }
+
+    .o_base_settings_view .o_form_renderer .o_setting_container .settings_tab .selected {
+        background-color: #0088ff;
+        box-shadow: none !important;
+    }
+
+    .o_base_settings_view .o_form_renderer .o_setting_container .settings_tab{
+        background: #0a1428; 
+    }
+
+    .o_base_settings_view .o_form_renderer .o_setting_container .settings_tab .tab {
+        color: #c9d6e8;
+    }
+
+    // Pagination
+    .o_pager {
+        color: #8aaac8 !important;
+        .o_pager_previous,
+        .o_pager_next {
+            color: #5a7099 !important;
+            &:hover { color: #0088ff !important; }
+        }
+        .o_pager_value { color: #c9d6e8 !important; }
+    }
+
+    // Tooltip
+    .tooltip .tooltip-inner {
+        background: #0d1a3a !important;
+        border: 1px solid #1a2f5a !important;
+        color: #c9d6e8 !important;
+    }
+    .tooltip .tooltip-arrow::before { border-top-color: #1a2f5a !important; }
+}
+
+// =============================================================================
+// 20. STUDIO / DEBUG EXTRAS (safe to ignore if not using Odoo Studio)
+// =============================================================================
+[data-bs-theme="dark"] {
+    .o_web_studio_sidebar,
+    .o_web_studio_view_renderer {
+        background: #0a1428 !important;
+        border-color: #1a2f5a !important;
+        color: #c9d6e8 !important;
+    }
+}
