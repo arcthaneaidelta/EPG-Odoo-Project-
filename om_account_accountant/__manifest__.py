@@ -29,7 +29,12 @@
         'contacts',
         'account',
         'sale',
+        'l10n_es',
+        'hr',
+        'hr_expense',
+        'account_tax_balance',
     ],
+
     'data': [
         'security/group.xml',
         'views/menu.xml',

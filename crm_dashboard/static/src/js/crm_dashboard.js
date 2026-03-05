@@ -10,6 +10,10 @@ const DEFAULT_DATA = {
     userName: "",
     userEmail: "",
     companyName: "",
+    currency: {
+        symbol: "",
+        position: "before",
+    },
     kpis: [],
     salesChart: {
         labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
@@ -297,12 +301,17 @@ export class CrmDashboard extends Component {
     }
 
     normalizeData(data) {
+        const currency = this.normalizeCurrency(data.currency);
         const kpis = (data.kpis || []).map((item, idx) => {
             const safeItem = item || {};
             return {
                 ...safeItem,
                 id: safeItem.key || `kpi_${idx}`,
-                formattedValue: this.formatCompact(safeItem.value || 0),
+                formattedValue: this.formatKpiValue(
+                    safeItem.key,
+                    safeItem.value || 0,
+                    currency
+                ),
                 ...this.computeTrendInfo(safeItem.series || []),
                 ...this.getToneColors(safeItem.tone || ""),
                 ...this.buildGeometry(safeItem.series || [], {
@@ -343,7 +352,7 @@ export class CrmDashboard extends Component {
             name: row.name || "-",
             type: row.type || "-",
             stage: row.stage || "-",
-            revenueLabel: this.formatCurrency(row.revenue || 0),
+            revenueLabel: this.formatCurrency(row.revenue || 0, currency),
             probabilityLabel: `${Math.round(row.probability || 0)}%`,
             createDateLabel: this.formatDate(row.create_date),
         }));
@@ -351,6 +360,7 @@ export class CrmDashboard extends Component {
             userName: data.user_name || "",
             userEmail: data.user_email || "",
             companyName: data.company_name || "",
+            currency,
             kpis,
             salesChart: {
                 labels: salesLabels,
@@ -485,6 +495,42 @@ export class CrmDashboard extends Component {
         return niceNormalized * magnitude;
     }
 
+    normalizeCurrency(currency) {
+        const safeCurrency = currency || {};
+        return {
+            symbol: safeCurrency.symbol || "",
+            position: safeCurrency.position === "after" ? "after" : "before",
+        };
+    }
+
+    isMonetaryKpi(kpiKey) {
+        return kpiKey === "total_sales" || kpiKey === "total_invoices";
+    }
+
+    formatKpiValue(kpiKey, value, currency) {
+        if (!this.isMonetaryKpi(kpiKey)) {
+            return this.formatCompact(value);
+        }
+        return this.formatCompactCurrency(value, currency);
+    }
+
+    formatCompactCurrency(value, currency) {
+        return this.applyCurrencySymbol(this.formatCompact(value), currency);
+    }
+
+    applyCurrencySymbol(amountLabel, currency) {
+        const symbol = (currency && currency.symbol) || "";
+        const label = amountLabel || "0";
+        if (!symbol) {
+            return label;
+        }
+        const needsSpace = /[A-Za-z0-9]/.test(symbol);
+        if ((currency && currency.position) === "after") {
+            return needsSpace ? `${label} ${symbol}` : `${label}${symbol}`;
+        }
+        return needsSpace ? `${symbol} ${label}` : `${symbol}${label}`;
+    }
+
     formatCompact(value) {
         const num = Number(value) || 0;
         const absValue = Math.abs(num);
@@ -529,12 +575,13 @@ export class CrmDashboard extends Component {
         return `${value.toFixed(2).replace(/\.?0+$/, "")}`;
     }
 
-    formatCurrency(value) {
+    formatCurrency(value, currency = null) {
         const amount = Number(value) || 0;
-        return amount.toLocaleString(undefined, {
+        const formatted = amount.toLocaleString(undefined, {
             minimumFractionDigits: 0,
             maximumFractionDigits: 0,
         });
+        return this.applyCurrencySymbol(formatted, currency);
     }
 
     formatDate(value) {

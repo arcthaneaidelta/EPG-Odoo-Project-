@@ -106,11 +106,16 @@ class CrmDashboardController(http.Controller):
 
         distribution = self._lead_vs_won_distribution(total_leads, total_won)
         table_rows = self._recent_crm_rows(lead_model, search_domain)
+        company_currency = request.env.company.currency_id
 
         return {
             "user_name": request.env.user.name,
             "user_email": request.env.user.email or request.env.user.login or "",
             "company_name": request.env.company.name,
+            "currency": {
+                "symbol": company_currency.symbol or "",
+                "position": company_currency.position or "before",
+            },
             "kpis": [
                 {
                     "key": "total_leads",

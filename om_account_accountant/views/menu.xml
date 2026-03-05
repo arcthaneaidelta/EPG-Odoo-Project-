@@ -78,6 +78,12 @@
     <record id="contacts.menu_action_res_partner_bank_form" model="ir.ui.menu">  <!-- Bank Accounts -->
         <field name="parent_id" ref="account.menu_finance_payables"/>
     </record>
+    <record id="account_payment.payment_provider_menu" model="ir.ui.menu">  <!-- Payment Providers -->
+        <field name="parent_id" ref="account.menu_finance_payables"/>
+    </record>
+    <record id="account_payment.payment_method_menu" model="ir.ui.menu">  <!-- Payment Methods -->
+        <field name="parent_id" ref="account.menu_finance_payables"/>
+    </record>
 
     <!-- Menus and SubMenus Removed-->
     <record id="account.product_product_menu_sellable" model="ir.ui.menu"> <!-- Customers/Product Removed -->
@@ -124,8 +130,20 @@
     </record> 
     <record id="mail.menu_root_discuss" model="ir.ui.menu"> <!-- Discuss App Removed-->
         <field name="active">False</field>
+    </record>
+    <record id="spreadsheet_dashboard.spreadsheet_dashboard_menu_root" model="ir.ui.menu"> <!-- Dashboard App Removed-->
+        <field name="active">False</field>
     </record> 
     <record id="utm.menu_link_tracker_root" model="ir.ui.menu"> <!-- Link Tracker App Removed-->
+        <field name="active">False</field>
+    </record> 
+    <record id="hr.menu_hr_root" model="ir.ui.menu"> <!-- Hr(Employees) App Removed-->
+        <field name="active">False</field>
+    </record> 
+    <record id="hr_expense.menu_hr_expense_root" model="ir.ui.menu"> <!-- Expenses App Removed-->
+        <field name="active">False</field>
+    </record>
+    <record id="contacts.res_partner_menu_contacts" model="ir.ui.menu"> <!-- Contacts/Contacts Removed-->
         <field name="active">False</field>
     </record>    
 
@@ -172,6 +190,10 @@
     </record>
     <record id="om_account_budget.menu_budget_post_form" model="ir.ui.menu">
         <field name="parent_id" ref="om_account_accountant.menu_account_analytics_budget_main"/> <!-- Analytics and Budget/Budgetary Positions -->
+    </record>
+    <record id="hr_expense.menu_hr_expense_my_expenses_all" model="ir.ui.menu">
+        <field name="parent_id" ref="om_account_accountant.menu_account_analytics_budget_main"/> <!-- Analytics and Budget/My Expenses -->
+        <field name="name">Expenses</field>
     </record>
 
 
