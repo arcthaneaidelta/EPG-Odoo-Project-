@@ -147,7 +147,7 @@ class CrmLeadInherit(models.Model):
 					vals['referral_code'] = lead.referral_code
 				if lead.referrer_user_id and not lead.partner_id.referrer_user_id:
 					vals['referrer_user_id'] = lead.referrer_user_id.id
-				# Standard Odoo salesperson sync
+				# Standard System salesperson sync
 				if lead.user_id and not lead.partner_id.user_id:
 					vals['user_id'] = lead.user_id.id
 					

@@ -1,0 +1,199 @@
+// =============================================================================
+// CHROME DARK — light mode only
+// Darkens ONLY: navbar, control panel, primary buttons
+// Everything else (forms, lists, kanban, modals) = untouched default light
+// Register under 'web.assets_backend' in __manifest__.py
+// =============================================================================
+
+// =============================================================================
+// 1. TOP NAVBAR
+// =============================================================================
+[data-bs-theme="light"] {
+
+    .o_main_navbar .o_menu_systray .badge {
+        background-color: var(--o-navbar-badge-bg, #28a745) !important;
+    }
+
+    .o_main_navbar,
+    .o_navbar {
+        background-color: #112249 !important;
+
+        // Base styles
+        .o_menu_brand,
+        .o_nav_entry,
+        .o_menu_sections > *,
+        .o_dropdown_title,
+        a, span, i, button {
+            color: #c9d6e8 !important;
+            background-color: #112249 !important;
+        }
+
+        // Disable hover / focus / active changes
+        .o_nav_entry:hover,
+        .o_nav_entry:focus,
+        .o_nav_entry:active,
+        .dropdown-item:hover,
+        .dropdown-item:focus,
+        .dropdown-item:active,
+        .o-dropdown-item:hover,
+        .o-dropdown-item:focus,
+        .o-dropdown-item:active {
+            color: #c9d6e8 !important;
+            background-color: #112249 !important;
+        }
+
+        // Prevent Bootstrap highlight
+        .dropdown-item.active,
+        .dropdown-item:active {
+            color: #c9d6e8 !important;
+            background-color: #112249 !important;
+        }
+
+        // Breadcrumbs
+        .o_breadcrumb .o_breadcrumb_item,
+        .o_breadcrumb .breadcrumb-item,
+        .o_breadcrumb .o_back_button {
+            color: #112249 !important;
+        }
+
+        .o_breadcrumb .o_breadcrumb_item.active,
+        .o_breadcrumb .breadcrumb-item.active {
+            color: #112249 !important;
+        }
+
+        .o_breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+            color: #112249 !important;
+        }
+    }
+
+    // INVOICE DASHBOARD
+    .o_kanban_renderer .o_kanban_record:not(.o_legacy_kanban_record).o_kanban_color_11::after {
+        border-left: 1px solid #102d6d;
+        border-right: 2px solid #102d6d;
+    }
+
+    // CALENDAR
+    .o_datetime_picker .o_highlighted:before, .o_datetime_picker .o_select_start:before, .o_datetime_picker .o_select_end:before {
+        box-shadow: inset 0 0 0 1px #102d6d;
+        background: #cbd3e4 !important;
+    }
+
+    // STATUS BAR
+    .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none).o_arrow_button_current:disabled::before, .o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none).o_arrow_button_current:disabled::before, .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):active:not(.o_last)::before, .o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none):active:not(.o_last)::before {
+        background-color: #102d6d;
+    }
+
+    .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none).o_arrow_button_current:disabled, .o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none).o_arrow_button_current:disabled, .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):active:not(.o_last), .o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none):active:not(.o_last) {
+        z-index: 1;
+        background-color: #cbd3e4;
+    }
+
+
+    .btn-outline-secondary {
+        --btn-active-bg: #cbd3e4 !important; 
+        --btn-active-border-color: #cbd3e4 !important;
+    }
+
+}
+
+
+// =============================================================================
+// 2. BUTTONS — primary & secondary only
+// =============================================================================
+[data-bs-theme="light"] {
+
+    .btn-primary {
+        background-color: #102d6d !important;
+        border-color: #102d6d !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
+        &:hover  { background-color: #112249 !important; border-color: #112249 !important; }
+        &:focus  { box-shadow: 0 0 0 3px rgba(0,136,255,0.3) !important; }
+        &:active { background-color: #005db8 !important; }
+        &:disabled { background-color: rgba(0,136,255,0.45) !important; border-color: transparent !important; }
+    }
+
+    .o_loading_indicator.o-fade.o-fade-enter-active {
+        background-color: #112249 !important;
+    }
+
+
+    .btn-secondary {
+        --btn-active-border-color: #102d6d;
+        --btn-active-bg: #cbd3e4;
+    }
+
+
+    .o-dropdown.btn-secondary.show, .o-dropdown.btn-outline-secondary.show {
+        color: #212529;
+        background-color: #cbd3e4;
+        border-color: #102d6d;
+    }
+
+    .o-discuss-ChannelSelector:has(input:focus){
+        border-color: #102d6d;
+    }  
+
+    .form-control:focus {
+        color: var(--body-color);
+        background-color: transparent;
+        border-color: #102d6d;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem #102d6d;
+    }  
+
+    .btn-outline-primary {
+        color: #102d6d !important;
+        border-color: #102d6d !important;
+        background: transparent !important;
+        &:hover { background: #112249 !important; color: white !important; }
+    }
+
+    .btn-link {
+        color: #102d6d !important;
+        &:hover { color: #112249 !important; }
+    }
+
+    // Icon buttons in control panel area
+    .o_control_panel .btn-icon,
+    .o_control_panel .o_icon_button {
+        color: #5a7099 !important;
+        &:hover { color: #112249 !important; background: #112249 !important; }
+    }
+
+    .text-bg-primary {
+        color: #FFFFFF !important;
+        background-color: #102d6d !important;
+    }
+
+    a {
+        color: #102d6d;
+    }
+
+    .form-check-input:checked {
+        background-color: #102d6d;
+        border-color: #102d6d;
+    }
+
+    .text-primary {
+        --color: #102d6d;
+        color: var(--color) !important;
+    }
+
+    .text-action {
+        --color: #102d6d;
+        color: var(--color) !important;
+    }
+
+
+    .o-form-buttonbox .oe_stat_button .o_button_icon {
+        font-size: 1.5em;
+        color: #102d6d;
+    }
+
+    .o-form-buttonbox .o_pie_value, .o-form-buttonbox .oe_stat_button .o_stat_info .o_stat_value, .o-form-buttonbox .oe_stat_button > span .o_stat_value, .o-form-buttonbox .oe_stat_button .o_field_statinfo .o_stat_value {
+        color: #102d6d;
+    }
+}
+
+

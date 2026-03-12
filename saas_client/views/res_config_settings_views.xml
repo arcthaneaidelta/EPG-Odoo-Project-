@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_saas" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.saas</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="SaaS Subscription" string="SaaS Subscription" name="saas_client">
+                    <block title="Subscription Management">
+                        <setting help="Manage your subscription, plan, and resource limits.">
+                            <div class="row mt16">
+                                <div class="col-12">
+                                    <button name="action_open_subscription_portal" 
+                                            string="Manage Subscription / Upgrade" 
+                                            type="object" 
+                                            class="btn-primary" 
+                                            icon="fa-rocket"/>
+                                </div>
+                            </div>
+                            <div class="mt8 text-muted">
+                                Click to view your plan details, invoices, and upgrade options.
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_saas_client_config" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'saas_client'}</field>
+    </record>
+
+    <!-- Website App Removed -->
+    <record id="website.menu_website_configuration" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+    <!-- Apps App Removed -->
+    <record id="base.menu_management" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record> 
+
+</odoo>

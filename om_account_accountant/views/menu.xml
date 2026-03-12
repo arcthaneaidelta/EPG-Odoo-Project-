@@ -44,7 +44,7 @@
         <field name="name">Invoices</field>
     </record>
     <record id="account.menu_finance_payables" model="ir.ui.menu"> <!-- Vendor changes to Payments and Banks -->
-        <field name="name">Payments and Banks</field>
+        <field name="name">Payments</field>
     </record>
     <record id="account.menu_finance_reports" model="ir.ui.menu"> <!-- Reporting changes to Reports -->
         <field name="name">Reports</field>
@@ -65,24 +65,34 @@
         <field name="parent_id" ref="account.menu_finance_receivables"/>
     </record>
 
-    <!-- Payments and Banks Menu-->
-    <record id="account_statement_import_file.account_statement_import_menu" model="ir.ui.menu">  <!-- Import Statements -->
-        <field name="parent_id" ref="account.menu_finance_payables"/>
-    </record>
+    <!-- Payments Menu-->
     <record id="account.action_account_reconcile_model_menu" model="ir.ui.menu">   <!-- Reconcilation Model -->
         <field name="parent_id" ref="account.menu_finance_payables"/>
     </record>
-    <record id="contacts.menu_action_res_bank_form" model="ir.ui.menu">  <!-- Banks -->
-        <field name="parent_id" ref="account.menu_finance_payables"/>
-    </record>
-    <record id="contacts.menu_action_res_partner_bank_form" model="ir.ui.menu">  <!-- Bank Accounts -->
-        <field name="parent_id" ref="account.menu_finance_payables"/>
-    </record>
+    
     <record id="account_payment.payment_provider_menu" model="ir.ui.menu">  <!-- Payment Providers -->
         <field name="parent_id" ref="account.menu_finance_payables"/>
     </record>
     <record id="account_payment.payment_method_menu" model="ir.ui.menu">  <!-- Payment Methods -->
         <field name="parent_id" ref="account.menu_finance_payables"/>
+    </record>
+
+
+    <!-- Banks Menu-->
+    <menuitem
+        id="menu_account_banks"
+        name="Banks"
+        parent="account.menu_finance"
+        sequence="3"
+    />
+    <record id="contacts.menu_action_res_bank_form" model="ir.ui.menu">  <!-- Banks -->
+        <field name="parent_id" ref="om_account_accountant.menu_account_banks"/>
+    </record>
+    <record id="contacts.menu_action_res_partner_bank_form" model="ir.ui.menu">  <!-- Bank Accounts -->
+        <field name="parent_id" ref="om_account_accountant.menu_account_banks"/>
+    </record>
+    <record id="account_statement_import_file.account_statement_import_menu" model="ir.ui.menu">  <!-- Import Statements -->
+        <field name="parent_id" ref="om_account_accountant.menu_account_banks"/>
     </record>
 
     <!-- Menus and SubMenus Removed-->
@@ -125,74 +135,57 @@
     <record id="account.account_reports_management_menu" model="ir.ui.menu"> <!-- Reports/Management Removed-->
         <field name="active">False</field>
     </record>
-    <record id="calendar.mail_menu_calendar" model="ir.ui.menu"> <!-- Calendar App Removed-->
-        <field name="active">False</field>
-    </record> 
-    <record id="mail.menu_root_discuss" model="ir.ui.menu"> <!-- Discuss App Removed-->
-        <field name="active">False</field>
-    </record>
-    <record id="spreadsheet_dashboard.spreadsheet_dashboard_menu_root" model="ir.ui.menu"> <!-- Dashboard App Removed-->
-        <field name="active">False</field>
-    </record> 
-    <record id="utm.menu_link_tracker_root" model="ir.ui.menu"> <!-- Link Tracker App Removed-->
-        <field name="active">False</field>
-    </record> 
-    <record id="hr.menu_hr_root" model="ir.ui.menu"> <!-- Hr(Employees) App Removed-->
-        <field name="active">False</field>
-    </record> 
     <record id="hr_expense.menu_hr_expense_root" model="ir.ui.menu"> <!-- Expenses App Removed-->
         <field name="active">False</field>
     </record>
-    <record id="contacts.res_partner_menu_contacts" model="ir.ui.menu"> <!-- Contacts/Contacts Removed-->
-        <field name="active">False</field>
-    </record>    
+       
 
-    <!-- Taxes Menu-->
-    <menuitem
+    <!-- Taxes Menu added into the Accounting Menu-->
+    <!-- <menuitem
         id="menu_account_taxes_main"
         name="Taxes"
         parent="account.menu_finance"
         sequence="3"
-    />
+    /> -->
     <record id="account.menu_action_tax_form" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_account_taxes_main"/> <!-- Taxes/Taxes -->
+        <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Taxes/Taxes -->
     </record>
     <record id="accounting_pdf_reports.menu_account_report" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_account_taxes_main"/> <!-- Taxes/Tax Report -->
+        <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Taxes/Tax Report -->
     </record>
     <record id="l10n_es_edi_facturae.menu_l10n_es_edi_facturae_root_certificates" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_account_taxes_main"/> <!-- Taxes/Certificates -->
+        <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Taxes/Certificates -->
     </record>
     <record id="account.menu_action_account_fiscal_position_form" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_account_taxes_main"/> <!-- Taxes/Fiscal Positions -->
+        <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Taxes/Fiscal Positions -->
     </record>
     
 
-    <!-- Analytics and Budget Menu-->
-    <menuitem
+    <!-- Analytics and Budget Menu added into the Accounting Menu-->
+    <!-- <menuitem
         id="menu_account_analytics_budget_main"
         name="Analytics and Budget"
         parent="account.menu_finance"
         sequence="4"
 
-    />
+    /> -->
     <record id="account.account_analytic_def_account" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_account_analytics_budget_main"/> <!-- Analytics and Budget/Analytic Accounts -->
+        <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Analytics and Budget/Analytic Accounts -->
     </record>
     <record id="account.account_analytic_plan_menu" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_account_analytics_budget_main"/> <!-- Analytics and Budget/Analytic PLans -->
+        <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Analytics and Budget/Analytic PLans -->
     </record>
     <record id="account.menu_analytic__distribution_model" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_account_analytics_budget_main"/> <!-- Analytics and Budget/Analytic Distribution Models -->
+        <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Analytics and Budget/Analytic Distribution Models -->
     </record>
     <record id="om_account_budget.menu_act_crossovered_budget_view" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_account_analytics_budget_main"/> <!-- Analytics and Budget/Budgets -->
+        <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Analytics and Budget/Budgets -->
     </record>
     <record id="om_account_budget.menu_budget_post_form" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_account_analytics_budget_main"/> <!-- Analytics and Budget/Budgetary Positions -->
+        <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Analytics and Budget/Budgetary Positions -->
     </record>
     <record id="hr_expense.menu_hr_expense_my_expenses_all" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_account_analytics_budget_main"/> <!-- Analytics and Budget/My Expenses -->
+        <field name="parent_id" ref="account.menu_finance_entries"/> <!-- Analytics and Budget/My Expenses -->
         <field name="name">Expenses</field>
     </record>
 
@@ -243,66 +236,5 @@
     <record id="account.menu_finance_configuration" model="ir.ui.menu"> <!-- Configuration Removed -->
         <field name="active">False</field>
     </record>
-    
-
-    <!-- Menu Sales Management-->
-    <menuitem
-        id="menu_sales_sales_management"  
-        name="Sales Management"
-        parent="sale.sale_menu_root"
-        groups="sales_team.group_sale_salesman"
-        sequence="4"
-    />
-    
-    <!--               Sales Module's Menu Changes               -->
-    <record id="sale.menu_sale_report" model="ir.ui.menu"> <!-- Reporting changes to Reports -->
-        <field name="name">Reports</field>
-    </record>
-    <record id="sale.menu_sale_general_settings" model="ir.ui.menu"> <!-- Configuration/Settings change to Sales/Settings-->
-        <field name="parent_id" ref="sale.sale_menu_root"/>
-        <field name="sequence">90</field>
-        <field name="groups_id" eval="[(6, 0, [ref('sales_team.group_sale_manager')])]"/>
-    </record>
-    <record id="sale.menu_sale_quotations" model="ir.ui.menu"> <!-- Orders/Quotation change to Sales/Quotation-->
-        <field name="parent_id" ref="sale.sale_menu_root"/>
-        <field name="sequence">1</field>
-        <field name="groups_id" eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"/>
-    </record>
-    <record id="sale.sale_order_menu" model="ir.ui.menu"> <!-- Orders sequence change-->
-        <field name="sequence">2</field>
-        <field name="groups_id" eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"/>
-
-    </record>
-    <record id="sale.menu_sale_order_invoice" model="ir.ui.menu">
-        <field name="parent_id" ref="sale.sale_order_menu"/> <!-- Orders/Orders to invoice -->
-        <field name="groups_id" eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"/>
-    </record>
-    <record id="sale.sales_team_config" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_sales_sales_management"/> <!-- Sales Management/Sales Team -->
-    </record>
-    <record id="sale.sale_menu_config_activity_plan" model="ir.ui.menu">
-        <field name="parent_id" ref="om_account_accountant.menu_sales_sales_management"/> <!-- Sales Management/Activity Plans -->
-    </record>
-    <record id="sale.menu_product_categories" model="ir.ui.menu">
-        <field name="parent_id" ref="sale.product_menu_catalog"/> <!-- Products/Product Categories -->
-    </record>
-    <record id="sale.menu_product_tags" model="ir.ui.menu">
-        <field name="parent_id" ref="sale.product_menu_catalog"/> <!-- Products/Product Tags -->
-    </record>
-
-    <record id="sale.report_sales_team" model="ir.ui.menu"> <!-- Orders/Sales Team Removed -->
-        <field name="active">False</field>
-    </record>
-    <record id="sale.res_partner_menu" model="ir.ui.menu"> <!-- Orders/Customers Removed -->
-        <field name="active">False</field>
-    </record>
-    <record id="sale.menu_sale_invoicing" model="ir.ui.menu"> <!-- Sales/To Invoice Removed -->
-        <field name="active">False</field>
-    </record>
-    <record id="sale.menu_sale_config" model="ir.ui.menu"> <!-- Configuration/To Invoice Removed -->
-        <field name="active">False</field>
-    </record>
-
-
 
 </odoo>

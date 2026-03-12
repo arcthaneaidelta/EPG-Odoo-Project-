@@ -44,7 +44,7 @@
         border-radius: 0 0 var(--fluid-radius) var(--fluid-radius) !important;
         border: none !important;
         box-shadow: var(--fluid-shadow-card);
-        overflow: hidden;
+
         transition: var(--fluid-transition);
     }
 
@@ -152,10 +152,19 @@
     }
 }
 
-.o_kanban_renderer.o_kanban_ungrouped .o_kanban_record.o_kanban_ghost {
+.o_kanban_renderer.o_kanban_ungrouped 
+.o_kanban_record.o_kanban_ghost {
     max-height: 0 !important;
-    display: none;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }
+
+
 
 // Dark theme list adjustments
 [data-bs-theme="dark"] {
@@ -172,6 +181,8 @@
             }
         }
     }
+
+
 }
 
 

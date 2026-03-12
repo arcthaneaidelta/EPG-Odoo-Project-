@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- ===================== -->
+        <!-- BASE CRM PLAN PRODUCTS -->
+        <!-- ===================== -->
+        
+        <!-- CRM Early Adopter Monthly Product - €25.00/mo -->
+        <record id="product_crm_early_adopter_monthly" model="product.product">
+            <field name="name">CRM Early Adopter (Monthly)</field>
+            <field name="default_code">SAAS_CRM_EARLY_MONTHLY</field>
+            <field name="list_price">34.90</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">CRM Early Adopter plan - Monthly billing. Includes 3 users, 3GB storage, Daily automatic backups, and Accounting module for life.</field>
+        </record>
+        
+        <!-- CRM Early Adopter Annual Product - €270/yr -->
+        <record id="product_crm_early_adopter_annual" model="product.product">
+            <field name="name">CRM Early Adopter (Annual)</field>
+            <field name="default_code">SAAS_CRM_EARLY_ANNUAL</field>
+            <field name="list_price">358.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">CRM Early Adopter plan - Annual billing (≈€29.90/month). Includes 3 users, 3GB storage, Daily automatic backups, and Accounting module for life.</field>
+        </record>
+        
+        <!-- CRM Official Monthly Product - €35.00/mo -->
+        <record id="product_crm_official_monthly" model="product.product">
+            <field name="name">Base CRM (Monthly)</field>
+            <field name="default_code">SAAS_CRM_OFFICIAL_MONTHLY</field>
+            <field name="list_price">59.90</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">Base CRM plan - Monthly billing. Includes 3 users, 3GB storage, and Daily automatic backups.</field>
+        </record>
+        
+        <!-- CRM Official Annual Product - €378/yr -->
+        <record id="product_crm_official_annual" model="product.product">
+            <field name="name">Base CRM (Annual)</field>
+            <field name="default_code">SAAS_CRM_OFFICIAL_ANNUAL</field>
+            <field name="list_price">598.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">Base CRM plan - Annual billing. Includes 3 users, 3GB storage, and Daily automatic backups.</field>
+        </record>
+        
+        <!-- ===================== -->
+        <!-- ADD-ON MODULE PRODUCTS -->
+        <!-- ===================== -->
+        
+        <!-- Accounting / Management Module - Monthly €14/mo -->
+        <record id="product_accounting_monthly" model="product.product">
+            <field name="name">Accounting / Management Module (Monthly)</field>
+            <field name="default_code">SAAS_ACCOUNTING_MONTHLY</field>
+            <field name="list_price">14.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">Advanced Accounting / Management module add-on - Monthly billing. Free for Early Adopter customers.</field>
+        </record>
+        
+        <!-- Accounting / Management Module - Annual €120/yr -->
+        <record id="product_accounting_annual" model="product.product">
+            <field name="name">Accounting / Management Module (Annual)</field>
+            <field name="default_code">SAAS_ACCOUNTING_ANNUAL</field>
+            <field name="list_price">120.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">Advanced Accounting / Management module add-on - Annual billing. Free for Early Adopter customers.</field>
+        </record>
+        
+        <!-- Real Estate Module - Monthly €24/mo -->
+        <record id="product_real_estate_monthly" model="product.product">
+            <field name="name">Real Estate Module (Monthly)</field>
+            <field name="default_code">SAAS_REALESTATE_MONTHLY</field>
+            <field name="list_price">24.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">Real Estate module add-on - Monthly billing. Requires active Base CRM subscription.</field>
+        </record>
+        
+        <!-- Real Estate Module - Annual €199/yr -->
+        <record id="product_real_estate_annual" model="product.product">
+            <field name="name">Real Estate Module (Annual)</field>
+            <field name="default_code">SAAS_REALESTATE_ANNUAL</field>
+            <field name="list_price">199.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">Real Estate module add-on - Annual billing. Requires active Base CRM subscription.</field>
+        </record>
+        
+        <!-- ===================== -->
+        <!-- ADDITIONAL USER PRODUCT -->
+        <!-- ===================== -->
+        
+        <!-- Extra User - €7/mo per user -->
+        <record id="product_extra_user" model="product.product">
+            <field name="name">Additional User</field>
+            <field name="default_code">SAAS_EXTRA_USER</field>
+            <field name="list_price">7.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">Additional user beyond the 3 included. Each additional user includes +1GB extra storage.</field>
+        </record>
+        
+        <!-- ===================== -->
+        <!-- STORAGE EXPANSION PRODUCTS -->
+        <!-- ===================== -->
+        
+        <!-- Storage +5GB - €5/mo -->
+        <record id="product_storage_5gb" model="product.product">
+            <field name="name">Storage Expansion +5GB</field>
+            <field name="default_code">SAAS_STORAGE_5GB</field>
+            <field name="list_price">5.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">Additional 5GB of storage. Cumulative with other storage expansions.</field>
+        </record>
+        
+        <!-- Storage +10GB - €9/mo -->
+        <record id="product_storage_10gb" model="product.product">
+            <field name="name">Storage Expansion +10GB</field>
+            <field name="default_code">SAAS_STORAGE_10GB</field>
+            <field name="list_price">9.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">Additional 10GB of storage. Cumulative with other storage expansions.</field>
+        </record>
+        
+        <!-- Storage +25GB - €19/mo -->
+        <record id="product_storage_25gb" model="product.product">
+            <field name="name">Storage Expansion +25GB</field>
+            <field name="default_code">SAAS_STORAGE_25GB</field>
+            <field name="list_price">19.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">Additional 25GB of storage. Cumulative with other storage expansions.</field>
+        </record>
+
+        <!-- ===================== -->
+        <!-- LINK PLANS TO PRODUCTS -->
+        <!-- ===================== -->
+        <!-- saas_plans depends on saas_management, so plan XML IDs are available here -->
+        
+        <!-- Linking to the corrected plan IDs from saas_management -->
+        <record id="saas_management.plan_crm_early_monthly" model="saas.plan">
+            <field name="product_id" ref="product_crm_early_adopter_monthly"/>
+        </record>
+        
+        <record id="saas_management.plan_crm_early_annual" model="saas.plan">
+            <field name="product_id" ref="product_crm_early_adopter_annual"/>
+        </record>
+        
+        <record id="saas_management.plan_crm_official_monthly" model="saas.plan">
+            <field name="product_id" ref="product_crm_official_monthly"/>
+        </record>
+        
+        <record id="saas_management.plan_crm_official_annual" model="saas.plan">
+            <field name="product_id" ref="product_crm_official_annual"/>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,20 +1,20 @@
 {
-    'name': 'Odoo 18 Accounting Community',
+    'name': 'System 18 Accounting Community',
     'version': '1.0.3',
     'category': 'Accounting',
     'summary': 'Accounting Reports, Asset Management and Budget, Recurring Payments, '
                'Lock Dates, Fiscal Year, Accounting Dashboard, Financial Reports, '
                'Customer Follow up Management, Bank Statement Import',
-    'description': 'Odoo 18 Financial Reports, Asset Management and '
+    'description': 'System 18 Financial Reports, Asset Management and '
                    'Budget, Financial Reports, Recurring Payments, '
                    'Bank Statement Import, Customer Follow Up Management,'
                    'Account Lock Date, Accounting Dashboard',
-    'live_test_url': 'https://www.youtube.com/c/OdooMates',
+    'live_test_url': 'https://www.youtube.com/c/SystemMates',
     'sequence': '1',
     'sequence': '1',
     'website': 'https://www.walnutit.com',
-    'author': 'Odoo Mates, Walnut Software Solutions, Odoo SA',
-    'maintainer': 'Odoo Mates, Walnut Software Solutions',
+    'author': 'System Mates, Walnut Software Solutions, System',
+    'maintainer': 'System Mates, Walnut Software Solutions',
     'license': 'LGPL-3',
     'support': 'odoomates@gmail.com',
     'depends': [

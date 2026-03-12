@@ -9,11 +9,15 @@
         "base_automation",
         "website",
         "website_crm",
-        "sale_management"
+        "sale_management",
+        "sale",
+        "hr",
+        "contacts"
     ],
     "data": [
         "security/ir.model.access.csv",
         "views/crm_lead_views.xml",
+        "views/menu.xml",
         "views/crm_lead_lost_views.xml",
         "views/res_partner_views.xml",
         "views/res_users_views.xml",

@@ -1,0 +1,317 @@
+<odoo>
+    <record id="product_template_kanban_view_custom" model="ir.ui.view">
+        <field name="name">product.template.kanban.custom</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+
+            <xpath expr="//kanban" position="attributes">
+                <attribute name="class">o_product_kanban_redesign</attribute>
+            </xpath>
+
+            <xpath expr="//t[@t-name='card']" position="replace">
+                <t t-name="card">
+                    <style>
+                        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=DM+Mono:wght@400;500&amp;display=swap');
+
+                        /* ── Light mode variables ── */
+                        .o_product_kanban_redesign {
+                            --pk-bg:          #f0f3fa;
+                            --pk-card:        #ffffff;
+                            --pk-border:      #e2e6f0;
+                            --pk-text:        #1a1d2e;
+                            --pk-muted:       #7c8399;
+                            --pk-accent:      #4361ee;
+                            --pk-accent-lt:   #eef1fd;
+                            --pk-img-bg:      linear-gradient(135deg, #eef1fd 0%, #dde4f8 100%);
+                            --pk-shadow:      0 1px 4px rgba(0,0,0,.06), 0 0 0 1px rgba(0,0,0,.04);
+                            --pk-shadow-hover: 0 12px 32px rgba(0,0,0,.12), 0 0 0 1px rgba(67,97,238,.18);
+                            --pk-sku-bg:      #f0f3fa;
+                            --pk-tag-bg:      #f0f3fa;
+                            --pk-footer-border: #e2e6f0;
+                        }
+
+                        /* ── Dark mode variables (matches your navy theme) ── */
+                        [data-bs-theme="dark"] .o_product_kanban_redesign {
+                            --pk-bg:          #081028;
+                            --pk-card:        #0d1a3a;
+                            --pk-border:      #1a2f5a;
+                            --pk-text:        #e8edf5;
+                            --pk-muted:       #8aaac8;
+                            --pk-accent:      #0088ff;
+                            --pk-accent-lt:   rgba(0,136,255,0.12);
+                            --pk-img-bg:      linear-gradient(135deg, #0a1428 0%, #0d1a3a 100%);
+                            --pk-shadow:      0 1px 4px rgba(0,0,0,.3), 0 0 0 1px rgba(26,47,90,.8);
+                            --pk-shadow-hover: 0 0 0 1px rgba(0,210,255,.2), 0 8px 24px rgba(0,0,0,.5);
+                            --pk-sku-bg:      #0a1428;
+                            --pk-tag-bg:      rgba(0,210,255,0.07);
+                            --pk-footer-border: #1a2f5a;
+                        }
+
+                        .o_avatar,
+                        .o_field_image img,
+                        img.o_avatar {
+                            border-radius: 24px;
+                        }
+
+                        /* ── Page background ── */
+                        .o_product_kanban_redesign.o_kanban_view {
+                            background: var(--pk-bg) !important;
+                            padding: 16px 12px !important;
+                            font-family: 'DM Sans', system-ui, sans-serif !important;
+                        }
+
+                        /* ── Card wrapper ── */
+                        .o_product_kanban_redesign .o_kanban_record {
+                            padding: 0 !important;
+                            border: none !important;
+                            border-radius: 14px !important;
+                            box-shadow: var(--pk-shadow) !important;
+                            margin: 7px !important;
+                            overflow: hidden !important;
+                            transition: transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s ease !important;
+                            background: var(--pk-card) !important;
+                            position: relative !important;
+                        }
+
+                        .o_product_kanban_redesign .o_kanban_record:hover {
+                            transform: translateY(-5px) scale(1.015) !important;
+                            box-shadow: var(--pk-shadow-hover) !important;
+                        }
+
+                        /* ── Card shell ── */
+                        .pk-card {
+                            display: flex;
+                            flex-direction: column;
+                            font-family: 'DM Sans', system-ui, sans-serif;
+                            height: 100%;
+                        }
+
+                        /* ── Image zone ── */
+                        .pk-image-wrap {
+                            width: 100%;
+                            height: 164px;
+                            background: var(--pk-img-bg);
+                            overflow: hidden;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-shrink: 0;
+                        }
+
+                        .pk-image-wrap .o_field_image img,
+                        .pk-image-wrap img {
+                            width: 100%;
+                            height: 164px;
+                            object-fit: contain;
+                            padding: 16px;
+                            transition: transform .3s ease;
+                        }
+
+                        .o_product_kanban_redesign .o_kanban_record:hover .pk-image-wrap img {
+                            transform: scale(1.07);
+                        }
+
+                        /* ── Body ── */
+                        .pk-body {
+                            display: flex;
+                            flex-direction: column;
+                            padding: 12px 13px 10px;
+                            gap: 6px;
+                            flex: 1;
+                        }
+
+                        /* ── Name ── */
+                        .pk-name {
+                            font-size: 13.5px;
+                            font-weight: 700;
+                            color: var(--pk-text);
+                            line-height: 1.35;
+                            letter-spacing: -.15px;
+                        }
+
+                        .pk-name .o_field_widget,
+                        .pk-name span {
+                            font-family: 'DM Sans', system-ui, sans-serif !important;
+                            font-size: 13.5px !important;
+                            font-weight: 700 !important;
+                            color: var(--pk-text) !important;
+                        }
+
+                        /* ── SKU ── */
+                        .pk-sku {
+                            display: flex;
+                            align-items: center;
+                            gap: 6px;
+                            font-family: 'DM Mono', monospace;
+                            font-size: 10.5px;
+                            color: var(--pk-muted);
+                        }
+
+                        .pk-sku-label {
+                            background: var(--pk-sku-bg);
+                            border: 1px solid var(--pk-border);
+                            border-radius: 4px;
+                            padding: 1px 5px;
+                            font-size: 9px;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            letter-spacing: .5px;
+                            color: var(--pk-muted);
+                            font-family: 'DM Sans', system-ui, sans-serif;
+                        }
+
+                        .pk-sku .o_field_widget,
+                        .pk-sku span {
+                            font-family: 'DM Mono', monospace !important;
+                            font-size: 10.5px !important;
+                            color: var(--pk-muted) !important;
+                        }
+
+                        /* ── Price ── */
+                        .pk-price-row {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            background: var(--pk-accent-lt);
+                            border-radius: 8px;
+                            padding: 6px 10px;
+                            margin-top: 2px;
+                        }
+
+                        .pk-price-label {
+                            font-size: 9.5px;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            letter-spacing: .5px;
+                            color: var(--pk-accent);
+                        }
+
+                        .pk-price .o_field_monetary,
+                        .pk-price span {
+                            font-size: 15px !important;
+                            font-weight: 700 !important;
+                            color: var(--pk-accent) !important;
+                            font-family: 'DM Sans', system-ui, sans-serif !important;
+                            letter-spacing: -.2px !important;
+                        }
+
+                        /* ── Category tag ── */
+                        .pk-tags {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 4px;
+                        }
+
+                        .pk-tag {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 5px;
+                            background: var(--pk-tag-bg);
+                            border: 1px solid var(--pk-border);
+                            border-radius: 20px;
+                            padding: 2px 9px 2px 7px;
+                            font-size: 11px;
+                            color: var(--pk-muted);
+                            max-width: 100%;
+                            overflow: hidden;
+                        }
+
+                        .pk-tag .fa { font-size: 9px; opacity: .6; }
+
+                        .pk-tag .o_field_widget,
+                        .pk-tag span {
+                            font-size: 11px !important;
+                            color: var(--pk-muted) !important;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+
+                        /* ── Footer ── */
+                        .pk-footer {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            padding-top: 8px;
+                            border-top: 1px solid var(--pk-footer-border);
+                            margin-top: auto;
+                        }
+
+                        .pk-btn {
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 26px;
+                            height: 26px;
+                            border-radius: 7px;
+                            text-decoration: none;
+                            color: var(--pk-muted);
+                            transition: background .15s, color .15s;
+                        }
+
+                        .pk-btn:hover {
+                            background: var(--pk-accent-lt);
+                            color: var(--pk-accent);
+                        }
+
+                        .pk-btn .fa { font-size: 12px; }
+
+                        /* ── Ghost cards ── */
+                        .o_product_kanban_redesign .o_kanban_record.o_kanban_ghost {
+                            max-height: 0 !important;
+                            height: 0 !important;
+                            padding: 0 !important;
+                            margin: 0 !important;
+                            border: none !important;
+                            opacity: 0 !important;
+                            visibility: hidden !important;
+                            pointer-events: none !important;
+                        }
+                    </style>
+
+                    <div class="pk-card">
+                        <div class="pk-image-wrap">
+                            <field name="image_128" widget="image" options="{'zoom': true, 'zoom_delay': 300}"/>
+                        </div>
+                        <div class="pk-body">
+                            <div class="pk-name">
+                                <field name="name"/>
+                            </div>
+                            <t t-if="record.default_code">
+                                <div class="pk-sku">
+                                    <span class="pk-sku-label">SKU</span>
+                                    <field name="default_code"/>
+                                </div>
+                            </t>
+                            <div class="pk-price-row">
+                                <span class="pk-price-label">Sales Price</span>
+                                <span class="pk-price">
+                                    <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </span>
+                            </div>
+                            <t t-if="record.categ_id">
+                                <div class="pk-tags">
+                                    <span class="pk-tag">
+                                        <i class="fa fa-tag"/>
+                                        <field name="categ_id"/>
+                                    </span>
+                                </div>
+                            </t>
+                            <div class="pk-footer">
+                                <field name="activity_ids" widget="kanban_activity"/>
+                                <t t-if="!selection_mode">
+                                    <a type="edit" class="pk-btn pk-btn--edit" title="Edit">
+                                        <i class="fa fa-pencil"/>
+                                    </a>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

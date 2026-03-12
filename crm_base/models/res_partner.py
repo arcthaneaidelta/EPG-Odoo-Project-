@@ -16,6 +16,13 @@ class ResPartner(models.Model):
     referral_code = fields.Char(string="Referral Code")
     referral_code_used = fields.Char()
 
+    company_type = fields.Selection(
+        selection=[
+            ("company", "Empresa"),
+            ("person", "Particular"),
+        ]
+    )
+
     @api.model_create_multi
     def create(self, vals_list):
         # Create the partner(s) first

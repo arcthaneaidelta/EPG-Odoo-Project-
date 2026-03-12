@@ -18,7 +18,7 @@ $ckd-font: 'Inter', 'Helvetica Neue', sans-serif;
     --ckd-bg-card-mid: #fdfdfd;
     --ckd-bg-card-end: #f8fafc;
     --ckd-border: #e2e8f0;
-    --ckd-border-hover: #93c5fd;
+    --ckd-border-hover: #112249;
     --ckd-text-primary: #1e293b;
     --ckd-text-secondary: #475569;
     --ckd-text-muted: #64748b;
@@ -48,6 +48,41 @@ $ckd-font: 'Inter', 'Helvetica Neue', sans-serif;
     --ckd-avatar-bg: #0f1a30;
     --ckd-card-hover-bg: rgba(59, 130, 246, 0.08);
 }
+
+[data-bs-theme="light"]{
+    .ckd_chip_blue {
+        background: #cbd3e4;
+        color: #112249;
+        border: 1px solid #112249;
+    }
+
+    .ckd_logo_placeholder {
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 28px;
+        color: #112249;
+    }
+
+    .ckd_card {
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #112249, #112249, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+    }
+
+}
+
 
 // ── Kanban column background ────────────────────────────────────────
 .client_kanban_dark {
@@ -188,15 +223,14 @@ $ckd-font: 'Inter', 'Helvetica Neue', sans-serif;
 //     margin: calc(var(--KanbanRecord-margin-v) * 0) var(--KanbanRecord-margin-h);
 // }
 
-.o_kanban_renderer.o_kanban_ungrouped .o_kanban_record {
-    flex-grow:   0 !important;
+.o_partner_kanban .o_kanban_renderer.o_kanban_ungrouped .o_kanban_record {
+    flex-grow: 0 !important;
     flex-shrink: 0 !important;
-    align-self:  flex-start !important;
-    width:     calc(50% - (var(--KanbanRecord-margin-h, 8px) * 2)) !important;
+    align-self: flex-start !important;
+    width: calc(50% - (var(--KanbanRecord-margin-h, 8px) * 2)) !important;
     max-width: calc(50% - (var(--KanbanRecord-margin-h, 8px) * 2)) !important;
     margin: var(--KanbanRecord-margin-v, 8px) var(--KanbanRecord-margin-h, 8px) !important;
 }
-
 //
 //  Step 2: Re-override — ONLY when the kanban renderer is a descendant
 //  of .o_partner_kanban (which sits on .o_kanban_view in the DOM).
@@ -210,6 +244,8 @@ $ckd-font: 'Inter', 'Helvetica Neue', sans-serif;
     width:       100% !important;
     max-width:   100% !important;
     margin:      0 0 20px 0 !important;
+    background: transparent !important;
+    border: none !important;
 }
 
 // ── Action Buttons ──────────────────────────────────────────────────

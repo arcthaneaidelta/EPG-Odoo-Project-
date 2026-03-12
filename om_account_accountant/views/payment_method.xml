@@ -11,7 +11,9 @@
                         <group>
                             <field name="name"/>
                             <field name="payment_type"/>
-
+                            <div invisible="code != 'manual'" class="text-muted" colspan="2">
+                                <b>Note:</b> The "Manual" option is used for payments that are handled outside the system or not natively integrated (e.g., cash, external bank payment).
+                            </div>
                         </group>
                         <group>
                             <field name="code"/>
@@ -57,6 +59,6 @@
               action="action_account_payment_method"
               parent="account.root_payment_menu"
               sequence="30"
-              groups="base.group_no_one" />
+               />
 
 </odoo>

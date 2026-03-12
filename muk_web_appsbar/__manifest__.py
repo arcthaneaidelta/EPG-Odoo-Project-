@@ -17,11 +17,13 @@
     'depends': [
         'base_setup',
         'web',
+        'product',
     ],
     'data': [
         'templates/webclient.xml',
         'views/res_users.xml',
         'views/res_config_settings.xml',
+        'views/product_template_kanban_view.xml',
 
     ],
     'assets': {
@@ -34,7 +36,7 @@
 
         # ---------------------------------------------------------------
         # DARK MODE ASSETS
-        # Odoo loads web.assets_web_dark only when color_scheme=dark cookie
+        # System loads web.assets_web_dark only when color_scheme=dark cookie
         # is set. Both files below are scoped to [data-bs-theme="dark"].
         # ---------------------------------------------------------------
         'web.assets_web_dark': [
@@ -74,6 +76,8 @@
             'muk_web_appsbar/static/src/webclient/appsbar/appsbar.xml',
             'muk_web_appsbar/static/src/webclient/appsbar/appsbar.scss',
             'muk_web_appsbar/static/src/webclient/appsbar/fluid.scss',
+            'muk_web_appsbar/static/src/scss/hybrid_light.scss',
+
 
             'muk_web_appsbar/static/src/webclient/theme_toggle/theme_toggle.js',
             'muk_web_appsbar/static/src/webclient/theme_toggle/theme_toggle.xml',

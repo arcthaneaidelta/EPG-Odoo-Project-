@@ -126,7 +126,7 @@
                                 </t>
                                 <div class="ckd_contact_meta">
                                     <t t-if="record.email.value">
-                                        <span class="ckd_email"><i class="fa fa-envelope" style="color: #3b82f6; margin-right:4px;"></i> <t t-out="record.email.value"/></span>
+                                        <span class="ckd_email"><i class="fa fa-envelope" style="color: #112249; margin-right:4px;"></i> <t t-out="record.email.value"/></span>
                                     </t>
                                     <t t-if="record.phone.value">
                                         <span class="ckd_phone"><i class="fa fa-phone" style="color: #64748b; margin-right:4px;"></i> <t t-out="record.phone.value"/></span>
@@ -217,7 +217,7 @@
     <record id="action_contacts_dark_kanban" model="ir.actions.act_window">
         <field name="name">Contacts</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">kanban,list,form</field>
+        <field name="view_mode">kanban,list,form,activity</field>
         <field name="view_id" ref="res_partner_kanban_view_dark"/>
         <field name="domain">[('active', '=', True)]</field>
         <field name="context">{
@@ -231,6 +231,11 @@
             </p>
         </field>
     </record>
+
+
+    <record id="contacts.res_partner_menu_contacts" model="ir.ui.menu"> <!-- Contacts/Contacts Removed-->
+        <field name="active">False</field>
+    </record> 
 
     <!--
         3. Add a menu item under Contacts that opens the dark kanban view.

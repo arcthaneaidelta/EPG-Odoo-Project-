@@ -248,7 +248,7 @@ class CrmDashboardController(http.Controller):
         if not group:
             return 0.0
         row = group[0]
-        # Odoo may return aggregated sums either as "<field>_sum" or "<field>"
+        # System may return aggregated sums either as "<field>_sum" or "<field>"
         # depending on version/context, so support both keys.
         value = row.get(f"{amount_field}_sum")
         if value is None:

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Main Menu -->
+        <menuitem id="menu_saas_root"
+                  name="SaaS"
+                  sequence="10"
+                  web_icon="saas_management,static/description/icon.png"
+                  groups="group_saas_manager"/>
+
+        <!-- Plans Menu -->
+        <menuitem id="menu_saas_plans"
+                  name="Plans"
+                  parent="menu_saas_root"
+                  sequence="10"/>
+
+        <!-- Subscriptions Menu -->
+        <menuitem id="menu_saas_subscriptions"
+                  name="Subscriptions"
+                  parent="menu_saas_root"
+                  sequence="20"/>
+
+        <!-- Configuration Menu -->
+        <menuitem id="menu_saas_config"
+                  name="Configuration"
+                  parent="menu_saas_root"
+                  sequence="100"
+                  groups="group_saas_admin"/>
+
+        <!-- Promo Codes Menu -->
+        <!-- <menuitem id="menu_saas_promo_codes"
+                  name="Promo Codes"
+                  parent="menu_saas_config"
+                  sequence="10"/> -->
+
+    </data>
+</odoo>

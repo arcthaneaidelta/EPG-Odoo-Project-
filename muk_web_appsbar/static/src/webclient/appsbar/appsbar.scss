@@ -91,16 +91,42 @@
     }
 }
 
+
+// Removing the Generate lead button.
+.o_button_generate_leads {
+    display: none !important;
+}
+
 .o_view_nocontent .o_nocontent_help .o_view_nocontent_smiling_face:before {
         /* Remove default smiling face */
         content: "";
-        background: url('/muk_web_appsbar/static/src/img/company_logo.png') no-repeat center center !important;
+        background: url('/muk_web_appsbar/static/src/img/companylogo.png') no-repeat center center !important;
         background-size: contain !important;
         width: 150px !important;
         height: 150px !important;
-        display: block;
+        display: none;
         margin: 0 auto 10px auto;
     }
+
+
+.o_view_nocontent .o_nocontent_help a {
+    cursor: pointer;
+    display: none !important;
+}
+
+.o_view_nocontent .o_nocontent_help:before{
+    /* Remove default smiling face */
+        content: "";
+        background: url('/muk_web_appsbar/static/src/img/companylogo.png') no-repeat center center !important;
+        background-size: contain !important;
+        width: 150px !important;
+        height: 100px !important;
+        display: block;
+        margin: 0 auto 0px auto;
+}
+
+
+
 
 
 

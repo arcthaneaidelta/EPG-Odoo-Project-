@@ -97,10 +97,6 @@
         }*/
 
 
-
-
-
-
         .o_main_navbar .o_menu_sections .o_nav_entry, .o_main_navbar .o_menu_sections .dropdown-toggle {
         background: transparent;
         }
@@ -111,8 +107,24 @@
             .o_company_menu { color: #c9d6e8 !important; }
         }
 
-        
+             
     }
+
+    .o_searchview_facet .bg-view.opacity-100-hover {
+        background-color: transparent !important;
+    }
+
+    .o_loading_indicator.o-fade.o-fade-enter-active {
+        background-color: #12234c !important;
+    }
+
+    .btn-outline-secondary {
+            --btn-color: #c9d6e8 !important;
+            --btn-hover-color: #c9d6e8 !important;
+            --btn-active-color: #c9d6e8 !important;
+            --btn-active-bg: transparent !important; 
+            --btn-active-border-color: #0088ff !important;
+        }
 
     [data-bs-theme="dark"] {
 
@@ -157,7 +169,7 @@
     .o_view_nocontent .o_nocontent_help .o_view_nocontent_smiling_face:before {
         /* Remove default smiling face */
         content: "";
-        background: url('/muk_web_appsbar/static/src/img/company_logo.png') no-repeat center center !important;
+        background: url('/muk_web_appsbar/static/src/img/companylogo.png') no-repeat center center !important;
         background-size: contain !important;
         width: 150px !important;
         height: 150px !important;
@@ -446,7 +458,6 @@
         .o_field_widget select,
         input.o_input,
         textarea.o_input {
-            background-color: #0a1428 !important;
             border: 1px solid #1a2f5a !important;
             color: #c9d6e8 !important;
             border-radius: 5px;
@@ -523,6 +534,25 @@
 // =============================================================================
 [data-bs-theme="dark"] {
 
+
+    .o_list_view .o_data_row_selected.table-info {
+        --table-bg: #000000;
+        --table-hover-bg: #000000;
+        --table-active-bg: #000000;
+        --table-striped-bg: black;
+        --table-hover-bg: #0064bc;
+        color: #ffffff; /* optional so text stays visible */
+    }
+
+    .badge.text-bg-default, .badge.bg-light, .badge.text-bg-light, .badge.bg-default, .badge.text-primary {
+        outline: 1px solid;
+        outline-offset: -1px;
+    }
+
+    .o_search_panel_sidebar.bg-view {
+        --background-color: #0e1e42;
+    }
+
     .o_list_view {
         background-color: #0d1a3a !important;
         color: #c9d6e8 !important;
@@ -569,7 +599,7 @@
         // Editable cells
         td.o_field_cell input,
         td.o_field_cell textarea {
-            background: #0a1428 !important;
+
             border-color: #0088ff !important;
             color: #c9d6e8 !important;
         }
@@ -662,12 +692,16 @@
         }
 
         // Ghost / empty card (add new)
-        .o_kanban_quick_create,
-        .o_kanban_ghost {
-            display: none;
-            background-color: rgba(0,210,255,0.04) !important;
-            border: 1px dashed #1a2f5a !important;
-            border-radius: 6px;
+        .o_kanban_renderer.o_kanban_ungrouped 
+        .o_kanban_record.o_kanban_ghost {
+            max-height: 0 !important;
+            height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
         }
 
         // Column quick add button
@@ -864,6 +898,10 @@
 
         tr:hover td { background-color: rgba(0,210,255,0.05) !important; }
     }
+
+    .o_pivot_cell_value.bg-100 {
+        background-color: transparent !important;
+    }
 }
 
 // =============================================================================
@@ -936,7 +974,13 @@
 
         .o_activity_record { color: #c9d6e8 !important; }
         .o_activity_summary { color: #8aaac8 !important; }
+
+        .bg-view, .text-bg-view {
+            --background-color: transparent !important;
+        }
     }
+
+
 }
 
 // =============================================================================
@@ -1052,6 +1096,90 @@
         border-color: #1a2f5a !important;
         color: #8aaac8 !important;
         &:hover { color: #0088ff !important; border-color: #0088ff !important; background: rgba(0,210,255,0.07) !important; }
+    }
+
+    .o-mail-MessagingMenu {
+        width: 475px;
+        min-height: 50px;
+        max-height: Min(calc(70vh - 5px), 630px);
+        background-color: #0d1a3a;
+    }
+
+
+    .o-mail-MessagingMenu-list {
+        background-color: #0d1a3a;
+    }
+
+    .o-mail-NotificationItem.o-important {
+        color: #5a7099;
+    }
+
+    .text-truncate.fw-bold.border.border-transparent.mx-1.my-0.py-1.fs-5 {
+        color: #0088ff !important;
+    }
+
+    .o-mail-ChatWindow-threadAvatar.my-0.me-1.py-1.ms-3.ps-2 {
+        color: #0088ff !important;
+    }
+
+    .text-truncate.form-control {
+        color: black !important;
+    }
+
+    .text-truncate.form-control::placeholder {
+        color: black !important;
+    }
+
+    .o-mail-Composer-actions button.o-mail-Composer-send.btn-link:not(:disabled) {
+        background-color: #0088ff;
+        opacity: 100% !important;
+    }
+
+    .form-control:focus{
+        background: #0088ff;
+    }
+
+    .o-mail-Message-richBody {
+        color: black !important;
+    }
+
+    .o-mail-Composer-input.o-mail-Composer-inputStyle::placeholder {
+        color: white !important;
+        opacity: 1 !important;
+    }
+
+    .o-mail-ChatWindow-header.bg-100 {
+        background-color: #0d1a3a !important;
+    }
+
+    .fa-check-square.text-primary {
+        color: #0088ff !important;
+    }
+
+    .d-flex.o_switch_company_item.dropdown-item.w-100.o-navigable {
+        padding: 0px !important;
+    }
+
+    .o_switch_company_menu_items .o_switch_company_item.focus, .o_switch_company_menu_items .o_switch_company_item.focus > * {
+        background-color: transparent !important;
+    }
+
+    .company_label.text-700.text-truncate {
+        color: white !important;
+    }
+
+    .log_into.bg-primary-subtle {
+        background-color: transparent !important;
+
+    }
+
+    .border-primary {
+        --border-opacity: 1;
+        border-color: white !important;
+    }
+
+    .align-items-center {
+        color: #c9d6e8;
     }
 }
 

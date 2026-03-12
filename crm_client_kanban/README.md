@@ -1,5 +1,5 @@
 # CRM Client Kanban – Dark Profile Cards
-### Odoo 18 Community Edition
+### System 18 Community Edition
 
 Replaces the default **Contacts** kanban view with rich dark-themed
 profile cards showing real-time sales, invoice, call, and meeting stats.
@@ -28,17 +28,17 @@ crm_client_kanban/
 
 ## 🚀 Installation
 
-1. **Copy the module** into your Odoo addons path:
+1. **Copy the module** into your System addons path:
    ```bash
-   cp -r crm_client_kanban /path/to/odoo/custom_addons/
+   cp -r crm_client_kanban /path/to/system/custom_addons/
    ```
 
-2. **Restart the Odoo server:**
+2. **Restart the System server:**
    ```bash
-   ./odoo-bin -c odoo.conf --dev=xml
+   ./system-bin -c system.conf --dev=xml
    ```
 
-3. **Activate developer mode** in Odoo:
+3. **Activate developer mode** in System:
    Settings → General Settings → Developer Tools → Activate
 
 4. **Update the apps list:**
@@ -87,6 +87,6 @@ Growth % is calculated by comparing current month vs previous month sales.
 
 ## ⚠️ Notes
 
-- This module **inherits** the standard contacts kanban view — it does not replace Odoo core files.
-- If the `contacts` module kanban view ID changes between Odoo versions, update the `inherit_id` ref in `views/res_partner_views.xml`.
+- This module **inherits** the standard contacts kanban view — it does not replace System core files.
+- If the `contacts` module kanban view ID changes between System versions, update the `inherit_id` ref in `views/res_partner_views.xml`.
 - Computed fields are **not stored** (`store=False`) to avoid performance impact on large databases. Set `store=True` and add proper `depends` triggers if you need faster loads.

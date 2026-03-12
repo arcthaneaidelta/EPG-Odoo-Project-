@@ -14,7 +14,7 @@ export class ThemeToggle extends Component {
         });
 
         // On mount: apply the data-bs-theme attribute so SCSS selectors work.
-        // Odoo already served the correct CSS bundle based on the cookie —
+        // System already served the correct CSS bundle based on the cookie —
         // we just need to sync the DOM attribute to match.
         this._applyDomTheme(currentScheme);
     }
@@ -23,23 +23,23 @@ export class ThemeToggle extends Component {
         this.state.isDark = !this.state.isDark;
         const scheme = this.state.isDark ? "dark" : "light";
 
-        // 1. Save preference BEFORE reload so Odoo's server reads it
+        // 1. Save preference BEFORE reload so System's server reads it
         //    and serves the correct CSS bundle (web.assets_web_dark etc.)
         cookie.set("color_scheme", scheme, {
             path: "/",
             expires: 365 * 24 * 60 * 60, // seconds — 1 year
         });
 
-        // 2. Let Odoo's server do all the heavy lifting.
-        //    A clean reload is the ONLY safe way to swap Odoo's compiled
+        // 2. Let System's server do all the heavy lifting.
+        //    A clean reload is the ONLY safe way to swap System's compiled
         //    SCSS bundles. Never disable/swap <link> tags manually —
-        //    it breaks Odoo's asset pipeline and causes the layout to collapse.
+        //    it breaks System's asset pipeline and causes the layout to collapse.
         window.location.reload();
     }
 
     /**
      * Sync data-bs-theme on <html> and .o_dark on <body>.
-     * Called on mount only — after a reload Odoo has served the right bundle,
+     * Called on mount only — after a reload System has served the right bundle,
      * and we just need the DOM attribute so SCSS selectors fire correctly.
      */
     _applyDomTheme(scheme) {

@@ -29,12 +29,12 @@
             </field>
         </record>
 
-        <!-- Rename OdooBot Partner -->
+        <!-- Rename SystemBot Partner -->
         <record id="base.partner_root" model="res.partner">
             <field name="name">Asistente de EPG</field>
         </record>
 
-        <!-- Rename OdooBot User -->
+        <!-- Rename SystemBot User -->
         <record id="base.user_root" model="res.users">
             <field name="name">Asistente de EPG</field>
         </record>
