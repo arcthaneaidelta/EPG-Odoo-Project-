@@ -1,0 +1,20 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="personGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#35D0FF"/>
+<stop offset="100%" stop-color="#0A4DFF"/>
+</linearGradient>
+<linearGradient id="euroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFFFFF"/>
+<stop offset="50%" stop-color="#7BE7FF"/>
+<stop offset="100%" stop-color="#0A7BFF"/>
+</linearGradient>
+</defs>
+<rect x="10" y="10" width="80" height="80" rx="18" fill="#FFFFFF" stroke="#D6E4FF" stroke-width="1.5"/>
+<circle cx="38" cy="42" r="8" fill="url(#personGrad)"/>
+<rect x="32" y="50" width="12" height="14" rx="4" fill="url(#personGrad)"/>
+<circle cx="62" cy="42" r="8" fill="url(#personGrad)"/>
+<rect x="56" y="50" width="12" height="14" rx="4" fill="url(#personGrad)"/>
+<circle cx="50" cy="65" r="10" fill="#132754" stroke="url(#personGrad)" stroke-width="2"/>
+<text x="50" y="69" font-size="11" text-anchor="middle" fill="url(#euroGrad)" font-family="Arial" font-weight="bold">€</text>
+</svg>

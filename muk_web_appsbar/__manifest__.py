@@ -18,12 +18,15 @@
         'base_setup',
         'web',
         'product',
+        'sale_management',
     ],
     'data': [
         'templates/webclient.xml',
         'views/res_users.xml',
         'views/res_config_settings.xml',
         'views/product_template_kanban_view.xml',
+        'views/menu.xml',
+
 
     ],
     'assets': {
@@ -77,6 +80,7 @@
             'muk_web_appsbar/static/src/webclient/appsbar/appsbar.scss',
             'muk_web_appsbar/static/src/webclient/appsbar/fluid.scss',
             'muk_web_appsbar/static/src/scss/hybrid_light.scss',
+            'muk_web_appsbar/static/src/css/settings_icons.css',
 
 
             'muk_web_appsbar/static/src/webclient/theme_toggle/theme_toggle.js',

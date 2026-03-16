@@ -1,0 +1,25 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="leadGradPro" x1="22" y1="18" x2="78" y2="82" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7FE6FF"/>
+      <stop offset="1" stop-color="#35D0FF"/>
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="46" r="24" stroke="#35D0FF" stroke-width="3"/>
+  <circle cx="50" cy="46" r="15" stroke="#1B3B6E" stroke-width="2.5"/>
+  <rect x="39" y="34" width="22" height="24" rx="6"
+        fill="#0A1633"
+        stroke="url(#leadGradPro)"
+        stroke-width="3"/>
+  <circle cx="50" cy="41" r="3.5" fill="#35D0FF"/>
+  <path d="M45.5 49C45.5 46.2 47.8 44.5 50 44.5C52.2 44.5 54.5 46.2 54.5 49"
+        stroke="url(#leadGradPro)"
+        stroke-width="2.8"
+        stroke-linecap="round"/>
+  <circle cx="24" cy="30" r="4.5" fill="#35D0FF"/>
+  <circle cx="76" cy="30" r="4.5" fill="#35D0FF"/>
+  <circle cx="50" cy="74" r="4.5" fill="#35D0FF"/>
+  <path d="M28 32L38 38" stroke="#1B3B6E" stroke-width="3" stroke-linecap="round"/>
+  <path d="M72 32L62 38" stroke="#1B3B6E" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 69L50 60" stroke="#1B3B6E" stroke-width="3" stroke-linecap="round"/>
+</svg>

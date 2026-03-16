@@ -62,7 +62,7 @@ class AiAssistant(models.Model):
 		# 1. SALUDO: Su primera respuesta DEBE incluir: "La IA está diseñada para ayudarle a trabajar mejor en su negocio, no como entretenimiento".
 		# Add system message with context
 		if context:
-			system_message = f"""Eres un asistente de IA profesional para Odoo y CRM.
+			system_message = f"""Eres un asistente de IA profesional para System y CRM.
 			PRINCIPIO DE FUNCIONAMIENTO: Libertad controlada, con absoluta prioridad en el trabajo.
 
 			REGLAS ESTRICTAS:
@@ -134,8 +134,8 @@ class AiAssistant(models.Model):
 		"""
 		self.ensure_one()
 		
-		test_question = "What is Odoo and how can it help with CRM?"
-		test_context = "Testing the AI Assistant integration with Odoo CRM."
+		test_question = "What is System and how can it help with CRM?"
+		test_context = "Testing the AI Assistant integration with System CRM."
 		
 		try:
 			answer = self.call_external_llm(test_question, test_context)

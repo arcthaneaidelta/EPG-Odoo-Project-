@@ -1,0 +1,22 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="cartGrad" x1="20" y1="20" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+<stop stop-color="#7FE6FF"/>
+<stop offset="1" stop-color="#35D0FF"/>
+</linearGradient>
+</defs>
+<path d="M22 30H30L34 60H72"
+stroke="url(#cartGrad)"
+stroke-width="4"
+stroke-linecap="round"
+stroke-linejoin="round"/>
+<rect x="34" y="40" width="38" height="20" rx="5"
+fill="#0A1633"
+stroke="url(#cartGrad)"
+stroke-width="3"/>
+<rect x="40" y="44" width="8" height="8" rx="2" fill="#35D0FF"/>
+<rect x="50" y="44" width="8" height="8" rx="2" fill="#35D0FF"/>
+<rect x="60" y="44" width="8" height="8" rx="2" fill="#35D0FF"/>
+<circle cx="42" cy="70" r="4" fill="#35D0FF"/>
+<circle cx="66" cy="70" r="4" fill="#35D0FF"/>
+</svg>

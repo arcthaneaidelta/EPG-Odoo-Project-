@@ -172,7 +172,7 @@
     </record>
     <menuitem
         id="menu_aeat_export_config"
-        parent="menu_l10n_es_aeat_config"
+        parent="account.menu_finance_entries"
         action="action_aeat_export_config"
         name="BOE export configuration"
     />

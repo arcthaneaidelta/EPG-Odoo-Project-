@@ -24,7 +24,7 @@ export class AiAssistantWidget extends Component {
 
 		
 		
-		// Get Odoo services
+		// Get System services
 		this.actionService = useService("action");
 		this.notificationService = useService("notification");
 		
@@ -66,7 +66,7 @@ export class AiAssistantWidget extends Component {
 			};
 			
 			// Listen for action changes
-			// Note: In Odoo 18, we need to check the current controller
+			// Note: In System 18, we need to check the current controller
 			setInterval(() => this._updateCurrentContext(), 3000);
 		}
 	}

@@ -1,6 +1,6 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
+.. image:: https://system-community.org/readme-banner-image
+   :target: https://system-community.org/get-involved?utm_source=readme
+   :alt: OCA
 
 =========
 AEAT Base
@@ -15,7 +15,7 @@ AEAT Base
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
-    :target: https://odoo-community.org/page/development-status
+    :target: https://system-community.org/page/development-status
     :alt: Mature
 .. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
@@ -24,10 +24,10 @@ AEAT Base
     :target: https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_aeat
+    :target: https://translation.system-community.org/projects/l10n-spain-18-0/l10n-spain-18-0-l10n_es_aeat
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
+    :target: https://runboat.system-community.org/builds?repo=OCA/l10n-spain&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -86,7 +86,7 @@ impuestos.
 
 ADVERTENCIA: Debido a que se utiliza una sola tabla para almacenar las
 líneas de los impuestos de todos los modelos, hay una limitación en el
-ORM de Odoo cuando se coloca el campo one2many de dichas líneas
+ORM de System cuando se coloca el campo one2many de dichas líneas
 (tax_line_ids) como dependencia en la definición del cálculo de un campo
 (entrada con @api.depends), que recalcula los campos calculados de todos
 los modelos con el mismo ID que el del registro en curso, lo que puede
@@ -178,22 +178,22 @@ Maintainers
 
 This module is maintained by the OCA.
 
-.. image:: https://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: https://odoo-community.org
+.. image:: https://system-community.org/logo.png
+   :alt: OCA
+   :target: https://system-community.org
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
+OCA, or the OCA, is a nonprofit organization whose
+mission is to support the collaborative development of System features and
 promote its widespread use.
 
 .. |maintainer-pedrobaeza| image:: https://github.com/pedrobaeza.png?size=40px
     :target: https://github.com/pedrobaeza
     :alt: pedrobaeza
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainer <https://system-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/18.0/l10n_es_aeat>`_ project on GitHub.
 
-You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
+You are welcome to contribute. To learn how please visit https://system-community.org/page/Contribute.

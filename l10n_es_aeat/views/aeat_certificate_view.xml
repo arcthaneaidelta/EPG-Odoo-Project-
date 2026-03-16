@@ -60,6 +60,6 @@
         name="Certificates AEAT"
         action="l10n_es_certificate_action"
         sequence="0"
-        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        parent="account.menu_finance_entries"
     />
 </odoo>

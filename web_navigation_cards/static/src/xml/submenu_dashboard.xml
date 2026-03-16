@@ -3,7 +3,7 @@
         <div class="o_submenu_dashboard_container p-4 h-100 overflow-auto">
             <div class="container-fluid">
                 
-                <h2 class="mb-4 text-muted">
+                <h2 class="mb-4 text-muted" style="color: #f8f9fa !important;">
                     <t t-if="parentMenuId and menuService.getMenu(parentMenuId)">
                         <t t-esc="menuService.getMenu(parentMenuId).name"/>
                     </t>
@@ -20,11 +20,17 @@
                                  style="transition: transform 0.2s; cursor: pointer;">
                                 
                                 <div class="card-body text-center d-flex flex-column align-items-center justify-content-center p-3">
-                                    <div t-if="menu.webIconData" class="mb-3">
-                                        <img t-att-src="menu.webIconData" style="max-width: 50px; max-height: 50px; object-fit: contain;"/>
-                                    </div>
-                                    <div t-else="" class="mb-3 text-primary">
-                                        <i class="fa fa-folder-open fa-3x"></i>
+                                    <div class="mb-3">
+                                        <t t-set="customIcon" t-value="getMenuIcon(menu.id)"/>
+                                        <t t-if="customIcon">
+                                            <!-- ✅ Your PNG/SVG image -->
+                                            <img t-att-src="customIcon"
+                                                 style="max-width: 50px; max-height: 50px; object-fit: contain;"/>
+                                        </t>
+                                        <t t-else="">
+                                            <!-- Fallback: blue folder (existing behavior) -->
+                                            <i class="fa fa-folder-open fa-3x" style="color: #4a90d9;"></i>
+                                        </t>
                                     </div>
                                     
                                     <h6 class="card-title font-weight-bold text-wrap mb-0" 

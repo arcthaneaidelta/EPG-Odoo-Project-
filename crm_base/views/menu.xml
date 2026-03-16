@@ -29,6 +29,9 @@
     <record id="sale.menu_sale_report" model="ir.ui.menu"> <!-- Reporting changes to Reports -->
         <field name="name">Reports</field>
     </record>
+    <record id="crm.crm_menu_root" model="ir.ui.menu"> <!-- CRM changes to Pipeline -->
+        <field name="name">Pipeline</field>
+    </record>
     <record id="sale.menu_sale_general_settings" model="ir.ui.menu"> <!-- Configuration/Settings change to Sales/Settings-->
         <field name="parent_id" ref="sale.sale_menu_root"/>
         <field name="sequence">90</field>
@@ -71,6 +74,15 @@
         <field name="active">False</field>
     </record>
     <record id="sale.menu_sale_config" model="ir.ui.menu"> <!-- Configuration/To Invoice Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="crm.crm_team_menu_config_activities" model="ir.ui.menu"> <!-- Configuration/Activities Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="crm.menu_crm_config_lead" model="ir.ui.menu"> <!-- Configuration/Pipeline Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="crm_iap_mine.crm_menu_lead_generation" model="ir.ui.menu"> <!-- Configuration/Lead Generation Removed -->
         <field name="active">False</field>
     </record>
 </odoo>

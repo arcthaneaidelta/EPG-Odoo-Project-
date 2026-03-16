@@ -1,0 +1,16 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="panelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#1A2F5A"/>
+<stop offset="100%" stop-color="#0A1633"/>
+</linearGradient>
+</defs>
+<rect x="10" y="10" width="80" height="80" rx="18"
+fill="url(#panelGrad)" stroke="#FFFFFF" stroke-width="1.5"/>
+<rect x="24" y="26" width="52" height="34" rx="10"
+fill="#1F3B6E" stroke="#35D0FF" stroke-width="1.4"/>
+<polygon points="45,34 45,50 60,42" fill="#35D0FF"/>
+<rect x="30" y="68" width="40" height="6" rx="3" fill="#1E366C"/>
+<rect x="30" y="68" width="24" height="6" rx="3" fill="#35D0FF"/>
+<circle cx="54" cy="71" r="4" fill="#FFFFFF" stroke="#35D0FF" stroke-width="2"/>
+</svg>

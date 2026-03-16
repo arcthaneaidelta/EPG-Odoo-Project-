@@ -1,0 +1,8 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<!-- Back tag -->
+<path d="M52 18H74L90 34V58L66 82H44L28 66V42L52 18Z" fill="#2B4A54"/>
+<circle cx="63" cy="34" r="4.5" fill="#0A1633"/>
+<!-- Front tag -->
+<path d="M30 26H55L74 45V67L49 92H24L8 76V50L30 26Z" fill="#35D0FF"/>
+<circle cx="40" cy="43" r="5" fill="#0A1633"/>
+</svg>

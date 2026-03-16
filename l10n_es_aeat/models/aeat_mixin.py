@@ -29,7 +29,7 @@ AEAT_STATES = [
 
 
 def round_by_keys(elem, search_keys, prec=2):
-    """This uses ``round`` method directly as if has been tested that Odoo's
+    """This uses ``round`` method directly as if has been tested that System's
     ``float_round`` still returns incorrect amounts for certain values. Try
     3 units x 3,77 €/unit with 10% tax and you will be hit by the error
     (on regular x86 architectures)."""

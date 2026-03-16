@@ -1,0 +1,68 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+
+<linearGradient id="panelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#1A2F5A"/>
+<stop offset="100%" stop-color="#0A1633"/>
+</linearGradient>
+
+<linearGradient id="calcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#223D75"/>
+<stop offset="100%" stop-color="#132754"/>
+</linearGradient>
+
+<linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#35D0FF"/>
+<stop offset="100%" stop-color="#0A4DFF"/>
+</linearGradient>
+
+<linearGradient id="euroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFFFFF"/>
+<stop offset="50%" stop-color="#7BE7FF"/>
+<stop offset="100%" stop-color="#0A7BFF"/>
+</linearGradient>
+
+</defs>
+
+<!-- panel exterior -->
+<rect x="10" y="10" width="80" height="80" rx="18"
+fill="url(#panelGrad)"
+stroke="#FFFFFF"
+stroke-width="1.5"/>
+
+<!-- cuerpo calculadora -->
+<rect x="26" y="20" width="48" height="60" rx="12"
+fill="url(#calcGrad)"
+stroke="url(#accentGrad)"
+stroke-width="1.4"/>
+
+<!-- display -->
+<rect x="32" y="26" width="36" height="12" rx="4"
+fill="#0E1F44"
+stroke="#7FE6FF"
+stroke-width="1"/>
+
+<text x="50" y="35"
+font-size="11"
+text-anchor="middle"
+fill="url(#euroGrad)"
+font-family="Arial"
+font-weight="bold">€</text>
+
+<!-- teclas -->
+<rect x="32" y="44" width="8" height="8" rx="2" fill="#294A88"/>
+<rect x="44" y="44" width="8" height="8" rx="2" fill="#294A88"/>
+<rect x="56" y="44" width="8" height="8" rx="2" fill="#294A88"/>
+
+<rect x="32" y="56" width="8" height="8" rx="2" fill="#294A88"/>
+<rect x="44" y="56" width="8" height="8" rx="2" fill="url(#accentGrad)"/>
+<rect x="56" y="56" width="8" height="8" rx="2" fill="#294A88"/>
+
+<rect x="32" y="68" width="20" height="6" rx="3" fill="#294A88"/>
+<rect x="56" y="68" width="8" height="6" rx="3" fill="url(#accentGrad)"/>
+
+<!-- brillo tech -->
+<circle cx="66" cy="30" r="2.3" fill="#35D0FF"/>
+
+</svg>

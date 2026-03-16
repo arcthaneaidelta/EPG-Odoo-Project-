@@ -1,12 +1,12 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat
 #
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# OCA Transbot <transbot@system-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: System Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:41+0000\n"
 "PO-Revision-Date: 2025-12-11 07:58+0000\n"
@@ -20,13 +20,13 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
 msgid "%(number)s_report_%(date)s.txt"
 msgstr "%(number)s_informe_%(date)s.txt"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:0
 msgid "<blank>"
 msgstr "<buit>"
@@ -109,14 +109,14 @@ msgid "AEAT manager"
 msgstr "Responsable AEAT"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
 msgid ""
-"AEAT model sequence not found. You can try to restart your Odoo service for "
+"AEAT model sequence not found. You can try to restart your System service for "
 "recreating the sequences."
 msgstr ""
 "No s'ha trobat la seqüència del model AEAT. Podeu provar de reiniciar el seu "
-"servei Odoo per recrear les seqüències."
+"servei System per recrear les seqüències."
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -754,13 +754,13 @@ msgid "Error Count"
 msgstr "Recompte d'errors"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_map_tax.py:0
 msgid "Error! The dates of the record overlap with an existing record."
 msgstr "Error! Les dates dels registres se solapen amb un registre existent."
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/aeat_certificate.py:0
 msgid "Error! There aren't certificates."
 msgstr "Error! No hi ha certificats."
@@ -830,7 +830,7 @@ msgid "Expression"
 msgstr "Expressió"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:0
 msgid "Expression: "
 msgstr "Expressió: "
@@ -888,7 +888,7 @@ msgid "Fixed Value"
 msgstr "Valor fix"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:0
 msgid "Fixed: {}"
 msgstr "Fix: {}"
@@ -999,7 +999,7 @@ msgstr ""
 "ha de ser afegida"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
 msgid ""
 "If this declaration is complementary or substitutive, a previous declaration "
@@ -1044,7 +1044,7 @@ msgstr ""
 "qualsevol declaració AEAT"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/aeat_certificate.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
 msgid "Insert Password"
@@ -1216,7 +1216,7 @@ msgid "Model number"
 msgstr "Número del model"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr "Model no vàlid: %s. Ha de declarar una variable '_aeat_number'"
@@ -1270,7 +1270,7 @@ msgid "Next Activity Type"
 msgstr "Tipus de la següent activitat"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
 msgid "No export configuration selected."
 msgstr "Cap configuració d'exportació seleccionada."
@@ -1358,8 +1358,8 @@ msgstr "Obtenir claus"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__model_id
-msgid "Odoo model"
-msgstr "Model Odoo"
+msgid "System model"
+msgstr "Model System"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__exigible_type__yes
@@ -1372,7 +1372,7 @@ msgid "Only non-exigible amounts"
 msgstr "Només quantitats no exigibles"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
@@ -1521,7 +1521,7 @@ msgid "Regular"
 msgstr "Regular"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:0
 msgid "Regularization"
 msgstr "Regularització"
@@ -1759,13 +1759,13 @@ msgid "Telematics"
 msgstr "Telemàtica"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
 msgid "The formated string must match the given length"
 msgstr "La cadena formatada ha de satisfer la mida donada"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/wizard/compare_boe_file.py:0
 msgid ""
 "The length of the file is different from the expected one, or there are "
@@ -1776,7 +1776,7 @@ msgstr ""
 "a la configuració d'exportació que no es poden avaluar estàticament."
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/aeat_mixin.py:0
 msgid "The partner has not a VAT configured."
 msgstr "L'empresa no té un NIF configurat."
@@ -1923,7 +1923,7 @@ msgid "Wizard to Load AEAT Certificate"
 msgstr "Assistent per carregar el certificat AEAT"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
 msgid "Wrong align option. It should be < or >"
 msgstr "Opció d'alineament errònia. Hauria de ser < o >"
@@ -1949,14 +1949,14 @@ msgid "You have"
 msgstr "Té"
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/aeat_mixin.py:0
 msgid "You have to select what account chart template use this company."
 msgstr ""
 "Ha de seleccionar quina plantilla de pla de comptes utilitza aquesta empresa."
 
 #. module: l10n_es_aeat
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:0
 msgid "You must fill both journal and counterpart account."
 msgstr "Ha d'omplir tant el diari com el compte de contrapartida."

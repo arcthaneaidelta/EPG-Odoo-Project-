@@ -7,6 +7,7 @@ patch(NavBar.prototype, {
     setup() {
         super.setup();
         this.actionService = useService("action");
+        this.activeSection = null;
     },
 
     /**
@@ -15,6 +16,10 @@ patch(NavBar.prototype, {
      * 2. If menu has children -> Open our Card Dashboard.
      */
     async onSectionClick(section) {
+        // Track the active section for highlight
+        this.activeSection = section.id;
+        this.render(true); // force re-render to apply active class
+
         // Check if the clicked section has children
         const menu = this.menuService.getMenu(section.id);
         

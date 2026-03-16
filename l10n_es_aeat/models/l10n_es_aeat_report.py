@@ -338,7 +338,7 @@ class L10nEsAeatReport(models.AbstractModel):
             raise exceptions.UserError(
                 self.env._(
                     "AEAT model sequence not found. You can try to restart your "
-                    "Odoo service for recreating the sequences."
+                    "System service for recreating the sequences."
                 )
             )
         return seq.next_by_id()
@@ -488,9 +488,9 @@ class L10nEsAeatReport(models.AbstractModel):
 
     @api.model
     def _get_formatted_date(self, date):
-        """Convert an Odoo date to BOE export date format.
+        """Convert a system date to BOE export date format.
 
-        :param date: Date in Odoo format or falsy value
+        :param date: Date in system format or falsy value
         :return: Date formatted for BOE export.
         """
         if not date:

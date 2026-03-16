@@ -62,8 +62,8 @@ export const appMenuService = {
 					'crm_dashboard': 0,
 					'Contacts': 1,
 					'contacts': 1, // lowercase variant
-					'CRM': 2,
-					'crm': 2, // lowercase variant
+					'Pipeline': 2,
+					'pipeline': 2, // lowercase variant
 					'Sales': 3,
 					'sales': 3, // lowercase variant
 					'Accounting': 4,

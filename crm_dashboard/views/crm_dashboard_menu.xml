@@ -11,7 +11,7 @@
             name="Dashboard"
             action="action_crm_dashboard"
             sequence="1"
-            web_icon="crm_dashboard,static/description/icon.png"
+            web_icon="crm_dashboard,static/description/dashboard.svg"
         />
     </data>
 </odoo>

@@ -1,0 +1,14 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<!-- BOX 1 -->
+<polygon points="30,28 44,36 30,44 16,36" fill="#3B5C66"/>
+<polygon points="16,36 30,44 30,60 16,52" fill="#1F3A42"/>
+<polygon points="44,36 30,44 30,60 44,52" fill="#2B4A54"/>
+<!-- BOX 2 -->
+<polygon points="65,25 82,35 65,45 48,35" fill="#3B5C66"/>
+<polygon points="48,35 65,45 65,65 48,55" fill="#1F3A42"/>
+<polygon points="82,35 65,45 65,65 82,55" fill="#2B4A54"/>
+<!-- BOX 3 -->
+<polygon points="50,48 60,54 50,60 40,54" fill="#3B5C66"/>
+<polygon points="40,54 50,60 50,72 40,66" fill="#1F3A42"/>
+<polygon points="60,54 50,60 50,72 60,66" fill="#2B4A54"/>
+</svg>

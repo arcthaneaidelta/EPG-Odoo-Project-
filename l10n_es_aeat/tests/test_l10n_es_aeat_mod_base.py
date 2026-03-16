@@ -13,7 +13,7 @@ _logger = logging.getLogger("aeat")
 class TestL10nEsAeatModBase(BaseCommon):
     accounts = {}
     # Set 'debug' attribute to True to easy debug this test
-    # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
+    # Do not forget to include '--log-handler aeat:DEBUG' in System command line
     debug = False
     # These 2 dictionaries below allows to define easily several taxes to apply
     # to invoice lines through the methods _invoice_sale/purchase_create.

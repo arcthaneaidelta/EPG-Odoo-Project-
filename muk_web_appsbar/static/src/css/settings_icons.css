@@ -1,0 +1,30 @@
+a[data-key="sale_management"] .icon{
+    background: url('/muk_web_appsbar/static/description/ventas.svg') no-repeat center !important;
+    background-size: contain !important;
+}
+
+a[data-key="crm"] .icon{
+    background: url('/muk_web_appsbar/static/description/pipeline.svg') no-repeat center !important;
+    background-size: contain !important;
+}
+
+a[data-key="account"] .icon{
+    background: url('/muk_web_appsbar/static/description/contabilidad.svg') no-repeat center !important;
+    background-size: contain !important;
+}
+a[data-key="general_settings"] .icon{
+    background: url('/muk_web_appsbar/static/description/ajustes.svg') no-repeat center !important;
+    background-size: contain !important;
+}
+
+.settings_tab a[data-key="calendar"]{
+    display: none !important;
+}
+
+.settings_tab a[data-key="hr"]{
+    display: none !important;
+}
+
+.settings_tab a[data-key="hr_expense"]{
+    display: none !important;
+}

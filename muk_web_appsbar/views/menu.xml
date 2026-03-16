@@ -1,0 +1,17 @@
+<odoo>
+    <record id="sale.sale_menu_root" model="ir.ui.menu">
+        <field name="web_icon">muk_web_appsbar,static/description/ventas.svg</field>
+    </record>
+    <record id="crm.crm_menu_root" model="ir.ui.menu">
+        <field name="web_icon">muk_web_appsbar,static/description/pipeline.svg</field>
+    </record>
+    <record id="account.menu_finance" model="ir.ui.menu">
+        <field name="web_icon">muk_web_appsbar,static/description/contabilidad.svg</field>
+    </record>
+    <record id="base.menu_administration" model="ir.ui.menu">
+        <field name="web_icon">muk_web_appsbar,static/description/ajustes.svg</field>
+    </record>
+    <record id="contacts.menu_contacts" model="ir.ui.menu">
+        <field name="web_icon">muk_web_appsbar,static/description/clientes.svg</field>
+    </record>
+</odoo>

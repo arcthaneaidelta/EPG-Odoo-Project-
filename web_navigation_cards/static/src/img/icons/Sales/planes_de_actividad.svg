@@ -1,0 +1,44 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="activityGrad" x1="25" y1="20" x2="75" y2="80" gradientUnits="userSpaceOnUse">
+<stop stop-color="#7FE6FF"/>
+<stop offset="1" stop-color="#35D0FF"/>
+</linearGradient>
+</defs>
+
+<rect x="24" y="26" width="52" height="48" rx="10"
+fill="#0A1633"
+stroke="url(#activityGrad)"
+stroke-width="3"/>
+
+<line x1="24" y1="40" x2="76" y2="40"
+stroke="#35D0FF"
+stroke-width="3"/>
+
+<circle cx="38" cy="26" r="3" fill="#35D0FF"/>
+<circle cx="62" cy="26" r="3" fill="#35D0FF"/>
+
+<circle cx="36" cy="50" r="3" fill="#35D0FF"/>
+<line x1="44" y1="50" x2="66" y2="50"
+stroke="#35D0FF"
+stroke-width="3"
+stroke-linecap="round"/>
+
+<circle cx="36" cy="60" r="3" fill="#35D0FF"/>
+<line x1="44" y1="60" x2="66" y2="60"
+stroke="#35D0FF"
+stroke-width="3"
+stroke-linecap="round"/>
+
+<circle cx="68" cy="68" r="10"
+fill="#142C52"
+stroke="url(#activityGrad)"
+stroke-width="3"/>
+
+<path d="M63 68L67 72L74 64"
+stroke="#7FE6FF"
+stroke-width="3"
+stroke-linecap="round"
+stroke-linejoin="round"/>
+
+</svg>

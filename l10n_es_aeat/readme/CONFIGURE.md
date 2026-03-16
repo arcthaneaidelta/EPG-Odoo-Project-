@@ -19,7 +19,7 @@ impuestos.
 
 ADVERTENCIA: Debido a que se utiliza una sola tabla para almacenar las
 líneas de los impuestos de todos los modelos, hay una limitación en el
-ORM de Odoo cuando se coloca el campo one2many de dichas líneas
+ORM de System cuando se coloca el campo one2many de dichas líneas
 (tax_line_ids) como dependencia en la definición del cálculo de un campo
 (entrada con @api.depends), que recalcula los campos calculados de todos
 los modelos con el mismo ID que el del registro en curso, lo que puede

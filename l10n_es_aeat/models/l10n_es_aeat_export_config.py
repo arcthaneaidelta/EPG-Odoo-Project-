@@ -12,7 +12,7 @@ class AeatModelExportConfig(models.Model):
 
     name = fields.Char()
     model_number = fields.Char(size=3)
-    model_id = fields.Many2one(comodel_name="ir.model", string="Odoo model")
+    model_id = fields.Many2one(comodel_name="ir.model", string="System model")
     active = fields.Boolean(default=True)
     date_start = fields.Date(string="Starting date")
     date_end = fields.Date(string="Ending date")

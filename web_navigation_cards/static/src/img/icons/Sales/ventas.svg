@@ -1,0 +1,22 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#35D0FF"/>
+<stop offset="100%" stop-color="#0A4DFF"/>
+</linearGradient>
+<linearGradient id="euroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFFFFF"/>
+<stop offset="50%" stop-color="#7BE7FF"/>
+<stop offset="100%" stop-color="#0A7BFF"/>
+</linearGradient>
+</defs>
+<rect x="10" y="10" width="80" height="80" rx="18" fill="#FFFFFF" stroke="#D6E4FF" stroke-width="1.5"/>
+<rect x="26" y="60" width="10" height="12" rx="2" fill="url(#barGrad)"/>
+<rect x="40" y="52" width="10" height="20" rx="2" fill="url(#barGrad)"/>
+<rect x="54" y="42" width="10" height="30" rx="2" fill="url(#barGrad)"/>
+<rect x="68" y="32" width="10" height="40" rx="2" fill="url(#barGrad)"/>
+<line x1="26" y1="55" x2="72" y2="28" stroke="#7FE6FF" stroke-width="3" stroke-linecap="round"/>
+<polygon points="72,28 66,30 69,24" fill="#7FE6FF"/>
+<circle cx="73" cy="26" r="8" fill="#132754" stroke="url(#barGrad)" stroke-width="2"/>
+<text x="73" y="30" font-size="10" text-anchor="middle" fill="url(#euroGrad)" font-family="Arial" font-weight="bold">€</text>
+</svg>

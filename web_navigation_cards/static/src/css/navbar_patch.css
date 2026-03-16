@@ -3,3 +3,23 @@
 .o_main_navbar .o_menu_sections:not(.o_custom_menu_sections) {
     display: none !important;
 }
+
+/* Highlight the selected top-bar menu item — Dark mode */
+[data-bs-theme="dark"] .o_main_navbar .o_custom_menu_sections .o_nav_entry.o_nav_active_section,
+[data-bs-theme="dark"] .o_main_navbar .o_custom_menu_sections .o_nav_entry.o_nav_active_section:hover,
+[data-bs-theme="dark"] .o_main_navbar .o_custom_menu_sections .o_nav_entry.o_nav_active_section:focus {
+    background-color: #12234b !important;
+    color: #ffffff !important;
+    border-radius: 4px;
+    outline: none;
+}
+
+/* Highlight the selected top-bar menu item — Light mode */
+[data-bs-theme="light"] .o_main_navbar .o_custom_menu_sections .o_nav_entry.o_nav_active_section,
+[data-bs-theme="light"] .o_main_navbar .o_custom_menu_sections .o_nav_entry.o_nav_active_section:hover,
+[data-bs-theme="light"] .o_main_navbar .o_custom_menu_sections .o_nav_entry.o_nav_active_section:focus {
+    background-color: #f8f9fa !important;
+    color: #000000 !important;
+    border-radius: 4px;
+    outline: none;
+}

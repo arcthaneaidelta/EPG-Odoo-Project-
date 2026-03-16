@@ -40,6 +40,6 @@
         name="Tax Agency"
         action="aeat_tax_agency_action"
         sequence="1"
-        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        parent="account.menu_finance_entries"
     />
 </odoo>

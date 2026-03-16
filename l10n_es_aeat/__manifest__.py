@@ -17,12 +17,12 @@
     "Acysos S.L., "
     "AvanzOSC, "
     "Tecnativa, "
-    "Odoo Community Association (OCA)",
+    "OCA (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting & Finance",
     "development_status": "Mature",
-    "depends": ["l10n_es", "account_tax_balance"],
+    "depends": ["l10n_es", "account_tax_balance","om_account_accountant"],
     # odoo_test_helper is needed for the tests
     "external_dependencies": {"python": ["unidecode"]},
     "data": [

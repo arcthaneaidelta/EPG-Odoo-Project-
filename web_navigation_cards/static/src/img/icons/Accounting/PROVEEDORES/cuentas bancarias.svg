@@ -1,0 +1,24 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="accountGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#35D0FF"/>
+<stop offset="100%" stop-color="#0A4DFF"/>
+</linearGradient>
+</defs>
+<rect x="10" y="10" width="80" height="80" rx="18"
+fill="#FFFFFF" stroke="#D6E4FF" stroke-width="1.5"/>
+<rect x="24" y="28" width="52" height="44" rx="10"
+fill="url(#accountGrad)"/>
+<rect x="24" y="34" width="52" height="6" rx="3"
+fill="#163D7A" opacity="0.9"/>
+<text x="50" y="52" font-size="9.5"
+text-anchor="middle"
+fill="#FFFFFF"
+font-family="monospace"
+font-weight="bold">ES76 2100</text>
+<text x="50" y="64"
+font-size="9.5"
+text-anchor="middle"
+fill="#CFF6FF"
+font-family="monospace">1234 5678</text>
+</svg>

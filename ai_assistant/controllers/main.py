@@ -66,7 +66,7 @@ class AiAssistantController(http.Controller):
     
     def _get_record_context(self, model_name, record_id):
         """
-        Extract meaningful context from the current Odoo record.
+        Extract meaningful context from the current System record.
         """
         if not model_name or not record_id:
             return "No specific record is currently active. General context mode."
