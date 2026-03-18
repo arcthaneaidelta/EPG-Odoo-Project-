@@ -91,6 +91,26 @@
     }
 }
 
+.pt-3.pb-4.border-top:has(.o_doc_link) {
+    display: none;
+}
+
+.o_content.o_import_action.d-flex.h-100.overflow-auto {
+    color: black !important;
+}
+
+.o_import_data_sidepanel .pb-4 h4 {
+    color: black !important;
+}
+
+.o_import_data_sidepanel .mb-2.d-flex.align-items-center {
+    color: black !important;
+}
+
+.pt-3.pb-4.border-top h4 {
+    color: black !important;
+}
+
 
 // Removing the Generate lead button.
 .o_button_generate_leads {

@@ -1212,6 +1212,16 @@
         .datepicker-days thead tr th { color: #8aaac8 !important; background: #0a1428 !important; }
     }
 
+     .o_datetime_picker .o_text_sm {
+        background: #0a1428 !important;
+    }
+
+    
+    .btn-group > :not(.btn-check:first-child) + .btn, .btn-group > .btn-group:not(:first-child) {
+        margin-left: var(--btn-group-gap, var(--border-width));
+        background: #0a1428;
+        border: unset;
+    }
     // Color picker
     .o_colorlist {
         .o_colorlist_item_color { border-color: #1a2f5a !important; }

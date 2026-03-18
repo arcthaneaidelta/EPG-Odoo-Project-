@@ -49,5 +49,7 @@
     ],
     'application': True,
     'images': ['static/description/banner.gif'],
+    'post_init_hook': '_setup_module',
+    'post_migrate_hook': '_setup_module',
 }
 

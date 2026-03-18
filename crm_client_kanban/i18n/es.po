@@ -1,0 +1,114 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * crm_client_kanban
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-29 18:36+0000\n"
+"PO-Revision-Date: 2025-03-18 08:36+0000\n"
+"Last-Translator: Usman Dev <usman@example.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: crm_client_kanban
+msgid "+ New Deal"
+msgstr "+ Nuevo trato"
+
+#. module: crm_client_kanban
+msgid "Activity"
+msgstr "Actividad"
+
+#. module: crm_client_kanban
+msgid "Analysis of your client base."
+msgstr "Análisis de su base de clientes."
+
+#. module: crm_client_kanban
+msgid "Client Statistics"
+msgstr "Estadísticas de clientes"
+
+#. module: crm_client_kanban
+msgid "Commercial Activity"
+msgstr "Actividad Comercial"
+
+#. module: crm_client_kanban
+msgid "Contact History"
+msgstr "Historial de contactos"
+
+#. module: crm_client_kanban
+msgid "Contact Person"
+msgstr "Persona de contacto"
+
+#. module: crm_client_kanban
+msgid "Contacts"
+msgstr "Contactos"
+
+#. module: crm_client_kanban
+msgid "Edit"
+msgstr "Editar"
+
+#. module: crm_client_kanban
+msgid "False"
+msgstr "FALSO"
+
+#. module: crm_client_kanban
+msgid "History"
+msgstr "Historia"
+
+#. module: crm_client_kanban
+msgid "Manage your commercial follow-ups"
+msgstr "Gestiona tus seguimientos comerciales"
+
+#. module: crm_client_kanban
+msgid "No clients found. Create your first contact!"
+msgstr "No se encontraron clientes. ¡Crea tu primer contacto!"
+
+#. module: crm_client_kanban
+msgid "Reports"
+msgstr "Informes"
+
+#. module: crm_client_kanban
+msgid "Settings"
+msgstr "Ajustes"
+
+#. module: crm_client_kanban
+msgid "Total Calls"
+msgstr "Llamadas totales"
+
+#. module: crm_client_kanban
+msgid "Total Invoices"
+msgstr "Facturas totales"
+
+#. module: crm_client_kanban
+msgid "Total Meetings"
+msgstr "Total de reuniones"
+
+#. module: crm_client_kanban
+msgid "Total Sales"
+msgstr "Ventas totales"
+
+#. module: crm_client_kanban
+msgid "activity"
+msgstr "actividad"
+
+#. module: crm_client_kanban
+msgid "este mes"
+msgstr "este mes"
+
+#. module: crm_client_kanban
+msgid "graph"
+msgstr "gráfico"
+
+#. module: crm_client_kanban
+msgid "kanban,list,form,activity"
+msgstr "Kanban, lista, formulario, actividad"
+
+#. module: crm_client_kanban
+msgid "list,form"
+msgstr "lista, formulario"
+

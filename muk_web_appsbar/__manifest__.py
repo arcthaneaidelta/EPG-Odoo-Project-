@@ -85,6 +85,7 @@
 
             'muk_web_appsbar/static/src/webclient/theme_toggle/theme_toggle.js',
             'muk_web_appsbar/static/src/webclient/theme_toggle/theme_toggle.xml',
+            'muk_web_appsbar/static/src/xml/import_override.xml',
         ],
     },
     'images': [

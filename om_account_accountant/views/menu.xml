@@ -42,13 +42,26 @@
         <field name="groups_id" eval="[(5, 0, 0)]"/>
     </record>
 
+    <record id="base.menu_view_base_import_language" model="ir.ui.menu">  <!-- Import Translations -->
+        <field name="parent_id" ref="base.menu_translation"/>
+    </record>
+    <record id="base.menu_wizard_lang_export" model="ir.ui.menu">  <!-- Export Translations -->
+        <field name="parent_id" ref="base.menu_translation"/>
+    </record>
+
+
+    
+
 
     <!--               Accounting Module's Menu Changes               -->
     <record id="account.menu_finance_receivables" model="ir.ui.menu"> <!-- Customer changes to Invoices -->
         <field name="name">Invoices</field>
     </record>
+    <record id="account.menu_board_journal_1" model="ir.ui.menu"> <!-- Dashboard changes to Statistics -->
+        <field name="name">Statistics</field>
+    </record>
     <record id="account.menu_finance_payables" model="ir.ui.menu"> <!-- Vendor changes to Payments and Banks -->
-        <field name="name">Payments</field>
+        <field name="name">Payment Control</field>
     </record>
     <record id="account.menu_finance_reports" model="ir.ui.menu"> <!-- Reporting changes to Reports -->
         <field name="name">Reports</field>
@@ -101,6 +114,60 @@
 
     <!-- Menus and SubMenus Removed-->
     <record id="account.product_product_menu_sellable" model="ir.ui.menu"> <!-- Customers/Product Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="base.menu_translation_export" model="ir.ui.menu"> <!-- Translations/(Import/Export) Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="mail.mail_menu_technical" model="ir.ui.menu"> <!-- Technical/Discuss Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="date_range.menu_date_range" model="ir.ui.menu"> <!-- Technical/Date Ranges Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="mail.menu_mail_activities_section" model="ir.ui.menu"> <!-- Technical/Activities Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="phone_validation.phone_menu_main" model="ir.ui.menu"> <!-- Technical/(Phone/SMS) Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="iap.iap_root_menu" model="ir.ui.menu"> <!-- Technical/IAP Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="base.next_id_2" model="ir.ui.menu"> <!-- Technical/User Interface Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="base.next_id_9" model="ir.ui.menu"> <!-- Technical/Database Structure Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="base.menu_automation" model="ir.ui.menu"> <!-- Technical/Automation Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="base.reporting_menuitem" model="ir.ui.menu"> <!-- Technical/Reporting Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="base.next_id_5" model="ir.ui.menu"> <!-- Technical/Sequences & Identifiers Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="base.menu_ir_property" model="ir.ui.menu"> <!-- Technical/Parameters Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="privacy_lookup.privacy_menu" model="ir.ui.menu"> <!-- Technical/Privacy Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="resource.menu_resource_config" model="ir.ui.menu"> <!-- Technical/Resource Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="base.menu_email" model="ir.ui.menu"> <!-- Technical/Email Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="base.menu_security" model="ir.ui.menu"> <!-- Technical/Security Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="calendar.menu_calendar_configuration" model="ir.ui.menu"> <!-- Technical/Calendar Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="base.next_id_6" model="ir.ui.menu"> <!-- Technical/Actions Removed -->
         <field name="active">False</field>
     </record>
     <record id="account.menu_action_account_payments_receivable" model="ir.ui.menu"> <!-- Customers/Payments Removed -->

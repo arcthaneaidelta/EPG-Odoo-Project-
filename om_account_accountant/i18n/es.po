@@ -16,6 +16,32 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: om_account_accountant
+#: model:ir.actions.act_window,name:account.open_account_journal_dashboard_kanban
+#: model:ir.ui.menu,name:account.menu_board_journal_1
+msgid "Dashboard"
+msgstr "Estadística"
+
+#. module: om_account_accountant
+#: model:ir.ui.menu,name:account.menu_finance_receivables
+msgid "Customers"
+msgstr "Facturas"
+
+#. module: om_account_accountant
+#: model:ir.ui.menu,name:account.menu_finance_payables
+msgid "Vendors"
+msgstr "Control de pagos"
+
+#. module: om_account_accountant
+#: model:ir.ui.menu,name:om_account_accountant.menu_account_banks
+msgid "Banks"
+msgstr "Bancos"
+
+#. module: om_account_accountant
+#: model:ir.ui.menu,name:account.menu_finance
+msgid "Billing"
+msgstr "Contabilidad"
+
+#. module: om_account_accountant
 #: model:ir.actions.act_window,name:om_account_accountant.action_account_group_action
 #: model:ir.ui.menu,name:om_account_accountant.menu_account_group
 msgid "Account Groups"

@@ -8,6 +8,7 @@
     "depends": ["crm", "web"],
     "data": [
         "views/crm_dashboard_menu.xml",
+        # "data/menu_order.xml",
     ],
     "images": [
         "static/description/icon.png",

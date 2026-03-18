@@ -10,7 +10,7 @@
             id="menu_crm_dashboard_custom"
             name="Dashboard"
             action="action_crm_dashboard"
-            sequence="1"
+            sequence="-1"
             web_icon="crm_dashboard,static/description/dashboard.svg"
         />
     </data>

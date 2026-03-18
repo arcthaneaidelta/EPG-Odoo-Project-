@@ -78,6 +78,7 @@
         background: #cbd3e4 !important;
     }
 
+
     // STATUS BAR
     .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none).o_arrow_button_current:disabled::before, .o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none).o_arrow_button_current:disabled::before, .o_field_statusbar > .o_statusbar_status > .o_arrow_button:not(.d-none):active:not(.o_last)::before, .o_field_statusbar_duration > .o_statusbar_status > .o_arrow_button:not(.d-none):active:not(.o_last)::before {
         background-color: #102d6d;

@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * muk_web_appsbar
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-29 18:36+0000\n"
+"PO-Revision-Date: 2025-03-18 08:36+0000\n"
+"Last-Translator: Usman Dev <usman@example.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: muk_web_appsbar
+msgid "AppsBar"
+msgstr "Barra de aplicaciones"
+
+#. module: muk_web_appsbar
+msgid "Coming Soon"
+msgstr "Muy pronto"
+
+#. module: muk_web_appsbar
+msgid "Edit"
+msgstr "Editar"
+
+#. module: muk_web_appsbar
+msgid "Field"
+msgstr "Campo"
+
+#. module: muk_web_appsbar
+msgid "Productividad Global"
+msgstr "Productividad Global"
+
+#. module: muk_web_appsbar
+msgid "SKU"
+msgstr "SKU"
+
+#. module: muk_web_appsbar
+msgid "Sales Price"
+msgstr "Precio de venta"
+
+#. module: muk_web_appsbar
+msgid "Set your own Logo for the appsbar"
+msgstr "Establece tu propio logotipo para la barra de aplicaciones"
+

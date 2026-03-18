@@ -1,0 +1,302 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-18 06:13+0000\n"
+"PO-Revision-Date: 2026-03-18 06:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: crm_base
+#: model:mail.template,body_html:crm_base.email_template_welcome_new_customer
+msgid ""
+"<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;\">\n"
+"                \n"
+"                <div style=\"background-color: #005082; padding: 25px; text-align: center;\">\n"
+"                    <h1 style=\"color: white; margin: 0; font-size: 24px;\">Bienvenido a EPG</h1>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"padding: 30px; background-color: #ffffff; border: 1px solid #ddd;\">\n"
+"                    <p style=\"font-size: 16px;\">Hola <strong><t t-out=\"object.name\"/></strong>,</p>\n"
+"                    \n"
+"                    <p>Gracias por completar este primer paso. Hemos recibido correctamente tu registro.</p>\n"
+"                    \n"
+"                    <p>Debido al alto volumen de solicitudes, nuestro equipo está atendiendo cada caso de forma individualizada para poder realizar un estudio personalizado, garantizando así la máxima calidad en el análisis.</p>\n"
+"                    \n"
+"                    <p>En breve nos pondremos en contacto contigo para informarte del estado de tu solicitud y los siguientes pasos a seguir.</p>\n"
+"                    \n"
+"                    <p style=\"margin-top: 30px;\">Gracias por tu confianza.</p>\n"
+"                    \n"
+"                    <p style=\"color: #005082; font-weight: bold;\">El equipo de Eficiencia y Productividad Global</p>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"background-color: #f4f4f4; padding: 15px; text-align: center; color: #777; font-size: 12px; border: 1px solid #ddd; border-top: none;\">\n"
+"                    <p style=\"margin: 0;\">© 2026 Eficiencia y Productividad Global S.L.U.</p>\n"
+"                    <p style=\"margin: 5px 0 0 0;\">C/ Lepant 270, Nexus Coworking, España</p>\n"
+"                </div>\n"
+"\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+#. module: crm_base
+#: model:mail.template,body_html:crm_base.email_template_new_lead_notification
+msgid ""
+"<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n"
+"                \n"
+"                <div style=\"background-color: #005082; padding: 20px; text-align: center;\">\n"
+"                    <h1 style=\"color: white; margin: 0;\">Notificación de Nuevo Lead</h1>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"padding: 20px; background-color: #f9f9f9;\">\n"
+"                    <h2 style=\"color: #005082;\">\n"
+"                        ¡Se ha creado un nuevo lead desde el sitio web!\n"
+"                    </h2>\n"
+"\n"
+"                    <table style=\"width: 100%; border-collapse: collapse; margin-top: 20px;\">\n"
+"\n"
+"                        <tr style=\"background-color: #f0f0f0;\">\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Asunto del Lead\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.name or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Nombre del Contacto\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.contact_name or object.visitor_name or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr style=\"background-color: #f0f0f0;\">\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Correo Electrónico\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.email_from or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Teléfono\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.phone or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr style=\"background-color: #f0f0f0;\">\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Empresa\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.partner_name or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Tipo de Origen\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.source_type or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr style=\"background-color: #f0f0f0;\">\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Descripción\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.description or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Fecha de Creación\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.create_date\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                    </table>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"background-color: #333; padding: 15px; text-align: center; color: white;\">\n"
+"                    <p style=\"margin: 0;\">\n"
+"                        Este es un mensaje automático generado por el sistema CRM.\n"
+"                    </p>\n"
+"                </div>\n"
+"\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+
+#. module: crm_base
+#: model:ir.ui.menu,name:crm.crm_menu_root
+msgid "CRM"
+msgstr "Pipeline"
+
+#. module: crm_base
+#: model:mail.template,name:crm_base.email_template_welcome_new_customer
+msgid "Bienvenida - Nuevo Cliente EPG"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__crm_lead__source_type__campaign
+msgid "Campaign"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__company_type__company
+msgid "Comapny"
+msgstr "Compañía"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__company
+msgid "Company"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__company_type
+#: model:ir.model.fields,field_description:crm_base.field_res_users__company_type
+msgid "Company Type"
+msgstr "Tipo de compañía"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.crm_lead_view_tree_opportunity_reporting_inherit
+msgid "Created On"
+msgstr ""
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.crm_lead_lost_view_form_inherited
+msgid "Enter the reason why this lead was lost"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__freelancer
+msgid "Freelancer"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_crm_lead_lost
+msgid "Get Lost Reason"
+msgstr "Obtener razón de pérdida"
+
+#. module: crm_base
+#: model:mail.template,subject:crm_base.email_template_welcome_new_customer
+msgid "Hemos recibido tu registro - Eficiencia y Productividad Global"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__individual
+msgid "Individual"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Lead/Oportunidad"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__crm_lead__source_type__manual
+msgid "Manual"
+msgstr ""
+
+#. module: crm_base
+#: model:mail.template,name:crm_base.email_template_new_lead_notification
+msgid "Notificación de Nuevo Lead"
+msgstr ""
+
+#. module: crm_base
+#: model:mail.template,subject:crm_base.email_template_new_lead_notification
+msgid "Nuevo lead creado: {{ object.name }}"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__other
+msgid "Others"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__company_type__person
+msgid "Private"
+msgstr "Individuo"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_users__sale_order_ids
+#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
+msgid "Referred Sales Orders"
+msgstr "Pedido de venta"
+
+#. module: crm_base
+#: model:ir.ui.menu,name:crm_base.menu_sales_sales_management
+msgid "Sales"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
+msgid "Sales Representative Info"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__sales_rep
+msgid "Sales representative"
+msgstr ""
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
+msgid "Total Commissions"
+msgstr ""
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
+msgid "Total Sales"
+msgstr ""
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_res_users
+msgid "User"
+msgstr "Usuario"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.crm_lead_form_saas
+msgid "WhatsApp"
+msgstr ""

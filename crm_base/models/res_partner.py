@@ -18,8 +18,8 @@ class ResPartner(models.Model):
 
     company_type = fields.Selection(
         selection=[
-            ("company", "Empresa"),
-            ("person", "Particular"),
+            ("company", "Comapny"),
+            ("person", "Private"),
         ]
     )
 

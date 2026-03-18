@@ -1,0 +1,198 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * ai_assistant
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-29 18:36+0000\n"
+"PO-Revision-Date: 2025-03-18 08:36+0000\n"
+"Last-Translator: Usman Dev <usman@example.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: ai_assistant
+msgid "AI Assistant"
+msgstr "Asistente de IA"
+
+#. module: ai_assistant
+msgid "AI Assistant Session"
+msgstr "Sesión de asistente de IA"
+
+#. module: ai_assistant
+msgid "AI Assistants"
+msgstr "Asistentes de IA"
+
+#. module: ai_assistant
+msgid "AI Message"
+msgstr "Mensaje de IA"
+
+#. module: ai_assistant
+msgid "AI Messages"
+msgstr "Mensajes de IA"
+
+#. module: ai_assistant
+msgid "AI Session Name"
+msgstr "Nombre de la sesión de IA"
+
+#. module: ai_assistant
+msgid "All Messages"
+msgstr "Todos los mensajes"
+
+#. module: ai_assistant
+msgid "Asistente Profesional"
+msgstr "Asistente Profesional"
+
+#. module: ai_assistant
+msgid "Asistente de IA"
+msgstr "Asistente de IA"
+
+#. module: ai_assistant
+msgid "Aviso:"
+msgstr "Aviso:"
+
+#. module: ai_assistant
+msgid "Clear History"
+msgstr "Borrar historial"
+
+#. module: ai_assistant
+msgid "Clear chat"
+msgstr "Borrar chat"
+
+#. module: ai_assistant
+msgid "Close"
+msgstr "Cerca"
+
+#. module: ai_assistant
+msgid "Conceptos generales de negocio"
+msgstr "Conceptos generales de negocio"
+
+#. module: ai_assistant
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: ai_assistant
+msgid "Conversation"
+msgstr "Conversación"
+
+#. module: ai_assistant
+msgid "Copy to clipboard"
+msgstr "Copiar al portapapeles"
+
+#. module: ai_assistant
+msgid "Create a parameter with key:"
+msgstr "Crea un parámetro con clave:"
+
+#. module: ai_assistant
+msgid "Create your first AI Assistant session"
+msgstr "Crea tu primera sesión de AI Assistant"
+
+#. module: ai_assistant
+msgid "Go to"
+msgstr "Ir a"
+
+#. module: ai_assistant
+msgid "Información de registros de System"
+msgstr "Información de registros del sistema"
+
+#. module: ai_assistant
+msgid "La IA está diseñada para ayudarle a trabajar mejor en su negocio, no como entretenimiento."
+msgstr "La IA está diseñada para ayudarle a trabajar mejor en su negocio, no como entretenimiento."
+
+#. module: ai_assistant
+msgid "My Sessions"
+msgstr "Mis Sesiones"
+
+#. module: ai_assistant
+msgid "Note:"
+msgstr "Nota:"
+
+#. module: ai_assistant
+msgid "Optimización de tareas en el CRM"
+msgstr "Optimización de tareas en el CRM"
+
+#. module: ai_assistant
+msgid "Pregúnteme"
+msgstr "Pregunteme"
+
+#. module: ai_assistant
+msgid "Presione Enter para enviar • Shift+Enter para nueva línea"
+msgstr "Presione Enter para enviar • Shift+Enter para nueva línea"
+
+#. module: ai_assistant
+msgid "Puedo ayudarle con:"
+msgstr "Puedo ayudarte con:"
+
+#. module: ai_assistant
+msgid "Retry last message"
+msgstr "Reintentar el último mensaje"
+
+#. module: ai_assistant
+msgid "Settings → Technical → Parameters → System Parameters"
+msgstr "Configuración → Técnico → Parámetros → Parámetros del sistema"
+
+#. module: ai_assistant
+msgid "Sistema"
+msgstr "sistema"
+
+#. module: ai_assistant
+msgid "Test AI"
+msgstr "Probar IA"
+
+#. module: ai_assistant
+msgid "The AI widget automatically appears in the bottom-right corner of your System interface."
+msgstr "El widget de IA aparece automáticamente en la esquina inferior derecha de la interfaz de su sistema."
+
+#. module: ai_assistant
+msgid "To use the AI Assistant, you need to configure:"
+msgstr "Para utilizar el Asistente AI, debe configurar:"
+
+#. module: ai_assistant
+msgid "Tú"
+msgstr "tú"
+
+#. module: ai_assistant
+msgid "and value:"
+msgstr "y valor:"
+
+#. module: ai_assistant
+msgid "list,form"
+msgstr "lista, formulario"
+
+#. module: ai_assistant
+msgid "your OpenAI API key"
+msgstr "su clave API de OpenAI"
+
+#. module: ai_assistant
+msgid "↩️"
+msgstr ""
+
+#. module: ai_assistant
+msgid "⚙️ AI Configuration"
+msgstr "⚙️ Configuración de IA"
+
+#. module: ai_assistant
+msgid "⚙️ Configure la clave API en los parámetros del sistema"
+msgstr "⚙️ Configure la clave API en los parámetros del sistema"
+
+#. module: ai_assistant
+msgid "⚙️ Necesita configuración"
+msgstr "⚙️ Necesita configuración"
+
+#. module: ai_assistant
+msgid "👤 User Question"
+msgstr "👤 Pregunta de usuario"
+
+#. module: ai_assistant
+msgid "🗑️"
+msgstr ""
+
+#. module: ai_assistant
+msgid "🤖 AI Response"
+msgstr "🤖 Respuesta de IA"
+

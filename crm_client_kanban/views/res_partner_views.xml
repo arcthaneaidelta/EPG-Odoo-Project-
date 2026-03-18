@@ -233,9 +233,83 @@
     </record>
 
 
+    <record id="action_contact_history" model="ir.actions.act_window">
+        <field name="name">Contact History</field>
+        <field name="res_model">mail.message</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('model','=','res.partner')]</field>
+        <field name="context">{'default_model': 'res.partner'}</field>
+    </record>
+
+    <record id="menu_contact_history" model="ir.ui.menu">
+        <field name="name">History</field>
+        <field name="parent_id" ref="contacts.menu_contacts"/>
+        <field name="sequence" eval="2"/>
+        <field name="action" ref="action_contact_history"/>
+    </record>
+
+
+
+    <record id="action_contacts_activity_management" model="ir.actions.act_window">
+        <field name="name">Commercial Activity</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">activity</field>
+        <field name="view_id" ref="mail.res_partner_view_activity"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage your commercial follow-ups
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_contacts_activities_root"
+              name="Activity"
+              parent="contacts.menu_contacts"
+              action="action_contacts_activity_management"
+              sequence="3"/>
+
+
+
+    <record id="action_report_partner_statistics" model="ir.actions.act_window">
+        <field name="name">Client Statistics</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">graph</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Analysis of your client base.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_contacts_reports_root"
+              name="Reports"
+              parent="contacts.menu_contacts"
+              action="action_report_partner_statistics"
+              sequence="4"/>
+
+
     <record id="contacts.res_partner_menu_contacts" model="ir.ui.menu"> <!-- Contacts/Contacts Removed-->
         <field name="active">False</field>
+    </record>
+
+    <record id="contacts.res_partner_menu_config" model="ir.ui.menu"> <!-- Configuration changes to Settings -->
+        <field name="name">Settings</field>
+    </record>
+    <record id="contacts.res_partner_menu_config" model="ir.ui.menu"> <!-- Configuration changes to Settings -->
+        <field name="sequence">10</field>
     </record> 
+
+    
+    <record id="contacts.menu_country_partner" model="ir.ui.menu">  <!-- Configuartion/Countries -->
+        <field name="parent_id" ref="contacts.res_partner_menu_config"/>
+    </record>
+    <record id="contacts.menu_country_state_partner" model="ir.ui.menu">  <!-- Configuartion/Fed. States -->
+        <field name="parent_id" ref="contacts.res_partner_menu_config"/>
+    </record>
+    <record id="contacts.menu_country_group" model="ir.ui.menu">  <!-- Configuartion/Country Group -->
+        <field name="parent_id" ref="contacts.res_partner_menu_config"/>
+    </record>
+
 
     <!--
         3. Add a menu item under Contacts that opens the dark kanban view.
@@ -244,7 +318,7 @@
     -->
     <menuitem
         id="menu_contacts_dark_kanban"
-        name="Profiles"
+        name="Contacts"
         parent="contacts.menu_contacts"
         action="action_contacts_dark_kanban"
         sequence="0"/>

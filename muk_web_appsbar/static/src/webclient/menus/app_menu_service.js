@@ -1,127 +1,89 @@
 import { registry } from "@web/core/registry";
 import { user } from "@web/core/user";
-
 import { computeAppsAndMenuItems, reorderApps } from "@web/webclient/menus/menu_helpers";
 
 export const appMenuService = {
     dependencies: ["menu"],
     async start(env, { menu }) {
         return {
-        	getCurrentApp () {
-        		return menu.getCurrentApp();
-        	},
-        	getAppsMenuItems() {
-				const menuItems = computeAppsAndMenuItems(
-					menu.getMenuAsTree('root')
-				)
-				let apps = menuItems.apps;
-				const menuConfig = JSON.parse(
-					user.settings?.homemenu_config || 'null'
-				);
-				if (menuConfig) {
+            getCurrentApp() {
+                return menu.getCurrentApp();
+            },
+            getAppsMenuItems() {
+                const menuItems = computeAppsAndMenuItems(
+                    menu.getMenuAsTree('root')
+                );
+                let apps = menuItems.apps;
+                const menuConfig = JSON.parse(
+                    user.settings?.homemenu_config || 'null'
+                );
+                if (menuConfig) {
                     reorderApps(apps, menuConfig);
-				}
-				
-				// Add placeholder apps for Dashboard, Documents and Training
-				const placeholderApps = [
-					// {
-					// 	id: 'placeholder_dashboard',
-					// 	label: 'Dashboard',
-					// 	xmlid: 'placeholder.dashboard',
-					// 	webIconData: '/base/static/description/icon.png', // You can replace with custom icon
-					// 	href: '#',
-					// 	actionID: null,
-					// 	isPlaceholder: true,
-					// 	order: 0
-					// },
-					{
-						id: 'placeholder_documents',
-						label: 'Documents',
-						xmlid: 'placeholder.documents',
-						webIconData: '/base/static/description/icon.png', // You can replace with custom icon
-						href: '#',
-						actionID: null,
-						isPlaceholder: true,
-						order: 5
-					},
-					{
-						id: 'placeholder_training',
-						label: 'Training',
-						xmlid: 'placeholder.training',
-						webIconData: '/base/static/description/icon.png', // You can replace with custom icon
-						href: '#',
-						actionID: null,
-						isPlaceholder: true,
-						order: 6
-					}
-				];
-				
-				// Define custom order mapping
-				const customOrder = {
-					'Dashboard': 0,
-					'crm_dashboard': 0,
-					'Contacts': 1,
-					'contacts': 1, // lowercase variant
-					'Pipeline': 2,
-					'pipeline': 2, // lowercase variant
-					'Sales': 3,
-					'sales': 3, // lowercase variant
-					'Accounting': 4,
-					'accounting': 4, // lowercase variant
-					'Invoicing': 4, // Alternative name for accounting
-					'invoicing': 4,
-					'placeholder_documents': 5,
-					'placeholder_training': 6,
-					'AI Assistant': 7,
-					'ai_assistant': 7,
-					'Real Estate': 8, 
-					'real_estate_crm': 8, // lowercase variant
-					'Website': 9,
-					'website': 9, // lowercase variant
-					'Settings': 10,
-					'settings': 10, // lowercase variant
-					'Apps': 11,
-					'apps': 11 // lowercase variant
-				};
-				
-				// Assign order to existing apps
-				apps = apps.map(app => {
-					const appLabel = app.label || '';
-					const appXmlId = app.xmlid || '';
-					
-					// Try to find order by label or xmlid
-					let order = customOrder[appLabel] ?? customOrder[appLabel.toLowerCase()];
-					
-					// If not found by label, try xmlid
-					if (order === undefined) {
-						const xmlIdParts = appXmlId.split('.');
-						const lastPart = xmlIdParts[xmlIdParts.length - 1];
-						order = customOrder[lastPart] ?? customOrder[lastPart.toLowerCase()];
-					}
-					
-					// Default order if not found
-					if (order === undefined) {
-						order = 999;
-					}
-					
-					return { ...app, order };
-				});
-				
-				// Combine placeholder apps with real apps
-				apps = [...placeholderApps, ...apps];
-				
-				// Sort by order
-				apps.sort((a, b) => a.order - b.order);
-				
-        		return apps;
-			},
-			selectApp(app) {
-				// Don't select placeholder apps
-				if (app.isPlaceholder) {
-					return;
-				}
-				menu.selectMenu(app);
-			}
+                }
+
+                // Placeholder apps
+                const placeholderApps = [
+                    {
+                        id: 'placeholder_documents',
+                        label: 'Documents',
+                        xmlid: 'placeholder.documents',
+                        webIconData: '/base/static/description/icon.png',
+                        href: '#',
+                        actionID: null,
+                        isPlaceholder: true,
+                        order: 5
+                    },
+                    {
+                        id: 'placeholder_training',
+                        label: 'Training',
+                        xmlid: 'placeholder.training',
+                        webIconData: '/base/static/description/icon.png',
+                        href: '#',
+                        actionID: null,
+                        isPlaceholder: true,
+                        order: 6
+                    }
+                ];
+
+                // ✅ xmlid based order — never changes with language
+                const customOrderByXmlId = {
+                    'crm_dashboard.menu_crm_dashboard_custom': 0,
+                    'crm.crm_menu_root': 1,
+                    'contacts.menu_contacts': 2,
+                    'sale.sale_menu_root': 3,
+                    'account.menu_finance': 4,
+                    'placeholder.documents': 5,
+                    'placeholder.training': 6,
+                    'ai_assistant.menu_ai_assistant_root': 7,
+                    'website.menu_website_configuration': 9,
+                    'base.menu_administration': 10,
+                    'base.menu_management': 11,
+                };
+
+                // Assign order using xmlid only
+                apps = apps.map(app => {
+                    const appXmlId = app.xmlid || '';
+                    let order = customOrderByXmlId[appXmlId];
+
+                    if (order === undefined) {
+                        order = 999;
+                    }
+
+                    return { ...app, order };
+                });
+
+                // Combine and sort
+                apps = [...placeholderApps, ...apps];
+                apps.sort((a, b) => a.order - b.order);
+
+                return apps;
+            },
+            selectApp(app) {
+                if (app.isPlaceholder) {
+                    return;
+                }
+                menu.selectMenu(app);
+            }
         };
     },
 };
