@@ -5,4 +5,12 @@
             <th scope="col">Field</th>
         </xpath>
     </t>
+
+    <t t-inherit="web.FormStatusIndicator" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o_form_button_save')]/i" position="replace">
+            Save
+        </xpath>
+    </t>
 </templates>
+
+

@@ -222,6 +222,17 @@
         border-left: 1px solid #c9d6e8 !important;
         border-right: 2px solid #c9d6e8 !important;
     }
+
+    /* Save button */
+    .o_form_button_save {
+        color: white !important;
+        background: #0088ff !important;
+
+        &:hover {
+            background: #0066cc !important;
+            color: white !important;
+        }
+    }
 }
 
 // =============================================================================
