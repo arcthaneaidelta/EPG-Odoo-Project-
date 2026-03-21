@@ -11,7 +11,7 @@
             name="Dashboard"
             action="action_dashboard"
             sequence="-1"
-            web_icon="dashboard,static/description/icon.png"
+            web_icon="dashboard,static/description/dashboard.svg"
         />
     </data>
 </odoo>
