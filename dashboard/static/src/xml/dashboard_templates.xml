@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="dashboard.DashboardTemplate" owl="1">
+        <div class="o_content dashboard_root">
+            <section class="crm_dash_main">
+                <div class="crm_dash_layout">
+                    <aside class="crm_dash_side_nav">
+                        <div class="crm_dash_side_nav_title">Sections</div>
+                        <button type="button" class="crm_dash_side_nav_btn" t-on-click="() => this.onSideNavClick('section-overview')">
+                            <i class="fa fa-th-large"/>
+                            <span>Overview</span>
+                        </button>
+                        <button type="button" class="crm_dash_side_nav_btn" t-on-click="() => this.onSideNavClick('section-sales')">
+                            <i class="fa fa-line-chart"/>
+                            <span>Sales</span>
+                        </button>
+                        <button type="button" class="crm_dash_side_nav_btn" t-on-click="() => this.onSideNavClick('section-revenue')">
+                            <i class="fa fa-money"/>
+                            <span>Revenue KPIs</span>
+                        </button>
+                        <button type="button" class="crm_dash_side_nav_btn" t-on-click="() => this.onSideNavClick('section-clients')">
+                            <i class="fa fa-users"/>
+                            <span>Client KPIs</span>
+                        </button>
+                        <button type="button" class="crm_dash_side_nav_btn" t-on-click="() => this.onSideNavClick('section-commercial')">
+                            <i class="fa fa-briefcase"/>
+                            <span>Commercial KPIs</span>
+                        </button>
+                        <button type="button" class="crm_dash_side_nav_btn" t-on-click="() => this.onSideNavClick('section-financial')">
+                            <i class="fa fa-university"/>
+                            <span>Financial KPIs</span>
+                        </button>
+                        <button type="button" class="crm_dash_side_nav_btn" t-on-click="() => this.onSideNavClick('section-activity')">
+                            <i class="fa fa-clock-o"/>
+                            <span>Recent Activity</span>
+                        </button>
+                        <button type="button" class="crm_dash_side_nav_btn" t-on-click="() => this.onSideNavClick('section-alerts')">
+                            <i class="fa fa-bell"/>
+                            <span>Alerts</span>
+                        </button>
+                    </aside>
+
+                    <div class="crm_dash_content">
+                        <section class="crm_dash_filters">
+                            <label class="crm_dash_filter_field crm_dash_search">
+                                <span>Search</span>
+                                <input
+                                    type="text"
+                                    placeholder="Search leads, clients, orders, invoices"
+                                    t-att-value="state.search"
+                                    t-on-input="onSearchInput"
+                                    t-on-keydown="onSearchKeydown"
+                                />
+                            </label>
+                            <label class="crm_dash_filter_field">
+                                <span>From</span>
+                                <input
+                                    type="date"
+                                    t-att-value="state.rangeStart"
+                                    t-on-change="onRangeStartChange"
+                                />
+                            </label>
+                            <label class="crm_dash_filter_field">
+                                <span>To</span>
+                                <input
+                                    type="date"
+                                    t-att-value="state.rangeEnd"
+                                    t-on-change="onRangeEndChange"
+                                />
+                            </label>
+                        </section>
+
+                <section class="crm_dash_top_strip" id="section-overview">
+                    <header class="crm_dash_header">
+                        <div class="crm_dash_header_chips_wrap">
+                            <div class="crm_dash_header_chips">
+                                <div class="crm_dash_chip">
+                                    <strong t-esc="state.data.recentActivity.length"/>
+                                    <span>Recent Events</span>
+                                </div>
+                                <div class="crm_dash_chip">
+                                    <strong t-esc="state.data.alerts.length"/>
+                                    <span>Open Alerts</span>
+                                </div>
+                                <div class="crm_dash_chip">
+                                    <strong t-esc="state.data.topClients.length"/>
+                                    <span>Top Clients</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="crm_dash_header_side">
+                            <div class="crm_dash_export_actions">
+                                <button type="button" class="crm_dash_export_btn" t-on-click="onRefreshClick">
+                                    Refresh
+                                </button>
+                                <button type="button" class="crm_dash_export_btn" t-on-click="onExportPDF">
+                                    Export PDF
+                                </button>
+                                <button type="button" class="crm_dash_export_btn" t-on-click="onExportExcel">
+                                    Export Excel
+                                </button>
+                            </div>
+                        </div>
+                    </header>
+
+                    <t t-if="state.data.quickStats.length">
+                        <div class="crm_dash_stat_grid">
+                            <t t-foreach="state.data.quickStats" t-as="stat" t-key="stat.key">
+                                <button
+                                    type="button"
+                                    t-att-class="'crm_dash_stat_card crm_dash_stat_' + stat.accent + (stat.actionable ? ' crm_dash_clickable' : '')"
+                                    t-on-click="() => this.onQuickStatClick(stat)"
+                                >
+                                    <div class="crm_dash_stat_row">
+                                        <div class="crm_dash_stat_text">
+                                            <span class="crm_dash_stat_label" t-esc="stat.label"/>
+                                            <strong class="crm_dash_stat_value" t-esc="stat.valueLabel"/>
+                                        </div>
+                                        <svg
+                                            class="crm_dash_stat_spark"
+                                            viewBox="0 0 100 24"
+                                            preserveAspectRatio="none"
+                                        >
+                                            <polyline
+                                                fill="none"
+                                                stroke-width="2.2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                t-att-points="stat.sparklinePath"
+                                                t-att-stroke="stat.sparklineColor"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <small class="crm_dash_stat_note" t-esc="stat.note"/>
+                                </button>
+                            </t>
+                        </div>
+                    </t>
+
+                    <div class="crm_dash_charts_row">
+                        <article id="section-sales" class="crm_dash_chart_panel crm_dash_chart_sales_panel">
+                            <div class="crm_dash_chart_head">
+                                <h3>Sales</h3>
+                                <div class="crm_dash_chart_peak">
+                                    <strong t-esc="state.data.charts.sales.peakValueLabel"/>
+                                    <small t-esc="state.data.charts.sales.peakLabel"/>
+                                </div>
+                            </div>
+
+                            <div class="crm_dash_sales_body">
+                                <div class="crm_dash_sales_y_axis">
+                                    <span t-esc="state.data.charts.sales.maxLabel"/>
+                                    <span t-esc="state.data.charts.sales.midLabel"/>
+                                    <span>0</span>
+                                </div>
+
+                                <div class="crm_dash_sales_plot">
+                                    <div class="crm_dash_sales_canvas">
+                                        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                                            <polyline
+                                                class="crm_dash_sales_line"
+                                                fill="none"
+                                                stroke-width="1.8"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                t-att-points="state.data.charts.sales.polyline"
+                                            />
+                                            <t
+                                                t-foreach="state.data.charts.sales.points"
+                                                t-as="point"
+                                                t-key="point.id"
+                                            >
+                                                <circle
+                                                    class="crm_dash_sales_point"
+                                                    t-att-cx="point.x"
+                                                    t-att-cy="point.y"
+                                                    r="1.3"
+                                                />
+                                            </t>
+                                        </svg>
+                                    </div>
+                                    <div class="crm_dash_sales_x_axis">
+                                        <t
+                                            t-foreach="state.data.charts.sales.points"
+                                            t-as="point"
+                                            t-key="'axis_' + point.id"
+                                        >
+                                            <span t-esc="point.label"/>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="crm_dash_chart_panel crm_dash_chart_won_panel">
+                            <div class="crm_dash_chart_head">
+                                <h3>Leads vs Won</h3>
+                            </div>
+                            <div class="crm_dash_won_body">
+                                <div
+                                    class="crm_dash_won_donut"
+                                    t-att-style="'--won-ratio:' + state.data.charts.leadsVsWon.wonRatio + ';'"
+                                >
+                                    <span t-esc="state.data.charts.leadsVsWon.wonRateLabel"/>
+                                </div>
+                                <div class="crm_dash_won_stats">
+                                    <div>
+                                        <span>Total Leads</span>
+                                        <strong t-esc="state.data.charts.leadsVsWon.totalLeads"/>
+                                    </div>
+                                    <div>
+                                        <span>Total Won</span>
+                                        <strong t-esc="state.data.charts.leadsVsWon.totalWon"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <t t-if="state.loading">
+                    <div class="crm_dash_loading">Updating dashboard KPIs...</div>
+                </t>
+
+                <div class="crm_dash_groups">
+                    <t t-foreach="state.data.kpiGroups" t-as="group" t-key="group.id">
+                        <article
+                            t-att-id="'section-' + (group.key || group.id || '')"
+                            t-att-class="'crm_dash_group_panel crm_dash_group_' + group.key"
+                        >
+                            <div class="crm_dash_group_head">
+                                <div class="crm_dash_group_title_row">
+                                    <h2 t-esc="group.title"/>
+                                    <span class="crm_dash_group_chip" t-esc="(group.key || '').toUpperCase()"/>
+                                </div>
+                                <p t-esc="group.description"/>
+                            </div>
+
+                            <div class="crm_dash_metric_grid">
+                                <t t-foreach="group.metrics" t-as="metric" t-key="metric.id">
+                                    <button
+                                        type="button"
+                                        t-att-class="'crm_dash_metric_card' + (metric.actionable ? ' crm_dash_clickable' : '')"
+                                        t-on-click="() => this.onMetricClick(metric)"
+                                    >
+                                        <div class="crm_dash_metric_top">
+                                            <span class="crm_dash_metric_label" t-esc="metric.label"/>
+                                            <span class="crm_dash_metric_type" t-esc="metric.value_type || 'value'"/>
+                                        </div>
+                                        <strong class="crm_dash_metric_value" t-esc="metric.formattedValue"/>
+                                        <small
+                                            t-if="metric.detailLabel"
+                                            t-att-class="'crm_dash_metric_sub' + (metric.trendClass ? ' crm_dash_metric_sub_' + metric.trendClass : '')"
+                                            t-esc="metric.detailLabel"
+                                        />
+                                    </button>
+                                </t>
+                            </div>
+
+                            <t t-if="group.key === 'clients'">
+                                <div class="crm_dash_subpanel">
+                                    <div class="crm_dash_subpanel_head">Top Clients Ranking (by revenue)</div>
+                                    <t t-if="state.data.topClients.length">
+                                        <ul class="crm_dash_top_clients">
+                                            <t t-foreach="state.data.topClients" t-as="client" t-key="client.id">
+                                                <li>
+                                                    <button
+                                                        type="button"
+                                                        class="crm_dash_top_client_item crm_dash_clickable"
+                                                        t-on-click="() => this.onTopClientClick(client)"
+                                                    >
+                                                        <span class="crm_dash_rank" t-esc="client.rank"/>
+                                                        <span class="crm_dash_client_name" t-esc="client.name"/>
+                                                        <strong t-esc="client.revenueLabel"/>
+                                                    </button>
+                                                </li>
+                                            </t>
+                                        </ul>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="crm_dash_empty_note">No client revenue data for this date range.</div>
+                                    </t>
+                                </div>
+                            </t>
+
+                            <t t-if="group.key === 'financial'">
+                                <div class="crm_dash_subpanel crm_dash_income_box">
+                                    <div class="crm_dash_subpanel_head">Income vs. Expenses</div>
+                                    <div class="crm_dash_income_values">
+                                        <div>
+                                            <span>Income</span>
+                                            <strong t-esc="state.data.incomeVsExpenses.incomeLabel"/>
+                                        </div>
+                                        <div>
+                                            <span>Expenses</span>
+                                            <strong t-esc="state.data.incomeVsExpenses.expensesLabel"/>
+                                        </div>
+                                        <div>
+                                            <span>Balance</span>
+                                            <strong t-esc="state.data.incomeVsExpenses.balanceLabel"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </article>
+                    </t>
+                </div>
+
+                <div class="crm_dash_bottom_grid">
+                    <article id="section-activity" class="crm_dash_bottom_panel">
+                        <div class="crm_dash_panel_title">Recent Activity</div>
+                        <t t-if="state.data.recentActivity.length">
+                            <ul class="crm_dash_activity_list">
+                                <t t-foreach="state.data.recentActivity" t-as="item" t-key="item.id">
+                                    <li>
+                                        <button
+                                            type="button"
+                                            class="crm_dash_activity_item crm_dash_clickable"
+                                            t-on-click="() => this.onActivityClick(item)"
+                                        >
+                                            <div class="crm_dash_activity_main">
+                                                <strong t-esc="item.title"/>
+                                                <span t-esc="item.subtitle"/>
+                                            </div>
+                                            <div class="crm_dash_activity_meta">
+                                                <span t-esc="item.client || '-'"/>
+                                                <span t-esc="item.department || '-'"/>
+                                                <time t-esc="item.dateLabel"/>
+                                            </div>
+                                        </button>
+                                    </li>
+                                </t>
+                            </ul>
+                        </t>
+                        <t t-else="">
+                            <div class="crm_dash_empty_note">No recent activity found.</div>
+                        </t>
+                    </article>
+
+                    <article id="section-alerts" class="crm_dash_bottom_panel">
+                        <div class="crm_dash_panel_title">Alerts</div>
+                        <t t-if="state.data.alerts.length">
+                            <ul class="crm_dash_alert_list">
+                                <t t-foreach="state.data.alerts" t-as="alert" t-key="alert.id">
+                                    <li>
+                                        <button
+                                            type="button"
+                                            t-att-class="'crm_dash_alert_item crm_dash_alert_' + alert.severityClass + (alert.actionable ? ' crm_dash_clickable' : '')"
+                                            t-on-click="() => this.onAlertClick(alert)"
+                                        >
+                                            <div class="crm_dash_alert_top">
+                                                <span t-esc="alert.label"/>
+                                                <strong t-esc="alert.valueLabel"/>
+                                            </div>
+                                            <small t-esc="alert.note || ''"/>
+                                        </button>
+                                    </li>
+                                </t>
+                            </ul>
+                        </t>
+                        <t t-else="">
+                            <div class="crm_dash_empty_note">No alerts right now.</div>
+                        </t>
+                    </article>
+                </div>
+
+                <div class="crm_dash_scroll_rail" aria-label="Page scroll controls">
+                    <button
+                        type="button"
+                        class="crm_dash_scroll_btn"
+                        title="Scroll up"
+                        t-on-click="scrollToTop"
+                    >
+                        <i class="fa fa-chevron-up"/>
+                    </button>
+                    <button
+                        type="button"
+                        class="crm_dash_scroll_btn"
+                        title="Scroll down"
+                        t-on-click="scrollToBottom"
+                    >
+                        <i class="fa fa-chevron-down"/>
+                    </button>
+                </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </t>
+</templates>

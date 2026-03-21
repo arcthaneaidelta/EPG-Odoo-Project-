@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <record id="crm.crm_menu_root" model="ir.ui.menu">
-            <field name="sequence">0</field>
+            <field name="sequence">1</field>
         </record>
     </data>
 </odoo>

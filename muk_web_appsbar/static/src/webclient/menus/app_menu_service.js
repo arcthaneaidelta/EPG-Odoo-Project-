@@ -47,7 +47,7 @@ export const appMenuService = {
 
                 // ✅ xmlid based order — never changes with language
                 const customOrderByXmlId = {
-                    'crm_dashboard.menu_crm_dashboard_custom': 0,
+                    'dashboard.menu_dashboard_custom': 0,
                     'crm.crm_menu_root': 1,
                     'contacts.menu_contacts': 2,
                     'sale.sale_menu_root': 3,
