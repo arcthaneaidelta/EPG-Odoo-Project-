@@ -5,6 +5,14 @@ import { Component, onWillStart } from "@odoo/owl";
 
 // 🗂️ Keys are xmlids — unique and stable, no path collision possible
 const MENU_ICONS = {
+	//Contacts
+	"contacts.menu_partner_category_form": "/web_navigation_cards/static/src/img/icons/Contacts/etiquetas_contacto.svg",
+	"contacts.menu_country_group": "/web_navigation_cards/static/src/img/icons/Contacts/grupo_paises.svg",
+	"contacts.menu_country_partner": "/web_navigation_cards/static/src/img/icons/Contacts/paises.svg",
+	"contacts.menu_country_state_partner": "/web_navigation_cards/static/src/img/icons/Contacts/provincias.svg",
+	"contacts.res_partner_industry_menu": "/web_navigation_cards/static/src/img/icons/Contacts/sectores.svg",
+	"contacts.menu_partner_title_contact": "/web_navigation_cards/static/src/img/icons/Contacts/titulos_contacto.svg",
+
 	// Sales
 	"sale.menu_sale_order":              "/web_navigation_cards/static/src/img/icons/Sales/pedidos.svg",
 	"sale.menu_sale_order_invoice":      "/web_navigation_cards/static/src/img/icons/Sales/pedidos_a_facturar.svg",
@@ -28,11 +36,14 @@ const MENU_ICONS = {
 	"crm.menu_crm_opportunities":          "/web_navigation_cards/static/src/img/icons/CRM/mi_flujo.svg",
 	"crm.sales_team_menu_team_pipeline":          "/web_navigation_cards/static/src/img/icons/CRM/equipos.svg",
 	"sale_crm.sale_order_menu_quotations_crm":          "/web_navigation_cards/static/src/img/icons/CRM/mis_presupuestos.svg",
+	"crm.crm_config_settings_menu":          "/web_navigation_cards/static/src/img/icons/CRM/ajustes.svg",
+	"crm.crm_team_config":          "/web_navigation_cards/static/src/img/icons/CRM/equipos_ventas.svg",
 
 	//Accounting/Assets
 	"account_asset_management.account_asset_menu": "/web_navigation_cards/static/src/img/icons/Accounting/ACTIVOS/activos.svg",
 	"om_account_asset.menu_action_account_asset_asset_list_normal_purchase": "/web_navigation_cards/static/src/img/icons/Accounting/ACTIVOS/asset_category.svg",
 	"account_asset_management.wiz_account_asset_report_menu": "/web_navigation_cards/static/src/img/icons/Accounting/ACTIVOS/calcular_amortizaciones.svg",
+	"account_asset_management.account_asset_group_menu": "/web_navigation_cards/static/src/img/icons/Accounting/ACTIVOS/grupos_activo.svg",
 
 	//Accounting/Budgets
 	"om_account_budget.menu_budget_post_form": "/web_navigation_cards/static/src/img/icons/Accounting/ANALYTICS AND BUDGET/budgetary_positions.svg",
@@ -62,6 +73,7 @@ const MENU_ICONS = {
 	"accounting_pdf_reports.menu_action_account_moves_ledger_partner": "/web_navigation_cards/static/src/img/icons/Accounting/CONTABILIDAD/partner_ledger.svg",
 	"account.menu_action_account_form": "/web_navigation_cards/static/src/img/icons/Accounting/CONTABILIDAD/plan_contable.svg",
 	"accounting_pdf_reports.menu_account_reports": "/web_navigation_cards/static/src/img/icons/Accounting/CONTABILIDAD/reportes_cuenta.svg",
+	"account_reconcile_oca.account_account_reconcile_menu": "/web_navigation_cards/static/src/img/icons/Accounting/CONTABILIDAD/conciliar.svg",
 	
 	//Accounting/Taxes
 	"l10n_es_edi_facturae.menu_l10n_es_edi_facturae_root_certificates": "/web_navigation_cards/static/src/img/icons/Accounting/TAXES/certificados.svg",
@@ -84,6 +96,7 @@ const MENU_ICONS = {
 	"account_payment.payment_method_menu": "/web_navigation_cards/static/src/img/icons/Accounting/PROVEEDORES/metodos_pago.svg",
 	"account.menu_action_account_payments_payable": "/web_navigation_cards/static/src/img/icons/Accounting/PROVEEDORES/pagos.svg",
 	"account_payment.payment_provider_menu": "/web_navigation_cards/static/src/img/icons/Accounting/PROVEEDORES/proveedores de pago.svg",
+	"account.action_account_reconcile_model_menu": "/web_navigation_cards/static/src/img/icons/Accounting/PROVEEDORES/modelos_conciliacion.svg",
 
 	// Add more xmlids here...
 };
