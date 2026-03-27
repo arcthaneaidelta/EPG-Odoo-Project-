@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.url.replacer</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='user_default_rights']" position="before">
+                <block title="URL Substitution Configuration" id="url_replacement_setting_block">
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 mb-3">
+                            <label for="url_replace_enabled" class="me-2">
+                                Activate URL Substitution
+                            </label>
+                            <field name="url_replace_enabled"/>
+                            <div class="text-muted">
+                                Activate to replace '/odoo' in URLs.
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 mb-3" invisible="not url_replace_enabled">
+                            <label for="url_replace_text" class="me-2">
+                                Brand Name
+                            </label>
+                            <field name="url_replace_text" class="o_light_input" placeholder="e.g. brandname"/>
+                            <div class="text-muted">
+                                The name to replace '/odoo' with in URLs.
+                            </div>
+                        </div>
+                    </div>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
