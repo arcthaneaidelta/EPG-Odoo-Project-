@@ -275,9 +275,11 @@
                         <div class="pk-image-wrap">
                             <field name="image_128" widget="image" options="{'zoom': true, 'zoom_delay': 300}"/>
                         </div>
-                        <div class="pk-body">
-                            <div class="pk-name">
-                                <field name="name"/>
+                        <main class="pk-body">
+                            <div class="mb-1">
+                                <div class="pk-name">
+                                    <field name="name"/>
+                                </div>
                             </div>
                             <t t-if="record.default_code">
                                 <div class="pk-sku">
@@ -307,7 +309,8 @@
                                     </a>
                                 </t>
                             </div>
-                        </div>
+                        </main>
+                        <aside class="d-none"></aside>
                     </div>
                 </t>
             </xpath>

@@ -7,6 +7,15 @@
 // ==========================================
 // UNIVERSAL DARK-STYLE SIDEBAR (applies to all themes)
 // ==========================================
+.o_reward_msg_container {
+    display: none !important;
+}
+.o_reward_face_group {
+    display: none !important;
+}
+.o_reward_rainbow_man {
+    display: none !important;
+}
 .mk_apps_sidebar_panel {
     @include mk-disable-scrollbar();
     background: linear-gradient(90deg, #041424 0%, #152534 100%);
