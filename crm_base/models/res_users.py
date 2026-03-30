@@ -6,7 +6,27 @@ class ResUsers(models.Model):
 
 	referral_code = fields.Char(string="Sales Representative Code", copy=False, index=True)
 	is_sales_representative = fields.Boolean(string="Is Sales Representative")
+	commission_percentage = fields.Float(string="Commission (%)", default=10.0)
 	sale_order_ids = fields.One2many("sale.order", "user_id", string="Referred Sales Orders")
+	
+	company_currency_id = fields.Many2one(
+		related='company_id.currency_id',
+		string='Company Currency',
+		readonly=True
+	)
+	
+	total_commission_amount = fields.Monetary(
+		string="Total Commission",
+		compute="_compute_total_commission",
+		currency_field='company_currency_id'
+	)
+
+	@api.depends('sale_order_ids.commission_amount', 'sale_order_ids.state')
+	def _compute_total_commission(self):
+		for user in self:
+			# Only count confirmed/done orders if needed, for now all referring orders
+			confirmed_orders = user.sale_order_ids.filtered(lambda s: s.state in ('sale', 'done'))
+			user.total_commission_amount = sum(confirmed_orders.mapped('commission_amount'))
 
 
 

@@ -6,6 +6,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='other_information']/group/group[1]/field[@name='user_id']" position="after">
+                <field name="commission_percentage"/>
                 <field name="commission_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
             </xpath>
         </field>

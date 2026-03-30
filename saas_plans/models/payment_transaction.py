@@ -23,7 +23,7 @@ class PaymentTransaction(models.Model):
 
         # Process SaaS orders BEFORE calling super
         for transaction in self:
-            sale_orders = transaction.sale_order_ids.filtered(lambda so: so.saas_plan_id)
+            sale_orders = transaction.sale_order_ids.filtered(lambda so: so.saas_plan_id and so._is_saas_order())
             
             for order in sale_orders:
                 try:
@@ -66,11 +66,27 @@ class PaymentTransaction(models.Model):
         return res
     
     def _create_payment(self, **kwargs):
-        """Override to skip payment creation for SaaS orders (they don't need accounting payments)"""
-        # Check if this transaction is for a SaaS order
-        if self.sale_order_ids.filtered(lambda so: so.saas_plan_id):
-            _logger.info(f'Skipping payment creation for SaaS transaction {self.reference}')
+        """Override to skip payment creation ONLY for pure SaaS orders"""
+        # We only skip payment creation if ALL products in the order are SaaS products
+        # If there's even one standard product, we want a payment created for the transaction
+        is_pure_saas = True
+        for order in self.sale_order_ids:
+            if not order.saas_plan_id or not order._is_saas_order():
+                is_pure_saas = False
+                break
+            
+            # Additional check: are all lines SaaS products?
+            for line in order.order_line:
+                if not (line.product_id.default_code and line.product_id.default_code.startswith('SAAS_')):
+                    is_pure_saas = False
+                    break
+            
+            if not is_pure_saas:
+                break
+
+        if is_pure_saas and self.sale_order_ids:
+            _logger.info(f'Skipping payment creation for pure SaaS transaction {self.reference}')
             return self.env['account.payment']
         
-        # For non-SaaS orders, use default behavior
+        # For non-SaaS or mixed orders, use default behavior
         return super(PaymentTransaction, self)._create_payment(**kwargs)

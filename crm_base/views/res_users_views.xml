@@ -10,6 +10,9 @@
                     <group string="Sales Representative Info">
                         <field name="is_sales_representative"/>
                         <field name="referral_code" invisible="not is_sales_representative" required="is_sales_representative"/>
+                        <field name="commission_percentage" invisible="not is_sales_representative"/>
+                        <field name="company_currency_id" invisible="1"/>
+                        <field name="total_commission_amount" invisible="not is_sales_representative" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                     </group>
                 </xpath>
                 <xpath expr="//notebook" position="inside">

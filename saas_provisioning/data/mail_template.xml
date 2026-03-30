@@ -6,7 +6,7 @@
             <field name="name">SaaS Welcome Email</field>
             <field name="model_id" ref="saas_management.model_saas_subscription"/>
             <field name="subject">Welcome to EPG CRM - Access successfully activated 🎉</field>
-            <field name="email_from">{{ user.email or 'noreply@yourdomain.com' }}</field>
+            <field name="email_from">{{ (object.company_id.email or object.env.company.email or 'soporte@eficienciayproductividadglobal.com') }}</field>
             <field name="email_to">{{ object.partner_id.email }}</field>
             <field name="body_html" type="html">
                 <div style="margin: 0px; padding: 0px;">
@@ -130,7 +130,7 @@
                         addressee. If you have received this email in error, please notify us immediately and
                         delete it. This communication does not constitute a legally binding contract unless
                         explicitly stated. For questions about your subscription, please contact us at
-                        <t t-out="object.company_id.email or 'soporte@eficienciayproductividadglobal.com'"/>.
+                        <t t-out="object.company_id.email or object.env.company.email or 'soporte@eficienciayproductividadglobal.com'"/>.
                     </p>
 
                 </div>

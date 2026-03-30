@@ -27,6 +27,27 @@ class SaleOrder(models.Model):
 	# Auto-renewal preference
 	auto_renew = fields.Boolean(string='Auto-Renew Subscription', default=False, help='Automatically renew subscription when it expires')
 	
+	def _is_saas_order(self):
+		"""Check if the order contains at least one SaaS-related product"""
+		self.ensure_one()
+		return any(line.product_id.default_code and line.product_id.default_code.startswith('SAAS_') 
+				   for line in self.order_line)
+
+	def _cart_update(self, product_id=None, line_id=None, add_qty=0, set_qty=0, **kwargs):
+		"""Override to clear SaaS fields if SaaS products are removed from cart"""
+		res = super(SaleOrder, self)._cart_update(product_id=product_id, line_id=line_id, add_qty=add_qty, set_qty=set_qty, **kwargs)
+		
+		# If it was a SaaS order but no longer has SaaS products, clear the metadata
+		if self.saas_plan_id and not self._is_saas_order():
+			_logger.info(f"Clearing SaaS metadata for order {self.name} as SaaS products were removed from cart")
+			self.write({
+				'saas_plan_id': False,
+				'saas_company_name': False,
+				'saas_billing_cycle': False,
+				'auto_renew': False,
+			})
+		return res
+	
 	
 	def action_confirm(self):
 		"""Override to create subscription when order is confirmed"""
@@ -34,11 +55,11 @@ class SaleOrder(models.Model):
 		
 		# Create subscription for SaaS orders
 		for order in self:
-			if order.saas_plan_id and order.saas_company_name:
+			if order.saas_plan_id and order.saas_company_name and order._is_saas_order():
 				order._create_saas_subscription()
 			
 			# Automatic Invoicing for SaaS orders
-			if order.saas_plan_id:
+			if order.saas_plan_id and order._is_saas_order():
 				try:
 					# Create invoice
 					invoices = order._create_invoices()
@@ -55,6 +76,10 @@ class SaleOrder(models.Model):
 		self.ensure_one()
 		
 		try:
+			if not self._is_saas_order():
+				_logger.warning(f"Attempted to create SaaS subscription for order {self.name} but no SaaS products found.")
+				return False
+
 			# Check if this is an update (Renewal/Upgrade) to an existing subscription
 			# Use origin_id if set (explicit), otherwise check if we already created one (idempotency)
 			subscription = self.saas_subscription_origin_id or self.saas_subscription_id

@@ -19,6 +19,7 @@ class SaaSSubscription(models.Model):
 	# Customer Information
 	partner_id = fields.Many2one('res.partner', string='Customer', required=True, tracking=True)
 	company_name = fields.Char(string='Company Name', required=True, tracking=True)
+	company_id = fields.Many2one('res.company', string='Company', required=True, default=lambda self: self.env.company)
 	
 	# Plan Information
 	plan_id = fields.Many2one('saas.plan', string='Plan', required=True, tracking=True)
