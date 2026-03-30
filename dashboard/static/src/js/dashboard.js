@@ -23,6 +23,7 @@ const DEFAULT_DATA = {
         sales: {
             points: [],
             polyline: "",
+            forecastPolyline: "",
             maxLabel: "0",
             midLabel: "0",
             peakValueLabel: "0",
@@ -34,6 +35,8 @@ const DEFAULT_DATA = {
             wonRatio: 0,
             wonRateLabel: "0%",
         },
+        pipelineVelocity: [],
+        conversionByOrigin: [],
     },
     kpiGroups: [],
     topClients: [],
@@ -578,20 +581,21 @@ export class Dashboard extends Component {
             id: index,
             label: point.label || "",
             value: Number(point.value || 0),
+            forecast: Number(point.forecast || point.value || 0),
         }));
 
         const points = rawPoints.length
             ? rawPoints
             : [
-                  { id: 0, label: "Jan", value: 0 },
-                  { id: 1, label: "Feb", value: 0 },
-                  { id: 2, label: "Mar", value: 0 },
-                  { id: 3, label: "Apr", value: 0 },
-                  { id: 4, label: "May", value: 0 },
-                  { id: 5, label: "Jun", value: 0 },
+                  { id: 0, label: "Jan", value: 0, forecast: 0 },
+                  { id: 1, label: "Feb", value: 0, forecast: 0 },
+                  { id: 2, label: "Mar", value: 0, forecast: 0 },
+                  { id: 3, label: "Apr", value: 0, forecast: 0 },
+                  { id: 4, label: "May", value: 0, forecast: 0 },
+                  { id: 5, label: "Jun", value: 0, forecast: 0 },
               ];
 
-        const maxValue = Math.max(...points.map((point) => point.value), 0);
+        const maxValue = Math.max(...points.map((point) => Math.max(point.value, point.forecast)), 0);
         const safeMax = maxValue > 0 ? maxValue : 1;
         const chartTop = 8;
         const chartBottom = 92;
@@ -600,15 +604,20 @@ export class Dashboard extends Component {
         const normalizedPoints = points.map((point, index, list) => {
             const x = list.length === 1 ? 50 : (index / (list.length - 1)) * 100;
             const y = chartBottom - (point.value / safeMax) * chartHeight;
+            const forecastY = chartBottom - (point.forecast / safeMax) * chartHeight;
             return {
                 ...point,
                 x: Number(x.toFixed(2)),
                 y: Number(y.toFixed(2)),
+                forecastY: Number(forecastY.toFixed(2)),
                 valueLabel: this.formatCompactCurrency(point.value, currency),
+                forecastLabel: this.formatCompactCurrency(point.forecast, currency),
             };
         });
 
         const polyline = normalizedPoints.map((point) => `${point.x},${point.y}`).join(" ");
+        const forecastPolyline = normalizedPoints.map((point) => `${point.x},${point.forecastY}`).join(" ");
+        
         const peakPoint = normalizedPoints.reduce(
             (best, point) => (point.value > best.value ? point : best),
             normalizedPoints[0] || { value: 0, label: "", valueLabel: "0" }
@@ -619,10 +628,14 @@ export class Dashboard extends Component {
         const totalWon = Number(leadsVsWon.total_won || 0);
         const wonRatio = totalLeads ? Math.min(Math.max(totalWon / totalLeads, 0), 1) : 0;
 
+        const pipelineVelocity = (rawCharts && rawCharts.pipeline_velocity) || [];
+        const conversionByOrigin = (rawCharts && rawCharts.conversion_by_origin) || [];
+
         return {
             sales: {
                 points: normalizedPoints,
                 polyline,
+                forecastPolyline,
                 maxLabel: this.formatCompactCurrency(maxValue, currency),
                 midLabel: this.formatCompactCurrency(maxValue / 2, currency),
                 peakValueLabel: peakPoint.valueLabel || "0",
@@ -634,6 +647,11 @@ export class Dashboard extends Component {
                 wonRatio,
                 wonRateLabel: `${Math.round(wonRatio * 100)}%`,
             },
+            pipelineVelocity,
+            conversionByOrigin: conversionByOrigin.map(origin => ({
+                ...origin,
+                rateLabel: `${origin.rate}%`
+            })),
         };
     }
 

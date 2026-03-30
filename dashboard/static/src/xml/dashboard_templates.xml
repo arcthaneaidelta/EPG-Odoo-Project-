@@ -159,6 +159,16 @@
                                     <div class="crm_dash_sales_canvas">
                                         <svg viewBox="0 0 100 100" preserveAspectRatio="none">
                                             <polyline
+                                                class="crm_dash_sales_line_forecast"
+                                                fill="none"
+                                                stroke-width="1.2"
+                                                stroke-dasharray="4,2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                t-att-points="state.data.charts.sales.forecastPolyline"
+                                                style="stroke: #875a7b; opacity: 0.5;"
+                                            />
+                                            <polyline
                                                 class="crm_dash_sales_line"
                                                 fill="none"
                                                 stroke-width="1.8"
@@ -216,6 +226,8 @@
                                 </div>
                             </div>
                         </article>
+
+                        
                     </div>
                 </section>
 
@@ -257,6 +269,44 @@
                                     </button>
                                 </t>
                             </div>
+
+
+
+                            <t t-if="group.key === 'commercial'">
+                                <div class="crm_dash_subpanel">
+                                    <div class="crm_dash_subpanel_head">Conversion Rate by Origin</div>
+                                    <t t-if="state.data.charts.conversionByOrigin.length">
+                                        <table class="crm_dash_origin_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Origin</th>
+                                                    <th>Leads</th>
+                                                    <th>Won</th>
+                                                    <th>Rate</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="state.data.charts.conversionByOrigin" t-as="origin" t-key="origin.origin">
+                                                    <tr>
+                                                        <td t-esc="origin.origin"/>
+                                                        <td t-esc="origin.total"/>
+                                                        <td t-esc="origin.won"/>
+                                                        <td>
+                                                            <div class="crm_dash_rate_wrap">
+                                                                <div class="crm_dash_rate_bar" t-att-style="'width:' + origin.rate + '%;'"/>
+                                                                <strong t-esc="origin.rateLabel"/>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="crm_dash_empty_note">No lead origin data available.</div>
+                                    </t>
+                                </div>
+                            </t>
 
                             <t t-if="group.key === 'clients'">
                                 <div class="crm_dash_subpanel">
@@ -305,6 +355,30 @@
                             </t>
                         </article>
                     </t>
+
+                    <article class="crm_dash_chart_panel crm_dash_chart_velocity_panel">
+                        <div class="crm_dash_chart_head">
+                            <h3>Pipeline flow</h3>
+                        </div>
+                        <div class="crm_dash_velocity_body">
+                            <t t-if="state.data.charts.pipelineVelocity.length">
+                                <div class="crm_dash_velocity_bars">
+                                    <t t-foreach="state.data.charts.pipelineVelocity" t-as="item" t-key="item.label">
+                                        <div class="crm_dash_velocity_bar_row">
+                                            <span class="crm_dash_v_label" t-esc="item.label"/>
+                                            <div class="crm_dash_v_bar_wrap">
+                                                <div class="crm_dash_v_bar" t-att-style="'width:' + (item.days * 10) + '%;'"/>
+                                                <span class="crm_dash_v_value"><t t-esc="item.days"/> days</span>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <div class="crm_dash_empty_note">No historical movement data for this period.</div>
+                            </t>
+                        </div>
+                    </article>
                 </div>
 
                 <div class="crm_dash_bottom_grid">

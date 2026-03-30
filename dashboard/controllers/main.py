@@ -182,7 +182,7 @@ class DashboardController(http.Controller):
             ("company_id", "=", company_id),
         ]
         if search_term:
-            base_domain.extend(self._build_invoice_search_domain(search_term))
+            base_domain += self._build_invoice_search_domain(search_term)
 
         expense_domain = [
             ("move_type", "=", "in_invoice"),
@@ -190,7 +190,7 @@ class DashboardController(http.Controller):
             ("company_id", "=", company_id),
         ]
         if search_term:
-            expense_domain.extend(self._build_invoice_search_domain(search_term))
+            expense_domain += self._build_invoice_search_domain(search_term)
 
         daily_domain = list(base_domain) + self._date_domain_within(
             "invoice_date", reference_date, reference_date, date_start, date_end
@@ -344,15 +344,15 @@ class DashboardController(http.Controller):
             ("state", "in", ["sale", "done"]),
             ("company_id", "=", company_id),
         ]
-        signed_sale_domain.extend(self._datetime_domain("date_order", date_start, date_end))
+        signed_sale_domain += self._datetime_domain("date_order", date_start, date_end)
         unsigned_quote_domain = [
             ("state", "in", ["draft", "sent"]),
             ("company_id", "=", company_id),
         ]
-        unsigned_quote_domain.extend(self._datetime_domain("date_order", date_start, date_end))
+        unsigned_quote_domain += self._datetime_domain("date_order", date_start, date_end)
         if search_term:
-            signed_sale_domain.extend(self._build_sale_search_domain(search_term))
-            unsigned_quote_domain.extend(self._build_sale_search_domain(search_term))
+            signed_sale_domain += self._build_sale_search_domain(search_term)
+            unsigned_quote_domain += self._build_sale_search_domain(search_term)
 
         if sale_model is not None:
             sale_model = sale_model.sudo()
@@ -372,9 +372,9 @@ class DashboardController(http.Controller):
             ("payment_state", "in", ["paid", "in_payment"]),
             ("company_id", "=", company_id),
         ]
-        paid_invoice_domain.extend(self._date_domain("invoice_date", date_start, date_end))
+        paid_invoice_domain += self._date_domain("invoice_date", date_start, date_end)
         if search_term:
-            paid_invoice_domain.extend(self._build_invoice_search_domain(search_term))
+            paid_invoice_domain += self._build_invoice_search_domain(search_term)
 
         signed_paid_invoice_domain = list(paid_invoice_domain) + [
             ("invoice_line_ids.sale_line_ids.order_id.state", "in", ["sale", "done"]),
@@ -408,8 +408,8 @@ class DashboardController(http.Controller):
                 ("company_id", "=", company_id),
             ]
             if search_term:
-                top_client_domain.extend(self._build_invoice_search_domain(search_term))
-            top_client_domain.extend(self._date_domain("invoice_date", date_start, date_end))
+                top_client_domain += self._build_invoice_search_domain(search_term)
+            top_client_domain += self._date_domain("invoice_date", date_start, date_end)
 
             grouped = invoice_model.read_group(
                 top_client_domain,
@@ -444,11 +444,9 @@ class DashboardController(http.Controller):
             ("company_id", "=", False),
             ("company_id", "=", company_id),
         ]
-        new_clients_domain.extend(
-            self._datetime_domain("create_date", month_start, month_end)
-        )
+        new_clients_domain += self._datetime_domain("create_date", month_start, month_end)
         if search_term:
-            new_clients_domain.extend(self._build_partner_search_domain(search_term))
+            new_clients_domain += self._build_partner_search_domain(search_term)
         new_clients = partner_model.search_count(new_clients_domain)
 
         signed_clients = len(signed_partner_ids)
@@ -519,8 +517,8 @@ class DashboardController(http.Controller):
             ("type", "in", ["lead", "opportunity"]),
             ("company_id", "=", company_id),
         ]
-        new_leads_domain.extend(lead_search_domain)
-        new_leads_domain.extend(self._datetime_domain("create_date", date_start, date_end))
+        new_leads_domain += lead_search_domain
+        new_leads_domain += self._datetime_domain("create_date", date_start, date_end)
         new_leads = lead_model.search_count(new_leads_domain)
 
         lost_sales_domain = [
@@ -529,18 +527,16 @@ class DashboardController(http.Controller):
             ("active", "=", False),
             ("stage_id.is_won", "=", False),
         ]
-        lost_sales_domain.extend(lead_search_domain)
-        lost_sales_domain.extend(self._datetime_domain("write_date", date_start, date_end))
+        lost_sales_domain += lead_search_domain
+        lost_sales_domain += self._datetime_domain("write_date", date_start, date_end)
         lost_sales = lead_model.search_count(lost_sales_domain)
 
         opportunity_created_domain = [
             ("type", "=", "opportunity"),
             ("company_id", "=", company_id),
         ]
-        opportunity_created_domain.extend(lead_search_domain)
-        opportunity_created_domain.extend(
-            self._datetime_domain("create_date", date_start, date_end)
-        )
+        opportunity_created_domain += lead_search_domain
+        opportunity_created_domain += self._datetime_domain("create_date", date_start, date_end)
         won_opportunity_domain = list(opportunity_created_domain) + [
             ("stage_id.is_won", "=", True)
         ]
@@ -559,10 +555,17 @@ class DashboardController(http.Controller):
             ("active", "=", True),
             ("stage_id.is_won", "=", False),
         ]
-        pipeline_domain.extend(lead_search_domain)
-        pipeline_domain.extend(self._datetime_domain("create_date", date_start, date_end))
+        pipeline_domain += lead_search_domain
+        pipeline_domain += self._datetime_domain("create_date", date_start, date_end)
         pipeline_volume = lead_model.search_count(pipeline_domain)
         pipeline_value = self._sum_amount(lead_model, pipeline_domain, "expected_revenue")
+
+        avg_days_to_close = self._calculate_avg_days_to_close(
+            lead_model, company_id, date_start, date_end
+        )
+        weighted_forecast = self._calculate_weighted_forecast(
+            lead_model, company_id, date_start, date_end
+        )
 
         sent_quotes = 0
         pending_quotes = 0
@@ -579,28 +582,22 @@ class DashboardController(http.Controller):
                 ("state", "=", "sent"),
                 ("company_id", "=", company_id),
             ]
-            sent_quotes_domain.extend(sale_search_domain)
-            sent_quotes_domain.extend(
-                self._datetime_domain("date_order", date_start, date_end)
-            )
+            sent_quotes_domain += sale_search_domain
+            sent_quotes_domain += self._datetime_domain("date_order", date_start, date_end)
 
             pending_quotes_domain = [
                 ("state", "in", ["draft", "sent"]),
                 ("company_id", "=", company_id),
             ]
-            pending_quotes_domain.extend(sale_search_domain)
-            pending_quotes_domain.extend(
-                self._datetime_domain("date_order", date_start, date_end)
-            )
+            pending_quotes_domain += sale_search_domain
+            pending_quotes_domain += self._datetime_domain("date_order", date_start, date_end)
 
             closed_sales_domain = [
                 ("state", "in", ["sale", "done"]),
                 ("company_id", "=", company_id),
             ]
-            closed_sales_domain.extend(sale_search_domain)
-            closed_sales_domain.extend(
-                self._datetime_domain("date_order", date_start, date_end)
-            )
+            closed_sales_domain += sale_search_domain
+            closed_sales_domain += self._datetime_domain("date_order", date_start, date_end)
 
             sent_quotes = sale_model.search_count(sent_quotes_domain)
             pending_quotes = sale_model.search_count(pending_quotes_domain)
@@ -664,6 +661,22 @@ class DashboardController(http.Controller):
                 pipeline_domain,
             ),
             self._build_metric(
+                "avg_days_to_close",
+                "Avg Days to Close",
+                avg_days_to_close,
+                "number",
+                "crm.lead",
+                won_opportunity_domain,
+            ),
+            self._build_metric(
+                "weighted_forecast",
+                "Weighted Forecast",
+                weighted_forecast,
+                "currency",
+                "crm.lead",
+                pipeline_domain,
+            ),
+            self._build_metric(
                 "pipeline_volume",
                 "Pipeline Volume",
                 pipeline_volume,
@@ -709,8 +722,8 @@ class DashboardController(http.Controller):
             ("state", "=", "posted"),
             ("company_id", "=", company_id),
         ]
-        issued_domain.extend(invoice_search_domain)
-        issued_domain.extend(self._date_domain("invoice_date", date_start, date_end))
+        issued_domain += invoice_search_domain
+        issued_domain += self._date_domain("invoice_date", date_start, date_end)
 
         paid_domain = list(issued_domain) + [
             ("payment_state", "in", ["paid", "in_payment"])
@@ -723,8 +736,8 @@ class DashboardController(http.Controller):
             ("company_id", "=", company_id),
             ("invoice_date_due", ">=", fields.Date.to_string(today)),
         ]
-        pending_domain.extend(invoice_search_domain)
-        pending_domain.extend(self._date_domain("invoice_date", date_start, date_end))
+        pending_domain += invoice_search_domain
+        pending_domain += self._date_domain("invoice_date", date_start, date_end)
 
         overdue_domain = [
             ("move_type", "=", "out_invoice"),
@@ -733,32 +746,32 @@ class DashboardController(http.Controller):
             ("company_id", "=", company_id),
             ("invoice_date_due", "<", fields.Date.to_string(today)),
         ]
-        overdue_domain.extend(invoice_search_domain)
-        overdue_domain.extend(self._date_domain("invoice_date", date_start, date_end))
+        overdue_domain += invoice_search_domain
+        overdue_domain += self._date_domain("invoice_date", date_start, date_end)
 
         rectified_domain = [
             ("move_type", "=", "out_refund"),
             ("state", "=", "posted"),
             ("company_id", "=", company_id),
         ]
-        rectified_domain.extend(invoice_search_domain)
-        rectified_domain.extend(self._date_domain("invoice_date", date_start, date_end))
+        rectified_domain += invoice_search_domain
+        rectified_domain += self._date_domain("invoice_date", date_start, date_end)
 
         income_domain = [
             ("move_type", "=", "out_invoice"),
             ("state", "=", "posted"),
             ("company_id", "=", company_id),
         ]
-        income_domain.extend(invoice_search_domain)
-        income_domain.extend(self._date_domain("invoice_date", date_start, date_end))
+        income_domain += invoice_search_domain
+        income_domain += self._date_domain("invoice_date", date_start, date_end)
 
         expense_domain = [
             ("move_type", "=", "in_invoice"),
             ("state", "=", "posted"),
             ("company_id", "=", company_id),
         ]
-        expense_domain.extend(invoice_search_domain)
-        expense_domain.extend(self._date_domain("invoice_date", date_start, date_end))
+        expense_domain += invoice_search_domain
+        expense_domain += self._date_domain("invoice_date", date_start, date_end)
 
         paid_income_domain = list(income_domain) + [
             ("payment_state", "in", ["paid", "in_payment"])
@@ -860,8 +873,8 @@ class DashboardController(http.Controller):
         activities = []
 
         lead_domain = [("company_id", "=", company_id), ("type", "in", ["lead", "opportunity"])]
-        lead_domain.extend(self._build_lead_search_domain(search_term))
-        lead_domain.extend(self._datetime_domain("write_date", date_start, date_end))
+        lead_domain += self._build_lead_search_domain(search_term)
+        lead_domain += self._datetime_domain("write_date", date_start, date_end)
         lead_records = lead_model.search(lead_domain, order="write_date desc, id desc", limit=12)
         for lead in lead_records:
             timestamp = lead.write_date or lead.create_date
@@ -882,8 +895,8 @@ class DashboardController(http.Controller):
         if sale_model is not None:
             sale_model = sale_model.sudo()
             sale_domain = [("company_id", "=", company_id)]
-            sale_domain.extend(self._build_sale_search_domain(search_term))
-            sale_domain.extend(self._datetime_domain("write_date", date_start, date_end))
+            sale_domain += self._build_sale_search_domain(search_term)
+            sale_domain += self._datetime_domain("write_date", date_start, date_end)
             sale_records = sale_model.search(
                 sale_domain,
                 order="write_date desc, id desc",
@@ -912,8 +925,8 @@ class DashboardController(http.Controller):
                 ("move_type", "in", ["out_invoice", "out_refund", "in_invoice", "in_refund"]),
                 ("state", "!=", "cancel"),
             ]
-            invoice_domain.extend(self._build_invoice_search_domain(search_term))
-            invoice_domain.extend(self._datetime_domain("write_date", date_start, date_end))
+            invoice_domain += self._build_invoice_search_domain(search_term)
+            invoice_domain += self._datetime_domain("write_date", date_start, date_end)
             invoice_records = invoice_model.search(
                 invoice_domain,
                 order="write_date desc, id desc",
@@ -967,8 +980,8 @@ class DashboardController(http.Controller):
                 ("company_id", "=", company_id),
                 ("invoice_date_due", "<", fields.Date.to_string(today)),
             ]
-            overdue_domain.extend(self._build_invoice_search_domain(search_term))
-            overdue_domain.extend(self._date_domain("invoice_date", date_start, date_end))
+            overdue_domain += self._build_invoice_search_domain(search_term)
+            overdue_domain += self._date_domain("invoice_date", date_start, date_end)
             overdue_count = invoice_model.search_count(overdue_domain)
 
         unresponsive_quotes = 0
@@ -981,10 +994,8 @@ class DashboardController(http.Controller):
                 ("company_id", "=", company_id),
                 ("date_order", "<", self._to_datetime_string(stale_quote_date)),
             ]
-            unresponsive_domain.extend(self._build_sale_search_domain(search_term))
-            unresponsive_domain.extend(
-                self._datetime_domain("date_order", date_start, date_end)
-            )
+            unresponsive_domain += self._build_sale_search_domain(search_term)
+            unresponsive_domain += self._datetime_domain("date_order", date_start, date_end)
             unresponsive_quotes = sale_model.search_count(unresponsive_domain)
 
         unattended_leads_domain = [
@@ -994,10 +1005,8 @@ class DashboardController(http.Controller):
             ("stage_id.is_won", "=", False),
             ("write_date", "<", self._to_datetime_string(today - relativedelta(days=7))),
         ]
-        unattended_leads_domain.extend(self._build_lead_search_domain(search_term))
-        unattended_leads_domain.extend(
-            self._datetime_domain("write_date", date_start, date_end)
-        )
+        unattended_leads_domain += self._build_lead_search_domain(search_term)
+        unattended_leads_domain += self._datetime_domain("write_date", date_start, date_end)
         unattended_leads = lead_model.search_count(unattended_leads_domain)
 
         quarter_end = self._quarter_end_date(today)
@@ -1008,10 +1017,8 @@ class DashboardController(http.Controller):
             ("active", "=", True),
             ("stage_id.is_won", "=", False),
         ]
-        quarter_end_domain.extend(self._build_lead_search_domain(search_term))
-        quarter_end_domain.extend(
-            self._datetime_domain("create_date", date_start, date_end)
-        )
+        quarter_end_domain += self._build_lead_search_domain(search_term)
+        quarter_end_domain += self._datetime_domain("create_date", date_start, date_end)
         quarter_end_open = lead_model.search_count(quarter_end_domain)
 
         quarter_reminder_value = quarter_end_open if days_to_quarter_end <= 15 else 0
@@ -1074,6 +1081,7 @@ class DashboardController(http.Controller):
     ):
         sales_history = self._build_sales_history(
             invoice_model=invoice_model,
+            lead_model=lead_model,
             company_id=company_id,
             search_term=search_term,
             date_start=date_start,
@@ -1086,13 +1094,27 @@ class DashboardController(http.Controller):
             date_start=date_start,
             date_end=date_end,
         )
+        pipeline_velocity = self._calculate_pipeline_velocity(
+            lead_model=lead_model,
+            company_id=company_id,
+            date_start=date_start,
+            date_end=date_end,
+        )
+        conversion_by_origin = self._build_conversion_by_origin(
+            lead_model=lead_model,
+            company_id=company_id,
+            date_start=date_start,
+            date_end=date_end,
+        )
         return {
             "sales_history": sales_history,
             "leads_vs_won": leads_vs_won,
+            "pipeline_velocity": pipeline_velocity,
+            "conversion_by_origin": conversion_by_origin,
         }
 
     def _build_sales_history(
-        self, invoice_model, company_id, search_term, date_start, date_end
+        self, invoice_model, lead_model, company_id, search_term, date_start, date_end
     ):
         current_month_start = date_end.replace(day=1)
         month_starts = [
@@ -1105,6 +1127,7 @@ class DashboardController(http.Controller):
                 {
                     "label": month_start.strftime("%b"),
                     "value": 0.0,
+                    "forecast": 0.0,
                 }
                 for month_start in month_starts
             ]
@@ -1116,7 +1139,7 @@ class DashboardController(http.Controller):
             ("company_id", "=", company_id),
         ]
         if search_term:
-            base_domain.extend(self._build_invoice_search_domain(search_term))
+            base_domain += self._build_invoice_search_domain(search_term)
 
         points = []
         for month_start in month_starts:
@@ -1125,14 +1148,185 @@ class DashboardController(http.Controller):
                 "invoice_date", month_start, month_end, date_start, date_end
             )
             amount = self._sum_amount(invoice_model, month_domain, "amount_total_signed")
+            
+            # Forecast logic: simple weighted forecast for open opportunities closing this month
+            forecast_domain = [
+                ('type', '=', 'opportunity'),
+                ('company_id', '=', company_id),
+                ('active', '=', True),
+                ('stage_id.is_won', '=', False),
+                ('date_deadline', '>=', fields.Date.to_string(month_start)),
+                ('date_deadline', '<=', fields.Date.to_string(month_end))
+            ]
+            forecast_amount = sum(l.expected_revenue * (l.probability / 100.0) for l in lead_model.search(forecast_domain))
+
             points.append(
                 {
                     "label": month_start.strftime("%b"),
                     "value": amount,
+                    "forecast": amount + forecast_amount, # Show accumulated potential
                 }
             )
 
         return points
+
+    def _calculate_avg_days_to_close(self, lead_model, company_id, date_start, date_end):
+        domain = [
+            ('type', '=', 'opportunity'),
+            ('company_id', '=', company_id),
+            ('stage_id.is_won', '=', True),
+            ('date_closed', '>=', fields.Datetime.to_string(datetime.combine(date_start, time.min))),
+            ('date_closed', '<=', fields.Datetime.to_string(datetime.combine(date_end, time.max))),
+        ]
+        leads = lead_model.search(domain)
+        if not leads:
+            return 0.0
+        total_days = sum((l.date_closed.date() - l.create_date.date()).days for l in leads)
+        return round(total_days / len(leads), 1)
+
+    def _calculate_weighted_forecast(self, lead_model, company_id, date_start, date_end):
+        domain = [
+            ('type', '=', 'opportunity'),
+            ('company_id', '=', company_id),
+            ('active', '=', True),
+            ('stage_id.is_won', '=', False),
+        ]
+        leads = lead_model.search(domain)
+        forecast = sum((l.expected_revenue * (l.probability / 100.0)) for l in leads)
+        return forecast
+
+    def _calculate_pipeline_velocity(self, lead_model, company_id, date_start, date_end):
+        # Calculate average time spent in each stage for opportunities won in the period
+        # Only include stages requested by the user to avoid clutter from other modules/teams
+        all_stages = request.env["crm.stage"].sudo().search(
+            [("team_id", "=", False)], 
+            order="sequence"
+        )
+        requested_names = {'new', 'qualified', 'proposition', 'won', 'lost'}
+        stages = all_stages.filtered(lambda s: s.name.lower() in requested_names)
+        
+        # If the specific stages weren't found, fallback to active ones to avoid an empty chart
+        if not stages:
+            stages = all_stages.filtered(lambda s: not s.is_won)[:5]
+
+        won_domain = [
+            ("type", "=", "opportunity"),
+            ("company_id", "=", company_id),
+            ("stage_id.is_won", "=", True),
+            ("date_closed", ">=", fields.Datetime.to_string(datetime.combine(date_start, time.min))),
+            ("date_closed", "<=", fields.Datetime.to_string(datetime.combine(date_end, time.max))),
+        ]
+        won_leads = lead_model.search(won_domain)
+
+        if not won_leads:
+            return [{"label": s.name, "days": 0.0} for s in stages]
+
+        # Get tracking data for these leads for stage changes
+        tracking_values = request.env["mail.tracking.value"].search(
+            [
+                ("mail_message_id.model", "=", "crm.lead"),
+                ("mail_message_id.res_id", "in", won_leads.ids),
+                ("field_id.name", "=", "stage_id"),
+            ],
+            order="create_date asc",
+        )
+
+        # Map tracking history to leads
+        lead_history = {}
+        for track in tracking_values:
+            lead_id = track.mail_message_id.res_id
+            if lead_id not in lead_history:
+                lead_history[lead_id] = []
+            lead_history[lead_id].append(
+                {
+                    "date": track.create_date,
+                    "old_stage": track.old_value_integer,
+                    "new_stage": track.new_value_integer,
+                }
+            )
+
+        # Calculate durations spent in each stage
+        stage_durations = {s.id: [] for s in stages}
+        for lead in won_leads:
+            history = lead_history.get(lead.id, [])
+            last_dt = lead.create_date
+
+            # Process transitions to calculate time spent in the 'old' stage
+            for transition in history:
+                old_stage_id = transition["old_stage"]
+                trans_date = transition["date"]
+                delta = (trans_date - last_dt).total_seconds() / 86400.0
+                
+                # Help Pyre2 understand that this is a list
+                durations_list = stage_durations.get(old_stage_id)
+                if durations_list is not None:
+                    durations_list.append(max(0.0, delta))
+                last_dt = trans_date
+
+            # After all transitions, calculate time spent in the CURRENT stage (important for Won/Lost)
+            current_stage_id = lead.stage_id.id
+            now_dt = datetime.now()
+            current_delta = (now_dt - last_dt).total_seconds() / 86400.0
+            
+            current_durations_list = stage_durations.get(current_stage_id)
+            if current_durations_list is not None:
+                current_durations_list.append(max(0.0, current_delta))
+
+        velocity_points = []
+        for stage in stages:
+            durations = stage_durations.get(stage.id, [])
+            avg_days = sum(durations) / len(durations) if durations else 0.0
+            velocity_points.append(
+                {
+                    "label": stage.name,
+                    "days": round(avg_days, 1),
+                }
+            )
+
+        return velocity_points
+
+    def _build_conversion_by_origin(self, lead_model, company_id, date_start, date_end):
+        # Group by source_type from crm_base. We use a broader range for 'Won' to show real-time performance.
+        domain = [
+            ('company_id', '=', company_id),
+            ('type', 'in', ['lead', 'opportunity']),
+        ]
+        # Only filter by date for the initial lead creation if we want 'This Period's Leads'
+        # But for 'Real Time' conversion, we should show all relevant data.
+        # Let's keep the filter but ensure we use the correct count key.
+        domain += self._datetime_domain("create_date", date_start, date_end)
+        
+        groups = lead_model.read_group(domain, ['source_type', 'stage_id'], ['source_type', 'stage_id'], lazy=False)
+        
+        origin_data = {}
+        for row in groups:
+            origin_key = row.get('source_type') or 'Other'
+            # Convert selection key to label if possible, though keys are fine for now.
+            origin = origin_key.capitalize() if isinstance(origin_key, str) else 'Other'
+            
+            if origin not in origin_data:
+                origin_data[origin] = {'total': 0, 'won': 0}
+            
+            # Robust count extraction from read_group
+            count = row.get('__count') or row.get('id_count') or row.get('source_type_count') or 0
+            origin_data[origin]['total'] += count
+            
+            stage_id = row.get('stage_id')
+            if stage_id:
+                stage = request.env['crm.stage'].browse(stage_id[0])
+                if stage.is_won:
+                    origin_data[origin]['won'] += count
+        
+        result = []
+        for origin, vals in origin_data.items():
+            rate = (vals['won'] / vals['total'] * 100.0) if vals['total'] else 0.0
+            result.append({
+                'origin': origin,
+                'total': vals['total'],
+                'won': vals['won'],
+                'rate': round(rate, 1)
+            })
+        return sorted(result, key=lambda x: x['total'], reverse=True)
 
     def _build_leads_vs_won(
         self,
@@ -1148,20 +1342,16 @@ class DashboardController(http.Controller):
             ("type", "in", ["lead", "opportunity"]),
             ("company_id", "=", company_id),
         ]
-        total_leads_domain.extend(search_domain)
-        total_leads_domain.extend(
-            self._datetime_domain("create_date", date_start, date_end)
-        )
+        total_leads_domain += search_domain
+        total_leads_domain += self._datetime_domain("create_date", date_start, date_end)
 
         total_won_domain = [
             ("type", "=", "opportunity"),
             ("company_id", "=", company_id),
             ("stage_id.is_won", "=", True),
         ]
-        total_won_domain.extend(search_domain)
-        total_won_domain.extend(
-            self._datetime_domain("create_date", date_start, date_end)
-        )
+        total_won_domain += search_domain
+        total_won_domain += self._datetime_domain("create_date", date_start, date_end)
 
         return {
             "total_leads": lead_model.search_count(total_leads_domain),
