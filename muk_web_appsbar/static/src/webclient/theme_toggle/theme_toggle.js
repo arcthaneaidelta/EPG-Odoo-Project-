@@ -7,7 +7,7 @@ export class ThemeToggle extends Component {
     static template = "muk_web_appsbar.ThemeToggle";
 
     setup() {
-        const currentScheme = cookie.get("color_scheme") || "light";
+        const currentScheme = cookie.get("color_scheme") || "dark";
 
         this.state = useState({
             isDark: currentScheme === "dark",

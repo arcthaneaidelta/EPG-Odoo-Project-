@@ -7,6 +7,9 @@
         	<t t-set="body_sidebar_classname" t-value="'mk_sidebar_type_' + request.env.user.sidebar_type or 'large'"/>
             <t t-set="body_classname" t-value="'%s %s' % (body_classname, body_sidebar_classname)"/>
         </xpath>
+        <xpath expr="//t[@t-if=&quot;request.cookies.get('color_scheme') == 'dark'&quot;]" position="attributes">
+            <attribute name="t-if">request.cookies.get('color_scheme') != 'light'</attribute>
+        </xpath>
     </template>
     
 </odoo>

@@ -101,6 +101,8 @@
         background: transparent;
         }
 
+
+
         // Company / user avatar area
         .o_menu_systray {
             .o_user_menu,
@@ -108,6 +110,11 @@
         }
 
              
+    }
+
+    select > option {
+      background-color: #0A1428 !important;
+      color: #ffffff;
     }
 
     .o_monetary_ghost_value {
