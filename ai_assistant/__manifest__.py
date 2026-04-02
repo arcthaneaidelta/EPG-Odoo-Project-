@@ -5,7 +5,7 @@
     "category": "Productivity",
     "author": "Your Company",
     "website": "https://yourwebsite.com",
-    "depends": ["web"],
+    "depends": ["web", "account"],
     "data": [
         "security/ir.model.access.csv",
         "views/ai_assistant_views.xml",

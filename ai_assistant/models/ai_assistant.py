@@ -30,7 +30,8 @@ class AiAssistant(models.Model):
 
 	def call_external_llm(self, question, context=""):
 		"""
-		Calls external LLM (OpenAI, Claude, etc.) with proper error handling.
+		Calls external LLM (OpenAI, Claude, etc.) with proper error handling, 
+		maintains conversational memory, and executes functional tool calls.
 		"""
 		# Get configuration from system parameters
 		api_key = self.env["ir.config_parameter"].sudo().get_param("ai_assistant.api_key")
@@ -59,28 +60,66 @@ class AiAssistant(models.Model):
 		# Prepare the conversation with context
 		messages = []
 		
-		# 1. SALUDO: Su primera respuesta DEBE incluir: "La IA está diseñada para ayudarle a trabajar mejor en su negocio, no como entretenimiento".
-		# Add system message with context
-		if context:
-			system_message = f"""Eres un asistente de IA profesional para System y CRM.
-			PRINCIPIO DE FUNCIONAMIENTO: Libertad controlada, con absoluta prioridad en el trabajo.
-
-			REGLAS ESTRICTAS:
-			1. PREGUNTAS FUERA DEL TEMA: Puede responder 1 o 2 preguntas de curiosidad brevemente, pero DEBE continuar con: "Puedo responder esto por usted de manera única, pero recuerde que estoy aquí para ayudarlo a trabajar mejor en el CRM".
-			2. REDIRECCIÓN: Si el usuario continúa con temas no laborales, diga: "Mi función principal es ayudarlo a trabajar de manera más eficiente en el CRM".
-			3. CONTENIDO PROHIBIDO: Rechace cortésmente cualquier solicitud que involucre contenido sexual, drogas, violencia, actividades ilegales o evasión de impuestos.
-			4. TEMAS DELICADOS: Para información legal/fiscal, explique SOLO conceptos generales. Nunca ofrezca asesoramiento vinculante. Diga: "Puedo proporcionar información general, pero para decisiones legales o fiscales, consulte con un profesional".
-
-			RECORD CONTEXT:
-			{context}"""
+		system_message = f"""Eres un asistente de IA experto para ventas, CRM y contabilidad (Facturación).
+		PRINCIPIO DE FUNCIONAMIENTO: Eres eficiente, técnico, y manejas la creación de facturas (invoices).
+		REGLAS:
+		1. Si el usuario pide crear una factura pero faltan datos (ej: artículos, precios o nombre del cliente), hazle preguntas de seguimiento para obtener esos datos exactos de forma estructurada. 
+		2. Utiliza las herramientas (tools) disponibles cuando tengas suficiente información para ejecutar la acción. O cuando el usuario proporcione un texto de donde puedas extraer todo para una factura (como un OCR).
+		
+		RECORD CONTEXT:
+		{context}"""
 		messages.append({"role": "system", "content": system_message})
 		
-		# Add user question
+		# Load previous conversation history (up to last 10 messages)
+		history = self.env['ai.message'].search(
+			[('assistant_id', '=', self.id)], 
+			order="timestamp desc", 
+			limit=10
+		)
+		# Reverse so they are chronological
+		for msg in reversed(history):
+			messages.append({"role": "user", "content": msg.question})
+			messages.append({"role": "assistant", "content": msg.answer or "Action OK."})
+			
+		# Add current user question
 		messages.append({"role": "user", "content": question})
+		
+		# Define Tool Capabilities
+		tools = [
+			{
+				"type": "function",
+				"function": {
+					"name": "create_invoice",
+					"description": "Create a new accounting invoice. Ensure you have the customer name and at least one product with its price.",
+					"parameters": {
+						"type": "object",
+						"properties": {
+							"customer_name": {"type": "string", "description": "The name of the customer."},
+							"lines": {
+								"type": "array",
+								"description": "List of items/products for the invoice.",
+								"items": {
+									"type": "object",
+									"properties": {
+										"name": {"type": "string", "description": "Name or description of the product/service."},
+										"quantity": {"type": "number", "description": "Quantity."},
+										"price_unit": {"type": "number", "description": "Unit price."}
+									},
+									"required": ["name", "price_unit"]
+								}
+							}
+						},
+						"required": ["customer_name", "lines"]
+					}
+				}
+			}
+		]
 		
 		payload = {
 			"model": "gpt-3.5-turbo",  # or "gpt-4" if available
 			"messages": messages,
+			"tools": tools,
+			"tool_choice": "auto",
 			"max_tokens": 1000,
 			"temperature": 0.7,
 		}
@@ -96,13 +135,20 @@ class AiAssistant(models.Model):
 			
 			# Check for HTTP errors
 			response.raise_for_status()
-			
-			# Parse the response
 			response_data = response.json()
 			
-			# Extract the answer
 			if "choices" in response_data and len(response_data["choices"]) > 0:
-				answer = response_data["choices"][0]["message"]["content"]
+				message = response_data["choices"][0]["message"]
+				
+				# Intercept Tool Calls
+				if message.get("tool_calls"):
+					for tool_call in message["tool_calls"]:
+						if tool_call["function"]["name"] == "create_invoice":
+							args = json.loads(tool_call["function"]["arguments"])
+							return self._tool_create_invoice(args)
+							
+				# Otherwise Handle Standard Text
+				answer = message.get("content") or "Action complete."
 				_logger.info(f"LLM Response received: {len(answer)} characters")
 				return answer.strip()
 			else:
@@ -127,6 +173,36 @@ class AiAssistant(models.Model):
 		except Exception as e:
 			_logger.error(f"Unexpected error in LLM call: {str(e)}", exc_info=True)
 			raise UserError(f"❌ Unexpected Error: {str(e)}")
+
+	def _tool_create_invoice(self, args):
+		"""
+		Server boundary for structured invoice creation using LLM extracted parameters.
+		"""
+		customer_name = args.get('customer_name')
+		lines = args.get('lines', [])
+		
+		if not customer_name:
+			return "❌ Missing customer name for the invoice."
+			
+		partner = self.env['res.partner'].sudo().search([('name', 'ilike', customer_name)], limit=1)
+		if not partner:
+			partner = self.env['res.partner'].sudo().create({'name': customer_name})
+			
+		invoice_vals = {
+			'move_type': 'out_invoice',
+			'partner_id': partner.id,
+			'invoice_line_ids': []
+		}
+		
+		for line in lines:
+			invoice_vals['invoice_line_ids'].append((0, 0, {
+				'name': line.get('name', 'Product'),
+				'quantity': float(line.get('quantity', 1.0)),
+				'price_unit': float(line.get('price_unit', 0.0)),
+			}))
+			
+		new_invoice = self.env['account.move'].sudo().create(invoice_vals)
+		return f"✅ Success! Invoice {new_invoice.name or 'Draft'} created successfully for {partner.name} with {len(lines)} items."
 
 	def action_test_llm(self):
 		"""
