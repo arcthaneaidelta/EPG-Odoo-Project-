@@ -1,4 +1,5 @@
 /** @odoo-module **/
+import { browser } from "@web/core/browser/browser";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { Component, onWillStart } from "@odoo/owl";
@@ -14,30 +15,30 @@ const MENU_ICONS = {
 	"contacts.menu_partner_title_contact": "/web_navigation_cards/static/src/img/icons/Contacts/titulos_contacto.svg",
 
 	// Sales
-	"sale.menu_sale_order":              "/web_navigation_cards/static/src/img/icons/Sales/pedidos.svg",
-	"sale.menu_sale_order_invoice":      "/web_navigation_cards/static/src/img/icons/Sales/pedidos_a_facturar.svg",
-	"sale.sales_team_config":               "/web_navigation_cards/static/src/img/icons/Sales/equipos_de_ventas.svg",
-	"sale.sale_menu_config_activity_plan":      "/web_navigation_cards/static/src/img/icons/Sales/planes_de_actividad.svg",
-	"sale.menu_product_template_action":  "/web_navigation_cards/static/src/img/icons/Sales/productos.svg",
-	"sale.menu_product_categories":   "/web_navigation_cards/static/src/img/icons/Sales/categorías de producto.svg",
-	"sale.menu_product_tags":        "/web_navigation_cards/static/src/img/icons/Sales/etiquetas de producto.svg",
-	"sale.menu_reporting_sales":          "/web_navigation_cards/static/src/img/icons/Sales/ventas.svg",
-	"sale.menu_reporting_salespeople":          "/web_navigation_cards/static/src/img/icons/Sales/comerciales.svg",
-	"sale.menu_reporting_customer":          "/web_navigation_cards/static/src/img/icons/Sales/clientes.svg",
-	"sale.menu_reporting_product":          "/web_navigation_cards/static/src/img/icons/Sales/reportsproductos.svg",
+	"sale.menu_sale_order": "/web_navigation_cards/static/src/img/icons/Sales/pedidos.svg",
+	"sale.menu_sale_order_invoice": "/web_navigation_cards/static/src/img/icons/Sales/pedidos_a_facturar.svg",
+	"sale.sales_team_config": "/web_navigation_cards/static/src/img/icons/Sales/equipos_de_ventas.svg",
+	"sale.sale_menu_config_activity_plan": "/web_navigation_cards/static/src/img/icons/Sales/planes_de_actividad.svg",
+	"sale.menu_product_template_action": "/web_navigation_cards/static/src/img/icons/Sales/productos.svg",
+	"sale.menu_product_categories": "/web_navigation_cards/static/src/img/icons/Sales/categorías de producto.svg",
+	"sale.menu_product_tags": "/web_navigation_cards/static/src/img/icons/Sales/etiquetas de producto.svg",
+	"sale.menu_reporting_sales": "/web_navigation_cards/static/src/img/icons/Sales/ventas.svg",
+	"sale.menu_reporting_salespeople": "/web_navigation_cards/static/src/img/icons/Sales/comerciales.svg",
+	"sale.menu_reporting_customer": "/web_navigation_cards/static/src/img/icons/Sales/clientes.svg",
+	"sale.menu_reporting_product": "/web_navigation_cards/static/src/img/icons/Sales/reportsproductos.svg",
 
 	//CRM Pipeline
-	"crm.crm_menu_forecast":          "/web_navigation_cards/static/src/img/icons/CRM/pronostico.svg",
-	"crm.crm_opportunity_report_menu":          "/web_navigation_cards/static/src/img/icons/CRM/flujo.svg",
-	"crm.crm_opportunity_report_menu_lead":          "/web_navigation_cards/static/src/img/icons/CRM/leads.svg",
-	"crm.crm_activity_report_menu":          "/web_navigation_cards/static/src/img/icons/CRM/actividades.svg",
-	"crm.res_partner_menu_customer":          "/web_navigation_cards/static/src/img/icons/CRM/clientes.svg",
-	"crm.crm_lead_menu_my_activities":          "/web_navigation_cards/static/src/img/icons/CRM/mis_actividades.svg",
-	"crm.menu_crm_opportunities":          "/web_navigation_cards/static/src/img/icons/CRM/mi_flujo.svg",
-	"crm.sales_team_menu_team_pipeline":          "/web_navigation_cards/static/src/img/icons/CRM/equipos.svg",
-	"sale_crm.sale_order_menu_quotations_crm":          "/web_navigation_cards/static/src/img/icons/CRM/mis_presupuestos.svg",
-	"crm.crm_config_settings_menu":          "/web_navigation_cards/static/src/img/icons/CRM/ajustes.svg",
-	"crm.crm_team_config":          "/web_navigation_cards/static/src/img/icons/CRM/equipos_ventas.svg",
+	"crm.crm_menu_forecast": "/web_navigation_cards/static/src/img/icons/CRM/pronostico.svg",
+	"crm.crm_opportunity_report_menu": "/web_navigation_cards/static/src/img/icons/CRM/flujo.svg",
+	"crm.crm_opportunity_report_menu_lead": "/web_navigation_cards/static/src/img/icons/CRM/leads.svg",
+	"crm.crm_activity_report_menu": "/web_navigation_cards/static/src/img/icons/CRM/actividades.svg",
+	"crm.res_partner_menu_customer": "/web_navigation_cards/static/src/img/icons/CRM/clientes.svg",
+	"crm.crm_lead_menu_my_activities": "/web_navigation_cards/static/src/img/icons/CRM/mis_actividades.svg",
+	"crm.menu_crm_opportunities": "/web_navigation_cards/static/src/img/icons/CRM/mi_flujo.svg",
+	"crm.sales_team_menu_team_pipeline": "/web_navigation_cards/static/src/img/icons/CRM/equipos.svg",
+	"sale_crm.sale_order_menu_quotations_crm": "/web_navigation_cards/static/src/img/icons/CRM/mis_presupuestos.svg",
+	"crm.crm_config_settings_menu": "/web_navigation_cards/static/src/img/icons/CRM/ajustes.svg",
+	"crm.crm_team_config": "/web_navigation_cards/static/src/img/icons/CRM/equipos_ventas.svg",
 
 	//Accounting/Assets
 	"account_asset_management.account_asset_menu": "/web_navigation_cards/static/src/img/icons/Accounting/ACTIVOS/activos.svg",
@@ -74,7 +75,7 @@ const MENU_ICONS = {
 	"account.menu_action_account_form": "/web_navigation_cards/static/src/img/icons/Accounting/CONTABILIDAD/plan_contable.svg",
 	"accounting_pdf_reports.menu_account_reports": "/web_navigation_cards/static/src/img/icons/Accounting/CONTABILIDAD/reportes_cuenta.svg",
 	"account_reconcile_oca.account_account_reconcile_menu": "/web_navigation_cards/static/src/img/icons/Accounting/CONTABILIDAD/conciliar.svg",
-	
+
 	//Accounting/Taxes
 	"l10n_es_edi_facturae.menu_l10n_es_edi_facturae_root_certificates": "/web_navigation_cards/static/src/img/icons/Accounting/TAXES/certificados.svg",
 	"account.menu_action_tax_form": "/web_navigation_cards/static/src/img/icons/Accounting/TAXES/impuestos.svg",
@@ -109,22 +110,49 @@ export class SubmenuDashboard extends Component {
 		this.menuService = useService("menu");
 		this.actionService = useService("action");
 
-		const context = this.props.action.context || {};
-		this.parentMenuId = context.active_menu_id || null;
+		const action = this.props.action || {};
+		const context = action.context || {};
+		const params = action.params || {};
+
+		// BUG FIX: Look in action.active_menu_id, then params, then context
+		this.parentMenuId = action.active_menu_id || params.active_menu_id || context.active_menu_id || null;
 		this.submenus = [];
 
 		onWillStart(async () => {
-			if (this.parentMenuId && this.menuService.getMenu(this.parentMenuId)) {
-				const menu = this.menuService.getMenu(this.parentMenuId);
+			let menuId = this.parentMenuId;
+			
+			// RESTORE LOGIC: If missing, try sessionStorage for this app
+			if (!menuId) {
+				const currentApp = this.menuService.getCurrentApp();
+				if (currentApp) {
+					const savedId = browser.sessionStorage.getItem(`last_submenu_id_${currentApp.id}`);
+					if (savedId) {
+						console.log("SubmenuDashboard: Restoring category from session storage:", savedId);
+						menuId = parseInt(savedId);
+						this.parentMenuId = menuId;
+					} else {
+						console.log("SubmenuDashboard: Falling back to app root:", currentApp.id);
+						menuId = currentApp.id;
+						this.parentMenuId = menuId;
+					}
+				}
+			}
+
+			if (menuId && this.menuService.getMenu(menuId)) {
+				const menu = this.menuService.getMenu(menuId);
 				if (menu.childrenTree) {
 					this.submenus = menu.childrenTree;
 				}
-			} else {
-				console.log("No parent menu found, redirecting to CRM...");
-				await this.actionService.doAction("crm.crm_lead_action_pipeline", {
-					clear_breadcrumbs: true,
-				});
+			} else if (this.parentMenuId) {
+				console.warn("SubmenuDashboard: Menu not found in service:", menuId);
+				await this.menuService.reload();
+				const menu = this.menuService.getMenu(menuId);
+				if (menu && menu.childrenTree) {
+					this.submenus = menu.childrenTree;
+				}
 			}
+			
+			// Note: We avoid doAction redirects here to maintain router stability during popstate
 		});
 	}
 

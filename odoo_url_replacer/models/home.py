@@ -44,37 +44,45 @@ class IrConfigParameter(models.Model):
         return data
 
 
+def _get_replacement_text(env=None):
+    """Helper to fetch the current Replacement Text safely."""
+    if env:
+        config = env['ir.config_parameter'].sudo()
+        enabled = config.get_param("web.url.replace.enabled", "False") == "True"
+        text = config.get_param("web.base.sorturl", "")
+        if enabled and text:
+            return text
+    return base_sorturl[0]
+
+
 @property
 def content(self):
     content = super(JavascriptAsset, self).content
-
-    # Fetch replacement text safely
-    replacement_text = 'odoo'
-    try:
-        if hasattr(self, 'bundle') and self.bundle and self.bundle.env:
-            env = self.bundle.env
-            enabled = env['ir.config_parameter'].sudo().get_param("web.url.replace.enabled", "False") == "True"
-            text = env['ir.config_parameter'].sudo().get_param("web.base.sorturl", "")
-            if enabled and text:
-                replacement_text = text
-        else:
-            replacement_text = base_sorturl[0]
-    except Exception as e:
-        _logger.warning("URL Replacer: Could not fetch config in asset generation, using fallback. Error: %s", e)
-        replacement_text = base_sorturl[0]
+    replacement_text = _get_replacement_text(getattr(self, 'bundle', None) and self.bundle.env)
 
     if replacement_text != 'odoo':
         if self.name == "/web/static/src/core/browser/router.js":
-            # BUG FIX: Only replace the URL path prefix string literal '/odoo'
-            # NOT all occurrences of 'odoo' which would corrupt JS identifiers
-            # and break pushState/popState history management (causing back-button freeze).
-            content = content.replace("'/odoo'", "'/" + replacement_text + "'")
+            # ── router.js has multiple patterns that ALL need replacing ──
+            #
+            # Line 153: const start_url = ... ? "scoped_app" : "odoo";
+            # Line 184: if (["odoo", "scoped_app"].includes(prefix))
+            # Line 330: browser.location.pathname.startsWith("/odoo")
+            # Line 331: ["/web", "/odoo"].includes(url.pathname) || url.pathname.startsWith("/odoo/")
+            # Line 336: if (url.pathname.startsWith("/odoo")
+            #
+            # 1. Replace the start_url assignment (bare "odoo" without slash)
+            content = content.replace(': "odoo"', ': "' + replacement_text + '"')
+            # 2. Replace the prefix check array
+            content = content.replace('["odoo",', '["' + replacement_text + '",')
+            # 3. Replace all pathname comparisons with /odoo
+            content = content.replace('"/odoo/"', '"/' + replacement_text + '/"')
             content = content.replace('"/odoo"', '"/' + replacement_text + '"')
-            # Handle the hashPrefix routing constant (both quote styles)
+            content = content.replace("'/odoo/'", "'/" + replacement_text + "/'")
+            content = content.replace("'/odoo'", "'/" + replacement_text + "'")
+            # 4. Handle the hashPrefix routing constant
             content = content.replace("hashPrefix = 'odoo'", "hashPrefix = '" + replacement_text + "'")
             content = content.replace('hashPrefix = "odoo"', 'hashPrefix = "' + replacement_text + '"')
         if self.name == "/web/static/src/webclient/navbar/navbar.js":
-            # Only replace the URL path literal, not JS identifiers
             content = content.replace("'/odoo'", "'/" + replacement_text + "'")
             content = content.replace('"/odoo"', '"/' + replacement_text + '"')
 
@@ -89,17 +97,15 @@ JavascriptAsset.content = content
 
 
 def url_init(self, httprequest):
+    # During __init__, we don't have env yet, so we rely on the last known base_sorturl[0]
+    # This is updated during routing_map generation (which happens early)
     replacement = base_sorturl[0]
     if replacement and replacement != 'odoo':
-        # BUG FIX: Only replace the FIRST path segment (/odoo -> /epg).
-        # The old .replace('odoo', ...) was too broad and could corrupt
-        # any path that happened to contain the word 'odoo'.
-        new_path = re.sub(
-            r'^/odoo(?=/|$)',
-            '/' + replacement,
-            httprequest.path
-        )
+        # If the browser mistakenly sends /odoo, rewrite it to our custom prefix
+        # so it matches the rewritten routing map.
+        new_path = re.sub(r'^/odoo(?=/|$)', '/' + replacement, httprequest.path)
         httprequest.path = new_path
+    
     self.httprequest = httprequest
     self.future_response = http.FutureResponse()
     self.dispatcher = http._dispatchers['http'](self)
@@ -113,16 +119,14 @@ http.Request.__init__ = url_init
 
 @tools.ormcache('key', cache='routing')
 def routing_map(self, key=None):
+    # Initialize base_sorturl[0] from config on every routing map generation
     config_parameter = self.env['ir.config_parameter']
     enabled = config_parameter.sudo().get_param("web.url.replace.enabled", "False") == "True"
+    
+    text = config_parameter.sudo().get_param("web.base.sorturl", "")
+    base_sorturl[0] = text if (enabled and text) else 'odoo'
 
-    if enabled:
-        replacement_text = config_parameter.sudo().get_param("web.base.sorturl", "")
-        base_sorturl[0] = replacement_text if replacement_text else 'odoo'
-    else:
-        base_sorturl[0] = 'odoo'
-
-    _logger.info("Generating routing map for key %s. Replacement Target: %s", str(key), base_sorturl[0])
+    _logger.info("Generating routing map for key %s. URL Prefix: %s", str(key), base_sorturl[0])
 
     registry = Registry(threading.current_thread().dbname)
     installed = registry._init_modules.union(odoo.conf.server_wide_modules)
@@ -130,14 +134,9 @@ def routing_map(self, key=None):
     routing_map = werkzeug.routing.Map(strict_slashes=False, converters=self._get_converters())
     for url, endpoint in self._generate_routing_rules(mods, converters=self._get_converters()):
         if base_sorturl[0] != 'odoo':
-            # BUG FIX: Only replace the leading /odoo route segment.
-            # Old code used url.replace('odoo', ...) which could break
-            # endpoint paths that contain 'odoo' as a substring.
-            url = re.sub(
-                r'^/odoo(?=/|$)',
-                '/' + base_sorturl[0],
-                url
-            )
+            # Rewrite all /odoo routes to /replacement
+            url = re.sub(r'^/odoo(?=/|$)', '/' + base_sorturl[0], url)
+        
         routing = submap(endpoint.routing, ROUTING_KEYS)
         if routing['methods'] is not None and 'OPTIONS' not in routing['methods']:
             routing['methods'] = routing['methods'] + ['OPTIONS']
