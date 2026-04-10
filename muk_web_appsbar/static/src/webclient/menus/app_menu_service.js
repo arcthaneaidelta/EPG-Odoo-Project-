@@ -24,16 +24,6 @@ export const appMenuService = {
                 // Placeholder apps
                 const placeholderApps = [
                     {
-                        id: 'placeholder_documents',
-                        label: 'Documents',
-                        xmlid: 'placeholder.documents',
-                        webIconData: '/base/static/description/icon.png',
-                        href: '#',
-                        actionID: null,
-                        isPlaceholder: true,
-                        order: 5
-                    },
-                    {
                         id: 'placeholder_training',
                         label: 'Training',
                         xmlid: 'placeholder.training',
@@ -52,7 +42,7 @@ export const appMenuService = {
                     'contacts.menu_contacts': 2,
                     'sale.sale_menu_root': 3,
                     'account.menu_finance': 4,
-                    'placeholder.documents': 5,
+                    'client_document_management.menu_dms_root': 5,
                     'placeholder.training': 6,
                     'ai_assistant.menu_ai_assistant_root': 7,
                     'website.menu_website_configuration': 9,
