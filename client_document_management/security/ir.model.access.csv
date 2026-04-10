@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dms_directory_contract,dms.directory.contract,dms.model_dms_directory,client_document_management.group_dms_contract_manager,1,1,1,1
+access_dms_file_contract,dms.file.contract,dms.model_dms_file,client_document_management.group_dms_contract_manager,1,1,1,1
+access_dms_directory_invoice,dms.directory.invoice,dms.model_dms_directory,client_document_management.group_dms_invoice_user,1,1,1,1
+access_dms_file_invoice,dms.file.invoice,dms.model_dms_file,client_document_management.group_dms_invoice_user,1,1,1,1
+access_dms_directory_internal,dms.directory.internal,dms.model_dms_directory,client_document_management.group_dms_internal_user,1,1,1,1
+access_dms_file_internal,dms.file.internal,dms.model_dms_file,client_document_management.group_dms_internal_user,1,1,1,1
+access_sign_request_contract,sign.oca.request.contract,sign_oca.model_sign_oca_request,client_document_management.group_dms_contract_manager,1,1,1,1
+access_sign_template_contract,sign.oca.template.contract,sign_oca.model_sign_oca_template,client_document_management.group_dms_contract_manager,1,1,1,1

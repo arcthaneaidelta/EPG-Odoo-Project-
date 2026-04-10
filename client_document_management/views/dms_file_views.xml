@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_dms_file_form_inherit" model="ir.ui.view">
+        <field name="name">dms.file.form.inherit</field>
+        <field name="model">dms.file</field>
+        <field name="inherit_id" ref="dms.view_dms_file_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_send_for_signature" string="Send to Sign" type="object" class="oe_highlight" 
+                        invisible="status != 'draft'"/>
+                <button name="action_approve_signature" string="Mark as Signed" type="object" 
+                        invisible="status != 'sent'"/>
+                <field name="status" widget="statusbar" statusbar_visible="draft,sent,signed,archived" clickable="True"/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_title')]" position="after">
+                <notebook>
+                    <page name="document_details" string="Document Details">
+                        <group>
+                            <group string="Metadata">
+                                <field name="document_type"/>
+                                <field name="partner_id"/>
+                                <field name="version_number" readonly="1"/>
+                                <field name="create_date" string="Creation Date" readonly="1"/>
+                            </group>
+                            <group string="Electronic Signature" invisible="not sign_request_id">
+                                <field name="sign_request_id"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_dms_file_tree_inherit" model="ir.ui.view">
+        <field name="name">dms.file.list.inherit</field>
+        <field name="model">dms.file</field>
+        <field name="inherit_id" ref="dms.view_dms_file_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="document_type"/>
+                <field name="partner_id"/>
+                <field name="version_number"/>
+                <field name="status" widget="badge" 
+                       decoration-info="status == 'draft'" 
+                       decoration-warning="status == 'sent'" 
+                       decoration-success="status == 'signed'" 
+                       decoration-muted="status == 'archived'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

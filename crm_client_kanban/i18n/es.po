@@ -45,6 +45,7 @@ msgid "Contact Person"
 msgstr "Persona de contacto"
 
 #. module: crm_client_kanban
+#: model:ir.actions.act_window,name:crm_client_kanban.action_contacts_dark_kanban
 msgid "Contacts"
 msgstr "Contactos"
 
@@ -67,6 +68,19 @@ msgstr "Gestiona tus seguimientos comerciales"
 #. module: crm_client_kanban
 msgid "No clients found. Create your first contact!"
 msgstr "No se encontraron clientes. ¡Crea tu primer contacto!"
+
+#. module: crm_client_kanban
+#: model:ir.actions.act_window,help:crm_client_kanban.action_contacts_dark_kanban
+msgid ""
+"<p class=\"o_view_nocontent_smiling_face\">\n"
+"                No clients found. Create your first contact!\n"
+"            </p>\n"
+"        "
+msgstr ""
+"<p class=\"o_view_nocontent_smiling_face\">\n"
+"                No se encontraron clientes. ¡Crea tu primer contacto!\n"
+"            </p>\n"
+"        "
 
 #. module: crm_client_kanban
 msgid "Reports"

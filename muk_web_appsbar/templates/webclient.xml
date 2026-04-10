@@ -11,5 +11,9 @@
             <attribute name="t-if">request.cookies.get('color_scheme') != 'light'</attribute>
         </xpath>
     </template>
-    
+    <template id="web_layout_favicon_inherit" inherit_id="web.layout">
+        <xpath expr="//link[@rel='shortcut icon']" position="replace">
+            <link type="image/x-icon" rel="shortcut icon" href="/muk_web_appsbar/static/src/img/favicon.png"/>
+        </xpath>
+    </template>
 </odoo>

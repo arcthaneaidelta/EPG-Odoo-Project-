@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ROOT MENU -->
+    <menuitem id="menu_dms_root"
+              name="Documents"
+              web_icon="client_document_management,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- 1. DOCUMENTS (Documentos) -->
+    <menuitem id="menu_dms_documents"
+              name="Documents"
+              parent="menu_dms_root"
+              sequence="10"/>
+
+    <menuitem id="menu_dms_file_list"
+              name="Document List"
+              parent="menu_dms_documents"
+              action="dms.action_dms_file"
+              sequence="10"/>
+
+    <!-- 2. TEMPLATES (Plantillas) -->
+    <menuitem id="menu_dms_templates"
+              name="Templates"
+              parent="menu_dms_root"
+              sequence="20"/>
+
+    <menuitem id="menu_dms_template_editor"
+              name="Template Editor"
+              parent="menu_dms_templates"
+              action="sign_oca.sign_oca_template_act_window"
+              sequence="10"/>
+
+    <!-- 3. SIGNATURES (Firmas) -->
+    <menuitem id="menu_dms_signatures"
+              name="Signatures"
+              parent="menu_dms_root"
+              sequence="30"/>
+
+    <menuitem id="menu_dms_sign_requests"
+              name="Signature Requests"
+              parent="menu_dms_signatures"
+              action="sign_oca.sign_oca_request_act_window"
+              sequence="10"/>
+
+    <menuitem id="menu_dms_sign_signers"
+              name="Signers"
+              parent="menu_dms_signatures"
+              action="sign_oca.sign_oca_request_signer_act_window"
+              sequence="20"/>
+
+    <!-- 4. REPORTS (Informes) -->
+    <menuitem id="menu_dms_reports"
+              name="Reports"
+              parent="client_document_management.menu_dms_root"
+              sequence="40"/>
+
+    <menuitem id="menu_dms_reports_stats"
+              name="Statistics"
+              parent="client_document_management.menu_dms_reports"
+              action="action_dms_file_reports"
+              sequence="10"/>
+
+    <!-- 5. STORAGE (Almacenamiento) -->
+    <menuitem id="menu_dms_storage_root"
+              name="Storage"
+              parent="menu_dms_root"
+              sequence="50"/>
+
+    <menuitem id="menu_dms_storage_files"
+              name="Files"
+              parent="menu_dms_storage_root"
+              action="dms.action_dms_file"
+              sequence="10"/>
+
+    <menuitem id="menu_dms_storage_directories"
+              name="Directories"
+              parent="menu_dms_storage_root"
+              action="dms.action_dms_directory"
+              sequence="20"/>
+
+    <menuitem id="menu_dms_storage_usage"
+              name="Storage Usage"
+              parent="menu_dms_storage_root"
+              action="dms.action_dms_storage"
+              sequence="30"/>
+
+    <!-- 6. SETTINGS (Ajustes) -->
+    <menuitem id="menu_dms_settings"
+              name="Settings"
+              parent="menu_dms_root"
+              sequence="100"/>
+
+    <menuitem id="menu_dms_config_storage"
+              name="Storage Configuration"
+              parent="menu_dms_settings"
+              action="dms.action_dms_storage"
+              sequence="10"/>
+
+</odoo>

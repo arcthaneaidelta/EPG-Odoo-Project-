@@ -25,7 +25,9 @@
 		"views/sale_order_views.xml",
 		# "data/crm_automation.xml",
 		"data/mail_templates.xml",
+		"data/res_country_data.xml",
 		# "data/menu_order.xml",
 	],
+	"post_init_hook": "post_init_hook",
 	"application": True,
 }

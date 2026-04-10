@@ -166,8 +166,8 @@ msgstr ""
 
 #. module: crm_base
 #: model:ir.model.fields.selection,name:crm_base.selection__res_partner__company_type__company
-msgid "Comapny"
-msgstr "Compañía"
+msgid "Business"
+msgstr "Empresa"
 
 #. module: crm_base
 #: model:ir.model,name:crm_base.model_res_company
@@ -252,8 +252,8 @@ msgstr ""
 
 #. module: crm_base
 #: model:ir.model.fields.selection,name:crm_base.selection__res_partner__company_type__person
-msgid "Private"
-msgstr "Individuo"
+msgid "Private Person"
+msgstr "Particular"
 
 #. module: crm_base
 #: model:ir.model.fields,field_description:crm_base.field_res_users__sale_order_ids
@@ -300,3 +300,89 @@ msgstr "Usuario"
 #: model_terms:ir.ui.view,arch_db:crm_base.crm_lead_form_saas
 msgid "WhatsApp"
 msgstr ""
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__client_type
+msgid "Client Type"
+msgstr "Tipo de Cliente"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__supplier
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__referrer_user_id
+msgid "Referrer"
+msgstr "Referidor"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__referral_code
+msgid "Referral Code"
+msgstr "Código de Referido"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__date_of_birth
+msgid "Date of Birth"
+msgstr "Fecha de Nacimiento"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__nationality_id
+msgid "Nationality"
+msgstr "Nacionalidad"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__additional_email_ids
+msgid "Additional Emails"
+msgstr "Correos Adicionales"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__additional_phone_ids
+msgid "Additional Phones"
+msgstr "Teléfonos Adicionales"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__note
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__note
+msgid "Note"
+msgstr "Nota"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__email
+msgid "Email"
+msgstr "Correo Electrónico"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_res_partner_email
+msgid "Additional Partner Email"
+msgstr "Correo Adicional del Contacto"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_res_partner_phone
+msgid "Additional Partner Phone"
+msgstr "Teléfono Adicional del Contacto"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.res_partner_form_add_dob
+msgid "Contact Details"
+msgstr "Detalles de Contacto"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.res_partner_form_add_dob
+msgid "Additional Phone Numbers"
+msgstr "Números de Teléfono Adicionales"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.res_partner_form_add_dob
+msgid "Additional Emails"
+msgstr "Correos Electrónicos Adicionales"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.res_partner_form_add_dob
+msgid "Contacts"
+msgstr "Contactos"

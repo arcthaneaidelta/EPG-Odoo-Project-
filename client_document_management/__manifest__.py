@@ -1,0 +1,22 @@
+{
+    "name": "Client Document Management Bridge",
+    "summary": "Bridging module for DMS and Sign OCA according to client specs",
+    "version": "18.0.1.0.0",
+    "category": "Document Management",
+    "depends": ["dms", "sign_oca", "sale_management", "mail"],
+    "data": [
+        "security/security.xml",
+        "security/ir.model.access.csv",
+        "data/dms_access_data.xml",
+        "data/sequence.xml",
+        "views/dms_file_views.xml",
+        "views/dms_storage_views.xml",
+        "views/sale_order_views.xml",
+        "views/dms_template_views.xml",
+        "views/report_views.xml",
+        "views/menu.xml",
+    ],
+    "installable": True,
+    "application": False,
+    "license": "LGPL-3",
+}

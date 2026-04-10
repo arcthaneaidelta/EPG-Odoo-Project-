@@ -7,6 +7,10 @@
 // ==========================================
 // UNIVERSAL DARK-STYLE SIDEBAR (applies to all themes)
 // ==========================================
+.o_form_view .o_form_sheet {
+    overflow: auto !important;
+}
+
 .o_reward_msg_container {
     display: none !important;
 }
@@ -51,8 +55,8 @@
                 align-items: center;
 
                 .mk_apps_sidebar_icon {
-                    width: 22px;
-                    height: 22px;
+                    width: 28px;
+                    height: 28px;
                     margin-right: 10px;
                     border-radius: 4px;
                     filter: brightness(1.1);
@@ -209,6 +213,7 @@
     width: 90px;        // 👈 adjust size here
     max-height: 70px;
     object-fit: contain;
+    display: none;
 }
 
 .o_navbar_apps_menu{

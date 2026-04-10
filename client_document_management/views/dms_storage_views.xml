@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_dms_storage_form_inherit" model="ir.ui.view">
+        <field name="name">dms.storage.form.inherit</field>
+        <field name="model">dms.storage</field>
+        <field name="inherit_id" ref="dms.view_dms_storage_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Storage Capacity Tracking">
+                    <group>
+                        <field name="total_quota"/>
+                        <field name="used_space_human" string="Used Space"/>
+                    </group>
+                    <group>
+                        <field name="available_space_human" string="Available Space"/>
+                        <field name="usage_rate" widget="progressbar"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_dms_storage_tree_inherit" model="ir.ui.view">
+        <field name="name">dms.storage.list.inherit</field>
+        <field name="model">dms.storage</field>
+        <field name="inherit_id" ref="dms.view_dms_storage_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='save_type']" position="after">
+                <field name="used_space_human" string="Uso"/>
+                <field name="usage_rate" widget="progressbar" string="Capacidad"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

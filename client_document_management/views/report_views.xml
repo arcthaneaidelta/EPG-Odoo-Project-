@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Document Statistics View -->
+    <record id="view_dms_file_pivot_reports" model="ir.ui.view">
+        <field name="name">dms.file.pivot.reports</field>
+        <field name="model">dms.file</field>
+        <field name="arch" type="xml">
+            <pivot string="Document Analysis">
+                <field name="document_type" type="row"/>
+                <field name="status" type="col"/>
+                <field name="size" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_dms_file_graph_reports" model="ir.ui.view">
+        <field name="name">dms.file.graph.reports</field>
+        <field name="model">dms.file</field>
+        <field name="arch" type="xml">
+            <graph string="Document Statistics" type="pie">
+                <field name="status"/>
+                <field name="id" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_dms_file_reports" model="ir.actions.act_window">
+        <field name="name">Document Statistics</field>
+        <field name="res_model">dms.file</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Analice el uso de sus documentos.
+            </p>
+        </field>
+    </record>
+
+    <!-- Update the menu item in menu.xml to point to this action -->
+</odoo>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="category_dms_permissions" model="ir.module.category">
+        <field name="name">Documents Roles</field>
+        <field name="description">Simplified Roles for DMS Access</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_dms_contract_manager" model="res.groups">
+        <field name="name">Contract Manager</field>
+        <field name="category_id" ref="category_dms_permissions"/>
+        <field name="implied_ids" eval="[(4, ref('dms.group_dms_user'))]"/>
+    </record>
+
+    <record id="group_dms_invoice_user" model="res.groups">
+        <field name="name">Invoice User</field>
+        <field name="category_id" ref="category_dms_permissions"/>
+        <field name="implied_ids" eval="[(4, ref('dms.group_dms_user'))]"/>
+    </record>
+
+    <record id="group_dms_internal_user" model="res.groups">
+        <field name="name">Internal User</field>
+        <field name="category_id" ref="category_dms_permissions"/>
+        <field name="implied_ids" eval="[(4, ref('dms.group_dms_user'))]"/>
+    </record>
+
+    <!-- Deactivate restrictive base DMS rules -->
+    <record id="dms.rule_directory_computed_create" model="ir.rule">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="dms.rule_directory_computed_read" model="ir.rule">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="dms.rule_directory_computed_write" model="ir.rule">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="dms.rule_directory_computed_unlink" model="ir.rule">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="dms.rule_file_computed_create" model="ir.rule">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="dms.rule_file_computed_read" model="ir.rule">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="dms.rule_file_computed_write" model="ir.rule">
+        <field name="active" eval="False"/>
+    </record>
+    <record id="dms.rule_file_computed_unlink" model="ir.rule">
+        <field name="active" eval="False"/>
+    </record>
+</odoo>

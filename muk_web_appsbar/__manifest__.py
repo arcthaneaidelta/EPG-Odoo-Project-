@@ -26,8 +26,6 @@
         'views/res_config_settings.xml',
         'views/product_template_kanban_view.xml',
         'views/menu.xml',
-
-
     ],
     'assets': {
         'web._assets_primary_variables': [

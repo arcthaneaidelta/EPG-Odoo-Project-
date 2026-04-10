@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Force Update ALL Address Formats: State City Zip -->
+        <!-- We use a search to update all, but here we explicitly target Spain as a reference -->
+        <record id="base.es" model="res.country">
+            <field name="address_format" eval="'%(street)s\n%(street2)s\n%(state_name)s %(city)s %(zip)s\n%(country_name)s'"/>
+        </record>
+    </data>
+</odoo>

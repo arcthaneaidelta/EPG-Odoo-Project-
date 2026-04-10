@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields, api, tools
+import base64
 
 
 class ResCompany(models.Model):

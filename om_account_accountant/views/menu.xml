@@ -20,6 +20,7 @@
     <menuitem id="menu_finance_entries_accounting_journals" name="Journals"
               parent="account.menu_finance_entries" sequence="2">
 
+
         <menuitem id="menu_action_account_moves_journal_sales"
                   action="account.action_account_moves_journal_sales"
                   groups="account.group_account_readonly" sequence="1"/>
@@ -50,7 +51,8 @@
     </record>
 
 
-    
+    <menuitem id="account.menu_action_account_journal_form" name="Journals" 
+              parent="account.menu_finance_entries" sequence="2"/> <!-- Journals move to Accounting/Accounting-->
 
 
     <!--               Accounting Module's Menu Changes               -->
@@ -117,6 +119,12 @@
         <field name="active">False</field>
     </record>
     <record id="base.menu_translation_export" model="ir.ui.menu"> <!-- Translations/(Import/Export) Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="dms.main_menu_dms" model="ir.ui.menu"> <!-- DMS,Documents Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="sign_oca.sign_oca_root_menu" model="ir.ui.menu"> <!-- Sign Removed -->
         <field name="active">False</field>
     </record>
     <record id="mail.mail_menu_technical" model="ir.ui.menu"> <!-- Technical/Discuss Removed -->

@@ -33,6 +33,8 @@
         'hr',
         'hr_expense',
         'account_tax_balance',
+        'dms',
+        'sign_oca',
     ],
 
     'data': [
