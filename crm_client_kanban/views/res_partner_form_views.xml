@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_id_extension" model="ir.ui.view">
+        <field name="name">res.partner.form.id.extension</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[1]/div[@class='o_address_format']" position="after">
+                <label for="l10n_es_id_type" string="Identification" invisible="is_company"/>
+                <div class="o_row" invisible="is_company">
+                    <field name="l10n_es_id_type" placeholder="Type" class="oe_inline"/>
+                    <field name="l10n_es_id_number" placeholder="Number" class="oe_inline"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

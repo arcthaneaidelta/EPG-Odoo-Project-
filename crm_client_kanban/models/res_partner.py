@@ -5,6 +5,13 @@ from odoo import models, fields, api
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    l10n_es_id_type = fields.Selection([
+        ('dni', 'DNI'),
+        ('nie', 'NIE'),
+        ('passport', 'PASSPORT'),
+    ], string="ID Type", help="Spanish Identification Type (DNI/NIE/PASSPORT)")
+    l10n_es_id_number = fields.Char(string="ID Number")
+
     # ── Total confirmed/done sale order amounts ──────────────────────────────
     kanban_total_sales = fields.Monetary(
         string='Total Sales',

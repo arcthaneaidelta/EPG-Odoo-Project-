@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 class CrmHealthReport(models.Model):
 	_name = 'crm.health.report'
 	_description = 'Business Health Report'
+	_rec_name = 'company_id'
 
 	company_id = fields.Many2one('res.company', string='Company', required=True, default=lambda self: self.env.company)
 	

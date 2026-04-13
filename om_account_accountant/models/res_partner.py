@@ -12,5 +12,10 @@ class ResPartner(models.Model):
     property_inbound_payment_method_line_id = fields.Many2one(
         help="Preferred payment method when selling to this customer. This will be set by default on all"
              " incoming payments created for this customer.\n"
-             "Manual option represents payments handled outside the system natively, like cash or external bank transfers."
+             "manual option represents payments handled outside the system natively, like cash or external bank transfers."
     )
+
+class ResPartnerBank(models.Model):
+    _inherit = 'res.partner.bank'
+
+    iban = fields.Char(string="IBAN")

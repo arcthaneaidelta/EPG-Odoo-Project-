@@ -11,6 +11,17 @@
     overflow: auto !important;
 }
 
+.fa-question-circle:before {
+    display: none !important;
+}
+
+.o_nocontent_help .o_empty_folder_image::before,
+.o_view_nocontent .o_nocontent_help .o_view_nocontent_empty_folder::before {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+}
+
 .o_reward_msg_container {
     display: none !important;
 }

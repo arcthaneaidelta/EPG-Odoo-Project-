@@ -44,7 +44,6 @@
                             <label for="unpaid_invoices_count" string="Unpaid Invoices"/>
                             <div>
                                 <field name="unpaid_invoices_count" class="oe_inline"/> 
-                                (<field name="unpaid_invoices_amount" class="oe_inline" widget="monetary"/>)
                                 <button name="action_view_unpaid_invoices" type="object" string="View" class="btn-link" invisible="unpaid_invoices_count == 0"/>
                             </div>
                             

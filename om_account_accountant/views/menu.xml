@@ -118,7 +118,21 @@
     <record id="account.product_product_menu_sellable" model="ir.ui.menu"> <!-- Customers/Product Removed -->
         <field name="active">False</field>
     </record>
-    <record id="base.menu_translation_export" model="ir.ui.menu"> <!-- Translations/(Import/Export) Removed -->
+    
+    <record id="base.menu_translation_export" model="ir.ui.menu"> <!-- Certificates AEAT Removed -->
+        <field name="active">False</field>
+    </record>
+    
+    <record id="account.menu_analytic__distribution_model" model="ir.ui.menu"> <!-- Analytic Distribution Models Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="account.account_analytic_def_account" model="ir.ui.menu"> <!-- Analytic Accounts Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="account.account_analytic_plan_menu" model="ir.ui.menu"> <!-- Analytic Plans Removed -->
+        <field name="active">False</field>
+    </record>
+    <record id="account.menu_action_analytic_lines_tree" model="ir.ui.menu"> <!-- Analytic Items Removed -->
         <field name="active">False</field>
     </record>
     <record id="dms.main_menu_dms" model="ir.ui.menu"> <!-- DMS,Documents Removed -->

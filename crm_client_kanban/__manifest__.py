@@ -22,6 +22,7 @@
     ],
     'data': [
         'views/res_partner_views.xml',
+        'views/res_partner_form_views.xml',
     ],
     'assets': {
         'web.assets_backend': [

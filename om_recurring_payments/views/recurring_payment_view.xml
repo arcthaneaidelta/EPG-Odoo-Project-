@@ -102,6 +102,6 @@
               sequence="10"
               action="action_account_recurring_payment"
               groups="account.group_account_user,account.group_account_manager"
-              parent="menu_recurring_payments"/>
+              parent="account.menu_finance_receivables"/>
 
 </odoo>
