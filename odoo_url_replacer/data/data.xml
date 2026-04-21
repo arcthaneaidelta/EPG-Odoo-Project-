@@ -3,7 +3,7 @@
     <data noupdate="1">
         <record id="rec_config_parameter_web_basesorturl" model="ir.config_parameter">
             <field name="key">web.base.sorturl</field>
-            <field name="value">china</field>
+            <field name="value">epg</field>
         </record>
     </data>
 </odoo>

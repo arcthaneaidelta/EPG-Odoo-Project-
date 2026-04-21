@@ -1,4 +1,5 @@
 from . import models
+from . import controllers
 from odoo.addons.base.models.assetsbundle import JavascriptAsset
 from odoo.tools import transpile_javascript
 import re
