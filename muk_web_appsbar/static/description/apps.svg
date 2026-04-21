@@ -1,0 +1,48 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+
+<linearGradient id="panelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#1A2F5A"/>
+<stop offset="100%" stop-color="#0A1633"/>
+</linearGradient>
+
+<linearGradient id="tileGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#223D75"/>
+<stop offset="100%" stop-color="#132754"/>
+</linearGradient>
+
+<linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#35D0FF"/>
+<stop offset="100%" stop-color="#0A4DFF"/>
+</linearGradient>
+
+</defs>
+
+<!-- panel -->
+<rect x="10" y="10" width="80" height="80" rx="18"
+fill="url(#panelGrad)"/>
+
+<!-- app grid background hint -->
+<rect x="28" y="28" width="44" height="44" rx="10"
+fill="url(#tileGrad)"
+stroke="url(#accentGrad)"
+stroke-width="1.2"/>
+
+<!-- grid tiles -->
+<rect x="32" y="32" width="10" height="10" rx="2" fill="#35D0FF"/>
+<rect x="44" y="32" width="10" height="10" rx="2" fill="#7FE6FF"/>
+<rect x="56" y="32" width="10" height="10" rx="2" fill="#35D0FF"/>
+
+<rect x="32" y="44" width="10" height="10" rx="2" fill="#7FE6FF"/>
+<rect x="44" y="44" width="10" height="10" rx="2" fill="url(#accentGrad)"/>
+<rect x="56" y="44" width="10" height="10" rx="2" fill="#7FE6FF"/>
+
+<rect x="32" y="56" width="10" height="10" rx="2" fill="#35D0FF"/>
+<rect x="44" y="56" width="10" height="10" rx="2" fill="#7FE6FF"/>
+<rect x="56" y="56" width="10" height="10" rx="2" fill="#35D0FF"/>
+
+<!-- floating highlight -->
+<circle cx="70" cy="30" r="2.5" fill="#35D0FF"/>
+
+</svg>

@@ -25,6 +25,7 @@
         'data/saas_plan_data.xml',
         'data/cron_jobs.xml',
         'views/menu.xml',
+        'views/res_config_settings_views.xml',
         'views/saas_plan_views.xml',
         'views/saas_subscription_views.xml',
         'views/saas_addon_views.xml',

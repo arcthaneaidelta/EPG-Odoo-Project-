@@ -587,13 +587,13 @@ export class Dashboard extends Component {
         const points = rawPoints.length
             ? rawPoints
             : [
-                  { id: 0, label: "Jan", value: 0, forecast: 0 },
-                  { id: 1, label: "Feb", value: 0, forecast: 0 },
-                  { id: 2, label: "Mar", value: 0, forecast: 0 },
-                  { id: 3, label: "Apr", value: 0, forecast: 0 },
-                  { id: 4, label: "May", value: 0, forecast: 0 },
-                  { id: 5, label: "Jun", value: 0, forecast: 0 },
-              ];
+                { id: 0, label: "Jan", value: 0, forecast: 0 },
+                { id: 1, label: "Feb", value: 0, forecast: 0 },
+                { id: 2, label: "Mar", value: 0, forecast: 0 },
+                { id: 3, label: "Apr", value: 0, forecast: 0 },
+                { id: 4, label: "May", value: 0, forecast: 0 },
+                { id: 5, label: "Jun", value: 0, forecast: 0 },
+            ];
 
         const maxValue = Math.max(...points.map((point) => Math.max(point.value, point.forecast)), 0);
         const safeMax = maxValue > 0 ? maxValue : 1;
@@ -617,7 +617,7 @@ export class Dashboard extends Component {
 
         const polyline = normalizedPoints.map((point) => `${point.x},${point.y}`).join(" ");
         const forecastPolyline = normalizedPoints.map((point) => `${point.x},${point.forecastY}`).join(" ");
-        
+
         const peakPoint = normalizedPoints.reduce(
             (best, point) => (point.value > best.value ? point : best),
             normalizedPoints[0] || { value: 0, label: "", valueLabel: "0" }
@@ -713,15 +713,15 @@ export class Dashboard extends Component {
                             </thead>
                             <tbody>
                                 ${(group.metrics || [])
-                                    .map(
-                                        (metric) => `
+                        .map(
+                            (metric) => `
                                             <tr>
                                                 <td>${this.escapeHtml(metric.label || "-")}</td>
                                                 <td>${this.escapeHtml(metric.formattedValue || "0")}</td>
                                             </tr>
                                         `
-                                    )
-                                    .join("")}
+                        )
+                        .join("")}
                             </tbody>
                         </table>
                     </section>

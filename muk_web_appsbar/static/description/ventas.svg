@@ -22,9 +22,7 @@
 
 <!-- panel -->
 <rect x="10" y="10" width="80" height="80" rx="18"
-fill="url(#panelGrad)"
-stroke="#FFFFFF"
-stroke-width="1.5"/>
+fill="url(#panelGrad)"/>
 
 <!-- barras escalonadas -->
 <rect x="26" y="60" width="10" height="12" rx="2" fill="url(#barGrad)"/>

@@ -36,7 +36,6 @@
     background: linear-gradient(90deg, #041424 0%, #152534 100%);
     border-right: 1px solid rgba(255, 255, 255, 0.05);
     width: var(--mk-sidebar-width, 0);
-    overflow-y: auto;
     margin-top: -50px;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 
@@ -66,8 +65,8 @@
                 align-items: center;
 
                 .mk_apps_sidebar_icon {
-                    width: 28px;
-                    height: 28px;
+                    width: 30px;
+                    height: 30px;
                     margin-right: 10px;
                     border-radius: 4px;
                     filter: brightness(1.1);

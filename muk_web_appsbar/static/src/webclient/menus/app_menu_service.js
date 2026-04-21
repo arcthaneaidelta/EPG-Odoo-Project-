@@ -27,7 +27,7 @@ export const appMenuService = {
                         id: 'placeholder_training',
                         label: 'Training',
                         xmlid: 'placeholder.training',
-                        webIconData: '/base/static/description/icon.png',
+                        webIconData: '/muk_web_appsbar/static/description/training.svg',
                         href: '#',
                         actionID: null,
                         isPlaceholder: true,

@@ -14,4 +14,8 @@
     <record id="contacts.menu_contacts" model="ir.ui.menu">
         <field name="web_icon">muk_web_appsbar,static/description/clientes.svg</field>
     </record>
+    
+    <record id="base.menu_management" model="ir.ui.menu">
+        <field name="web_icon">muk_web_appsbar,static/description/apps.svg</field>
+    </record>
 </odoo>

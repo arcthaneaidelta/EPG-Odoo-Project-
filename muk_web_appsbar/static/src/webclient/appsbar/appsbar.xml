@@ -6,7 +6,6 @@
 		<div class="mk_apps_sidebar_panel">
 			<div t-if="sidebarImageUrl" class="mk_apps_sidebar_logo p-2">
 					<img class="img-fluid mx-auto" t-att-src="sidebarImageUrl" alt="Logo"/>
-					<div class="company-name mt-1">Productividad Global</div>
 				</div>
 			<div class="mk_apps_sidebar">
 				
@@ -34,7 +33,7 @@
 			                	/>
 						        <span class="mk_apps_sidebar_name">
 						            <t t-out="app.label"/>
-						            <span t-if="app.isPlaceholder" class="mk_coming_soon_badge">Coming Soon</span>
+						            <span t-if="app.isPlaceholder"></span>
 						        </span>
 			            	 </a>
 			            </li>

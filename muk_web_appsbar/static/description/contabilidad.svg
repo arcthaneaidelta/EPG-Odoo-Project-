@@ -27,9 +27,7 @@
 
 <!-- panel exterior -->
 <rect x="10" y="10" width="80" height="80" rx="18"
-fill="url(#panelGrad)"
-stroke="#FFFFFF"
-stroke-width="1.5"/>
+fill="url(#panelGrad)"/>
 
 <!-- cuerpo calculadora -->
 <rect x="26" y="20" width="48" height="60" rx="12"

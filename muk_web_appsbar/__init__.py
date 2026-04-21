@@ -23,7 +23,7 @@ def _setup_module(env):
                 _logger.info("EPG Branding: Custom logo applied to %s", company.name)
         except Exception:
             # Fallback to default if custom logo is not found
-            with file_open('base/static/img/res_company_logo.png', 'rb') as file:
+            with file_open('muk_web_appsbar/static/src/img/companylogo.png', 'rb') as file:
                 logo_data = base64.b64encode(file.read())
                 company.write({
                     'appbar_image': logo_data
