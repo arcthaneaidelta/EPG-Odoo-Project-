@@ -10,7 +10,7 @@
     <menuitem
         id="main_menu_dms"
         name="Documents"
-        web_icon="dms,static/description/icon.png"
+        web_icon="dms,static/description/icon.svg"
         groups="group_dms_user"
     >
         <menuitem

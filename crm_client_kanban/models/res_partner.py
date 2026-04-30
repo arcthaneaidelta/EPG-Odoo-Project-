@@ -1,5 +1,6 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
+import re
 
 
 class ResPartner(models.Model):
@@ -11,6 +12,34 @@ class ResPartner(models.Model):
         ('passport', 'PASSPORT'),
     ], string="ID Type", help="Spanish Identification Type (DNI/NIE/PASSPORT)")
     l10n_es_id_number = fields.Char(string="ID Number")
+    
+    cif = fields.Char(string="CIF")
+
+    @api.constrains('l10n_es_id_number', 'l10n_es_id_type')
+    def _check_spanish_id_dni(self):
+        for partner in self:
+            if not partner.l10n_es_id_number:
+                continue
+            
+            # Only validate if ID type is DNI
+            if partner.l10n_es_id_type != 'dni':
+                continue
+                
+            # Clean ID Number (remove spaces and dots)
+            id_num = partner.l10n_es_id_number.strip().upper()
+            
+            # DNI: 8 digits + 1 letter
+            dni_pattern = re.compile(r'^[0-9]{8}[A-Z]$')
+            
+            if dni_pattern.match(id_num):
+                mapping = "TRWAGMYFPDXBNJZSQVHLCKE"
+                num_str = id_num[:8]
+                
+                expected_letter = mapping[int(num_str) % 23]
+                if id_num[8] != expected_letter:
+                    raise ValidationError(_("Invalid DNI: The control letter '%s' does not match for number %s. Expected '%s'.") % (id_num[8], id_num[:8], expected_letter))
+            else:
+                raise ValidationError(_("Invalid DNI format in ID Number: Expected 8 digits followed by a letter."))
 
     # ── Total confirmed/done sale order amounts ──────────────────────────────
     kanban_total_sales = fields.Monetary(

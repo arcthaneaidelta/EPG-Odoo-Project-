@@ -36,6 +36,7 @@
             'saas_plans/static/src/css/saas_plans.css',
             'saas_plans/static/src/js/saas_checkout.js',
             'saas_plans/static/src/js/promo_code.js',
+            'saas_plans/static/src/js/saas_registration.js',
         ],
     },
     'installable': True,

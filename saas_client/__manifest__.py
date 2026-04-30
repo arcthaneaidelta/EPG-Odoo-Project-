@@ -17,9 +17,10 @@
     """,
     'author': 'Your Company',
     'website': 'https://abc.com',
-    'depends': ['base','website'],
+    'depends': ['base', 'odoo_url_replacer'],
     'data': [
         'views/res_config_settings_views.xml',
+        'views/login_templates.xml',
     ],
     'installable': True,
     'application': False,

@@ -111,6 +111,15 @@ class IrHttp(models.AbstractModel):
                 path = request.httprequest.path
 
                 # --------------------------------------------------------------
+                # 0. Bypass redirects for JSON-RPC and specific frontend paths to avoid parse errors
+                # --------------------------------------------------------------
+                bypass_paths = ('/jsonrpc', '/web/dataset/call_kw', '/web/session/', '/web/webclient/translations', '/website/translations', '/web/static', '/website/static')
+                
+                if request.httprequest.mimetype == 'application/json' or any(path.startswith(bp) for bp in bypass_paths):
+                    return super(IrHttp, cls)._dispatch(endpoint)
+
+
+                # --------------------------------------------------------------
                 # 1. Fixed prefix block (legacy / web routes)
                 # --------------------------------------------------------------
                 for rp in cls.SAAS_RESTRICTED_PREFIXES:

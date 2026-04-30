@@ -54,7 +54,7 @@ class SaaSPlan(models.Model):
     )
     module_names = fields.Char(
         string='Module Technical Names',
-        help='Comma-separated list of module technical names to install (e.g., crm,account,real_estate)'
+        help='Comma-separated list of module technical names to install (e.g., crm,account)'
     )
     
     # Early Adopter Settings

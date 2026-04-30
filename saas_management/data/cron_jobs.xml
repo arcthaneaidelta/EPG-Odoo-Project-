@@ -41,5 +41,18 @@
             <field name="priority">15</field>
         </record>
 
+        <!-- Daily cron: auto renew monthly add-ons (independent cycle) -->
+        <record id="cron_auto_renew_addons" model="ir.cron">
+            <field name="name">SaaS: Auto Renew Monthly Add-ons</field>
+            <field name="model_id" ref="model_saas_subscription"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_auto_renew_addons()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 04:00:00')"/>
+            <field name="active">True</field>
+            <field name="priority">20</field>
+        </record>
+
     </data>
 </odoo>

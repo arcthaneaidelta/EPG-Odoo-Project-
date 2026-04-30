@@ -8,6 +8,11 @@ class ResUsers(models.Model):
 	is_sales_representative = fields.Boolean(string="Is Sales Representative")
 	commission_percentage = fields.Float(string="Commission (%)", default=10.0)
 	sale_order_ids = fields.One2many("sale.order", "user_id", string="Referred Sales Orders")
+
+	# Coverage fields for automatic assignment
+	assigned_industry_ids = fields.Many2many('res.partner.industry', string='Assigned Sectors')
+	assigned_state_ids = fields.Many2many('res.country.state', string='Assigned Regions')
+	assigned_country_ids = fields.Many2many('res.country', string='Assigned Countries')
 	
 	company_currency_id = fields.Many2one(
 		related='company_id.currency_id',

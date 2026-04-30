@@ -27,11 +27,15 @@ class PaymentTransaction(models.Model):
             
             for order in sale_orders:
                 try:
-                    # Auto-confirm the order if not already confirmed
+                    # 1. Auto-confirm the order if not already confirmed
                     if order.state in ['draft', 'sent']:
                         _logger.info(f'Auto-confirming SaaS order {order.name} after payment')
                         order.action_confirm()
 
+                    # 2. Trigger provisioning if the order is confirmed (by us or Odoo)
+                    if order.state == 'sale':
+                        _logger.info("SaaS: Checking provisioning for confirmed order %s", order.name)
+                        
                         # Check if auto-provisioning is enabled
                         auto_provision = self.env['ir.config_parameter'].sudo().get_param(
                             'saas.auto_provision_on_payment',
@@ -39,14 +43,24 @@ class PaymentTransaction(models.Model):
                         )
     
                         if auto_provision == 'True':
-                            # Trigger provisioning if subscription exists
-                            subscription = self.env['saas.subscription'].sudo().search([
+                            subscription = order.saas_subscription_id or self.env['saas.subscription'].sudo().search([
                                 ('order_id', '=', order.id)
                             ], limit=1)
                             
                             if subscription and not subscription.database_name:
-                                _logger.info(f'Auto-provisioning tenant for subscription {subscription.id}')
-                                subscription.action_provision_tenant()
+                                provision_method = False
+                                for mname in ['action_provision_tenant', 'action_provision_subscription']:
+                                    if hasattr(subscription, mname):
+                                        provision_method = mname
+                                        break
+                                
+                                if provision_method:
+                                    _logger.info("Auto-provisioning: Triggering %s for %s", provision_method, subscription.name)
+                                    getattr(subscription, provision_method)()
+                                else:
+                                    _logger.warning("Auto-provisioning failed for %s: No provisioning method found", subscription.name)
+                            elif subscription and subscription.database_name:
+                                _logger.info("Auto-provisioning skipped: %s already provisioned", subscription.name)
                     
                 except Exception as e:
                     _logger.error(f'Error processing SaaS order {order.name}: {str(e)}')
@@ -65,28 +79,3 @@ class PaymentTransaction(models.Model):
         
         return res
     
-    def _create_payment(self, **kwargs):
-        """Override to skip payment creation ONLY for pure SaaS orders"""
-        # We only skip payment creation if ALL products in the order are SaaS products
-        # If there's even one standard product, we want a payment created for the transaction
-        is_pure_saas = True
-        for order in self.sale_order_ids:
-            if not order.saas_plan_id or not order._is_saas_order():
-                is_pure_saas = False
-                break
-            
-            # Additional check: are all lines SaaS products?
-            for line in order.order_line:
-                if not (line.product_id.default_code and line.product_id.default_code.startswith('SAAS_')):
-                    is_pure_saas = False
-                    break
-            
-            if not is_pure_saas:
-                break
-
-        if is_pure_saas and self.sale_order_ids:
-            _logger.info(f'Skipping payment creation for pure SaaS transaction {self.reference}')
-            return self.env['account.payment']
-        
-        # For non-SaaS or mixed orders, use default behavior
-        return super(PaymentTransaction, self)._create_payment(**kwargs)

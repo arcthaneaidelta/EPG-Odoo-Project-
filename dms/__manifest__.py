@@ -69,6 +69,6 @@
         "demo/directory.xml",
         "demo/file.xml",
     ],
-    "icon": "/dms/static/description/icon.png",
+    "icon": "/dms/static/description/icon.svg",
     "application": True,
 }

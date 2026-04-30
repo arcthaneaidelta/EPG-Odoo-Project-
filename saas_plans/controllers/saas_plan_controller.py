@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import http, _
+from odoo import http, fields, _
 from odoo.http import request
 import logging
 import re
@@ -45,6 +45,8 @@ class SaaSPlanController(http.Controller):
 		
 		if not plan.exists():
 			return request.redirect('/saas/plans')
+			
+
 		
 		# Create or get sale order
 		order = request.website.sale_get_order(force_create=True)
@@ -99,59 +101,57 @@ class SaaSPlanController(http.Controller):
 			add_qty=1,
 		)
 		
+		addon_cycle = post.get('addon_cycle', 'monthly') if billing_cycle == 'annual' else 'monthly'
+
 		# Helper to add product by code
-		def add_product_by_code(code, qty=1, price_unit=None, name_override=None):
+		def add_product_by_code(code, qty=1, price_unit=None, name_override=None, cycle=None):
 			prod = request.env['product.product'].sudo().search([('default_code', '=', code)], limit=1)
 			if prod:
-				line_values = {'product_uom_qty': qty}
-				if price_unit is not None:
-					line_values['price_unit'] = price_unit
-				if name_override:
-					line_values['name'] = name_override
-					
-				# _cart_update allows passing set_quantity and other kwargs that might set price?
-				# Standard _cart_update doesn't easily allow setting price_unit directly in the call 
-				# unless we write to the line afterwards.
 				res = order._cart_update(
 					product_id=prod.id,
 					line_id=None,
 					add_qty=qty,
 				)
 				line_id = res.get('line_id')
-				if line_id and (price_unit is not None or name_override):
+				if line_id:
 					line = request.env['sale.order.line'].sudo().browse(line_id)
 					vals = {}
 					if price_unit is not None:
 						vals['price_unit'] = price_unit
 					if name_override:
 						vals['name'] = name_override
-					line.write(vals)
+					if cycle:
+						vals['saas_addon_billing_cycle'] = cycle
+					if vals:
+						line.write(vals)
 
 		# 2. Add Accounting Module
 		if post.get('addon_accounting') == '1':
 			acc_code = 'SAAS_ACCOUNTING_MONTHLY' if billing_cycle == 'monthly' else 'SAAS_ACCOUNTING_ANNUAL'
 			if plan.is_early_adopter:
 				# Free for Early Adopters
-				add_product_by_code(acc_code, price_unit=0.0, name_override='Accounting Module (Included Free)')
+				add_product_by_code(acc_code, price_unit=0.0, name_override='Accounting Module (Included Free)', cycle=billing_cycle)
 			else:
 				# Paid for Official
-				add_product_by_code(acc_code)
-				
-		# 3. Add Real Estate Module
-		if post.get('addon_real_estate') == '1':
-			re_code = 'SAAS_REALESTATE_MONTHLY' if billing_cycle == 'monthly' else 'SAAS_REALESTATE_ANNUAL'
-			add_product_by_code(re_code)
-			
+				add_product_by_code(acc_code, cycle=billing_cycle)
+
 		# 4. Add Additional Users
 		extra_users = int(post.get('extra_users', '0'))
 		if extra_users > 0:
-			add_product_by_code('SAAS_EXTRA_USER', qty=extra_users)
+			if addon_cycle == 'annual':
+				add_product_by_code('SAAS_EXTRA_USER_ANNUAL', qty=extra_users, cycle='annual')
+			else:
+				add_product_by_code('SAAS_EXTRA_USER', qty=extra_users, cycle='monthly')
 			
 		# 5. Add Storage Expansion
-		storage_expansion = int(post.get('storage_expansion', '0'))
-		if storage_expansion in [5, 10, 25]:
-			storage_code = f'SAAS_STORAGE_{storage_expansion}GB'
-			add_product_by_code(storage_code)
+		storage_gb = int(post.get('storage_expansion', '0'))
+		if storage_gb in [5, 10, 25]:
+			if addon_cycle == 'annual':
+				storage_code = f'SAAS_STORAGE_{storage_gb}GB_ANNUAL'
+				add_product_by_code(storage_code, cycle='annual')
+			else:
+				storage_code = f'SAAS_STORAGE_{storage_gb}GB'
+				add_product_by_code(storage_code, cycle='monthly')
 		
 		return request.redirect('/shop/checkout')
 	
@@ -213,8 +213,22 @@ class SaaSPlanController(http.Controller):
 			return result
 			
 		except Exception as e:
-			_logger.error(f'Error applying promo code: {str(e)}')
-			return {'success': False, 'message': _('An error occurred while applying the promo code')}
+			_logger.error(f'Error checking company name: {str(e)}')
+			return {'available': False, 'message': _('Error verifying availability.')}
+
+	@http.route('/saas/check_email_availability', type='json', auth='public', website=True)
+	def check_email_availability(self, email):
+		"""Check if email is already registered as a user"""
+		if not email:
+			return {'available': True}
+		
+		user = request.env['res.users'].sudo().search([('login', '=', email)], limit=1)
+		if user:
+			return {
+				'available': False, 
+				'message': _('This email is already registered. Please log in to continue.')
+			}
+		return {'available': True}
 	
 	@http.route('/saas/remove_promo_code', type='json', auth='public', website=True)
 	def remove_promo_code(self):
@@ -399,11 +413,33 @@ class SaaSPlanController(http.Controller):
 
 		# Add Users
 		if add_users > 0:
-			add_product('SAAS_EXTRA_USER', add_users)
+			user_code = 'SAAS_EXTRA_USER'
+			if subscription.billing_cycle == 'annual':
+				user_code = 'SAAS_EXTRA_USER_ANNUAL'
+			_logger.info("Upgrading Addon: %s (Qty: %s)", user_code, add_users)
+			add_product(user_code, add_users)
 			
 		# Add Storage
 		if add_storage > 0:
 			storage_code = f'SAAS_STORAGE_{add_storage}GB'
+			if subscription.billing_cycle == 'annual':
+				storage_code += '_ANNUAL'
+			_logger.info("Upgrading Addon: %s", storage_code)
 			add_product(storage_code, 1)
 			
 		return request.redirect('/shop/checkout')
+
+	@http.route('/saas/check_email_availability', type='json', auth='public', website=True)
+	def check_email_availability(self, email):
+		"""Check if email is already registered as a user"""
+		if not email:
+			return {'available': True}
+		
+		# check for active user with this login
+		user = request.env['res.users'].sudo().search([('login', '=', email)], limit=1)
+		if user:
+			return {
+				'available': False, 
+				'message': _('This email address is already registered in our system. Please log in to your account first.')
+			}
+		return {'available': True}

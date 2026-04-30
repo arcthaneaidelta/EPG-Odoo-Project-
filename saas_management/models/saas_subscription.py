@@ -101,7 +101,6 @@ class SaaSSubscription(models.Model):
 	
 	# Modules
 	accounting_module = fields.Boolean(string='Accounting Module', default=False)
-	real_estate_module = fields.Boolean(string='Real Estate Module', default=False)
 	
 	# Payment Email Status
 	payment_email_sent = fields.Boolean(string='Payment Confirmation Sent', default=False, copy=False)
@@ -177,38 +176,59 @@ class SaaSSubscription(models.Model):
 			'price_unit': self.price,  # Preserves early adopter / current pricing
 		})
 
-		# ── Active Add-ons — charged at FULL monthly price (no proration) ───
-		active_addons = self.addon_ids.filtered(lambda a: a.state == 'active')
+		# ── Active Add-ons — Cycle-Aware filtering ────────
+		# Monthly: Add-ons are NOT bundled with the main subscription renewal (independent billing).
+		# Annual: Add-on (Annual cycle) ARE bundled with the main subscription renewal.
+		if self.billing_cycle == 'monthly':
+			active_addons = self.env['saas.addon']
+		else:
+			active_addons = self.addon_ids.filtered(
+				lambda a: a.state == 'active' and a.billing_cycle == self.billing_cycle
+			)
 		for addon in active_addons:
+			cycle = self.billing_cycle
+			
 			if addon.addon_type == 'users':
-				addon_product = self.env.ref('saas_plans.product_extra_user', raise_if_not_found=False)
+				xml_id = 'saas_plans.product_extra_user_annual' if cycle == 'annual' else 'saas_plans.product_extra_user'
+				addon_product = self.env.ref(xml_id, raise_if_not_found=False)
+				if not addon_product: # Fallback to search by code
+					code = 'SAAS_EXTRA_USER_ANNUAL' if cycle == 'annual' else 'SAAS_EXTRA_USER'
+					addon_product = self.env['product.product'].sudo().search([('default_code', '=', code)], limit=1)
+				
 				if addon_product:
 					self.env['sale.order.line'].create({
 						'order_id': order.id,
 						'product_id': addon_product.id,
-						'name': f"Renewal: Extra Users (x{addon.quantity})",
+						'name': f"Renewal: {addon_product.name} (x{addon.quantity})",
 						'product_uom_qty': addon.quantity,
-						'price_unit': addon.monthly_price,  # Full monthly price — no proration at renewal
+						'price_unit': addon_product.list_price, # Use price from the product itself
+						'saas_renewed_addon_id': addon.id,
 					})
 			elif addon.addon_type == 'storage':
-				# Map GB quantity to the closest storage product SKU
+				suffix = '_annual' if cycle == 'annual' else ''
 				storage_map = [
-					(25, 'saas_plans.product_storage_25gb'),
-					(10, 'saas_plans.product_storage_10gb'),
-					(5, 'saas_plans.product_storage_5gb'),
+					(25, f'saas_plans.product_storage_25gb{suffix}'),
+					(10, f'saas_plans.product_storage_10gb{suffix}'),
+					(5, f'saas_plans.product_storage_5gb{suffix}'),
 				]
 				remaining = addon.quantity
 				for size, xml_id in storage_map:
 					count = remaining // size
 					if count > 0:
 						storage_product = self.env.ref(xml_id, raise_if_not_found=False)
+						if not storage_product: # Search by code fallback
+							code = f'SAAS_STORAGE_{size}GB'
+							if cycle == 'annual': code += '_ANNUAL'
+							storage_product = self.env['product.product'].sudo().search([('default_code', '=', code)], limit=1)
+							
 						if storage_product:
 							self.env['sale.order.line'].create({
 								'order_id': order.id,
 								'product_id': storage_product.id,
 								'name': f"Renewal: {storage_product.name}",
 								'product_uom_qty': count,
-								'price_unit': storage_product.list_price,
+								'price_unit': storage_product.list_price, # Always pull direct from product record
+								'saas_renewed_addon_id': addon.id,
 							})
 							remaining -= count * size
 
@@ -220,12 +240,7 @@ class SaaSSubscription(models.Model):
 			if module_product:
 				self._create_renewal_line(order, module_product)
 
-		# Real Estate
-		if self.real_estate_module:
-			xml_id = 'saas_plans.product_real_estate_monthly' if self.billing_cycle == 'monthly' else 'saas_plans.product_real_estate_annual'
-			module_product = self.env.ref(xml_id, raise_if_not_found=False)
-			if module_product:
-				self._create_renewal_line(order, module_product)
+
 
 		# ────────────────────────────────────────────────────────────────────
 		order.message_subscribe(partner_ids=[self.partner_id.id])
@@ -390,9 +405,55 @@ class SaaSSubscription(models.Model):
 				else:  # monthly
 					vals['expiration_date'] = fields.Datetime.now() + timedelta(days=30)
 		
+		if vals.get('state') == 'deleted':
+			for sub in self:
+				sub.action_cleanup_before_deletion()
+				sub._cleanup_associated_user()
+		
 		return super(SaaSSubscription, self).write(vals)
-	
-	@api.onchange('plan_id')
+
+	def unlink(self):
+		for sub in self:
+			sub.action_cleanup_before_deletion()
+			sub._cleanup_associated_user()
+		return super(SaaSSubscription, self).unlink()
+
+	def action_cleanup_before_deletion(self):
+		"""Disable auto-renew and cancel all add-ons before the sub is gone/deleted"""
+		self.write({'auto_renew': False})
+		active_addons = self.addon_ids.filtered(lambda a: a.state == 'active')
+		if active_addons:
+			active_addons.write({
+				'state': 'cancelled',
+				'cancel_date': fields.Date.today(),
+			})
+
+	def _cleanup_associated_user(self):
+		"""Physically delete the portal user if they have no other active subscriptions"""
+		self.ensure_one()
+		# check for other active/grace subscriptions for the SAME partner
+		other_subs = self.env['saas.subscription'].search([
+			('partner_id', '=', self.partner_id.id),
+			('state', 'in', ['active', 'grace_period', 'suspended', 'pending']),
+			('id', '!=', self.id)
+		])
+		
+		if not other_subs:
+			# Focus on DELETING the user account to free up the login/email
+			user = self.env['res.users'].sudo().search([('partner_id', '=', self.partner_id.id)], limit=1)
+			if user:
+				try:
+					user_id = user.id
+					user_login = user.login
+					user.unlink()
+					_logger.info(f"Successfully DELETED user {user_login} (ID: {user_id})")
+				except Exception as e:
+					_logger.warning(f"Could not unlink user {user.login}, falling back to archiving and renaming login: {e}")
+					user.write({
+						'login': f"deleted_{user.id}_{user.login}",
+						'active': False
+					})
+
 	def _onchange_plan_id(self):
 		"""Auto-assign early adopter status when plan is selected"""
 		if self.plan_id and self.plan_id.is_early_adopter:
@@ -544,6 +605,9 @@ class SaaSSubscription(models.Model):
 					'deletion_scheduled_date': now
 				})
 				
+				# Cleanup all addons for deleted subscription
+				subscription.addon_ids.write({'state': 'expired'})
+				
 				# Schedule deletion (will be handled by provisioning module)
 				subscription._schedule_tenant_deletion()
 				
@@ -559,14 +623,18 @@ class SaaSSubscription(models.Model):
 	@api.model
 	def _cron_expire_cancelled_addons(self):
 		"""
-		Daily cron: expire cancelled add-ons whose next_renewal_date has passed.
-		Removes them from the subscription totals and pushes updated limits to the tenant.
+		Daily cron: expire cancelled OR unpaid overdue add-ons.
+		Unpaid addons get a 3-day grace period before being revoked.
 		"""
 		today = fields.Date.today()
-		expired_addons = self.env['saas.addon'].search([
-			('state', '=', 'cancelled'),
-			('next_renewal_date', '<=', today),
-		])
+		grace_date = today - timedelta(days=3)
+		
+		# Domain: (Cancelled AND passed renewal) OR (Active AND overdue by 3+ days)
+		domain = ['|', 
+			'&', ('state', '=', 'cancelled'), ('next_renewal_date', '<=', today),
+			'&', ('state', '=', 'active'), ('next_renewal_date', '<', grace_date)
+		]
+		expired_addons = self.env['saas.addon'].search(domain)
 
 		if not expired_addons:
 			return
@@ -574,11 +642,15 @@ class SaaSSubscription(models.Model):
 		# Group by subscription so we push limits once per subscription
 		subscriptions_to_update = self.env['saas.subscription']
 		for addon in expired_addons:
+			reason = "unpaid overdue" if addon.state == 'active' else "cancelled"
 			addon.write({'state': 'expired'})
 			subscriptions_to_update |= addon.subscription_id
 			_logger.info(
-				"Expired cancelled add-on %s (sub: %s)",
-				addon.id, addon.subscription_id.name,
+				"Expired %s add-on %s (sub: %s)",
+				reason, addon.id, addon.subscription_id.name,
+			)
+			addon.subscription_id.message_post(
+				body=_("Add-on <b>%s</b> has been revoked due to %s status.") % (addon.name, reason)
 			)
 
 		# Push updated limits to tenant for each affected subscription
@@ -600,6 +672,114 @@ class SaaSSubscription(models.Model):
 		# This will be overridden by saas_provisioning module
 		_logger.info(f'Tenant deletion scheduled for {self.name}')
 	
+	@api.model
+	def _cron_auto_renew_addons(self):
+		"""
+		Independent monthly billing for add-ons (Independent cycle).
+		Processes payments using saved tokens and updates renewal dates.
+		"""
+		today = fields.Date.today()
+		
+		# 1. Only find active monthly addons for LIVE subscriptions
+		due_addons = self.env['saas.addon'].search([
+			('state', '=', 'active'),
+			('billing_cycle', '=', 'monthly'),
+			('next_renewal_date', '<=', today),
+			('subscription_id.state', 'in', ['active', 'grace_period', 'suspended']),
+			('subscription_id.auto_renew', '=', True),
+		])
+		
+		if not due_addons:
+			return
+			
+		by_sub = {}
+		for addon in due_addons:
+			sub = addon.subscription_id
+			if sub.id not in by_sub:
+				by_sub[sub.id] = self.env['saas.addon']
+			by_sub[sub.id] |= addon
+			
+		for sub_id, addons in by_sub.items():
+			subscription = self.env['saas.subscription'].browse(sub_id)
+			try:
+				# 2. Check for payment token
+				token = self.env['payment.token'].search([
+					('partner_id', '=', subscription.partner_id.id),
+					('active', '=', True)
+				], limit=1)
+				
+				if not token:
+					_logger.info(f"Add-on Auto-Renew skipped for {subscription.name}: No token.")
+					continue
+
+				# 3. Create Sale Order
+				order = self.env['sale.order'].sudo().create({
+					'partner_id': subscription.partner_id.id,
+					'saas_company_name': subscription.company_name,
+					'saas_plan_id': subscription.plan_id.id,
+					'saas_subscription_id': subscription.id,
+					'origin': f"Add-on Renewal: {subscription.name}",
+				})
+				
+				for addon in addons:
+					product = False
+					billing_cycle = subscription.billing_cycle
+					
+					if addon.addon_type == 'users':
+						user_code = 'SAAS_EXTRA_USER_ANNUAL' if billing_cycle == 'annual' else 'SAAS_EXTRA_USER'
+						product = self.env['product.product'].sudo().search([('default_code', '=', user_code)], limit=1)
+					elif addon.addon_type == 'storage':
+						storage_code = f'SAAS_STORAGE_{addon.quantity}GB'
+						if billing_cycle == 'annual':
+							storage_code += '_ANNUAL'
+						product = self.env['product.product'].sudo().search([
+							('default_code', '=', storage_code)
+						], limit=1)
+						
+					if product:
+						self.env['sale.order.line'].sudo().create({
+							'order_id': order.id,
+							'product_id': product.id,
+							'name': f"{billing_cycle.capitalize()} Renewal: {product.name}",
+							'product_uom_qty': addon.quantity if addon.addon_type == 'users' else 1,
+							'price_unit': product.list_price,
+							'saas_renewed_addon_id': addon.id,
+							'saas_addon_billing_cycle': billing_cycle,
+						})
+				
+				# 4. Trigger Payment via Redsys Token
+				tx_sudo = self.env['payment.transaction'].sudo().create({
+					'provider_id': token.provider_id.id,
+					'payment_method_id': token.payment_method_id.id if hasattr(token, 'payment_method_id') else False,
+					'reference': self.env['payment.transaction']._compute_reference(token.provider_id.code, prefix=order.name),
+					'amount': order.amount_total,
+					'currency_id': order.currency_id.id,
+					'partner_id': order.partner_id.id,
+					'token_id': token.id,
+					'operation': 'offline',
+					'sale_order_ids': [(6, 0, [order.id])],
+				})
+				
+				tx_sudo._send_payment_request()
+				
+				if tx_sudo.state == 'done':
+					# Only confirm if not already handled by payment post-processing
+					if order.state in ['draft', 'sent']:
+						order.action_confirm() 
+					
+					invoices = order._create_invoices()
+					for inv in invoices:
+						inv.action_post()
+						# Attempt to reconcile with the transaction payment if any
+						tx_sudo._reconcile_after_done()
+					_logger.info("Add-on billing successful for %s", subscription.name)
+				else:
+					_logger.warning("Add-on billing FAILED for %s (TX state: %s)", subscription.name, tx_sudo.state)
+					subscription.message_post(body=_("Monthly add-on renewal payment failed. Please check your payment method."))
+				
+			except Exception as e:
+				_logger.error("Cron: Failed to auto-renew addons for sub %s: %s", subscription.name, str(e))
+
 	def _send_cancellation_email(self):
 		"""Send email when subscription is cancelled"""
 		# TODO: Implement email template

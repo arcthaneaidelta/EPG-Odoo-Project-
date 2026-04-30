@@ -137,7 +137,7 @@
                                             <tr>
                                                 <th>Type</th>
                                                 <th>Qty</th>
-                                                <th>Monthly Price</th>
+                                                <!-- <th>Monthly Price</th> -->
                                                 <th>Next Renewal</th>
                                                 <th>Status</th>
                                                 <th></th>
@@ -148,7 +148,7 @@
                                                 <tr t-attf-class="#{addon.state == 'expired' and 'table-secondary text-muted' or addon.state == 'cancelled' and 'table-warning' or ''}">
                                                     <td><span t-field="addon.addon_type"/></td>
                                                     <td><span t-esc="addon.quantity"/></td>
-                                                    <td>€<span t-esc="'%.2f' % addon.total_monthly"/>/mo</td>
+                                                    <!-- <td>€<span t-esc="'%.2f' % addon.total_monthly"/>/mo</td> -->
                                                     <td><span t-field="addon.next_renewal_date"/></td>
                                                     <td>
                                                         <span t-if="addon.state == 'active'" class="badge rounded-pill text-bg-success">Active</span>
@@ -156,14 +156,21 @@
                                                         <span t-if="addon.state == 'expired'" class="badge rounded-pill text-bg-secondary">Removed</span>
                                                     </td>
                                                     <td>
-                                                        <t t-if="addon.state == 'active'">
-                                                            <form t-attf-action="/saas/addon/cancel" method="post" style="display:inline">
-                                                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                                                <input type="hidden" name="addon_id" t-att-value="addon.id"/>
-                                                                <input type="hidden" name="access_token" t-att-value="subscription.access_token"/>
-                                                                <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                                        onclick="return confirm('Cancel this add-on? It will remain active until the next renewal date.')">Cancel</button>
-                                                            </form>
+                                                        <t t-if="addon.state in ['active', 'cancelled']">
+                                                            <div class="d-flex gap-1">
+                                                                <!-- Show manual renew ONLY for monthly addons that are due, overdue, or cancelled -->
+                                                                <a t-if="addon.billing_cycle == 'monthly' and (addon.next_renewal_date &lt;= datetime.date.today() or addon.state == 'cancelled')"
+                                                                   t-attf-href="/my/button/addon/#{addon.id}/renew?access_token=#{subscription.access_token}" 
+                                                                   class="btn btn-sm btn-outline-primary" title="Renew Now">Renew</a>
+
+                                                                <form t-if="addon.state == 'active'" t-attf-action="/saas/addon/cancel" method="post" style="display:inline">
+                                                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                                    <input type="hidden" name="addon_id" t-att-value="addon.id"/>
+                                                                    <input type="hidden" name="access_token" t-att-value="subscription.access_token"/>
+                                                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                                            onclick="return confirm('Cancel this add-on? It will remain active until the next renewal date.')" title="Cancel Addon">Cancel</button>
+                                                                </form>
+                                                            </div>
                                                         </t>
                                                     </td>
                                                 </tr>
@@ -226,6 +233,31 @@
                                             <option value="25">25 GB (€19.00/mo)</option>
                                         </select>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">Add-on Billing Cycle</h5>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="addon_cycle" id="cycle_monthly" value="monthly" checked="checked"/>
+                                        <label class="form-check-label" for="cycle_monthly">
+                                            <strong>Monthly Billing</strong> – Pay only 1 full month now. Renew every month.
+                                        </label>
+                                    </div>
+                                    <div class="form-check" t-if="subscription.billing_cycle == 'annual'">
+                                        <input class="form-check-input" type="radio" name="addon_cycle" id="cycle_align" value="align"/>
+                                        <label class="form-check-label" for="cycle_align">
+                                            <strong>Align with Plan</strong> – Pay for the remainder of the year (Prorated). Renew with your annual plan.
+                                        </label>
+                                    </div>
+                                    <t t-else="">
+                                        <input type="hidden" name="addon_cycle" value="monthly"/>
+                                    </t>
                                 </div>
                             </div>
                         </div>

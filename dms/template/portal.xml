@@ -18,7 +18,7 @@
                     <t t-set="url" t-value="'/my/dms'" />
                     <t
                         t-set="icon"
-                        t-value="'/dms/static/description/portal_icon.svg'"
+                        t-value="'/dms/static/description/icon.svg'"
                     />
                     <t t-set="placeholder_count" t-value="'dms_directory_count'" />
                 </t>

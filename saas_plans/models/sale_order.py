@@ -102,7 +102,6 @@ class SaleOrder(models.Model):
 			extra_users = 0
 			extra_storage = 0
 			accounting_module = False
-			real_estate_module = False
 			
 			if is_early_adopter or (is_update and subscription.is_early_adopter):
 				accounting_module = True
@@ -126,8 +125,7 @@ class SaleOrder(models.Model):
 				# Modules
 				elif product_code.startswith('SAAS_ACCOUNTING'):
 					accounting_module = True
-				elif product_code.startswith('SAAS_REALESTATE'):
-					real_estate_module = True
+
 			
 			# Bonus storage for additional users (1 GB per user)
 			extra_storage += extra_users
@@ -136,79 +134,10 @@ class SaleOrder(models.Model):
 				# ── Update existing subscription ──────────────────────────────────────
 				vals = {}
 
-				# ── Create saas.addon records for each add-on product in the order ──
-				# Proration: (days_remaining / 30) * monthly_price * qty
-				# The sale order line price is updated to the prorated amount so the
-				# invoice charges exactly the right (prorated) amount this period.
-				for line in self.order_line:
-					product_code = line.product_id.default_code or ''
-
-					if product_code in ('SAAS_USER', 'SAAS_EXTRA_USER'):
-						qty = int(line.product_uom_qty)
-						
-						# The line price is already strictly monthly (no proration)
-						# So the amount actually paid is the line subtotal.
-						prorated_total = line.price_subtotal
-						
-						# The full monthly price comes from the product list price
-						per_unit_price = line.product_id.list_price
-						
-						# Monthly strictly
-						
-						self.env['saas.addon'].create({
-							'subscription_id': subscription.id,
-							'addon_type': 'users',
-							'quantity': qty,
-							'monthly_price': per_unit_price,
-							'purchase_date': fields.Date.today(),
-							'next_renewal_date': fields.Date.today() + timedelta(days=30),
-							'sale_order_id': self.id,
-							'order_line_id': line.id,
-							'state': 'active',
-						})
-						_logger.info(
-							f'Created user addon: {qty} users @ €{per_unit_price}/u '
-							f'for 30 days for {subscription.name}'
-						)
-
-					elif product_code.startswith('SAAS_STORAGE_'):
-						if '5GB' in product_code:
-							gb_per_unit = 5
-						elif '10GB' in product_code:
-							gb_per_unit = 10
-						elif '25GB' in product_code:
-							gb_per_unit = 25
-						else:
-							gb_per_unit = 0
-
-						if gb_per_unit:
-							qty = int(line.product_uom_qty)
-							total_gb = gb_per_unit * qty
-							
-							prorated_total = line.price_subtotal
-							per_unit_price = line.product_id.list_price
-
-							self.env['saas.addon'].create({
-								'subscription_id': subscription.id,
-								'addon_type': 'storage',
-								'quantity': total_gb,
-								'monthly_price': per_unit_price,
-								'purchase_date': fields.Date.today(),
-								'next_renewal_date': fields.Date.today() + timedelta(days=30),
-								'sale_order_id': self.id,
-								'order_line_id': line.id,
-								'state': 'active',
-							})
-							_logger.info(
-								f'Created storage addon: {total_gb}GB @ €{per_unit_price}/pack '
-								f'for 30 days for {subscription.name}'
-							)
-
 				# Module enablement (unchanged)
 				if accounting_module and not subscription.accounting_module:
 					vals['accounting_module'] = True
-				if real_estate_module and not subscription.real_estate_module:
-					vals['real_estate_module'] = True
+
 				
 				# Plan Change (Upgrade)
 				if self.saas_plan_id and self.saas_plan_id != subscription.plan_id:
@@ -222,22 +151,27 @@ class SaleOrder(models.Model):
 					else:
 						vals['expiration_date'] = start_date + timedelta(days=30)
 					
-					_logger.info(f'Subscription {subscription.name} upgraded to {self.saas_plan_id.name}')
+					_logger.info(f'Subscription %s upgraded to %s', subscription.name, self.saas_plan_id.name)
 				
 				# Renewal (Same Plan)
 				elif self.saas_plan_id == subscription.plan_id:
-					# Check if the Plan Product is in the order -> Extend Main Expiration
-					plan_product = subscription.plan_id.product_id
+					plan = subscription.plan_id
+					plan_product = plan.product_id
 					is_full_renewal = False
-					 
-					# Check for Add-ons (Users / Storage) in order lines
-					# Users/Storage are monthly (as per user request)
 					has_users_addon = False
 					has_storage_addon = False
+					
+					# Standard product codes for this plan
+					expected_codes = [
+						f'SAAS_{plan.id}_MONTHLY', 
+						f'SAAS_{plan.id}_ANNUAL',
+						plan.product_id.default_code if plan.product_id else None
+					]
 					 
 					for line in self.order_line:
 						code = line.product_id.default_code or ''
-						if line.product_id == plan_product:
+						# Check if this line is the main plan product
+						if (plan_product and line.product_id == plan_product) or (code in expected_codes):
 							is_full_renewal = True
 						elif code.startswith('SAAS_USER') or code.startswith('SAAS_EXTRA_USER'):
 							has_users_addon = True
@@ -245,10 +179,7 @@ class SaleOrder(models.Model):
 							has_storage_addon = True
 					 
 					if is_full_renewal:
-						
-						# Extend expiration
 						current_expiry = subscription.expiration_date or fields.Datetime.now()
-						# If already expired, start from now
 						if current_expiry < fields.Datetime.now():
 							current_expiry = fields.Datetime.now()
 							
@@ -257,40 +188,34 @@ class SaleOrder(models.Model):
 						else:
 							vals['expiration_date'] = current_expiry + timedelta(days=30)
 							
-						_logger.info(f'Subscription {subscription.name} renewed. New Expiry: {vals.get("expiration_date")}')
+						_logger.info(f'Subscription %s renewed. New Expiry: %s', subscription.name, vals.get("expiration_date"))
 					 
-					# Users add-on: next_renewal_date extension handled via saas.addon records
-					if has_users_addon:
-						_logger.info(f'Subscription {subscription.name} users addon processed (saas.addon records created above).')
-						 
-					# Storage add-on: next_renewal_date extension handled via saas.addon records
-					if has_storage_addon:
-						_logger.info(f'Subscription {subscription.name} storage addon processed (saas.addon records created above).')
-					 
-					if not is_full_renewal and not has_users_addon and not has_storage_addon:
-						_logger.info(f'Subscription {subscription.name} order processed but no extension triggered.')
+				# Reactivation Safety: 
+				# Only move to 'active' if this is a FULL renewal of the plan itself
+				# or we are activating a 'pending' subscription.
+				# Paying for just a monthly addon should NOT reactivate a suspended/grace annual sub.
 				if subscription.state != 'active':
-					vals['state'] = 'active'
-					vals['grace_period_start'] = False
-					vals['grace_period_end'] = False
+					if is_full_renewal or subscription.state == 'pending':
+						vals['state'] = 'active'
+						vals['grace_period_start'] = False
+						vals['grace_period_end'] = False
+					elif subscription.state in ['grace_period', 'suspended']:
+						_logger.info("Subscription %s remains in %s state (Partial payment, no plan renewal in order)", subscription.name, subscription.state)
 
-				# Update Auto-Renew preference
 				if self.auto_renew:
 					vals['auto_renew'] = True
 					
 				subscription.write(vals)
 				
-				# Explicitly push the un-suspended status immediately when returning to active
 				if vals.get('state') == 'active' and subscription.database_name:
 					subscription._push_limits_to_tenant()
 					subscription._push_status_to_tenant('active')
 				
-				# Ensure we link this order to the subscription if not already
 				if not self.saas_subscription_id:
 					self.write({'saas_subscription_id': subscription.id})
 					
 			else:
-				# Create NEW subscription
+				# ── Create NEW subscription ──────────────────────────────────────────
 				subscription = self.env['saas.subscription'].create({
 					'partner_id': self.partner_id.id,
 					'company_name': self.saas_company_name,
@@ -301,7 +226,6 @@ class SaleOrder(models.Model):
 					'is_early_adopter': is_early_adopter,
 					'promo_code_id': self.promo_code_id.id if self.promo_code_id else False,
 					'accounting_module': accounting_module,
-					'real_estate_module': real_estate_module,
 					'auto_renew': self.auto_renew,
 				})
 				
@@ -310,12 +234,89 @@ class SaleOrder(models.Model):
 				if self.promo_code_id:
 					self.promo_code_id.use_code(self.partner_id.id, subscription.id)
 				
-				_logger.info(f'Subscription {subscription.name} created from order {self.name}')
+				_logger.info(f'Subscription %s created from order %s', subscription.name, self.name)
+			
+			# ── COMMON LOGIC: Create saas.addon records for all extra resources ────
+			# This runs for both NEW subscriptions and UPDATES to capture
+			# extra users and storage purchased in this order.
+			# ── COMMON LOGIC: Create or Update saas.addon records ─────────────────
+			for line in self.order_line:
+				product_code = line.product_id.default_code or ''
+				addon_type = False
+				qty = 0
+				per_unit_price = line.product_id.list_price
+
+				if product_code in ('SAAS_USER', 'SAAS_EXTRA_USER', 'SAAS_EXTRA_USER_ANNUAL'):
+					addon_type = 'users'
+					qty = int(line.product_uom_qty)
+				elif product_code.startswith('SAAS_STORAGE_'):
+					addon_type = 'storage'
+					gb_per_unit = 5 if '5GB' in product_code else (10 if '10GB' in product_code else 25)
+					qty = gb_per_unit * int(line.product_uom_qty)
+
+				if addon_type and qty > 0:
+					# 1. Handle Renewal (Update existing addon)
+					if line.saas_renewed_addon_id:
+						addon = line.saas_renewed_addon_id
+						# Monthly addons renew every 30 days from their specific date
+						# Annual addons (aligned) renew with the subscription
+						if addon.billing_cycle == 'monthly':
+							new_renewal = (addon.next_renewal_date or fields.Date.today()) + timedelta(days=30)
+						else:
+							new_renewal = subscription.expiration_date or (fields.Date.today() + timedelta(days=365))
+						
+						addon.write({
+							'next_renewal_date': new_renewal,
+							'state': 'active', # Reactivate if it was cancelled
+						})
+						_logger.info("Renewed %s addon %s: New renewal date %s", addon.billing_cycle, addon.id, new_renewal)
+						continue
+
+					# 2. Handle New Purchase (Idempotency check)
+					existing_addon = self.env['saas.addon'].search([
+						('sale_order_id', '=', self.id),
+						('order_line_id', '=', line.id)
+					], limit=1)
+					
+					if not existing_addon:
+						# Determine Billing Cycle and Renewal Date
+						line_cycle = line.saas_addon_billing_cycle or subscription.billing_cycle
+						
+						if line_cycle == 'monthly':
+							next_renewal = fields.Date.today() + timedelta(days=30)
+						else:
+							next_renewal = subscription.expiration_date or (fields.Date.today() + timedelta(days=365))
+						
+						mon_price = per_unit_price if line_cycle == 'monthly' else (per_unit_price / 12.0)
+						ann_price = per_unit_price if line_cycle == 'annual' else (per_unit_price * 12.0)
+
+						self.env['saas.addon'].create({
+							'subscription_id': subscription.id,
+							'product_id': line.product_id.id,
+							'addon_type': addon_type,
+							'quantity': qty,
+							'monthly_price': mon_price,
+							'annual_price': ann_price,
+							'purchase_date': fields.Date.today(),
+							'next_renewal_date': next_renewal,
+							'billing_cycle': line_cycle,
+							'sale_order_id': self.id,
+							'order_line_id': line.id,
+							'state': 'active',
+						})
+						_logger.info('Created new %s addon: %s for %s (%s, Renew: %s)', addon_type, qty, subscription.name, line_cycle, next_renewal)
 				
-				# Check and Create Portal User if needed
+				# Check and Create/Reactivate Portal User if needed
 				if self.partner_id:
-					user = self.env['res.users'].search([('partner_id', '=', self.partner_id.id)], limit=1)
-					if not user:
+					user = self.env['res.users'].sudo().with_context(active_test=False).search([
+						('login', '=', self.partner_id.email)
+					], limit=1)
+					
+					if user:
+						if not user.active:
+							user.write({'active': True})
+							_logger.info(f"Reactivated existing user {user.login}")
+					else:
 						try:
 							# Create Portal User
 							user = self.env['res.users'].create({
@@ -331,22 +332,23 @@ class SaleOrder(models.Model):
 						except Exception as e:
 							_logger.error(f"Failed to create portal user for {self.partner_id.name}: {e}")
 				
-				# Auto-provision if enabled
+				# Provisioning Trigger (Safe fallback for blocked payment layers)
 				auto_provision = self.env['ir.config_parameter'].sudo().get_param('saas.auto_provision_on_payment', 'True')
-				if auto_provision == 'True':
-					# Priority: Try action_provision_tenant (Real Provisioning)
-					if hasattr(subscription, 'action_provision_tenant'):
+				if auto_provision == 'True' and not subscription.database_name:
+					provision_method = False
+					for mname in ['action_provision_tenant', 'action_provision_subscription']:
+						if hasattr(subscription, mname):
+							provision_method = mname
+							break
+					
+					if provision_method:
+						_logger.info("SaaS: Auto-provisioning %s for %s via Confirm Transition", subscription.name, provision_method)
 						try:
-							subscription.action_provision_tenant()
-							_logger.info(f"Auto-provisioned subscription {subscription.name}")
+							getattr(subscription, provision_method)()
 						except Exception as e:
-							_logger.error(f"Auto-provisioning failed for {subscription.name}: {e}")
-							# Don't raise, as we don't want to rollback sale order confirmation
-							
-					# Fallback: action_provision_subscription (Mock/Base)
-					elif hasattr(subscription, 'action_provision_subscription'):
-						subscription.action_provision_subscription()
-						_logger.info(f"Auto-provisioned subscription {subscription.name} (Mock)")
+							_logger.error("SaaS: Auto-provisioning failed for %s: %s", subscription.name, str(e))
+					else:
+						_logger.warning("SaaS: No provisioning method found for %s", subscription.name)
 		
 		except Exception as e:
 			_logger.error(f'Failed to process subscription for order {self.name}: {str(e)}')
@@ -494,3 +496,8 @@ class SaleOrderLine(models.Model):
 	_inherit = 'sale.order.line'
 	
 	is_promo_line = fields.Boolean(string='Is Promo Line', default=False)
+	saas_renewed_addon_id = fields.Many2one('saas.addon', string='Renewed SaaS Add-on', help='Link to an existing add-on being renewed by this line')
+	saas_addon_billing_cycle = fields.Selection([
+		('monthly', 'Monthly'),
+		('annual', 'Annual'),
+	], string='Add-on Billing Cycle')

@@ -88,31 +88,7 @@
             <field name="description">Advanced Accounting / Management module add-on - Annual billing. Free for Early Adopter customers.</field>
         </record>
         
-        <!-- Real Estate Module - Monthly €24/mo -->
-        <record id="product_real_estate_monthly" model="product.product">
-            <field name="name">Real Estate Module (Monthly)</field>
-            <field name="default_code">SAAS_REALESTATE_MONTHLY</field>
-            <field name="list_price">24.00</field>
-            <field name="type">service</field>
-            <field name="categ_id" ref="product.product_category_all"/>
-            <field name="sale_ok" eval="True"/>
-            <field name="purchase_ok" eval="False"/>
-            <field name="invoice_policy">order</field>
-            <field name="description">Real Estate module add-on - Monthly billing. Requires active Base CRM subscription.</field>
-        </record>
-        
-        <!-- Real Estate Module - Annual €199/yr -->
-        <record id="product_real_estate_annual" model="product.product">
-            <field name="name">Real Estate Module (Annual)</field>
-            <field name="default_code">SAAS_REALESTATE_ANNUAL</field>
-            <field name="list_price">199.00</field>
-            <field name="type">service</field>
-            <field name="categ_id" ref="product.product_category_all"/>
-            <field name="sale_ok" eval="True"/>
-            <field name="purchase_ok" eval="False"/>
-            <field name="invoice_policy">order</field>
-            <field name="description">Real Estate module add-on - Annual billing. Requires active Base CRM subscription.</field>
-        </record>
+
         
         <!-- ===================== -->
         <!-- ADDITIONAL USER PRODUCT -->
@@ -120,7 +96,7 @@
         
         <!-- Extra User - €7/mo per user -->
         <record id="product_extra_user" model="product.product">
-            <field name="name">Additional User</field>
+            <field name="name">Additional User (Monthly)</field>
             <field name="default_code">SAAS_EXTRA_USER</field>
             <field name="list_price">7.00</field>
             <field name="type">service</field>
@@ -128,7 +104,20 @@
             <field name="sale_ok" eval="True"/>
             <field name="purchase_ok" eval="False"/>
             <field name="invoice_policy">order</field>
-            <field name="description">Additional user beyond the 3 included. Each additional user includes +1GB extra storage.</field>
+            <field name="description">Additional user beyond the 3 included. Each additional user includes +1GB extra storage. Monthly billing.</field>
+        </record>
+
+        <!-- Extra User - €84/yr per user -->
+        <record id="product_extra_user_annual" model="product.product">
+            <field name="name">Additional User (Annual)</field>
+            <field name="default_code">SAAS_EXTRA_USER_ANNUAL</field>
+            <field name="list_price">84.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">Additional user beyond the 3 included. Each additional user includes +1GB extra storage. Annual billing.</field>
         </record>
         
         <!-- ===================== -->
@@ -137,7 +126,7 @@
         
         <!-- Storage +5GB - €5/mo -->
         <record id="product_storage_5gb" model="product.product">
-            <field name="name">Storage Expansion +5GB</field>
+            <field name="name">Storage Expansion +5GB (Monthly)</field>
             <field name="default_code">SAAS_STORAGE_5GB</field>
             <field name="list_price">5.00</field>
             <field name="type">service</field>
@@ -145,12 +134,23 @@
             <field name="sale_ok" eval="True"/>
             <field name="purchase_ok" eval="False"/>
             <field name="invoice_policy">order</field>
-            <field name="description">Additional 5GB of storage. Cumulative with other storage expansions.</field>
+        </record>
+
+        <!-- Storage +5GB - €60/yr -->
+        <record id="product_storage_5gb_annual" model="product.product">
+            <field name="name">Storage Expansion +5GB (Annual)</field>
+            <field name="default_code">SAAS_STORAGE_5GB_ANNUAL</field>
+            <field name="list_price">60.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
         </record>
         
         <!-- Storage +10GB - €9/mo -->
         <record id="product_storage_10gb" model="product.product">
-            <field name="name">Storage Expansion +10GB</field>
+            <field name="name">Storage Expansion +10GB (Monthly)</field>
             <field name="default_code">SAAS_STORAGE_10GB</field>
             <field name="list_price">9.00</field>
             <field name="type">service</field>
@@ -158,12 +158,23 @@
             <field name="sale_ok" eval="True"/>
             <field name="purchase_ok" eval="False"/>
             <field name="invoice_policy">order</field>
-            <field name="description">Additional 10GB of storage. Cumulative with other storage expansions.</field>
+        </record>
+
+        <!-- Storage +10GB - €108/yr -->
+        <record id="product_storage_10gb_annual" model="product.product">
+            <field name="name">Storage Expansion +10GB (Annual)</field>
+            <field name="default_code">SAAS_STORAGE_10GB_ANNUAL</field>
+            <field name="list_price">108.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
         </record>
         
         <!-- Storage +25GB - €19/mo -->
         <record id="product_storage_25gb" model="product.product">
-            <field name="name">Storage Expansion +25GB</field>
+            <field name="name">Storage Expansion +25GB (Monthly)</field>
             <field name="default_code">SAAS_STORAGE_25GB</field>
             <field name="list_price">19.00</field>
             <field name="type">service</field>
@@ -171,7 +182,18 @@
             <field name="sale_ok" eval="True"/>
             <field name="purchase_ok" eval="False"/>
             <field name="invoice_policy">order</field>
-            <field name="description">Additional 25GB of storage. Cumulative with other storage expansions.</field>
+        </record>
+
+        <!-- Storage +25GB - €228/yr -->
+        <record id="product_storage_25gb_annual" model="product.product">
+            <field name="name">Storage Expansion +25GB (Annual)</field>
+            <field name="default_code">SAAS_STORAGE_25GB_ANNUAL</field>
+            <field name="list_price">228.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
         </record>
 
         <!-- ===================== -->

@@ -19,7 +19,7 @@
               sequence="10"/>
 
     <!-- 2. TEMPLATES (Plantillas) -->
-    <menuitem id="menu_dms_templates"
+    <!-- <menuitem id="menu_dms_templates"
               name="Templates"
               parent="menu_dms_root"
               sequence="20"/>
@@ -28,7 +28,7 @@
               name="Template Editor"
               parent="menu_dms_templates"
               action="sign_oca.sign_oca_template_act_window"
-              sequence="10"/>
+              sequence="10"/> -->
 
     <!-- 3. SIGNATURES (Firmas) -->
     <menuitem id="menu_dms_signatures"

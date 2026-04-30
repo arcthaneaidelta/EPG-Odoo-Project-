@@ -81,8 +81,8 @@
                                           decoration-muted="state=='expired'">
                                         <field name="addon_type"/>
                                         <field name="quantity"/>
-                                        <field name="monthly_price"/>
-                                        <field name="total_monthly" readonly="1"/>
+                                        <!-- <field name="monthly_price"/> -->
+                                        <!-- <field name="total_monthly" readonly="1"/> -->
                                         <!-- <field name="proration_amount" readonly="1"/> -->
                                         <field name="purchase_date" readonly="1"/>
                                         <field name="next_renewal_date"/>
@@ -103,7 +103,7 @@
                             <page string="Modules">
                                 <group>
                                     <field name="accounting_module"/>
-                                    <field name="real_estate_module"/>
+
                                 </group>
                             </page>
                             <page string="Grace Period" invisible="state not in ('grace_period', 'pending_deletion')">

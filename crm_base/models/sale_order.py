@@ -22,3 +22,10 @@ class SaleOrder(models.Model):
     def _compute_commission_amount(self):
         for order in self:
             order.commission_amount = order.amount_total * (order.commission_percentage / 100.0)
+
+    def action_confirm(self):
+        res = super(SaleOrder, self).action_confirm()
+        for order in self:
+            if order.opportunity_id and order.opportunity_id.active:
+                order.opportunity_id.action_set_won()
+        return res

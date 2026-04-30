@@ -13,8 +13,21 @@
                     <field name="referrer_user_id"/>
                 </xpath>
 
-                
-                
+
+            </field>
+        </record>
+
+        <record id="res_partner_form_disable_sms" model="ir.ui.view">
+            <field name="name">res.partner.form.disable.sms</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='phone']" position="attributes">
+                    <attribute name="options">{'enable_sms': False}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='mobile']" position="attributes">
+                    <attribute name="options">{'enable_sms': False}</attribute>
+                </xpath>
             </field>
         </record>
 
@@ -58,7 +71,7 @@
                             <group string="Additional Phone Numbers">
                                 <field name="additional_phone_ids" nolabel="1">
                                     <list editable="bottom">
-                                        <field name="phone" widget="phone"/>
+                                        <field name="phone" widget="phone" options="{'enable_sms': False}"/>
                                         <field name="note" placeholder="Emergency, Secondary, etc."/>
                                     </list>
                                 </field>
@@ -94,7 +107,7 @@
                 <xpath expr="//group" position="inside">
                     <filter string="Creation Period" name="group_create_date" context="{'group_by': 'create_date'}"/>
                     <filter string="Sector" name="group_industry" context="{'group_by': 'industry_id'}"/>
-                    <filter string="Country" name="group_country" context="{'group_by': 'country_id'}"/>
+                    <filter string="City" name="group_city" context="{'group_by': 'city'}"/>
                 </xpath>
             </field>
         </record>

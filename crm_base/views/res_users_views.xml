@@ -14,6 +14,11 @@
                         <field name="company_currency_id" invisible="1"/>
                         <field name="total_commission_amount" invisible="not is_sales_representative" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
                     </group>
+                    <group string="Commercial Coverage" invisible="not is_sales_representative">
+                        <field name="assigned_industry_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="assigned_state_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="assigned_country_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
                 </xpath>
                 <xpath expr="//notebook" position="inside">
                     <page string="Referred Sales Orders" invisible="not is_sales_representative">

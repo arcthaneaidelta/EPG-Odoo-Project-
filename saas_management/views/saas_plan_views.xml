@@ -70,7 +70,7 @@
                             </page>
                             <page string="Modules">
                                 <group>
-                                    <field name="module_names" placeholder="e.g., crm,account,real_estate"/>
+                                    <field name="module_names" placeholder="e.g., crm,account"/>
                                     <field name="module_ids" widget="many2many_tags"/>
                                 </group>
                             </page>

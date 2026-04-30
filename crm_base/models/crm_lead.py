@@ -31,6 +31,25 @@ class CrmLeadInherit(models.Model):
 	referral_code = fields.Char(string="Referral Code")
 	referrer_user_id = fields.Many2one('res.users', string="Referrer")
 
+
+	# Subject groups for sender routing
+	EPG_CRM_SUBJECTS = {
+	    'PRE LANZAMIENTO EPG CRM',
+	    'Implementación de CRM',
+	    'CRM Eficiencia y Productividad (nuestro CRM)',  # display: EPG CRM
+	    'Módulo Contabilidad/Gestoría',
+	}
+
+	EPG_GLOBAL_SUBJECTS = {
+	    'Desarrollo de software a medida',
+	    'Desarrollo de aplicaciones personalizadas',
+	    'Automatización de procesos',
+	    'Integraciones tecnológicas',
+	    'Información general',
+	    'Otros motivos',
+	    'Módulo Real Estate',
+	}
+
 	@api.depends("source_type", "partner_id")
 	def _compute_score(self):
 		for lead in self:
@@ -64,6 +83,18 @@ class CrmLeadInherit(models.Model):
 
 		return records
 
+
+	def _get_confirmation_email_from(self):
+	    """Return the correct sender address based on lead subject/name."""
+	    self.ensure_one()
+	    lead_name = (self.name or '').strip()
+
+	    if lead_name in self.EPG_CRM_SUBJECTS:
+	        return '"EPG CRM" <info@epgcrm.com>'
+	    else:
+	        return '"Eficiencia y Productividad Global" <info@eficienciayproductividadglobal.com>'
+
+
 	def _send_lead_notification_email(self):
 		"""Send email notification when a new lead is created from website"""
 		for lead in self:
@@ -81,6 +112,41 @@ class CrmLeadInherit(models.Model):
 						_logger.info(f"Lead notification email sent for lead: {lead.name}")
 					else:
 						_logger.warning("Email template not found for lead notification")
+
+					# --- Confirmation email to USER ---
+	                if lead.email_from:
+	                    confirmation_template = self.env.ref(
+	                        'crm_base.email_template_lead_confirmation',
+	                        raise_if_not_found=False
+	                    )
+	                    if confirmation_template:
+	                        # Determine correct outgoing mail server
+	                        lead_name = (lead.name or '').strip()
+	                        if lead_name in self.EPG_CRM_SUBJECTS:
+	                            smtp_server = self.env['ir.mail_server'].search(
+	                                [('smtp_user', 'ilike', 'epgcrm.com')], limit=1
+	                            )
+	                        else:
+	                            smtp_server = self.env['ir.mail_server'].search(
+	                                [('smtp_user', 'ilike', 'eficienciayproductividadglobal.com')], limit=1
+	                            )
+
+	                        mail_id = confirmation_template.send_mail(
+	                            lead.id,
+	                            force_send=True,
+	                            email_values={
+	                                'email_from': lead._get_confirmation_email_from(),
+	                                'mail_server_id': smtp_server.id if smtp_server else False,
+	                            }
+	                        )
+	                        _logger.info(
+	                            f"Confirmation email sent to {lead.email_from} "
+	                            f"for lead: {lead.name} via {smtp_server.name if smtp_server else 'default server'}"
+	                        )
+	                    else:
+	                        _logger.warning("Confirmation email template not found")
+	                else:
+	                    _logger.warning(f"No email address found for lead {lead.name}, skipping confirmation email")
 				except Exception as e:
 					_logger.error(f"Failed to send lead notification email: {str(e)}")
 
@@ -147,9 +213,6 @@ class CrmLeadInherit(models.Model):
 					vals['referral_code'] = lead.referral_code
 				if lead.referrer_user_id and not lead.partner_id.referrer_user_id:
 					vals['referrer_user_id'] = lead.referrer_user_id.id
-				# Standard System salesperson sync
-				if lead.user_id and not lead.partner_id.user_id:
-					vals['user_id'] = lead.user_id.id
 					
 				if vals:
 					lead.partner_id.write(vals)

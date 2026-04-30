@@ -68,14 +68,13 @@ class SaaSSubscription(models.Model):
                 continue
                 
             try:
-                # Calculate limits
-                # Handle case where total_users might not be computed yet if called during write? 
-                # explicit recompute or trust stored value. Stored value should be updated by super.write
+                # Force refresh of stored computations to ensure addons created just before this call are included
+                sub.invalidate_recordset(['total_users', 'total_storage_gb', 'extra_users', 'extra_storage_gb'])
                 
                 max_users = sub.total_users
                 max_storage_mb = int(sub.total_storage_gb * 1024) # GB to MB
                 
-                _logger.info(f"Pushing limits to {sub.database_name}: Users={max_users}, Storage={max_storage_mb}MB")
+                _logger.info(f"Pushing limits to {sub.database_name}: Users={max_users}, Storage={max_storage_mb}MB (Sub ID: {sub.id})")
                 
                 import odoo
                 registry = odoo.registry(sub.database_name)

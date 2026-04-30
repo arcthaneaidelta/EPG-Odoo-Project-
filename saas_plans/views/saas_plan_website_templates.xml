@@ -256,7 +256,7 @@
                                                            value="1"/>
                                                     <label class="form-check-label" for="addon_accounting" style="color: #cbd5e1;">
                                                         <strong>Accounting / Management Module</strong>
-                                                        <div class="text-muted small">
+                                                        <div style="color: #cbd5e1 !important;" class="text-muted small">
                                                             <!-- <t t-if="plan.is_early_adopter">
                                                                 <span class="badge bg-success">INCLUDED FREE</span> for Early Adopters
                                                             </t> -->
@@ -272,32 +272,21 @@
                                                 <!-- <input type="hidden" name="addon_accounting" value="1"/> -->
                                                 <div>
                                                     <strong style="color: #cbd5e1;">Accounting / Management Module</strong>
-                                                    <div class="text-muted small">
+                                                    <div style="color: #cbd5e1 !important;" class="text-muted small">
                                                         <span class="badge bg-success">INCLUDED FREE</span> for Early Adopters
                                                     </div>
                                                 </div>
                                             </t>
                                         </div>
                                         
-                                        <!-- Real Estate Module -->
-                                        <div class="mb-3 form-check saas-addon-item">
-                                            <input type="checkbox" 
-                                                   class="form-check-input" 
-                                                   id="addon_real_estate" 
-                                                   name="addon_real_estate"
-                                                   value="1"/>
-                                            <label class="form-check-label" for="addon_real_estate" style="color: #cbd5e1;">
-                                                <strong>Real Estate Module</strong>
-                                                <div class="text-muted small">
-                                                    +€<t t-if="plan.billing_cycle == 'monthly'">24.00/mo</t><t t-else="">199.00/yr</t>
-                                                </div>
-                                            </label>
-                                        </div>
+
                                         
                                         <!-- Additional Users -->
                                         <div class="mb-3">
                                             <label for="extra_users" class="form-label" style="color: #cbd5e1;">
-                                                <strong>Additional Users</strong> (+€7.00/mo/user)
+                                                <strong>Additional Users</strong>
+                                                <t t-if="plan.billing_cycle == 'monthly'"> (+€7.00/mo/user)</t>
+                                                <t t-else=""> (+€84.00/yr/user)</t>
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" style="background: #334155; border-color: #475569; color: white;">
@@ -316,6 +305,32 @@
                                             </div>
                                         </div>
                                         
+                                        <!-- Add-on Billing Cycle (Only for Annual Plans) -->
+                                        <div t-if="plan.billing_cycle == 'annual'" class="mb-4">
+                                            <label class="form-label" style="color: #cbd5e1;"><strong>Billing Cycle for Add-ons</strong></label>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="addon_cycle" id="addon_cycle_monthly" value="monthly" checked="checked"/>
+                                                        <label class="form-check-label text-white small" for="addon_cycle_monthly">
+                                                            <strong>Monthly</strong><br/>
+                                                            <span style="color: #94a3b8;">Pay monthly separately</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="addon_cycle" id="addon_cycle_annual" value="annual"/>
+                                                        <label class="form-check-label text-white small" for="addon_cycle_annual">
+                                                            <strong>Annual</strong><br/>
+                                                            <span style="color: #94a3b8;">Pay 12 months now</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input t-else="" type="hidden" name="addon_cycle" value="monthly"/>
+                                        
                                         <!-- Storage Expansion -->
                                         <div class="mb-4">
                                             <label class="form-label d-block" style="color: #cbd5e1;"><strong>Storage Expansion</strong></label>
@@ -324,13 +339,13 @@
                                                 <label class="btn btn-outline-secondary" for="storage_0">None</label>
                                                 
                                                 <input type="radio" class="btn-check" name="storage_expansion" id="storage_5" value="5" autocomplete="off"/>
-                                                <label class="btn btn-outline-secondary" for="storage_5">+5GB (€5)</label>
+                                                <label style="color: gray !important;" class="btn btn-outline-secondary" for="storage_5">+5GB (€5)</label>
                                                 
                                                 <input type="radio" class="btn-check" name="storage_expansion" id="storage_10" value="10" autocomplete="off"/>
-                                                <label class="btn btn-outline-secondary" for="storage_10">+10GB (€9)</label>
+                                                <label style="color: gray !important;" class="btn btn-outline-secondary" for="storage_10">+10GB (€9)</label>
                                                 
                                                 <input type="radio" class="btn-check" name="storage_expansion" id="storage_25" value="25" autocomplete="off"/>
-                                                <label class="btn btn-outline-secondary" for="storage_25">+25GB (€19)</label>
+                                                <label style="color: gray !important;" class="btn btn-outline-secondary" for="storage_25">+25GB (€19)</label>
                                             </div>
                                             <div class="form-text" style="color: #94a3b8;">
                                                 3GB included in base plan.
@@ -343,6 +358,7 @@
                                     </form>
                                     
 
+
                                 </div>
                             </div>
                         </div>
@@ -351,5 +367,16 @@
             </t>
         </template>
         
+        <!-- Override Website Sale Checkout Accordion -->
+        <template id="checkout_layout_auto_expand" inherit_id="website_sale.checkout_layout">
+            <xpath expr="//button[@data-bs-target='#o_wsale_accordion_item']" position="attributes">
+                <attribute name="class" separator=" " remove="collapsed"/>
+                <attribute name="aria-expanded">true</attribute>
+            </xpath>
+            <xpath expr="//div[@id='o_wsale_accordion_item']" position="attributes">
+                <attribute name="class" separator=" " add="show"/>
+            </xpath>
+        </template>
+
     </data>
 </odoo>

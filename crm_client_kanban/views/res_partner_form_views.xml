@@ -11,6 +11,7 @@
                     <field name="l10n_es_id_type" placeholder="Type" class="oe_inline"/>
                     <field name="l10n_es_id_number" placeholder="Number" class="oe_inline"/>
                 </div>
+                <field name="cif" invisible="not is_company"/>
             </xpath>
         </field>
     </record>

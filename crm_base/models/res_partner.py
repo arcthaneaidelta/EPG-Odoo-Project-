@@ -34,39 +34,6 @@ class ResPartner(models.Model):
     additional_email_ids = fields.One2many('res.partner.email', 'partner_id', string="Additional Emails")
     additional_phone_ids = fields.One2many('res.partner.phone', 'partner_id', string="Additional Phones")
 
-    @api.constrains('vat', 'country_id')
-    def _check_vat_spanish_dni(self):
-        for partner in self:
-            if not partner.vat or not partner.country_id or partner.country_id.code != 'ES':
-                continue
-            
-            # Clean VAT (remove spaces and dots)
-            vat = partner.vat.strip().upper()
-            if vat.startswith('ES'):
-                vat = vat[2:]
-            
-            # DNI: 8 digits + 1 letter
-            # NIE: X/Y/Z + 7 digits + 1 letter
-            dni_pattern = re.compile(r'^[0-9]{8}[A-Z]$')
-            nie_pattern = re.compile(r'^[XYZ][0-9]{7}[A-Z]$')
-            
-            if dni_pattern.match(vat) or nie_pattern.match(vat):
-                mapping = "TRWAGMYFPDXBNJZSQVHLCKE"
-                
-                # Convert NIE prefix to digit
-                if vat[0] == 'X':
-                    num_str = '0' + vat[1:8]
-                elif vat[0] == 'Y':
-                    num_str = '1' + vat[1:8]
-                elif vat[0] == 'Z':
-                    num_str = '2' + vat[1:8]
-                else:
-                    num_str = vat[:8]
-                
-                expected_letter = mapping[int(num_str) % 23]
-                if vat[8] != expected_letter:
-                    raise ValidationError(_("Invalid DNI/NIE: The control letter '%s' does not match for number %s. Expected '%s'.") % (vat[8], vat[:8], expected_letter))
-
     @api.onchange('zip')
     def _onchange_zip_spanish(self):
         if self.zip and self.country_id and self.country_id.code == 'ES':
@@ -101,6 +68,39 @@ class ResPartner(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get('user_id'):
+                # Try to find a salesperson match based on coverage
+                industry_id = vals.get('industry_id')
+                state_id = vals.get('state_id')
+                country_id = vals.get('country_id')
+                
+                matching_user = False
+                
+                # 1. Match Sector
+                if industry_id:
+                    matching_user = self.env['res.users'].search([
+                        ('is_sales_representative', '=', True),
+                        ('assigned_industry_ids', 'in', industry_id)
+                    ], limit=1)
+                
+                # 2. Match Region
+                if not matching_user and state_id:
+                    matching_user = self.env['res.users'].search([
+                        ('is_sales_representative', '=', True),
+                        ('assigned_state_ids', 'in', state_id)
+                    ], limit=1)
+                
+                # 3. Match Country
+                if not matching_user and country_id:
+                    matching_user = self.env['res.users'].search([
+                        ('is_sales_representative', '=', True),
+                        ('assigned_country_ids', 'in', country_id)
+                    ], limit=1)
+                
+                if matching_user:
+                    vals['user_id'] = matching_user.id
+
         partners = super(ResPartner, self).create(vals_list)
         template = self.env.ref('crm_base.email_template_welcome_new_customer', raise_if_not_found=False)
         for partner in partners:

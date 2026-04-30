@@ -183,19 +183,30 @@ class SaasPortal(CustomerPortal):
 			
 		order = request.env['sale.order'].sudo().create(vals)
 		
+		addon_cycle = kw.get('addon_cycle', 'monthly')
+		
 		# Add Users Line
 		if add_users > 0:
 			user_product = request.env.ref('saas_plans.product_extra_user', raise_if_not_found=False) or request.env.ref('saas_plans.product_saas_user', raise_if_not_found=False)
 			if user_product:
-				# Strict 30-day flat fee logic
-				price_unit = user_product.list_price
+				if addon_cycle == 'align':
+					# Calculate Proration
+					price, days = subscription_sudo._compute_addon_proration(user_product.list_price, qty=add_users)
+					line_name = f"Upgrade: {add_users} Extra Users (Prorated for {days} days)"
+					product_uom_qty = 1
+				else:
+					# Monthly (Flat full month)
+					price = user_product.list_price
+					line_name = f"Upgrade: {add_users} Extra Users (Monthly)"
+					product_uom_qty = add_users
 
 				request.env['sale.order.line'].sudo().create({
 					'order_id': order.id,
 					'product_id': user_product.id,
-					'name': f"Upgrade: {add_users} Extra Users (1 Month)",
-					'product_uom_qty': add_users,
-					'price_unit': price_unit,
+					'name': line_name,
+					'product_uom_qty': product_uom_qty,
+					'price_unit': price,
+					'saas_addon_billing_cycle': addon_cycle if addon_cycle != 'align' else 'annual',
 				})
 				
 		# Add Storage Line
@@ -204,14 +215,22 @@ class SaasPortal(CustomerPortal):
 			xml_id = f'saas_plans.product_storage_{add_storage}gb'
 			product = request.env.ref(xml_id, raise_if_not_found=False)
 			if product:
-				price_unit = product.list_price
+				if addon_cycle == 'align':
+					# Calculate Proration
+					price, days = subscription_sudo._compute_addon_proration(product.list_price, qty=1)
+					line_name = f"Upgrade: {add_storage} GB Storage (Prorated for {days} days)"
+				else:
+					# Monthly
+					price = product.list_price
+					line_name = f"Upgrade: {add_storage} GB Storage (Monthly)"
 
 				request.env['sale.order.line'].sudo().create({
 					'order_id': order.id,
 					'product_id': product.id,
-					'name': f"Upgrade: {add_storage} GB Storage (1 Month)",
+					'name': line_name,
 					'product_uom_qty': 1,
-					'price_unit': price_unit,
+					'price_unit': price,
+					'saas_addon_billing_cycle': addon_cycle if addon_cycle != 'align' else 'annual',
 				})
 		
 		# set session for direct checkout
@@ -258,5 +277,39 @@ class SaasPortal(CustomerPortal):
 		except Exception as e:
 			import logging
 			logging.getLogger(__name__).error("Addon cancel failed from portal: %s", str(e))
+
+	@http.route(['/my/button/addon/<int:addon_id>/renew'], type='http', auth="user", website=True)
+	def portal_renew_addon(self, addon_id, access_token=None, **kw):
+		addon = request.env['saas.addon'].sudo().browse(addon_id)
+		if not addon.exists():
+			return request.redirect('/my')
+
+		# Verify access (Check subscription ownership or token)
+		subscription = addon.subscription_id
+		try:
+			self._document_check_access('saas.subscription', subscription.id, access_token=access_token)
+		except (AccessError, MissingError):
+			return request.redirect('/my')
+
+		action = addon.sudo().action_renew_addon()
+		
+		if isinstance(action, dict) and action.get('res_model') == 'sale.order':
+			order_id = action.get('res_id')
+			order = request.env['sale.order'].sudo().browse(order_id)
+			
+			# Prepare order for portal checkout
+			vals = {'state': 'draft'}
+			if request.website:
+				vals.update({
+					'website_id': request.website.id,
+					'company_id': request.website.company_id.id if request.website.company_id else order.company_id.id,
+					'team_id': request.website.salesteam_id.id if request.website.salesteam_id else order.team_id.id,
+				})
+			order.write(vals)
+
+			# Set session for direct checkout
+			request.session['sale_last_order_id'] = order_id
+			request.session['sale_order_id'] = order_id
+			return request.redirect('/shop/payment')
 
 		return request.redirect(f'/my/subscription/{subscription.id}')
