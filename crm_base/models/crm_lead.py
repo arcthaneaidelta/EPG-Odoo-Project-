@@ -34,20 +34,20 @@ class CrmLeadInherit(models.Model):
 
 	# Subject groups for sender routing
 	EPG_CRM_SUBJECTS = {
-	    'PRE LANZAMIENTO EPG CRM',
-	    'Implementación de CRM',
-	    'CRM Eficiencia y Productividad (nuestro CRM)',  # display: EPG CRM
-	    'Módulo Contabilidad/Gestoría',
+		'PRE LANZAMIENTO EPG CRM',
+		'Implementación de CRM',
+		'CRM Eficiencia y Productividad (nuestro CRM)',  # display: EPG CRM
+		'Módulo Contabilidad/Gestoría',
 	}
 
 	EPG_GLOBAL_SUBJECTS = {
-	    'Desarrollo de software a medida',
-	    'Desarrollo de aplicaciones personalizadas',
-	    'Automatización de procesos',
-	    'Integraciones tecnológicas',
-	    'Información general',
-	    'Otros motivos',
-	    'Módulo Real Estate',
+		'Desarrollo de software a medida',
+		'Desarrollo de aplicaciones personalizadas',
+		'Automatización de procesos',
+		'Integraciones tecnológicas',
+		'Información general',
+		'Otros motivos',
+		'Módulo Real Estate',
 	}
 
 	@api.depends("source_type", "partner_id")
@@ -85,14 +85,24 @@ class CrmLeadInherit(models.Model):
 
 
 	def _get_confirmation_email_from(self):
-	    """Return the correct sender address based on lead subject/name."""
-	    self.ensure_one()
-	    lead_name = (self.name or '').strip()
+		"""Return the correct sender address based on lead subject/name."""
+		self.ensure_one()
+		lead_name = (self.name or '').strip()
 
-	    if lead_name in self.EPG_CRM_SUBJECTS:
-	        return '"EPG CRM" <info@epgcrm.com>'
-	    else:
-	        return '"Eficiencia y Productividad Global" <info@eficienciayproductividadglobal.com>'
+		if lead_name in self.EPG_CRM_SUBJECTS:
+			return '"EPG CRM" <info@epgcrm.com>'
+		else:
+			return '"Eficiencia y Productividad Global" <info@eficienciayproductividadglobal.com>'
+
+	def _get_notification_email_to(self):
+		"""Return the correct destination address based on lead subject/name."""
+		self.ensure_one()
+		lead_name = (self.name or '').strip()
+
+		if lead_name in self.EPG_CRM_SUBJECTS:
+			return 'info@epgcrm.com'
+		else:
+			return 'info@eficienciayproductividadglobal.com'
 
 
 	def _send_lead_notification_email(self):
@@ -114,39 +124,39 @@ class CrmLeadInherit(models.Model):
 						_logger.warning("Email template not found for lead notification")
 
 					# --- Confirmation email to USER ---
-	                if lead.email_from:
-	                    confirmation_template = self.env.ref(
-	                        'crm_base.email_template_lead_confirmation',
-	                        raise_if_not_found=False
-	                    )
-	                    if confirmation_template:
-	                        # Determine correct outgoing mail server
-	                        lead_name = (lead.name or '').strip()
-	                        if lead_name in self.EPG_CRM_SUBJECTS:
-	                            smtp_server = self.env['ir.mail_server'].search(
-	                                [('smtp_user', 'ilike', 'epgcrm.com')], limit=1
-	                            )
-	                        else:
-	                            smtp_server = self.env['ir.mail_server'].search(
-	                                [('smtp_user', 'ilike', 'eficienciayproductividadglobal.com')], limit=1
-	                            )
+					if lead.email_from:
+						confirmation_template = self.env.ref(
+							'crm_base.email_template_lead_confirmation',
+							raise_if_not_found=False
+						)
+						if confirmation_template:
+							# Determine correct outgoing mail server
+							lead_name = (lead.name or '').strip()
+							if lead_name in self.EPG_CRM_SUBJECTS:
+								smtp_server = self.env['ir.mail_server'].search(
+									[('smtp_user', 'ilike', 'epgcrm.com')], limit=1
+								)
+							else:
+								smtp_server = self.env['ir.mail_server'].search(
+									[('smtp_user', 'ilike', 'eficienciayproductividadglobal.com')], limit=1
+								)
 
-	                        mail_id = confirmation_template.send_mail(
-	                            lead.id,
-	                            force_send=True,
-	                            email_values={
-	                                'email_from': lead._get_confirmation_email_from(),
-	                                'mail_server_id': smtp_server.id if smtp_server else False,
-	                            }
-	                        )
-	                        _logger.info(
-	                            f"Confirmation email sent to {lead.email_from} "
-	                            f"for lead: {lead.name} via {smtp_server.name if smtp_server else 'default server'}"
-	                        )
-	                    else:
-	                        _logger.warning("Confirmation email template not found")
-	                else:
-	                    _logger.warning(f"No email address found for lead {lead.name}, skipping confirmation email")
+							mail_id = confirmation_template.send_mail(
+								lead.id,
+								force_send=True,
+								email_values={
+									'email_from': lead._get_confirmation_email_from(),
+									'mail_server_id': smtp_server.id if smtp_server else False,
+								}
+							)
+							_logger.info(
+								f"Confirmation email sent to {lead.email_from} "
+								f"for lead: {lead.name} via {smtp_server.name if smtp_server else 'default server'}"
+							)
+						else:
+							_logger.warning("Confirmation email template not found")
+					else:
+						_logger.warning(f"No email address found for lead {lead.name}, skipping confirmation email")
 				except Exception as e:
 					_logger.error(f"Failed to send lead notification email: {str(e)}")
 

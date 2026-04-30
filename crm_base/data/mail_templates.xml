@@ -7,7 +7,7 @@
         <field name="email_from">
             "Notificaciones del Sitio Web" &lt;usmank123428@gmail.com&gt;
         </field>
-        <field name="email_to">usmank123428@gmail.com</field>
+        <field name="email_to">{{ object._get_notification_email_to() }}</field>
 
         <field name="subject">Nuevo lead creado: {{ object.name }}</field>
 
