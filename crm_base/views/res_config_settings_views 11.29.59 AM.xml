@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_white_label" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.white.label</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Remove Digest Email Setting -->
+            <xpath expr="//setting[@name='digest_email_setting_container']" position="replace"/>
+
+            <!-- Remove Odoo IAP Setting -->
+            <xpath expr="//block[@name='iap_purchases_setting_container']" position="replace"/>
+
+            <!-- Remove Contacts Setting Block -->
+            <xpath expr="//block[@name='contacts_setting_container']" position="replace"/>
+
+            <!-- Remove Discuss Setting Block -->
+            <xpath expr="//block[@id='discuss']" position="replace"/>
+
+            <!-- Remove PWA Setting Block -->
+            <xpath expr="//block[@id='pwa_settings']" position="replace"/>
+
+            <!-- Remove Inter-Company Setting -->
+            <xpath expr="//setting[@id='inter_company']" position="replace"/>
+
+            <!-- Remove Unsplash Setting -->
+            <xpath expr="//setting[@id='unsplash']" position="replace"/>
+
+            <!-- Remove CF Turnstile Setting -->
+            <xpath expr="//setting[@id='cf-turnstile']" position="replace"/>
+
+            <!-- Remove Ringover VOIP Setting -->
+            <xpath expr="//setting[@id='ringover-voip']" position="replace"/>
+
+            <!-- Manual Move of Lead Auto Assignment Setting -->
+            <xpath expr="//setting[descendant::field[@name='crm_use_auto_assignment']]" position="replace">
+                <!-- Replaced with nothing here, to be re-added below -->
+            </xpath>
+
+            <xpath expr="//setting[descendant::field[@name='is_membership_multi']]" position="after">
+                <setting title="This can be used to automatically assign leads to sales persons based on rules" documentation="/applications/sales/crm/track_leads/lead_scoring.html#assign-leads">
+                    <field name="crm_use_auto_assignment"/>
+                    <div class="text-muted">
+                        <span>Periodically assign leads based on rules</span><br/>
+                        <span invisible="not crm_use_auto_assignment">
+                            All sales teams will use this setting by default unless
+                            specified otherwise.
+                        </span>
+                    </div>
+                    <div class="row flex-row flex-nowrap mt16" invisible="not crm_use_auto_assignment">
+                        <label string="Running" for="crm_auto_assignment_action" class="col-lg-3 o_light_label"/>
+                        <field name="crm_auto_assignment_action" required="crm_use_auto_assignment"/>
+                        <button name="action_crm_assign_leads" type="object" class="btn-link w-auto">
+                            <i title="Update now" role="img" aria-label="Update now" class="fa fa-fw fa-refresh"/>
+                        </button>
+                    </div>
+                    <div class="row mt16" invisible="not crm_use_auto_assignment or crm_auto_assignment_action == 'manual'">
+                        <label string="Repeat every" for="crm_auto_assignment_interval_type" class="col-lg-3 o_light_label"/>
+                        <field name="crm_auto_assignment_interval_number" class="oe_inline me-2" required="crm_use_auto_assignment and crm_auto_assignment_action == 'auto'"/>
+                        <field name="crm_auto_assignment_interval_type" class="oe_inline" required="crm_use_auto_assignment and crm_auto_assignment_action == 'auto'"/>
+                    </div>
+                    <div class="row" invisible="not crm_use_auto_assignment or crm_auto_assignment_action == 'manual'">
+                        <label string="Next Run" for="crm_auto_assignment_run_datetime" class="col-lg-3 o_light_label"/>
+                        <field name="crm_auto_assignment_run_datetime"/>
+                    </div>
+                </setting>
+            </xpath>
+
+            <xpath expr="//setting[@id='crm_iap_mine_settings']" position="replace"/>
+
+            <!-- Remove Shipping Setting Block -->
+            <xpath expr="//block[@name='sale_shipping_setting_container']" position="replace"/>
+
+            <!-- Remove Commission Setting -->
+            <xpath expr="//setting[@id='setting_commission']" position="replace"/>
+
+            <!-- Remove Connectors Setting Block -->
+            <xpath expr="//block[@id='connectors_setting_container']" position="replace"/>
+
+            <!-- Remove Odoo mention from API Keys help -->
+            <xpath expr="//setting[button[@name='%(base.action_apikeys_admin)d']]" position="attributes">
+                <attribute name="help"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_config_settings_view_form_inherit_account_white_label" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.account.white.label</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Remove Exchange Rate Setting -->
+            <xpath expr="//setting[@id='update_exchange_rates']" position="replace" raise_if_not_found="0"/>
+
+            <!-- Remove Snailmail Setting -->
+            <!-- <xpath expr="//setting[@id='send_invoices_followups']" position="replace" raise_if_not_found="0"/> -->
+
+            <!-- Remove Intrastat Setting -->
+            <xpath expr="//setting[@id='intrastat_statistics']" position="replace" raise_if_not_found="0"/>
+
+            <!-- Remove Invoice Terms Setting -->
+            <xpath expr="//setting[@id='use_invoice_terms']" position="replace" raise_if_not_found="0"/>
+
+            <!-- Remove Batch Payment Setting -->
+            <xpath expr="//setting[@id='account_batch_payment']" position="replace" raise_if_not_found="0"/>
+
+            <!-- Remove SEPA Direct Debit Setting -->
+            <xpath expr="//setting[@id='collect_customer_payment']" position="replace" raise_if_not_found="0"/>
+
+            <!-- Remove SEPA Payments Setting -->
+            <xpath expr="//setting[@id='sepa_payments']" position="replace" raise_if_not_found="0"/>
+
+            <!-- Remove Digitization Block -->
+            <xpath expr="//block[@id='account_digitalization']" position="replace" raise_if_not_found="0"/>
+
+            <!-- Remove Bank Statement Imports -->
+            <xpath expr="//setting[@id='import_bank_statements_csv']" position="replace" raise_if_not_found="0"/>
+            <xpath expr="//setting[descendant::field[@name='module_account_bank_statement_import_qif']]" position="replace" raise_if_not_found="0"/>
+            <xpath expr="//setting[descendant::field[@name='module_account_bank_statement_import_ofx']]" position="replace" raise_if_not_found="0"/>
+            <xpath expr="//setting[@id='import_bank_statement_camt']" position="replace" raise_if_not_found="0"/>
+
+            <!-- Remove Dynamic Reports Setting -->
+            <xpath expr="//setting[@id='dynamic_report']" position="replace" raise_if_not_found="0"/>
+
+            <!-- Update Autopost Bills help text -->
+            <xpath expr="//setting[@id='autopost_bills']" position="attributes">
+                <attribute name="help">After importing three bills for a vendor without making changes, EPG will suggest automatically validating future bills. You can toggle this feature at any time in the vendor's profile.</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_config_settings_view_form_inherit_sign_oca_white_label" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sign.oca.white.label</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sign_oca.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='sign_oca']" position="replace"/>
+        </field>
+    </record>
+
+    <record id="res_config_settings_view_form_inherit_dms_white_label" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.dms.white.label</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="dms.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='dms']" position="attributes">
+                <attribute name="icon">dms/static/description/icon.svg</attribute>
+                <attribute name="data-test">applied</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
