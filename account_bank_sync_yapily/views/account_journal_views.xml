@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_journal_form_yapily" model="ir.ui.view">
+        <field name="name">account.journal.form.yapily</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <button name="action_connect_yapily" type="object" string="Connect Yapily Bank" 
+                        class="oe_highlight" invisible="type != 'bank'"/>
+                <button name="action_manual_yapily_sync" type="object" string="Manual Bank Sync" 
+                        invisible="type != 'bank' or not yapily_consent_token"/>
+            </xpath>
+            <xpath expr="//page[@name='bank_account']" position="inside">
+                <group string="Yapily Sync Settings" invisible="type != 'bank'">
+                    <field name="yapily_institution_id"/>
+                    <field name="yapily_account_id"/>
+                    <field name="yapily_consent_expiry"/>
+                    <field name="yapily_last_sync_date"/>
+                    <field name="yapily_consent_token" invisible="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

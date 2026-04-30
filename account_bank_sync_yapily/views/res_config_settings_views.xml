@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_yapily" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.yapily</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='bank_cash']" position="inside">
+                <setting id="yapily_settings" string="Yapily PSD2 Sync" help="Configure Yapily API for Bank Synchronization">
+                    <div class="content-group">
+                        <div class="mt16">
+                            <label for="yapily_application_uuid" class="col-lg-3 o_light_label"/>
+                            <field name="yapily_application_uuid" class="oe_inline"/>
+                        </div>
+                        <div class="mt16">
+                            <label for="yapily_secret" class="col-lg-3 o_light_label"/>
+                            <field name="yapily_secret" class="oe_inline" password="True"/>
+                        </div>
+                        <div class="mt16">
+                            <label for="yapily_api_url" class="col-lg-3 o_light_label"/>
+                            <field name="yapily_api_url" class="oe_inline"/>
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="yapily_connect_wizard_view_form" model="ir.ui.view">
+        <field name="name">yapily.connect.wizard.form</field>
+        <field name="model">yapily.connect.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Connect to Yapily">
+                <group>
+                    <field name="journal_id" invisible="1"/>
+                    <field name="institution_id" placeholder="e.g. xs2a-sandbox"/>
+                </group>
+                <div class="text-muted">
+                    <p>Enter your bank's Yapily Institution ID to begin the PSD2 authentication flow. 
+                    You will be redirected to your bank to securely authorize access.</p>
+                </div>
+                <footer>
+                    <button string="Connect" name="action_connect" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
