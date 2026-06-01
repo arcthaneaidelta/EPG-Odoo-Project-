@@ -1,0 +1,327 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* client_document_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-21 21:07+0000\n"
+"PO-Revision-Date: 2026-05-21 21:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: client_document_management
+#: model_terms:ir.actions.act_window,help:client_document_management.action_dms_file_reports
+msgid "Analice el uso de sus documentos."
+msgstr "Analice el uso de sus documentos."
+
+#. module: client_document_management
+#: model:ir.model.fields.selection,name:client_document_management.selection__dms_file__status__archived
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: client_document_management
+#: model:ir.model.fields,field_description:client_document_management.field_dms_file__partner_id
+msgid "Associated Client"
+msgstr "Cliente Asociado"
+
+#. module: client_document_management
+#: model:ir.model.fields,field_description:client_document_management.field_dms_storage__available_space_human
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_storage_form_inherit
+msgid "Available Space"
+msgstr "Espacio Disponible"
+
+#. module: client_document_management
+#: model:ir.model.fields,field_description:client_document_management.field_dms_storage__available_space
+msgid "Available Space (Bytes)"
+msgstr "Espacio Disponible (Bytes)"
+
+#. module: client_document_management
+#: model:ir.model.fields.selection,name:client_document_management.selection__dms_file__document_type__budget
+#: model:ir.model.fields.selection,name:client_document_management.selection__sign_oca_template__template_type__budget
+msgid "Budget"
+msgstr "Presupuesto"
+
+#. module: client_document_management
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_storage_tree_inherit
+msgid "Capacidad"
+msgstr "Capacidad"
+
+#. module: client_document_management
+#: model:ir.model.fields.selection,name:client_document_management.selection__dms_file__document_type__contract
+#: model:ir.model.fields.selection,name:client_document_management.selection__sign_oca_template__template_type__contract
+msgid "Contract"
+msgstr "Contrato"
+
+#. module: client_document_management
+#: model:res.groups,name:client_document_management.group_dms_contract_manager
+msgid "Contract Manager"
+msgstr "Gestor de Contratos"
+
+#. module: client_document_management
+#: model:dms.access.group,name:client_document_management.dms_access_contract_manager
+msgid "Contracts Access"
+msgstr "Acceso a Contratos"
+
+#. module: client_document_management
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_file_form_inherit
+msgid "Creation Date"
+msgstr "Fecha de Creación"
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_storage_directories
+msgid "Directories"
+msgstr "Directorios"
+
+#. module: client_document_management
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_file_pivot_reports
+msgid "Document Analysis"
+msgstr "Análisis de Documentos"
+
+#. module: client_document_management
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_file_form_inherit
+msgid "Document Details"
+msgstr "Detalles del Documento"
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_file_list
+msgid "Document List"
+msgstr "Lista de Documentos"
+
+#. module: client_document_management
+#: model:ir.actions.act_window,name:client_document_management.action_dms_file_reports
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_file_graph_reports
+msgid "Document Statistics"
+msgstr "Estadísticas de Documentos"
+
+#. module: client_document_management
+#: model:ir.model.fields,field_description:client_document_management.field_dms_file__document_type
+msgid "Document Type"
+msgstr "Tipo de Documento"
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_documents
+#: model:ir.ui.menu,name:client_document_management.menu_dms_root
+msgid "Documents"
+msgstr "Documentos"
+
+#. module: client_document_management
+#: model:ir.module.category,name:client_document_management.category_dms_permissions
+msgid "Documents Roles"
+msgstr "Roles de Documentos"
+
+#. module: client_document_management
+#: model:ir.model.fields.selection,name:client_document_management.selection__dms_file__status__draft
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: client_document_management
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_file_form_inherit
+msgid "Electronic Signature"
+msgstr "Firma Electrónica"
+
+#. module: client_document_management
+#: model:ir.model.fields.selection,name:client_document_management.selection__sign_oca_template__template_type__email
+msgid "Email"
+msgstr "Correo Electrónico"
+
+#. module: client_document_management
+#: model:ir.model,name:client_document_management.model_dms_file
+msgid "File"
+msgstr "Archivo"
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_storage_files
+msgid "Files"
+msgstr "Archivos"
+
+#. module: client_document_management
+#: model:ir.model.fields.selection,name:client_document_management.selection__dms_file__document_type__internal
+msgid "Internal Document"
+msgstr "Documento Interno"
+
+#. module: client_document_management
+#: model:dms.access.group,name:client_document_management.dms_access_internal_user
+msgid "Internal Documents Access"
+msgstr "Acceso a Documentos Internos"
+
+#. module: client_document_management
+#: model:res.groups,name:client_document_management.group_dms_internal_user
+msgid "Internal User"
+msgstr "Usuario Interno"
+
+#. module: client_document_management
+#: model:ir.model.fields.selection,name:client_document_management.selection__dms_file__document_type__invoice
+#: model:ir.model.fields.selection,name:client_document_management.selection__sign_oca_template__template_type__invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: client_document_management
+#: model:res.groups,name:client_document_management.group_dms_invoice_user
+msgid "Invoice User"
+msgstr "Usuario de Facturas"
+
+#. module: client_document_management
+#: model:dms.access.group,name:client_document_management.dms_access_invoice_user
+msgid "Invoices Access"
+msgstr "Acceso a Facturas"
+
+#. module: client_document_management
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_file_form_inherit
+msgid "Mark as Signed"
+msgstr "Marcar como Firmado"
+
+#. module: client_document_management
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_file_form_inherit
+msgid "Metadata"
+msgstr "Metadatos"
+
+#. module: client_document_management
+#. odoo-python
+#: code:addons/client_document_management/models/dms_file.py:0
+msgid "No content found in the file to sign."
+msgstr "No se encontró contenido en el archivo para firmar."
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_reports
+msgid "Reports"
+msgstr "Informes"
+
+#. module: client_document_management
+#: model:ir.model,name:client_document_management.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de Venta"
+
+#. module: client_document_management
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_order_form_inherit_dms
+msgid "Send to Documents"
+msgstr "Enviar a Documentos"
+
+#. module: client_document_management
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_file_form_inherit
+msgid "Send to Sign"
+msgstr "Enviar a Firmar"
+
+#. module: client_document_management
+#: model:ir.model.fields.selection,name:client_document_management.selection__dms_file__status__sent
+msgid "Sent"
+msgstr "Enviado"
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_settings
+msgid "Settings"
+msgstr "Configuración"
+
+#. module: client_document_management
+#: model:ir.model,name:client_document_management.model_sign_oca_template
+msgid "Sign Oca Template"
+msgstr "Plantilla de Firma OCA"
+
+#. module: client_document_management
+#. odoo-python
+#: code:addons/client_document_management/models/dms_file.py:0
+#: model:ir.model.fields,field_description:client_document_management.field_dms_file__sign_request_id
+msgid "Signature Request"
+msgstr "Solicitud de Firma"
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_sign_requests
+msgid "Signature Requests"
+msgstr "Solicitudes de Firma"
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_signatures
+msgid "Signatures"
+msgstr "Firmas"
+
+#. module: client_document_management
+#: model:ir.model.fields.selection,name:client_document_management.selection__dms_file__status__signed
+msgid "Signed"
+msgstr "Firmado"
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_sign_signers
+msgid "Signers"
+msgstr "Firmantes"
+
+#. module: client_document_management
+#: model:ir.module.category,description:client_document_management.category_dms_permissions
+msgid "Simplified Roles for DMS Access"
+msgstr "Roles Simplificados para Acceso a DMS"
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_reports_stats
+msgid "Statistics"
+msgstr "Estadísticas"
+
+#. module: client_document_management
+#: model:ir.model.fields,field_description:client_document_management.field_dms_file__status
+msgid "Status"
+msgstr "Estado"
+
+#. module: client_document_management
+#: model:ir.model,name:client_document_management.model_dms_storage
+#: model:ir.ui.menu,name:client_document_management.menu_dms_storage_root
+msgid "Storage"
+msgstr "Almacenamiento"
+
+#. module: client_document_management
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_storage_form_inherit
+msgid "Storage Capacity Tracking"
+msgstr "Seguimiento de Capacidad de Almacenamiento"
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_config_storage
+msgid "Storage Configuration"
+msgstr "Configuración de Almacenamiento"
+
+#. module: client_document_management
+#: model:ir.ui.menu,name:client_document_management.menu_dms_storage_usage
+msgid "Storage Usage"
+msgstr "Uso de Almacenamiento"
+
+#. module: client_document_management
+#: model:ir.model.fields,field_description:client_document_management.field_sign_oca_template__template_type
+msgid "Template Type"
+msgstr "Tipo de Plantilla"
+
+#. module: client_document_management
+#: model:ir.model.fields,field_description:client_document_management.field_dms_storage__total_quota
+msgid "Total Quota (MB)"
+msgstr "Cuota Total (MB)"
+
+#. module: client_document_management
+#: model:ir.model.fields,help:client_document_management.field_dms_storage__total_quota
+msgid "Total capacity in MB"
+msgstr "Capacidad total en MB"
+
+#. module: client_document_management
+#: model:ir.model.fields,field_description:client_document_management.field_dms_storage__usage_rate
+msgid "Usage Rate (%)"
+msgstr "Tasa de Uso (%)"
+
+#. module: client_document_management
+#: model:ir.model.fields,field_description:client_document_management.field_dms_storage__used_space_human
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_storage_form_inherit
+msgid "Used Space"
+msgstr "Espacio Utilizado"
+
+#. module: client_document_management
+#: model:ir.model.fields,field_description:client_document_management.field_dms_storage__used_space
+msgid "Used Space (Bytes)"
+msgstr "Espacio Utilizado (Bytes)"
+
+#. module: client_document_management
+#: model_terms:ir.ui.view,arch_db:client_document_management.view_dms_storage_tree_inherit
+msgid "Uso"
+msgstr "Uso"
+
+#. module: client_document_management
+#: model:ir.model.fields,field_description:client_document_management.field_dms_file__version_number
+msgid "Version Number"
+msgstr "Número de Versión"

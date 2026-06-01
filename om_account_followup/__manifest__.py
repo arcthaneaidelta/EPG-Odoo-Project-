@@ -4,7 +4,7 @@
     'category': 'Accounting',
     'description': """Customer FollowUp Management""",
     'summary': """Customer FollowUp Management""",
-    'author': 'Odoo Mates, Odoo S.A',
+    'author': 'System Mates, System S.A',
     'license': 'LGPL-3',
     'website': 'https://www.odoomates.tech',
     'depends': ['account', 'mail'],

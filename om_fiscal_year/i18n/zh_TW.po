@@ -1,10 +1,10 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # 	* om_fiscal_year
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: System Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-21 02:42+0000\n"
 "PO-Revision-Date: 2024-03-21 02:42+0000\n"
@@ -226,7 +226,7 @@ msgid "Save"
 msgstr "保存"
 
 #. module: om_fiscal_year
-#. odoo-python
+#. system-python
 #: code:addons/om_fiscal_year/models/res_company.py:0
 #, python-format
 msgid "Show unposted entries"
@@ -248,14 +248,14 @@ msgid "Tax Lock Date"
 msgstr "稅額關帳日期"
 
 #. module: om_fiscal_year
-#. odoo-python
+#. system-python
 #: code:addons/om_fiscal_year/models/account_fiscal_year.py:0
 #, python-format
 msgid "The ending date must not be prior to the starting date."
 msgstr "結束日期不得早於開始日期。"
 
 #. module: om_fiscal_year
-#. odoo-python
+#. system-python
 #: code:addons/om_fiscal_year/models/res_company.py:0
 #, python-format
 msgid ""
@@ -264,7 +264,7 @@ msgid ""
 msgstr "在您想要關帳的期間內仍有未過帳的條目。 您應該發布或刪除它們。"
 
 #. module: om_fiscal_year
-#. odoo-python
+#. system-python
 #: code:addons/om_fiscal_year/models/res_company.py:0
 #, python-format
 msgid ""
@@ -273,14 +273,14 @@ msgid ""
 msgstr "您想要關帳的期間內仍有未調整的銀行對帳單行。您應該調整或刪除它們"
 
 #. module: om_fiscal_year
-#. odoo-python
+#. system-python
 #: code:addons/om_fiscal_year/wizard/change_lock_date.py:0
 #, python-format
 msgid "You Are Not Allowed To Perform This Operation"
 msgstr "您無權執行此操作"
 
 #. module: om_fiscal_year
-#. odoo-python
+#. system-python
 #: code:addons/om_fiscal_year/models/account_fiscal_year.py:0
 #, python-format
 msgid ""

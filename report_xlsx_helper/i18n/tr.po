@@ -1,10 +1,10 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # 	* report_xlsx_helper
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: System Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2025-09-08 13:42+0000\n"
 "Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 msgid ""
 "%(__name__)s, _write_line : programming error detected while processing "
@@ -27,13 +27,13 @@ msgstr ""
 "col_specs_section %(col_specs_section)s, column %(col)s"
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/models/ir_actions_report.py:0
 msgid "%s model was not found"
 msgstr "%s modeli bulunamadı"
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 msgid ", cellvalue %s"
 msgstr ", hücre değeri %s"
@@ -44,7 +44,7 @@ msgid "Abstract XLSX Report"
 msgstr "Temel XLSX Çıktısı"
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 msgid ""
 "Programming Error:\n"
@@ -57,7 +57,7 @@ msgstr ""
 "'%(special_chars)s'."
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 msgid ""
 "Programming Error:\n"
@@ -69,7 +69,7 @@ msgstr ""
 "Excel Sayfası adı '%(name)s' %(max_chars)s karakterlerini aşmamalıdır."
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 msgid ""
 "Programming Error:\n"
@@ -81,7 +81,7 @@ msgstr ""
 "'%s' sütunu çalışma sayfası sütun belirtimlerinde tanımlanmamış."
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 msgid ""
 "Programming Error:\n"
@@ -93,7 +93,7 @@ msgstr ""
 "'%s' sütunu çalışma sayfası sütun belirtimlerinde tanımlanmamış."
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 msgid ""
 "Programming Error:\n"

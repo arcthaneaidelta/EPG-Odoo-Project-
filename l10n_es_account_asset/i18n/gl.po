@@ -1,16 +1,16 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # * l10n_es_account_asset
 #
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# OCA Transbot <transbot@system-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: System Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-13 12:03+0000\n"
 "PO-Revision-Date: 2017-07-02 02:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Last-Translator: OCA Transbot <transbot@system-community.org>, 2017\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgid "Depreciation percentage"
 msgstr "Porcentaxe de amortización"
 
 #. module: l10n_es_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/l10n_es_account_asset/models/account_asset_profile.py:0
 #, fuzzy
 msgid "Fixed percentage"

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_commission_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Commission Statement</h2>
+                        <div class="row mt32 mb32">
+                            <div class="col-6">
+                                <strong>Reference:</strong> <span t-field="o.name"/><br/>
+                                <strong>Agent:</strong> <span t-field="o.agent_id"/><br/>
+                                <strong>Property:</strong> <span t-field="o.property_id"/><br/>
+                                <strong>Commission Type:</strong> <span t-field="o.commission_type"/><br/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Base Amount:</strong> <span t-field="o.base_amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/><br/>
+                                <strong>Rate:</strong> <span t-field="o.rate"/>%<br/>
+                                <strong>Commission Amount:</strong> <span t-field="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/><br/>
+                                <strong>Status:</strong> <span t-field="o.state"/><br/>
+                            </div>
+                        </div>
+
+                        <t t-if="o.state == 'paid'">
+                            <p><strong>Payment Date:</strong> <span t-field="o.payment_date"/></p>
+                        </t>
+
+                        <t t-if="o.notes">
+                            <h3>Notes</h3>
+                            <p t-field="o.notes"/>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,10 +1,10 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # 	* om_account_followup
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0-20231105\n"
+"Project-Id-Version: System Server 18.0-20231105\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-23 21:31+0000\n"
 "PO-Revision-Date: 2023-11-24 06:22+0800\n"
@@ -399,42 +399,42 @@ msgstr ""
 "            "
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/wizard/followup_print.py:0
 #, python-format
 msgid " email(s) sent"
 msgstr " 已發送電子郵件"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/wizard/followup_print.py:0
 #, python-format
 msgid " email(s) should have been sent, but "
 msgstr " 電子郵件應該已發送，但是 "
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/wizard/followup_print.py:0
 #, python-format
 msgid " had unknown email address(es)"
 msgstr " 有未知的電子郵件地址"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/wizard/followup_print.py:0
 #, python-format
 msgid " letter(s) in report"
 msgstr " 報告中的信函"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/wizard/followup_print.py:0
 #, python-format
 msgid " manual action(s) assigned:"
 msgstr " 手動操作分配："
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/wizard/followup_print.py:0
 #, python-format
 msgid " will be sent"
@@ -449,7 +449,7 @@ msgid "{{ user.company_id.name }} Payment Reminder"
 msgstr "{{ user.company_id.name }} 付款提醒"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/wizard/followup_print.py:0
 #, python-format
 msgid "%s partners have no credits and as such the action is cleared"
@@ -520,7 +520,7 @@ msgid "After"
 msgstr "之後"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #: model_terms:ir.ui.view,arch_db:om_account_followup.report_followup
 #, python-format
@@ -540,14 +540,14 @@ msgid "Amount Overdue"
 msgstr "逾期金額"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #, python-format
 msgid "Amount due"
 msgstr "到期金額"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/wizard/followup_print.py:0
 #, python-format
 msgid "Anybody"
@@ -683,7 +683,7 @@ msgid "Default payment follow-up reminder e-mail"
 msgstr "預設付款後續提醒郵件"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #: model:ir.model.fields,field_description:om_account_followup.field_followup_sending_results__description
 #: model_terms:ir.ui.view,arch_db:om_account_followup.report_followup
@@ -736,7 +736,7 @@ msgid "Due"
 msgstr "到期"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #, python-format
 msgid "Due Date"
@@ -763,7 +763,7 @@ msgid "Email Template"
 msgstr "Email模板"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #, python-format
 msgid "Email not sent because of email address of partner not filled in"
@@ -861,7 +861,7 @@ msgid "Follow-up Steps"
 msgstr "跟催步驟"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/wizard/followup_print.py:0
 #, python-format
 msgid "Follow-up letter of "
@@ -954,7 +954,7 @@ msgid "Invoice Address"
 msgstr "發票地址"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #: model_terms:ir.ui.view,arch_db:om_account_followup.report_followup
 #, python-format
@@ -962,7 +962,7 @@ msgid "Invoice Date"
 msgstr "發票日期"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/wizard/followup_print.py:0
 #, python-format
 msgid "Invoices Reminder"
@@ -1046,7 +1046,7 @@ msgid "Latest followup"
 msgstr "最新跟催"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #, python-format
 msgid "Lit."
@@ -1140,7 +1140,7 @@ msgid ""
 msgstr "(可選) 您可以於此欄位設置使用者, 由使用者負責該操作。"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #, python-format
 msgid "Overdue email sent to %s, "
@@ -1206,7 +1206,7 @@ msgid "Printed Message"
 msgstr "列印訊息"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #, python-format
 msgid "Printed overdue payments report"
@@ -1218,7 +1218,7 @@ msgid "Ref"
 msgstr "參考編號"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #, python-format
 msgid "Reference"
@@ -1265,7 +1265,7 @@ msgid "Send Letters and Emails"
 msgstr "發送信件和電子郵件"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/wizard/followup_print.py:0
 #, python-format
 msgid "Send Letters and Emails: Actions Summary"
@@ -1330,7 +1330,7 @@ msgid "The"
 msgstr "此"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/report/followup_print.py:0
 #, python-format
 msgid ""
@@ -1363,7 +1363,7 @@ msgstr ""
 "也可以是負數。"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #, python-format
 msgid ""
@@ -1372,7 +1372,7 @@ msgid ""
 msgstr "合作夥伴在當前公司的逾期報告中沒有任何可列印的會計分錄。"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #, python-format
 msgid "There is no followup plan defined for the current company."
@@ -1508,7 +1508,7 @@ msgstr ""
 "語言。"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/partner.py:0
 #, python-format
 msgid ""
@@ -1516,7 +1516,7 @@ msgid ""
 msgstr "您已成為帳款跟催的下一步操作負責人"
 
 #. module: om_account_followup
-#. odoo-python
+#. system-python
 #: code:addons/om_account_followup/models/followup.py:0
 #, python-format
 msgid ""

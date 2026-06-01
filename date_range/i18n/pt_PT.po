@@ -1,16 +1,16 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # * date_range
 #
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@system-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: System Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
 "PO-Revision-Date: 2017-08-01 02:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Last-Translator: OCA Transbot <transbot@system-community.org>, 2016\n"
 "Language-Team: Portuguese (Portugal) (https://www.transifex.com/oca/teams/"
 "23907/pt_PT/)\n"
 "Language: pt_PT\n"
@@ -20,13 +20,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: date_range
-#. odoo-python
+#. system-python
 #: code:addons/date_range/models/date_range.py:0
 msgid "%(name)s is not a valid range (%(date_start)s > %(date_end)s)"
 msgstr ""
 
 #. module: date_range
-#. odoo-python
+#. system-python
 #: code:addons/date_range/models/date_range.py:0
 msgid "%(thisname)s overlaps %(dtname)s"
 msgstr ""
@@ -239,7 +239,7 @@ msgid "If set, date ranges of same type must not overlap."
 msgstr ""
 
 #. module: date_range
-#. odoo-python
+#. system-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
 msgid "Invalid name expression: %s"
 msgstr ""
@@ -270,7 +270,7 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: date_range
-#. odoo-python
+#. system-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
 msgid "No ranges to generate with these settings"
 msgstr ""
@@ -291,19 +291,19 @@ msgid "Parameters"
 msgstr ""
 
 #. module: date_range
-#. odoo-python
+#. system-python
 #: code:addons/date_range/models/date_range_search_mixin.py:0
 msgid "Period"
 msgstr ""
 
 #. module: date_range
-#. odoo-python
+#. system-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
 msgid "Please enter an end date, or the number of ranges to generate."
 msgstr ""
 
 #. module: date_range
-#. odoo-python
+#. system-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
 msgid "Please set a prefix or an expression to generate the range names."
 msgstr ""
@@ -343,7 +343,7 @@ msgid "Start date"
 msgstr ""
 
 #. module: date_range
-#. odoo-python
+#. system-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
 msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
@@ -379,7 +379,7 @@ msgid "Until"
 msgstr ""
 
 #. module: date_range
-#. odoo-python
+#. system-python
 #: code:addons/date_range/models/date_range_type.py:0
 msgid ""
 "You cannot change the company, as this Date Range Type is assigned to Date "

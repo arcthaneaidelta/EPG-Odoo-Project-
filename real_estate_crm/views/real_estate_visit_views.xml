@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_real_estate_visit_tree" model="ir.ui.view">
+        <field name="name">real.estate.visit.tree</field>
+        <field name="model">real.estate.visit</field>
+        <field name="arch" type="xml">
+            <list string="Property Visits">
+                <field name="name"/>
+                <field name="visit_datetime"/>
+                <field name="property_id"/>
+                <field name="partner_id"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="state" widget="badge" decoration-info="state == 'planned'" decoration-success="state == 'done'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_real_estate_visit_form" model="ir.ui.view">
+        <field name="name">real.estate.visit.form</field>
+        <field name="model">real.estate.visit</field>
+        <field name="arch" type="xml">
+            <form string="Property Visit">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" invisible="state != 'planned'" class="btn-primary"/>
+                    <button name="action_done" string="Mark as Done" type="object" invisible="state not in ['planned', 'confirmed']" class="btn-success"/>
+                    <button name="action_no_show" string="No Show" type="object" invisible="state not in ['planned', 'confirmed']"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state in ['done', 'cancelled', 'no_show']"/>
+                    <field name="state" widget="statusbar" statusbar_visible="planned,confirmed,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="visit_info">
+                            <field name="property_id"/>
+                            <field name="lead_id"/>
+                            <field name="partner_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group name="schedule">
+                            <field name="visit_datetime"/>
+                            <field name="duration"/>
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                            <field name="calendar_event_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Feedback" invisible="state not in ['done', 'no_show']">
+                        <field name="visitor_feedback"/>
+                    </group>
+                    <notebook>
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Add visit notes here..."/>
+                        </page>
+                        <page string="Internal Notes" name="internal_notes">
+                            <field name="internal_notes" placeholder="Internal notes (not visible to visitor)..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_real_estate_visit_calendar" model="ir.ui.view">
+        <field name="name">real.estate.visit.calendar</field>
+        <field name="model">real.estate.visit</field>
+        <field name="arch" type="xml">
+            <calendar string="Visits" date_start="visit_datetime" color="state" mode="month">
+                <field name="property_id"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_real_estate_visit_search" model="ir.ui.view">
+        <field name="name">real.estate.visit.search</field>
+        <field name="model">real.estate.visit</field>
+        <field name="arch" type="xml">
+            <search string="Property Visits">
+                <field name="name"/>
+                <field name="property_id"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <separator/>
+                <filter string="Planned" name="planned" domain="[('state', '=', 'planned')]"/>
+                <filter string="Confirmed" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Done" name="done" domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter string="My Visits" name="my_visits" domain="[('user_id', '=', uid)]"/>
+                <filter string="Today" name="today" domain="[('visit_datetime', '&gt;=', context_today().strftime('%Y-%m-%d')), ('visit_datetime', '&lt;', (context_today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d'))]"/>
+                <filter string="This Week" name="week" domain="[('visit_datetime', '&gt;=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Property" name="property" context="{'group_by': 'property_id'}"/>
+                    <filter string="Agent" name="agent" context="{'group_by': 'user_id'}"/>
+                    <filter string="State" name="state" context="{'group_by': 'state'}"/>
+                    <filter string="Visit Date" name="visit_date" context="{'group_by': 'visit_datetime:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_real_estate_visit" model="ir.actions.act_window">
+        <field name="name">Property Visits</field>
+        <field name="res_model">real.estate.visit</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="context">{'search_default_planned': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Schedule a new property visit
+            </p>
+        </field>
+    </record>
+</odoo>

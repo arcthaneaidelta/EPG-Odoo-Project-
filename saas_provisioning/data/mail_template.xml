@@ -20,7 +20,7 @@
 
                     <ul>
                         <li><strong>Database:</strong> <t t-out="object.database_name or ''"/></li>
-                        <li><strong>URL:</strong> https://<t t-out="object.subdomain or ''"/>.yourdomain.com</li>
+                        <li><strong>URL:</strong> https://<t t-out="object.subdomain or ''"/>.eficienciayproductividadglobal.com</li>
                         <li><strong>Username:</strong> admin</li>
                         <li><strong>Password:</strong> <t t-out="ctx.get('admin_password', '')"/></li>
 

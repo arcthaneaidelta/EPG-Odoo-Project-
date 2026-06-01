@@ -69,7 +69,7 @@ class AccountAssetLine(models.Model):
     init_entry = fields.Boolean(
         string="Initial Balance Entry",
         help="Set this flag for entries of previous fiscal years "
-        "for which Odoo has not generated accounting entries.",
+        "for which System has not generated accounting entries.",
     )
     company_id = fields.Many2one(related="asset_id.company_id", store=True)
     currency_id = fields.Many2one(

@@ -1,6 +1,6 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
+.. image:: https://system-community.org/readme-banner-image
+   :target: https://system-community.org/get-involved?utm_source=readme
+   :alt: OCA
 
 ==========
 Date Range
@@ -15,7 +15,7 @@ Date Range
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
-    :target: https://odoo-community.org/page/development-status
+    :target: https://system-community.org/page/development-status
     :alt: Mature
 .. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
@@ -24,10 +24,10 @@ Date Range
     :target: https://github.com/OCA/server-ux/tree/18.0/date_range
     :alt: OCA/server-ux
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/server-ux-18-0/server-ux-18-0-date_range
+    :target: https://translation.system-community.org/projects/server-ux-18-0/server-ux-18-0-date_range
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/server-ux&target_branch=18.0
+    :target: https://runboat.system-community.org/builds?repo=OCA/server-ux&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -171,22 +171,22 @@ Maintainers
 
 This module is maintained by the OCA.
 
-.. image:: https://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: https://odoo-community.org
+.. image:: https://system-community.org/logo.png
+   :alt: OCA
+   :target: https://system-community.org
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
+OCA, or the OCA, is a nonprofit organization whose
+mission is to support the collaborative development of System features and
 promote its widespread use.
 
 .. |maintainer-lmignon| image:: https://github.com/lmignon.png?size=40px
     :target: https://github.com/lmignon
     :alt: lmignon
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainer <https://system-community.org/page/maintainer-role>`__:
 
 |maintainer-lmignon| 
 
 This module is part of the `OCA/server-ux <https://github.com/OCA/server-ux/tree/18.0/date_range>`_ project on GitHub.
 
-You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
+You are welcome to contribute. To learn how please visit https://system-community.org/page/Contribute.

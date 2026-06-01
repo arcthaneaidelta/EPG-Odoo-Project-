@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-18 06:13+0000\n"
-"PO-Revision-Date: 2026-03-18 06:13+0000\n"
+"POT-Creation-Date: 2026-05-21 21:07+0000\n"
+"PO-Revision-Date: 2026-05-21 21:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -46,6 +46,110 @@ msgid ""
 "            </div>\n"
 "        "
 msgstr ""
+"<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;\">\n"
+"                \n"
+"                <div style=\"background-color: #005082; padding: 25px; text-align: center;\">\n"
+"                    <h1 style=\"color: white; margin: 0; font-size: 24px;\">Bienvenido a EPG</h1>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"padding: 30px; background-color: #ffffff; border: 1px solid #ddd;\">\n"
+"                    <p style=\"font-size: 16px;\">Hola <strong><t t-out=\"object.name\"/></strong>,</p>\n"
+"                    \n"
+"                    <p>Gracias por completar este primer paso. Hemos recibido correctamente tu registro.</p>\n"
+"                    \n"
+"                    <p>Debido al alto volumen de solicitudes, nuestro equipo está atendiendo cada caso de forma individualizada para poder realizar un estudio personalizado, garantizando así la máxima calidad en el análisis.</p>\n"
+"                    \n"
+"                    <p>En breve nos pondremos en contacto contigo para informarte del estado de tu solicitud y los siguientes pasos a seguir.</p>\n"
+"                    \n"
+"                    <p style=\"margin-top: 30px;\">Gracias por tu confianza.</p>\n"
+"                    \n"
+"                    <p style=\"color: #005082; font-weight: bold;\">El equipo de Eficiencia y Productividad Global</p>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"background-color: #f4f4f4; padding: 15px; text-align: center; color: #777; font-size: 12px; border: 1px solid #ddd; border-top: none;\">\n"
+"                    <p style=\"margin: 0;\">© 2026 Eficiencia y Productividad Global S.L.U.</p>\n"
+"                    <p style=\"margin: 5px 0 0 0;\">C/ Lepant 270, Nexus Coworking, España</p>\n"
+"                </div>\n"
+"\n"
+"            </div>\n"
+"        "
+
+#. module: crm_base
+#: model:mail.template,body_html:crm_base.email_template_lead_confirmation
+msgid ""
+"<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n"
+"\n"
+"                <div style=\"background-color: #005082; padding: 20px; text-align: center;\">\n"
+"                    <h1 style=\"color: white; margin: 0;\">Eficiencia y Productividad Global</h1>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"padding: 30px; background-color: #f9f9f9;\">\n"
+"                    <p style=\"font-size: 16px; color: #333;\">\n"
+"                        Hola <t t-out=\"object.partner_name or object.contact_name or object.visitor_name or ''\"/>,\n"
+"                    </p>\n"
+"                    <p style=\"font-size: 15px; color: #333;\">\n"
+"                        Hemos recibido correctamente tu mensaje.\n"
+"                    </p>\n"
+"                    <p style=\"font-size: 15px; color: #333;\">\n"
+"                        Nuestro equipo lo revisará y se pondrá en contacto contigo en las próximas horas.\n"
+"                    </p>\n"
+"                    <p style=\"font-size: 15px; color: #333;\">\n"
+"                        Si tu consulta es urgente, puedes responder directamente a este correo.\n"
+"                    </p>\n"
+"                    <p style=\"font-size: 15px; color: #333;\">\n"
+"                        Gracias por contactar con nosotros.\n"
+"                    </p>\n"
+"                    <p style=\"font-size: 15px; color: #333;\">\n"
+"                        Un saludo,<br/>\n"
+"                        <strong>Eficiencia y Productividad Global</strong>\n"
+"                    </p>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"background-color: #333; padding: 15px; text-align: center; color: white;\">\n"
+"                    <p style=\"margin: 0;\">\n"
+"                        Este es un mensaje automático. Por favor, no responda a este correo si no es urgente.\n"
+"                    </p>\n"
+"                </div>\n"
+"\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n"
+"\n"
+"                <div style=\"background-color: #005082; padding: 20px; text-align: center;\">\n"
+"                    <h1 style=\"color: white; margin: 0;\">Eficiencia y Productividad Global</h1>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"padding: 30px; background-color: #f9f9f9;\">\n"
+"                    <p style=\"font-size: 16px; color: #333;\">\n"
+"                        Hola <t t-out=\"object.partner_name or object.contact_name or object.visitor_name or ''\"/>,\n"
+"                    </p>\n"
+"                    <p style=\"font-size: 15px; color: #333;\">\n"
+"                        Hemos recibido correctamente tu mensaje.\n"
+"                    </p>\n"
+"                    <p style=\"font-size: 15px; color: #333;\">\n"
+"                        Nuestro equipo lo revisará y se pondrá en contacto contigo en las próximas horas.\n"
+"                    </p>\n"
+"                    <p style=\"font-size: 15px; color: #333;\">\n"
+"                        Si tu consulta es urgente, puedes responder directamente a este correo.\n"
+"                    </p>\n"
+"                    <p style=\"font-size: 15px; color: #333;\">\n"
+"                        Gracias por contactar con nosotros.\n"
+"                    </p>\n"
+"                    <p style=\"font-size: 15px; color: #333;\">\n"
+"                        Un saludo,<br/>\n"
+"                        <strong>Eficiencia y Productividad Global</strong>\n"
+"                    </p>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"background-color: #333; padding: 15px; text-align: center; color: white;\">\n"
+"                    <p style=\"margin: 0;\">\n"
+"                        Este es un mensaje automático. Por favor, no responda a este correo si no es urgente.\n"
+"                    </p>\n"
+"                </div>\n"
+"\n"
+"            </div>\n"
+"        "
 
 #. module: crm_base
 #: model:mail.template,body_html:crm_base.email_template_new_lead_notification
@@ -147,215 +251,138 @@ msgid ""
 "            </div>\n"
 "        "
 msgstr ""
-
+"<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n"
+"                \n"
+"                <div style=\"background-color: #005082; padding: 20px; text-align: center;\">\n"
+"                    <h1 style=\"color: white; margin: 0;\">Notificación de Nuevo Lead</h1>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"padding: 20px; background-color: #f9f9f9;\">\n"
+"                    <h2 style=\"color: #005082;\">\n"
+"                        ¡Se ha creado un nuevo lead desde el sitio web!\n"
+"                    </h2>\n"
+"\n"
+"                    <table style=\"width: 100%; border-collapse: collapse; margin-top: 20px;\">\n"
+"\n"
+"                        <tr style=\"background-color: #f0f0f0;\">\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Asunto del Lead\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.name or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Nombre del Contacto\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.contact_name or object.visitor_name or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr style=\"background-color: #f0f0f0;\">\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Correo Electrónico\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.email_from or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Teléfono\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.phone or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        <tr>\n"
+"\n"
+"                        <tr style=\"background-color: #f0f0f0;\">\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Empresa\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.partner_name or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        </tr>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Tipo de Origen\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.source_type or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr style=\"background-color: #f0f0f0;\">\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Descripción\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.description or 'N/D'\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                        <tr>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd; font-weight: bold;\">\n"
+"                                Fecha de Creación\n"
+"                            </td>\n"
+"                            <td style=\"padding: 10px; border: 1px solid #ddd;\">\n"
+"                                <t t-out=\"object.create_date\"/>\n"
+"                            </td>\n"
+"                        </tr>\n"
+"\n"
+"                    </table>\n"
+"                </div>\n"
+"\n"
+"                <div style=\"background-color: #333; padding: 15px; text-align: center; color: white;\">\n"
+"                    <p style=\"margin: 0;\">\n"
+"                        Este es un mensaje automático generado por el sistema CRM.\n"
+"                    </p>\n"
+"                </div>\n"
+"\n"
+"            </div>\n"
+"        "
 
 #. module: crm_base
-#: model:ir.ui.menu,name:crm.crm_menu_root
-msgid "CRM"
-msgstr "Pipeline"
-
-#. module: crm_base
-#: model:mail.template,name:crm_base.email_template_welcome_new_customer
-msgid "Bienvenida - Nuevo Cliente EPG"
+#: model_terms:ir.ui.view,arch_db:crm_base.res_config_settings_view_form_inherit_white_label
+msgid ""
+"<i title=\"Update now\" role=\"img\" aria-label=\"Update now\" class=\"fa "
+"fa-fw fa-refresh\"/>"
 msgstr ""
+"<i title=\"Actualizar ahora\" role=\"img\" aria-label=\"Actualizar ahora\" class=\"fa "
+"fa-fw fa-refresh\"/>"
 
 #. module: crm_base
-#: model:ir.model.fields.selection,name:crm_base.selection__crm_lead__source_type__campaign
-msgid "Campaign"
+#: model_terms:ir.ui.view,arch_db:crm_base.res_config_settings_view_form_inherit_white_label
+msgid ""
+"<span>Periodically assign leads based on rules</span><br/>\n"
+"                        <span invisible=\"not crm_use_auto_assignment\">\n"
+"                            All sales teams will use this setting by default unless\n"
+"                            specified otherwise.\n"
+"                        </span>"
 msgstr ""
+"<span>Asignar leads periódicamente según reglas</span><br/>\n"
+"                        <span invisible=\"not crm_use_auto_assignment\">\n"
+"                            Todos los equipos de ventas usarán esta configuración por defecto a menos que\n"
+"                            se especifique lo contrario.\n"
+"                        </span>"
 
 #. module: crm_base
-#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__company_type__company
-msgid "Business"
-msgstr "Empresa"
-
-#. module: crm_base
-#: model:ir.model,name:crm_base.model_res_company
-msgid "Companies"
-msgstr "Compañías"
-
-#. module: crm_base
-#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__company
-msgid "Company"
-msgstr ""
-
-#. module: crm_base
-#: model:ir.model.fields,field_description:crm_base.field_res_partner__company_type
-#: model:ir.model.fields,field_description:crm_base.field_res_users__company_type
-msgid "Company Type"
-msgstr "Tipo de compañía"
-
-#. module: crm_base
-#: model:ir.model,name:crm_base.model_res_partner
-msgid "Contact"
-msgstr "Contacto"
-
-#. module: crm_base
-#: model_terms:ir.ui.view,arch_db:crm_base.crm_lead_view_tree_opportunity_reporting_inherit
-msgid "Created On"
-msgstr ""
-
-#. module: crm_base
-#: model_terms:ir.ui.view,arch_db:crm_base.crm_lead_lost_view_form_inherited
-msgid "Enter the reason why this lead was lost"
-msgstr ""
-
-#. module: crm_base
-#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__freelancer
-msgid "Freelancer"
-msgstr ""
-
-#. module: crm_base
-#: model:ir.model,name:crm_base.model_crm_lead_lost
-msgid "Get Lost Reason"
-msgstr "Obtener razón de pérdida"
-
-#. module: crm_base
-#: model:mail.template,subject:crm_base.email_template_welcome_new_customer
-msgid "Hemos recibido tu registro - Eficiencia y Productividad Global"
-msgstr ""
-
-#. module: crm_base
-#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__individual
-msgid "Individual"
-msgstr ""
-
-#. module: crm_base
-#: model:ir.model,name:crm_base.model_account_move
-msgid "Journal Entry"
-msgstr "Asiento contable"
-
-#. module: crm_base
-#: model:ir.model,name:crm_base.model_crm_lead
-msgid "Lead/Opportunity"
-msgstr "Lead/Oportunidad"
-
-#. module: crm_base
-#: model:ir.model.fields.selection,name:crm_base.selection__crm_lead__source_type__manual
-msgid "Manual"
-msgstr ""
-
-#. module: crm_base
-#: model:mail.template,name:crm_base.email_template_new_lead_notification
-msgid "Notificación de Nuevo Lead"
-msgstr ""
-
-#. module: crm_base
-#: model:mail.template,subject:crm_base.email_template_new_lead_notification
-msgid "Nuevo lead creado: {{ object.name }}"
-msgstr ""
-
-#. module: crm_base
-#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__other
-msgid "Others"
-msgstr ""
-
-#. module: crm_base
-#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__company_type__person
-msgid "Private Person"
-msgstr "Particular"
-
-#. module: crm_base
-#: model:ir.model.fields,field_description:crm_base.field_res_users__sale_order_ids
-#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
-msgid "Referred Sales Orders"
-msgstr "Pedido de venta"
-
-#. module: crm_base
-#: model:ir.ui.menu,name:crm_base.menu_sales_sales_management
-msgid "Sales"
-msgstr ""
-
-#. module: crm_base
-#: model:ir.model,name:crm_base.model_sale_order
-msgid "Sales Order"
-msgstr "Pedido de venta"
-
-#. module: crm_base
-#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
-msgid "Sales Representative Info"
-msgstr ""
-
-#. module: crm_base
-#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__sales_rep
-msgid "Sales representative"
-msgstr ""
-
-#. module: crm_base
-#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
-msgid "Total Commissions"
-msgstr ""
-
-#. module: crm_base
-#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
-msgid "Total Sales"
-msgstr ""
-
-#. module: crm_base
-#: model:ir.model,name:crm_base.model_res_users
-msgid "User"
-msgstr "Usuario"
-
-#. module: crm_base
-#: model_terms:ir.ui.view,arch_db:crm_base.crm_lead_form_saas
-msgid "WhatsApp"
-msgstr ""
-
-#. module: crm_base
-#: model:ir.model.fields,field_description:crm_base.field_res_partner__client_type
-msgid "Client Type"
-msgstr "Tipo de Cliente"
-
-#. module: crm_base
-#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__supplier
-msgid "Supplier"
-msgstr "Proveedor"
-
-#. module: crm_base
-#: model:ir.model.fields,field_description:crm_base.field_res_partner__referrer_user_id
-msgid "Referrer"
-msgstr "Referidor"
-
-#. module: crm_base
-#: model:ir.model.fields,field_description:crm_base.field_res_partner__referral_code
-msgid "Referral Code"
-msgstr "Código de Referido"
-
-#. module: crm_base
-#: model:ir.model.fields,field_description:crm_base.field_res_partner__date_of_birth
-msgid "Date of Birth"
-msgstr "Fecha de Nacimiento"
-
-#. module: crm_base
-#: model:ir.model.fields,field_description:crm_base.field_res_partner__nationality_id
-msgid "Nationality"
-msgstr "Nacionalidad"
+#: model_terms:ir.ui.view,arch_db:crm_base.view_res_partner_filter_inherit_crm_base
+msgid "Active Contacts"
+msgstr "Contactos Activos"
 
 #. module: crm_base
 #: model:ir.model.fields,field_description:crm_base.field_res_partner__additional_email_ids
+#: model:ir.model.fields,field_description:crm_base.field_res_users__additional_email_ids
+#: model_terms:ir.ui.view,arch_db:crm_base.res_partner_form_add_dob
 msgid "Additional Emails"
 msgstr "Correos Adicionales"
-
-#. module: crm_base
-#: model:ir.model.fields,field_description:crm_base.field_res_partner__additional_phone_ids
-msgid "Additional Phones"
-msgstr "Teléfonos Adicionales"
-
-#. module: crm_base
-#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__note
-#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__note
-msgid "Note"
-msgstr "Nota"
-
-#. module: crm_base
-#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__email
-msgid "Email"
-msgstr "Correo Electrónico"
-
-#. module: crm_base
-#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__phone
-msgid "Phone"
-msgstr "Teléfono"
 
 #. module: crm_base
 #: model:ir.model,name:crm_base.model_res_partner_email
@@ -369,20 +396,477 @@ msgstr "Teléfono Adicional del Contacto"
 
 #. module: crm_base
 #: model_terms:ir.ui.view,arch_db:crm_base.res_partner_form_add_dob
-msgid "Contact Details"
-msgstr "Detalles de Contacto"
-
-#. module: crm_base
-#: model_terms:ir.ui.view,arch_db:crm_base.res_partner_form_add_dob
 msgid "Additional Phone Numbers"
 msgstr "Números de Teléfono Adicionales"
 
 #. module: crm_base
-#: model_terms:ir.ui.view,arch_db:crm_base.res_partner_form_add_dob
-msgid "Additional Emails"
-msgstr "Correos Electrónicos Adicionales"
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__additional_phone_ids
+#: model:ir.model.fields,field_description:crm_base.field_res_users__additional_phone_ids
+msgid "Additional Phones"
+msgstr "Teléfonos Adicionales"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.res_config_settings_view_form_inherit_account_white_label
+msgid ""
+"After importing three bills for a vendor without making changes, EPG will "
+"suggest automatically validating future bills. You can toggle this feature "
+"at any time in the vendor's profile."
+msgstr ""
+"Después de importar tres facturas de un proveedor sin realizar cambios, EPG sugerirá "
+"validar automáticamente las facturas futuras. Puede activar/desactivar esta función "
+"en cualquier momento en el perfil del proveedor."
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_users__assigned_country_ids
+msgid "Assigned Countries"
+msgstr "Países Asignados"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_users__assigned_state_ids
+msgid "Assigned Regions"
+msgstr "Regiones Asignadas"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_users__assigned_industry_ids
+msgid "Assigned Sectors"
+msgstr "Sectores Asignados"
+
+#. module: crm_base
+#: model:mail.template,name:crm_base.email_template_welcome_new_customer
+msgid "Bienvenida - Nuevo Cliente EPG"
+msgstr "Bienvenida - Nuevo Cliente EPG"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__company_type__company
+msgid "Business"
+msgstr "Empresa"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__crm_lead__source_type__campaign
+msgid "Campaign"
+msgstr "Campaña"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.view_res_partner_filter_inherit_crm_base
+msgid "City"
+msgstr "Ciudad"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__client_type
+#: model:ir.model.fields,field_description:crm_base.field_res_users__client_type
+msgid "Client Type"
+msgstr "Tipo de Cliente"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
+msgid "Commercial Coverage"
+msgstr "Cobertura Comercial"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_users__commission_percentage
+#: model:ir.model.fields,field_description:crm_base.field_sale_order__commission_percentage
+msgid "Commission (%)"
+msgstr "Comisión (%)"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_sale_order__commission_amount
+msgid "Commissiuon Amount"
+msgstr "Monto de Comisión"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__company
+msgid "Company"
+msgstr "Compañía"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_users__company_currency_id
+msgid "Company Currency"
+msgstr "Moneda de la Compañía"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__company_type
+#: model:ir.model.fields,field_description:crm_base.field_res_users__company_type
+msgid "Company Type"
+msgstr "Tipo de Empresa"
+
+#. module: crm_base
+#: model:mail.template,name:crm_base.email_template_lead_confirmation
+msgid "Confirmación de Recepción de Mensaje"
+msgstr "Confirmación de Recepción de Mensaje"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
 
 #. module: crm_base
 #: model_terms:ir.ui.view,arch_db:crm_base.res_partner_form_add_dob
-msgid "Contacts"
-msgstr "Contactos"
+msgid "Contact Details"
+msgstr "Detalles de Contacto"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.crm_lead_view_tree_opportunity_reporting_inherit
+msgid "Created On"
+msgstr "Creado el"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__create_uid
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__create_date
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.view_res_partner_filter_inherit_crm_base
+msgid "Creation Period"
+msgstr "Período de Creación"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__date_of_birth
+#: model:ir.model.fields,field_description:crm_base.field_res_users__date_of_birth
+msgid "Date of Birth"
+msgstr "Fecha de Nacimiento"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__display_name
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__display_name
+msgid "Display Name"
+msgstr "Nombre Mostrado"
+
+#. module: crm_base
+#. odoo-python
+#: code:addons/crm_base/models/res_users.py:0
+msgid ""
+"El chat de EPG ayuda a los empleados a colaborar de manera eficiente. Estoy "
+"aquí para ayudarte a descubrir sus funcionalidades."
+msgstr ""
+"El chat de EPG ayuda a los empleados a colaborar de manera eficiente. Estoy "
+"aquí para ayudarte a descubrir sus funcionalidades."
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__email
+msgid "Email"
+msgstr "Correo Electrónico"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.res_partner_form_add_dob
+msgid "Emergency, Secondary, etc."
+msgstr "Emergencia, Secundario, etc."
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_company__enable_lead_automation
+msgid "Enable Lead Automation"
+msgstr "Habilitar Automatización de Leads"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.crm_lead_lost_view_form_inherited
+msgid "Enter the reason why this lead was lost"
+msgstr "Introduzca el motivo por el cual se perdió este lead"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__freelancer
+msgid "Freelancer"
+msgstr "Freelance"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_crm_lead_lost
+msgid "Get Lost Reason"
+msgstr "Obtener Motivo de Pérdida"
+
+#. module: crm_base
+#: model:mail.template,subject:crm_base.email_template_lead_confirmation
+msgid "Hemos recibido tu mensaje"
+msgstr "Hemos recibido tu mensaje"
+
+#. module: crm_base
+#: model:mail.template,subject:crm_base.email_template_welcome_new_customer
+msgid "Hemos recibido tu registro - Eficiencia y Productividad Global"
+msgstr "Hemos recibido tu registro - Eficiencia y Productividad Global"
+
+#. module: crm_base
+#. odoo-python
+#: code:addons/crm_base/models/res_users.py:0
+msgid "Hola,"
+msgstr "Hola,"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__id
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__id
+msgid "ID"
+msgstr "ID"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.view_res_partner_filter_inherit_crm_base
+msgid "Inactive Contacts"
+msgstr "Contactos Inactivos"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__individual
+msgid "Individual"
+msgstr "Individual"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_users__is_sales_representative
+msgid "Is Sales Representative"
+msgstr "Es Representante de Ventas"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento Contable"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__write_uid
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__write_date
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Lead/Oportunidad"
+
+#. module: crm_base
+#. odoo-python
+#: code:addons/crm_base/models/crm_lead_lost.py:0
+msgid "Lost Comment"
+msgstr "Comentario de Pérdida"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_crm_lead__lost_reason_text
+#: model:ir.model.fields,field_description:crm_base.field_crm_lead_lost__lost_reason_text
+msgid "Lost Reason"
+msgstr "Motivo de Pérdida"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__crm_lead__source_type__manual
+msgid "Manual"
+msgstr "Manual"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_crm_lead__visitor_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__nationality_id
+#: model:ir.model.fields,field_description:crm_base.field_res_users__nationality_id
+msgid "Nationality"
+msgstr "Nacionalidad"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.res_config_settings_view_form_inherit_white_label
+msgid "Next Run"
+msgstr "Próxima Ejecución"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__note
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__note
+msgid "Note"
+msgstr "Nota"
+
+#. module: crm_base
+#: model:mail.template,name:crm_base.email_template_new_lead_notification
+msgid "Notificación de Nuevo Lead"
+msgstr "Notificación de Nuevo Lead"
+
+#. module: crm_base
+#: model:mail.template,subject:crm_base.email_template_new_lead_notification
+msgid "Nuevo lead creado: {{ object.name }}"
+msgstr "Nuevo lead creado: {{ object.name }}"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__other
+msgid "Others"
+msgstr "Otros"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_email__partner_id
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__partner_id
+msgid "Partner"
+msgstr "Contacto"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.res_partner_form_add_dob
+msgid "Personal, Work, etc."
+msgstr "Personal, Laboral, etc."
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner_phone__phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__company_type__person
+msgid "Private Person"
+msgstr "Persona"
+
+#. module: crm_base
+#. odoo-python
+#: code:addons/crm_base/models/res_users.py:0
+msgid "Prueba enviarme un emoji"
+msgstr "Prueba enviarme un emoji"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_account_bank_statement_line__referral_code
+#: model:ir.model.fields,field_description:crm_base.field_account_move__referral_code
+#: model:ir.model.fields,field_description:crm_base.field_crm_lead__referral_code
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__referral_code
+msgid "Referral Code"
+msgstr "Código de Referido"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__referral_code_used
+#: model:ir.model.fields,field_description:crm_base.field_res_users__referral_code_used
+msgid "Referral Code Used"
+msgstr "Código de Referido Utilizado"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_users__sale_order_ids
+#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
+msgid "Referred Sales Orders"
+msgstr "Pedidos de Venta Referidos"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_account_bank_statement_line__referrer_user_id
+#: model:ir.model.fields,field_description:crm_base.field_account_move__referrer_user_id
+#: model:ir.model.fields,field_description:crm_base.field_crm_lead__referrer_user_id
+#: model:ir.model.fields,field_description:crm_base.field_res_partner__referrer_user_id
+#: model:ir.model.fields,field_description:crm_base.field_res_users__referrer_user_id
+msgid "Referrer"
+msgstr "Referidor"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.res_config_settings_view_form_inherit_white_label
+msgid "Repeat every"
+msgstr "Repetir cada"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.res_config_settings_view_form_inherit_white_label
+msgid "Running"
+msgstr "Ejecutando"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_account_bank_statement_line__saas_payment_email_sent
+#: model:ir.model.fields,field_description:crm_base.field_account_move__saas_payment_email_sent
+msgid "SaaS Payment Email Sent"
+msgstr "Correo de Pago SaaS Enviado"
+
+#. module: crm_base
+#: model:ir.ui.menu,name:crm_base.menu_sales_sales_management
+msgid "Sales"
+msgstr "Ventas"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de Venta"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_users__referral_code
+msgid "Sales Representative Code"
+msgstr "Código de Representante de Ventas"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
+msgid "Sales Representative Info"
+msgstr "Información del Representante de Ventas"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__sales_rep
+msgid "Sales representative"
+msgstr "Representante de ventas"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_crm_lead__score
+msgid "Score"
+msgstr "Puntuación"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.view_res_partner_filter_inherit_crm_base
+msgid "Sector"
+msgstr "Sector"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_crm_lead__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_crm_lead__source_type
+msgid "Source Type"
+msgstr "Tipo de Origen"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__res_partner__client_type__supplier
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.res_config_settings_view_form_inherit_white_label
+msgid ""
+"This can be used to automatically assign leads to sales persons based on "
+"rules"
+msgstr ""
+"Esto se puede usar para asignar automáticamente leads a vendedores basándose en reglas"
+
+#. module: crm_base
+#: model:ir.model.fields,field_description:crm_base.field_res_users__total_commission_amount
+msgid "Total Commission"
+msgstr "Comisión Total"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
+msgid "Total Commissions"
+msgstr "Comisiones Totales"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.view_users_form_inherit_crm_base
+msgid "Total Sales"
+msgstr "Ventas Totales"
+
+#. module: crm_base
+#: model:ir.model,name:crm_base.model_res_users
+msgid "User"
+msgstr "Usuario"
+
+#. module: crm_base
+#: model:ir.model.fields.selection,name:crm_base.selection__crm_lead__source_type__web
+msgid "Web"
+msgstr "Web"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.crm_lead_form_saas
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+#. module: crm_base
+#: model_terms:ir.ui.view,arch_db:crm_base.crm_lead_kanban_dark_view
+msgid "lost"
+msgstr "perdido"
+
+#. module: crm_base
+#: model:ir.ui.menu,name:crm.crm_menu_root
+msgid "Pipeline"
+msgstr "Flujo"
+
+#. module: crm_base
+#: model:ir.ui.menu,name:sale.menu_sale_report
+msgid "Reports"
+msgstr "Informes"

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Demo data intentionally minimal for SaaS -->
+    <!-- Each tenant will create their own data -->
+</odoo>

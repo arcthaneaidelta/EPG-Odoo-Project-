@@ -1,11 +1,11 @@
 {
-    'name': 'Odoo 18 Assets Management',
+    'name': 'System 18 Assets Management',
     'version': '1.0.0',
-    'author': 'Odoo Mates, Odoo SA',
+    'author': 'System Mates, System',
     'depends': ['account', 'account_asset_management'],
     'description': """Manage assets owned by a company or a person. 
         Keeps track of depreciation's, and creates corresponding journal entries""",
-    'summary': 'Odoo 18 Assets Management',
+    'summary': 'System 18 Assets Management',
     'category': 'Accounting',
     'sequence': 10,
     'website': 'https://www.odoomates.tech',

@@ -6,6 +6,21 @@
 // Register in __manifest__.py under 'web.assets_web_dark'
 // =============================================================================
 
+[data-bs-theme="dark"]{
+    .o_main_navbar .o_menu_systray .badge {
+        margin-right: -.5em;
+        border: 0;
+        padding: 2px 4px;
+        background-color: #083670;
+        font-size: 11px;
+        color: var(--o-navbar-badge-color, inherit);
+        text-shadow: var(--o-navbar-badge-text-shadow, 1px 1px 0 rgba(0, 0, 0, 0.3));
+        transform: translate(-0.6em, -30%);
+    }
+}
+
+
+
 // Shorthand mixins used throughout
 @mixin dark-surface($bg: #0d1a3a, $border: #1a2f5a) {
     background-color: $bg !important;

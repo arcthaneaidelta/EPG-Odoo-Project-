@@ -1,10 +1,10 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # 	* report_xlsx_helper
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: System Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2024-02-12 10:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""
@@ -28,14 +28,14 @@ msgstr ""
 "nell'elaborazione di col_specs_section %(col_specs_section)s, colonna %(col)s"
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/models/ir_actions_report.py:0
 #, python-format
 msgid "%s model was not found"
 msgstr "Il modello %s non è stato trovato"
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ", cellvalue %s"
@@ -47,7 +47,7 @@ msgid "Abstract XLSX Report"
 msgstr "Report XLSX astratto"
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""
@@ -61,7 +61,7 @@ msgstr ""
 "'%(special_chars)s'."
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""
@@ -75,7 +75,7 @@ msgstr ""
 "caratteri."
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""
@@ -89,7 +89,7 @@ msgstr ""
 "lavoro."
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""
@@ -103,7 +103,7 @@ msgstr ""
 "lavoro."
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""

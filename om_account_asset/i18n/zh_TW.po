@@ -1,10 +1,10 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # 	* om_account_asset
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0-20231105\n"
+"Project-Id-Version: System Server 18.0-20231105\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-23 21:29+0000\n"
 "PO-Revision-Date: 2023-11-24 06:09+0800\n"
@@ -18,14 +18,14 @@ msgstr ""
 "X-Generator: Poedit 3.4.1\n"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid " (copy)"
 msgstr " (副本)"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid " (grouped)"
@@ -64,7 +64,7 @@ msgid "Account used to record the purchase of the asset at its original price."
 msgstr "會計用於記錄資產採購的原始價格。"
 
 #. module: om_account_asset
-#. odoo-javascript
+#. system-javascript
 #: code:addons/om_account_asset/static/src/js/account_asset.js:0
 #, python-format
 msgid "Accounting entries waiting for manual verification"
@@ -112,7 +112,7 @@ msgid "Additional Options"
 msgstr "附加選項"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid "Amount"
@@ -221,7 +221,7 @@ msgid "Asset category"
 msgstr "資產類別"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid "Asset created"
@@ -233,7 +233,7 @@ msgid "Asset depreciation line"
 msgstr "資產折舊明細"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid "Asset sold or disposed. Accounting entry awaiting for validation."
@@ -413,14 +413,14 @@ msgid "Confirm"
 msgstr "確認"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/wizard/asset_depreciation_confirmation_wizard.py:0
 #, python-format
 msgid "Created Asset Moves"
 msgstr "已建立資產分錄"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/wizard/asset_depreciation_confirmation_wizard.py:0
 #, python-format
 msgid "Created Revenue Moves"
@@ -450,7 +450,7 @@ msgid "Cumulative Depreciation"
 msgstr "累計折舊"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #: model:ir.model.fields,field_description:om_account_asset.field_account_asset_asset__currency_id
 #: model:ir.model.fields,field_description:om_account_asset.field_account_asset_depreciation_line__currency_id
@@ -588,14 +588,14 @@ msgid "Depreciation Name"
 msgstr "折舊名稱"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/wizard/asset_modify.py:0
 #, python-format
 msgid "Depreciation board modified"
 msgstr "折舊版被修改"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid "Depreciation line posted."
@@ -612,21 +612,21 @@ msgid "Display Name"
 msgstr "顯示名稱"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid "Disposal Move"
 msgstr "處置移動"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid "Disposal Moves"
 msgstr "處置移動"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid "Document closed."
@@ -823,7 +823,7 @@ msgid "Journal"
 msgstr "日記帳"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #: model_terms:ir.ui.view,arch_db:om_account_asset.view_account_asset_category_form
 #, python-format
@@ -1017,7 +1017,7 @@ msgid "One Entry Every"
 msgstr "每次攤折期間"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #: model:ir.model.fields,field_description:om_account_asset.field_account_asset_asset__partner_id
 #: model:ir.model.fields,field_description:om_account_asset.field_asset_asset_report__partner_id
@@ -1042,7 +1042,7 @@ msgid "Post Depreciation Lines"
 msgstr "折舊明細帳"
 
 #. module: om_account_asset
-#. odoo-javascript
+#. system-javascript
 #: code:addons/om_account_asset/static/src/js/account_asset.js:0
 #: model:ir.model.fields,field_description:om_account_asset.field_account_asset_depreciation_line__move_posted_check
 #: model:ir.model.fields,field_description:om_account_asset.field_asset_asset_report__move_check
@@ -1073,7 +1073,7 @@ msgid "Prorata Temporis"
 msgstr "即時按比例分配"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid ""
@@ -1222,7 +1222,7 @@ msgid "The amount of time between two depreciations, in months"
 msgstr "折舊期間的時間量(以月形式)"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/wizard/asset_modify.py:0
 #, python-format
 msgid ""
@@ -1237,7 +1237,7 @@ msgid "The number of depreciations needed to depreciate your asset"
 msgstr "需要折舊您的資產的折舊數量"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_move.py:0
 #, python-format
 msgid ""
@@ -1276,7 +1276,7 @@ msgstr ""
 "  * 基於購買日期：折舊日期將基於購買日期。\n"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid ""
@@ -1322,7 +1322,7 @@ msgid "Type of the exception activity on record."
 msgstr "記錄的異常活動的類型."
 
 #. module: om_account_asset
-#. odoo-javascript
+#. system-javascript
 #: code:addons/om_account_asset/static/src/js/account_asset.js:0
 #, python-format
 msgid "Unposted"
@@ -1340,7 +1340,7 @@ msgid "Vendor"
 msgstr "供應商"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_move.py:0
 #, python-format
 msgid "Vendor bill cancelled."
@@ -1379,35 +1379,35 @@ msgid "Year"
 msgstr "年"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid "You cannot delete a document that contains posted entries."
 msgstr "您不能刪除包含已過帳項目的文件。"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid "You cannot delete a document that is in %s state."
 msgstr "在 %s狀態, 您不能刪除文檔。"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid "You cannot delete posted depreciation lines."
 msgstr "您不能刪除已過帳的折舊明細。"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_asset.py:0
 #, python-format
 msgid "You cannot delete posted installment lines."
 msgstr "您不能刪除已過帳的遞延收入明細。"
 
 #. module: om_account_asset
-#. odoo-python
+#. system-python
 #: code:addons/om_account_asset/models/account_move.py:0
 #, python-format
 msgid "You cannot reset to draft for an entry having a posted asset"

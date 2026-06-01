@@ -1,0 +1,1538 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* finance_treasury
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-21 21:07+0000\n"
+"PO-Revision-Date: 2026-05-21 21:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid ""
+"<b>Income:</b> Debit Account CoA → Credit Category CoA<br/>\n"
+"                                <b>Expense:</b> Debit Category CoA → Credit Account CoA"
+msgstr ""
+"<b>Ingreso:</b> Debitar Cuenta CoA → Acreditar Categoría CoA<br/>\n"
+"                                <b>Gasto:</b> Debitar Categoría CoA → Acreditar Cuenta CoA"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_kanban
+msgid "<span class=\"text-muted\">Balance</span>"
+msgstr "<span class=\"text-muted\">Saldo</span>"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_kanban
+msgid "<span class=\"text-muted\">Type</span>"
+msgstr "<span class=\"text-muted\">Tipo</span>"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid ""
+"<strong>How it works:</strong>\n"
+"                                When a transaction is confirmed, a journal entry is created using:"
+msgstr ""
+"<strong>Cómo funciona:</strong>\n"
+"                                Cuando se confirma una transacción, se crea un asiento contable utilizando:"
+
+#. module: finance_treasury
+#: model:ir.model.constraint,message:finance_treasury.constraint_finance_category_name_type_unique
+msgid "A category with this name and type already exists for this company!"
+msgstr "¡Ya existe una categoría con este nombre y tipo para esta empresa!"
+
+#. module: finance_treasury
+#: model:ir.module.category,description:finance_treasury.module_category_finance_treasury
+msgid "Access rights for the Finance Treasury module."
+msgstr "Derechos de acceso para el módulo de Tesorería Financiera."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__account_id
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid "Account Details"
+msgstr "Detalles de la Cuenta"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__name
+msgid "Account Name"
+msgstr "Nombre de la Cuenta"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__type
+msgid "Account Type"
+msgstr "Tipo de Cuenta"
+
+#. module: finance_treasury
+#: model:ir.model.constraint,message:finance_treasury.constraint_finance_account_code_unique
+msgid "Account code must be unique!"
+msgstr "¡El código de cuenta debe ser único!"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid "Accounting"
+msgstr "Contabilidad"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__journal_id
+msgid "Accounting Journal"
+msgstr "Diario Contable"
+
+#. module: finance_treasury
+#: model:ir.actions.act_window,name:finance_treasury.action_finance_account
+msgid "Accounts"
+msgstr "Cuentas"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__message_needaction
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__message_needaction
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__message_needaction
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__active
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_category__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__activity_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__activity_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__activity_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__activity_exception_decoration
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__activity_exception_decoration
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__activity_exception_decoration
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Excepción de Actividad"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__activity_state
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__activity_state
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__activity_state
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__activity_state
+msgid "Activity State"
+msgstr "Estado de Actividad"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__activity_type_icon
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__activity_type_icon
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__activity_type_icon
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono de Tipo de Actividad"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+msgid "Add details about this transaction..."
+msgstr "Agregar detalles sobre esta transacción..."
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+msgid "Add notes about this exchange..."
+msgstr "Agregar notas sobre este cambio..."
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_form
+msgid "Add notes about this transfer..."
+msgstr "Agregar notas sobre esta transferencia..."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__description
+msgid "Additional notes about this transaction."
+msgstr "Notas adicionales sobre esta transacción."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__description
+msgid "Additional notes about this transfer."
+msgstr "Notas adicionales sobre esta transferencia."
+
+#. module: finance_treasury
+#: model:ir.ui.menu,name:finance_treasury.menu_finance_account
+msgid "All Accounts"
+msgstr "Todas las Cuentas"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__allow_negative
+msgid "Allow Negative Balance"
+msgstr "Permitir Saldo Negativo"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__amount
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__amount
+msgid "Amount"
+msgstr "Monto"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__to_amount
+msgid "Amount arriving at the destination account."
+msgstr "Monto que llega a la cuenta de destino."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__from_amount
+msgid "Amount leaving the source account."
+msgstr "Monto que sale de la cuenta de origen."
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_search
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+msgid "Are you sure you want to cancel this exchange?"
+msgstr "¿Está seguro de que desea cancelar este cambio?"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+msgid "Are you sure you want to cancel this transaction?"
+msgstr "¿Está seguro de que desea cancelar esta transacción?"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_form
+msgid "Are you sure you want to cancel this transfer?"
+msgstr "¿Está seguro de que desea cancelar esta transferencia?"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__message_attachment_count
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__message_attachment_count
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__message_attachment_count
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__message_attachment_count
+msgid "Attachment Count"
+msgstr "Cantidad de Adjuntos"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__balance
+msgid "Balance"
+msgstr "Saldo"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid "Balance & Company"
+msgstr "Saldo y Empresa"
+
+#. module: finance_treasury
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_account__type__bank
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_search
+msgid "Bank"
+msgstr "Banco"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__branch_id
+msgid "Branch"
+msgstr "Sucursal"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: finance_treasury
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_exchange__state__cancelled
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_transaction__state__cancelled
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_transfer__state__cancelled
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transaction.py:0
+msgid "Cannot cancel a transaction in this state."
+msgstr "No se puede cancelar una transacción en este estado."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transfer.py:0
+msgid "Cannot cancel a transfer in this state."
+msgstr "No se puede cancelar una transferencia en este estado."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_exchange.py:0
+msgid "Cannot cancel an exchange in this state."
+msgstr "No se puede cancelar un cambio en este estado."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transaction.py:0
+msgid ""
+"Cannot create journal entry: account \"%(account)s\" has no Chart of Account"
+" linked."
+msgstr ""
+"No se puede crear el asiento contable: la cuenta \"%(account)s\" no tiene un Plan de Cuentas vinculado."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transaction.py:0
+msgid ""
+"Cannot create journal entry: category \"%(category)s\" has no Chart of "
+"Account linked."
+msgstr ""
+"No se puede crear el asiento contable: la categoría \"%(category)s\" no tiene un Plan de Cuentas vinculado."
+
+#. module: finance_treasury
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_account__type__card
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_search
+msgid "Card"
+msgstr "Tarjeta"
+
+#. module: finance_treasury
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_account__type__cash
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_search
+msgid "Cash"
+msgstr "Efectivo"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_graph_cashflow
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_pivot_cashflow
+msgid "Cash Flow"
+msgstr "Flujo de Caja"
+
+#. module: finance_treasury
+#: model:ir.actions.act_window,name:finance_treasury.action_finance_transaction_report_cashflow
+msgid "Cash Flow Report"
+msgstr "Informe de Flujo de Caja"
+
+#. module: finance_treasury
+#: model:ir.actions.act_window,name:finance_treasury.action_finance_category
+#: model:ir.ui.menu,name:finance_treasury.menu_finance_category
+msgid "Categories"
+msgstr "Categorías"
+
+#. module: finance_treasury
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_category
+msgid "Categories help classify transactions as income or expense."
+msgstr "Las categorías ayudan a clasificar las transacciones como ingresos o gastos."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__category_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__category_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__category_id
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+msgid "Category"
+msgstr "Categoría"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_category__name
+msgid "Category Name"
+msgstr "Nombre de la Categoría"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_category__type
+msgid "Category Type"
+msgstr "Tipo de Categoría"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__category_id
+msgid ""
+"Category determines the counterpart Chart of Account for the journal entry."
+msgstr ""
+"La categoría determina el Plan de Cuentas contraparte para el asiento contable."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__account_account_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_category__account_account_id
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_category_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_category_list
+msgid "Chart of Account"
+msgstr "Plan de Cuentas"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid "Chart of Accounts Integration"
+msgstr "Integración con Plan de Cuentas"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_form
+msgid "Classification"
+msgstr "Clasificación"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__code
+msgid "Code"
+msgstr "Código"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__company_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_category__company_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__company_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__company_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__company_id
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_search
+msgid "Company"
+msgstr "Empresa"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__company_id
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__company_id
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__company_id
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__company_id
+msgid "Company that owns this account."
+msgstr "Empresa propietaria de esta cuenta."
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: finance_treasury
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_exchange__state__confirmed
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_transaction__state__confirmed
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_transfer__state__confirmed
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_search
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#. module: finance_treasury
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_exchange
+msgid "Create your first currency exchange"
+msgstr "Cree su primer cambio de moneda"
+
+#. module: finance_treasury
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_account
+msgid "Create your first finance account"
+msgstr "Cree su primera cuenta financiera"
+
+#. module: finance_treasury
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_transaction
+msgid "Create your first transaction"
+msgstr "Cree su primera transacción"
+
+#. module: finance_treasury
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_category
+msgid "Create your first transaction category"
+msgstr "Cree su primera categoría de transacción"
+
+#. module: finance_treasury
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_transfer
+msgid "Create your first transfer"
+msgstr "Cree su primera transferencia"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__create_uid
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_category__create_uid
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__create_uid
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__create_uid
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__create_date
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_category__create_date
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__create_date
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__create_date
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__currency_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__currency_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__currency_id
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_search
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+msgid "Currency Exchange"
+msgstr "Cambio de Moneda"
+
+#. module: finance_treasury
+#: model:ir.actions.act_window,name:finance_treasury.action_finance_exchange
+#: model:ir.ui.menu,name:finance_treasury.menu_finance_exchange
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_list
+msgid "Currency Exchanges"
+msgstr "Cambios de Moneda"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__currency_id
+msgid "Currency inherited from the linked account."
+msgstr "Moneda heredada de la cuenta vinculada."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_account.py:0
+msgid ""
+"Currency mismatch: the treasury account currency (%(acc_currency)s) must "
+"match the Chart of Account \"%(coa)s\" currency (%(coa_currency)s)."
+msgstr ""
+"Discrepancia de moneda: la moneda de la cuenta de tesorería (%(acc_currency)s) debe "
+"coincidir con la moneda del Plan de Cuentas \"%(coa)s\" (%(coa_currency)s)."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transfer.py:0
+msgid ""
+"Currency mismatch: you cannot transfer between accounts with different currencies.\n"
+"• %(from_acc)s uses %(from_cur)s\n"
+"• %(to_acc)s uses %(to_cur)s\n"
+"\n"
+"Use a Currency Exchange instead."
+msgstr ""
+"Discrepancia de moneda: no se puede transferir entre cuentas con diferentes monedas.\n"
+"• %(from_acc)s usa %(from_cur)s\n"
+"• %(to_acc)s usa %(to_cur)s\n"
+"\n"
+"Utilice un Cambio de Moneda en su lugar."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__currency_id
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__from_currency_id
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__to_currency_id
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__currency_id
+msgid ""
+"Currency used for this account. Must match the Chart of Account currency."
+msgstr ""
+"Moneda utilizada para esta cuenta. Debe coincidir con la moneda del Plan de Cuentas."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__date
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__date
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__date
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_search
+msgid "Date"
+msgstr "Fecha"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__date
+msgid "Date of the transaction."
+msgstr "Fecha de la transacción."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__description
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__description
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__description
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+msgid "Destination"
+msgstr "Destino"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__to_account_id
+msgid "Destination account (incoming currency)."
+msgstr "Cuenta de destino (moneda entrante)."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__to_account_id
+msgid "Destination account (money arrives here)."
+msgstr "Cuenta de destino (el dinero llega aquí)."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__display_name
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_category__display_name
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__display_name
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__display_name
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__display_name
+msgid "Display Name"
+msgstr "Nombre Mostrado"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__name
+msgid "Display name of the financial account."
+msgstr "Nombre mostrado de la cuenta financiera."
+
+#. module: finance_treasury
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_exchange__state__draft
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_transaction__state__draft
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_transfer__state__draft
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_search
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__state
+msgid ""
+"Draft: editable. Confirmed: posted and affects balance. Cancelled: void."
+msgstr ""
+"Borrador: editable. Confirmado: contabilizado y afecta el saldo. Cancelado: nulo."
+
+#. module: finance_treasury
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_category__type__exchange
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_category_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+msgid "Exchange"
+msgstr "Cambio"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+msgid "Exchange Details"
+msgstr "Detalles del Cambio"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__rate
+msgid "Exchange Rate"
+msgstr "Tasa de Cambio"
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_exchange.py:0
+msgid "Exchange amounts must be greater than zero."
+msgstr "Los montos de cambio deben ser mayores que cero."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__category_id
+msgid ""
+"Exchange category — determines the counterpart Chart of Account for journal "
+"entries."
+msgstr ""
+"Categoría de cambio — determina el Plan de Cuentas contraparte para los asientos contables."
+
+#. module: finance_treasury
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_exchange
+msgid ""
+"Exchange currencies between your accounts with automatic rate calculation."
+msgstr ""
+"Cambie monedas entre sus cuentas con cálculo automático de la tasa."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__fee
+msgid "Exchange fee charged in source currency."
+msgstr "Comisión de cambio cobrada en la moneda de origen."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_exchange.py:0
+msgid "Exchange from %s — %s"
+msgstr "Cambio desde %s — %s"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__exchange_id
+msgid "Exchange that generated this transaction."
+msgstr "Cambio que generó esta transacción."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_exchange.py:0
+msgid "Exchange to %s — %s"
+msgstr "Cambio hacia %s — %s"
+
+#. module: finance_treasury
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_category__type__expense
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_transaction__type__out
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_category_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+msgid "Expense"
+msgstr "Gasto"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__fee
+msgid "Fee"
+msgstr "Comisión"
+
+#. module: finance_treasury
+#: model:ir.model,name:finance_treasury.model_finance_account
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid "Finance Account"
+msgstr "Cuenta Financiera"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_list
+msgid "Finance Accounts"
+msgstr "Cuentas Financieras"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_category_list
+msgid "Finance Categories"
+msgstr "Categorías Financieras"
+
+#. module: finance_treasury
+#: model:ir.model,name:finance_treasury.model_finance_category
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_category_form
+msgid "Finance Category"
+msgstr "Categoría Financiera"
+
+#. module: finance_treasury
+#: model:ir.model,name:finance_treasury.model_finance_exchange
+msgid "Finance Exchange"
+msgstr "Cambio Financiero"
+
+#. module: finance_treasury
+#: model:ir.model,name:finance_treasury.model_finance_transaction
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+msgid "Finance Transaction"
+msgstr "Transacción Financiera"
+
+#. module: finance_treasury
+#: model:ir.model,name:finance_treasury.model_finance_transfer
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_form
+msgid "Finance Transfer"
+msgstr "Transferencia Financiera"
+
+#. module: finance_treasury
+#: model:ir.module.category,name:finance_treasury.module_category_finance_treasury
+msgid "Finance Treasury"
+msgstr "Tesorería Financiera"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__message_follower_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__message_follower_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__message_follower_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__message_partner_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__message_partner_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__message_partner_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Contactos)"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__activity_type_icon
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__activity_type_icon
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__activity_type_icon
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono Font Awesome ej. fa-tasks"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__from_account_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__from_account_id
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_search
+msgid "From Account"
+msgstr "Cuenta de Origen"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__from_amount
+msgid "From Amount"
+msgstr "Monto de Origen"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_list
+msgid "From Cur."
+msgstr "Moneda Origen"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__from_currency_id
+msgid "From Currency"
+msgstr "Moneda de Origen"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_form
+msgid "Generated Transactions"
+msgstr "Transacciones Generadas"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__has_message
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__has_message
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__has_message
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_category__id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__id
+msgid "ID"
+msgstr "ID"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__activity_exception_icon
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__activity_exception_icon
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__activity_exception_icon
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__activity_exception_icon
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__activity_exception_icon
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__activity_exception_icon
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__message_needaction
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__message_needaction
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__message_needaction
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, los nuevos mensajes requieren su atención."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__message_has_error
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__message_has_sms_error
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__message_has_error
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__message_has_sms_error
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__message_has_error
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__message_has_sms_error
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__message_has_error
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen error de entrega."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__allow_negative
+msgid ""
+"If checked, transactions that result in a negative balance will be allowed."
+msgstr ""
+"Si está marcado, se permitirán transacciones que resulten en un saldo negativo."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__active
+msgid "If unchecked, this account will be hidden from lists."
+msgstr "Si no está marcado, esta cuenta se ocultará de las listas."
+
+#. module: finance_treasury
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_category__type__income
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_transaction__type__in
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_category_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+msgid "Income"
+msgstr "Ingreso"
+
+#. module: finance_treasury
+#: model:ir.actions.act_window,name:finance_treasury.action_finance_transaction_report_income_expense
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_graph_income_expense
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_pivot_income_expense
+msgid "Income vs Expense"
+msgstr "Ingresos vs Gastos"
+
+#. module: finance_treasury
+#: model:ir.ui.menu,name:finance_treasury.menu_finance_report_income_expense
+msgid "Income vs Expense Reporting"
+msgstr "Informe de Ingresos vs Gastos"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__in_transaction_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__in_transaction_id
+msgid "Incoming Transaction"
+msgstr "Transacción Entrante"
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transaction.py:0
+msgid ""
+"Insufficient balance on account \"%(account)s\". Current balance: "
+"%(balance)s, Transaction amount: %(amount)s."
+msgstr ""
+"Saldo insuficiente en la cuenta \"%(account)s\". Saldo actual: "
+"%(balance)s, Monto de la transacción: %(amount)s."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_exchange.py:0
+msgid ""
+"Insufficient balance on source account \"%s\". Balance: %s, Required: %s "
+"(amount + fee)."
+msgstr ""
+"Saldo insuficiente en la cuenta de origen \"%s\". Saldo: %s, Requerido: %s "
+"(monto + comisión)."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transfer.py:0
+msgid ""
+"Insufficient balance on source account \"%s\". Balance: %s, Transfer amount:"
+" %s."
+msgstr ""
+"Saldo insuficiente en la cuenta de origen \"%s\". Saldo: %s, Monto de la transferencia:"
+" %s."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__notes
+msgid "Internal notes about this account."
+msgstr "Notas internas sobre esta cuenta."
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid "Internal notes..."
+msgstr "Notas internas..."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__message_is_follower
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__message_is_follower
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__message_is_follower
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__move_id
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+msgid "Journal Entry"
+msgstr "Asiento Contable"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__journal_id
+msgid "Journal used to create accounting entries for this treasury account."
+msgstr "Diario utilizado para crear asientos contables para esta cuenta de tesorería."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__write_uid
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_category__write_uid
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__write_uid
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__write_uid
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__write_date
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_category__write_date
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__write_date
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__write_date
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__balance
+msgid ""
+"Live balance from the linked Chart of Account (sum of debit − credit on all "
+"posted journal items)."
+msgstr ""
+"Saldo en vivo del Plan de Cuentas vinculado (suma de débito − crédito en todos "
+"los apuntes contables contabilizados)."
+
+#. module: finance_treasury
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_account
+msgid "Manage Cash, Bank, Card and Wallet accounts in one place."
+msgstr "Administre cuentas de Efectivo, Banco, Tarjeta y Cartera en un solo lugar."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__message_has_error
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__message_has_error
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__message_has_error
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensaje"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__message_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__message_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__message_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: finance_treasury
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_transfer
+msgid "Move money between your finance accounts."
+msgstr "Mueva dinero entre sus cuentas financieras."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__my_activity_date_deadline
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__my_activity_date_deadline
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__my_activity_date_deadline
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Mi Fecha Límite de Actividad"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_category__name
+msgid "Name of the financial category."
+msgstr "Nombre de la categoría financiera."
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_search
+msgid "Name or Code"
+msgstr "Nombre o Código"
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_account.py:0
+#: code:addons/finance_treasury/models/finance_exchange.py:0
+#: code:addons/finance_treasury/models/finance_transaction.py:0
+#: code:addons/finance_treasury/models/finance_transfer.py:0
+msgid "New"
+msgstr "Nuevo"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__activity_calendar_event_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__activity_calendar_event_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__activity_calendar_event_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Próximo Evento de Calendario"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__activity_date_deadline
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__activity_date_deadline
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__activity_date_deadline
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Próxima Fecha Límite de Actividad"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__activity_summary
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__activity_summary
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__activity_summary
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de Próxima Actividad"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__activity_type_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__activity_type_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__activity_type_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de Próxima Actividad"
+
+#. module: finance_treasury
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_transaction_report_cashflow
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_transaction_report_income_expense
+msgid "No confirmed transactions yet."
+msgstr "Aún no hay transacciones confirmadas."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__notes
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid "Notes"
+msgstr "Notas"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__message_needaction_counter
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__message_needaction_counter
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__message_needaction_counter
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Cantidad de Acciones"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__message_has_error_counter
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__message_has_error_counter
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__message_has_error_counter
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__message_has_error_counter
+msgid "Number of errors"
+msgstr "Cantidad de errores"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__message_needaction_counter
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__message_needaction_counter
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__message_needaction_counter
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Cantidad de mensajes que requieren acción"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__message_has_error_counter
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__message_has_error_counter
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__message_has_error_counter
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Cantidad de mensajes con error de entrega"
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_exchange.py:0
+msgid "Only cancelled exchanges can be reset to draft."
+msgstr "Solo los cambios cancelados pueden volver a borrador."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transaction.py:0
+msgid "Only cancelled transactions can be reset to draft."
+msgstr "Solo las transacciones canceladas pueden volver a borrador."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transfer.py:0
+msgid "Only cancelled transfers can be reset to draft."
+msgstr "Solo las transferencias canceladas pueden volver a borrador."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_exchange.py:0
+msgid "Only draft exchanges can be confirmed."
+msgstr "Solo los cambios en borrador pueden confirmarse."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transaction.py:0
+msgid "Only draft transactions can be confirmed."
+msgstr "Solo las transacciones en borrador pueden confirmarse."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transfer.py:0
+msgid "Only draft transfers can be confirmed."
+msgstr "Solo las transferencias en borrador pueden confirmarse."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__branch_id
+msgid "Optional branch for multi-branch setups."
+msgstr "Sucursal opcional para configuraciones de múltiples sucursales."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__out_transaction_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__out_transaction_id
+msgid "Outgoing Transaction"
+msgstr "Transacción Saliente"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__partner_id
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+msgid "Partner"
+msgstr "Contacto"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__rate
+msgid "Rate = to_amount / from_amount."
+msgstr "Tasa = monto_destino / monto_origen."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__rating_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__rating_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__rating_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__rating_ids
+msgid "Ratings"
+msgstr "Calificaciones"
+
+#. module: finance_treasury
+#: model_terms:ir.actions.act_window,help:finance_treasury.action_finance_transaction
+msgid "Record all income and expense movements across your accounts."
+msgstr "Registre todos los movimientos de ingresos y gastos en todas sus cuentas."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__name
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__name
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__name
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__partner_id
+msgid "Related partner (customer, vendor, employee, etc.)."
+msgstr "Contacto relacionado (cliente, proveedor, empleado, etc.)."
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_form
+msgid "Reset to Draft"
+msgstr "Volver a Borrador"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__activity_user_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__activity_user_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__activity_user_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__message_has_sms_error
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__message_has_sms_error
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__message_has_sms_error
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega SMS"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_search
+msgid "Search Accounts"
+msgstr "Buscar Cuentas"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_category_search
+msgid "Search Categories"
+msgstr "Buscar Categorías"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_search
+msgid "Search Exchanges"
+msgstr "Buscar Cambios"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+msgid "Search Transactions"
+msgstr "Buscar Transacciones"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_search
+msgid "Search Transfers"
+msgstr "Buscar Transferencias"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_form
+msgid "Source"
+msgstr "Origen"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__exchange_id
+msgid "Source Exchange"
+msgstr "Cambio de Origen"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__transfer_id
+msgid "Source Transfer"
+msgstr "Transferencia de Origen"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__from_account_id
+msgid "Source account (money leaves here)."
+msgstr "Cuenta de origen (el dinero sale de aquí)."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__from_account_id
+msgid "Source account (outgoing currency)."
+msgstr "Cuenta de origen (moneda saliente)."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_exchange.py:0
+#: code:addons/finance_treasury/models/finance_transfer.py:0
+msgid "Source and destination accounts must be different."
+msgstr "Las cuentas de origen y destino deben ser diferentes."
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__state
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__state
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__state
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_search
+msgid "Status"
+msgstr "Estado"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__activity_state
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__activity_state
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__activity_state
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Atrasada: La fecha de vencimiento ya pasó\n"
+"Hoy: La fecha de actividad es hoy\n"
+"Planificada: Actividades futuras."
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+msgid "Technical"
+msgstr "Técnico"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__move_id
+msgid ""
+"The accounting journal entry created when this transaction is confirmed."
+msgstr ""
+"El asiento contable creado cuando se confirma esta transacción."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_category__account_account_id
+msgid ""
+"The chart of accounts entry for this category. This is used as the counterpart side of journal entries:\n"
+"- Income: this account is CREDITED\n"
+"- Expense: this account is DEBITED"
+msgstr ""
+"La entrada del plan de cuentas para esta categoría. Se utiliza como contraparte de los asientos contables:\n"
+"- Ingreso: esta cuenta es ACREDITADA\n"
+"- Gasto: esta cuenta es DEBITADA"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__account_account_id
+msgid ""
+"The chart of accounts entry linked to this treasury account. This is the "
+"main side (debit for income / credit for expense) of every journal entry. "
+"The currency must match."
+msgstr ""
+"La entrada del plan de cuentas vinculada a esta cuenta de tesorería. Este es el "
+"lado principal (débito para ingresos / crédito para gastos) de cada asiento contable. "
+"La moneda debe coincidir."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__account_id
+msgid "The finance account this transaction belongs to."
+msgstr "La cuenta financiera a la que pertenece esta transacción."
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid "The transaction <b>Category's Chart of Account</b> as the counterpart"
+msgstr "El <b>Plan de Cuentas de la Categoría</b> de la transacción como contraparte"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_search
+msgid "This Month"
+msgstr "Este Mes"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+msgid "This Year"
+msgstr "Este Año"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid "This account's <b>Chart of Account</b> as one side"
+msgstr "El <b>Plan de Cuentas</b> de esta cuenta como un lado"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__to_account_id
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__to_account_id
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_search
+msgid "To Account"
+msgstr "Cuenta de Destino"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__to_amount
+msgid "To Amount"
+msgstr "Monto de Destino"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_list
+msgid "To Cur."
+msgstr "Moneda Destino"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__to_currency_id
+msgid "To Currency"
+msgstr "Moneda de Destino"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_exchange_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_search
+msgid "Today"
+msgstr "Hoy"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_list
+msgid "Total"
+msgstr "Total"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_list
+msgid "Total Balance"
+msgstr "Saldo Total"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__transaction_count
+msgid "Transaction Count"
+msgstr "Cantidad de Transacciones"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+msgid "Transaction Details"
+msgstr "Detalles de la Transacción"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__amount
+msgid "Transaction amount in account currency."
+msgstr "Monto de la transacción en la moneda de la cuenta."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transaction.py:0
+msgid "Transaction amount must be greater than zero."
+msgstr "El monto de la transacción debe ser mayor que cero."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_account.py:0
+#: model:ir.actions.act_window,name:finance_treasury.action_finance_transaction
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__transaction_ids
+#: model:ir.ui.menu,name:finance_treasury.menu_finance_transaction
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_list
+msgid "Transactions"
+msgstr "Transacciones"
+
+#. module: finance_treasury
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_category__type__transfer
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_category_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_form
+msgid "Transfer"
+msgstr "Transferencia"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_form
+msgid "Transfer Details"
+msgstr "Detalles de la Transferencia"
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transfer.py:0
+msgid "Transfer amount must be greater than zero."
+msgstr "El monto de la transferencia debe ser mayor que cero."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__category_id
+msgid ""
+"Transfer category — determines the counterpart Chart of Account for journal "
+"entries."
+msgstr ""
+"Categoría de transferencia — determina el Plan de Cuentas contraparte para los asientos contables."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transfer.py:0
+msgid "Transfer from %s — %s"
+msgstr "Transferencia desde %s — %s"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__transfer_id
+msgid "Transfer that generated this transaction."
+msgstr "Transferencia que generó esta transacción."
+
+#. module: finance_treasury
+#. odoo-python
+#: code:addons/finance_treasury/models/finance_transfer.py:0
+msgid "Transfer to %s — %s"
+msgstr "Transferencia hacia %s — %s"
+
+#. module: finance_treasury
+#: model:ir.actions.act_window,name:finance_treasury.action_finance_transfer
+#: model:ir.ui.menu,name:finance_treasury.menu_finance_transfer
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transfer_list
+msgid "Transfers"
+msgstr "Transferencias"
+
+#. module: finance_treasury
+#: model:ir.ui.menu,name:finance_treasury.menu_finance_treasury_root
+msgid "Treasury"
+msgstr "Tesorería"
+
+#. module: finance_treasury
+#: model:ir.ui.menu,name:finance_treasury.menu_finance_report_cashflow
+msgid "Treasury Cash Flow Reporting"
+msgstr "Informe de Flujo de Caja de Tesorería"
+
+#. module: finance_treasury
+#: model:res.groups,name:finance_treasury.group_treasury_manager
+msgid "Treasury Manager"
+msgstr "Gerente de Tesorería"
+
+#. module: finance_treasury
+#: model:res.groups,name:finance_treasury.group_treasury_user
+msgid "Treasury User"
+msgstr "Usuario de Tesorería"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__type
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_category_search
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_transaction_search
+msgid "Type"
+msgstr "Tipo"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_category__type
+msgid "Type of category: income, expense, transfer or currency exchange."
+msgstr "Tipo de categoría: ingreso, gasto, transferencia o cambio de moneda."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__type
+msgid "Type of financial account."
+msgstr "Tipo de cuenta financiera."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__activity_exception_decoration
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__activity_exception_decoration
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__activity_exception_decoration
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción en el registro."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__code
+msgid "Unique auto-generated code for the account."
+msgstr "Código único autogenerado para la cuenta."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__name
+msgid "Unique auto-generated reference for this transaction."
+msgstr "Referencia única autogenerada para esta transacción."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__name
+msgid "Unique auto-generated reference for this transfer."
+msgstr "Referencia única autogenerada para esta transferencia."
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__name
+msgid "Unique auto-generated reference."
+msgstr "Referencia única autogenerada."
+
+#. module: finance_treasury
+#: model:ir.model.fields.selection,name:finance_treasury.selection__finance_account__type__wallet
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_search
+msgid "Wallet"
+msgstr "Cartera"
+
+#. module: finance_treasury
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_account__website_message_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_exchange__website_message_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transaction__website_message_ids
+#: model:ir.model.fields,field_description:finance_treasury.field_finance_transfer__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_account__website_message_ids
+#: model:ir.model.fields,help:finance_treasury.field_finance_exchange__website_message_ids
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__website_message_ids
+#: model:ir.model.fields,help:finance_treasury.field_finance_transfer__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: finance_treasury
+#: model:ir.model.fields,help:finance_treasury.field_finance_transaction__type
+msgid "Whether money is coming in or going out."
+msgstr "Si el dinero está entrando o saliendo."
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_form
+msgid "e.g. Main Cash Box"
+msgstr "ej. Caja Principal"
+
+#. module: finance_treasury
+#: model_terms:ir.ui.view,arch_db:finance_treasury.view_finance_account_kanban
+msgid "transaction(s)"
+msgstr "transacción(es)"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="res_config_settings_view_form_saas" model="ir.ui.view">
+    <!-- <record id="res_config_settings_view_form_saas" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.inherit.saas</field>
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
@@ -26,7 +26,7 @@
                 </app>
             </xpath>
         </field>
-    </record>
+    </record> -->
 
     <record id="res_config_settings_hide_url_block" model="ir.ui.view">
         <field name="name">res.config.settings.hide.url.block</field>
@@ -39,13 +39,13 @@
         </field>
     </record>
 
-    <record id="action_saas_client_config" model="ir.actions.act_window">
+    <!-- <record id="action_saas_client_config" model="ir.actions.act_window">
         <field name="name">Settings</field>
         <field name="res_model">res.config.settings</field>
         <field name="view_mode">form</field>
         <field name="target">inline</field>
         <field name="context">{'module': 'saas_client'}</field>
-    </record>
+    </record> -->
 
     <!-- Apps App Removed -->
     <record id="base.menu_management" model="ir.ui.menu">

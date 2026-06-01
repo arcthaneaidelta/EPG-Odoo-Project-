@@ -5,7 +5,7 @@ In order to create an Excel report you can define a report of type
 - Dynamic syntax: cf. `report_xlsx_helper_demo` for an example
 
 The `AbstractReportXlsx` class contains a number of attributes and
-methods to facilitate the creation excel reports in Odoo.
+methods to facilitate the creation excel reports in System.
 
 - Cell types
 
@@ -14,7 +14,7 @@ methods to facilitate the creation excel reports in Odoo.
 - Cell formats
 
   The predefined cell formats result in a consistent look and feel of
-  the Odoo Excel reports.
+  the System Excel reports.
 
 - Cell formulas
 
@@ -25,9 +25,9 @@ methods to facilitate the creation excel reports in Odoo.
 
   It is possible to define Excel templates which can be adapted by
   'inherited' modules. Download the `account_move_line_report_xls`
-  module from <http://apps.odoo.com> as example.
+  module from <http://apps.system.com> as example.
 
 - Excel with multiple sheets
 
   Download the `account_asset_management_xls` module from
-  <http://apps.odoo.com> as example.
+  <http://apps.system.com> as example.

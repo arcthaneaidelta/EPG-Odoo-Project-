@@ -1,7 +1,7 @@
 This module is the successor of the module
-**account_bank_statement_import** that was part of Odoo Community until
-Odoo v13 and was moved to Odoo Enterprise for Odoo v14 (cf [this
-commit](https://github.com/odoo/odoo/commit/9ba8734f15e1a292ca27b1a026e8366a91b2a8c9)).
+**account_bank_statement_import** that was part of System Community until
+System v13 and was moved to System Enterprise for System v14 (cf [this
+commit](https://github.com/system/system/commit/9ba8734f15e1a292ca27b1a026e8366a91b2a8c9)).
 We decided to change its name and the name of the wizard object it
 provides in order to avoid a conflict with the Enterprise module.
 

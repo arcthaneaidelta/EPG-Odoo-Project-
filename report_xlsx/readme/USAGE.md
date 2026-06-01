@@ -3,7 +3,7 @@ An example of XLSX report for partners on a module called
 
 A python class :
 
-    from odoo import models
+    from system import models
 
     class PartnerXlsx(models.AbstractModel):
         _name = 'report.module_name.report_name'

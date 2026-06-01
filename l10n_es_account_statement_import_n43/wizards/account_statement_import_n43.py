@@ -229,6 +229,9 @@ class AccountStatementImport(models.TransientModel):
                 st_line = {}
             elif code == "88":
                 self._process_record_88(st_data, raw_line)
+            elif code == "99":
+                # 99 is used by some banks as end of file/transmission
+                continue
             elif ord(raw_line[0]) == 26:  # pragma: no cover
                 # CTRL-Z (^Z), is often used as an end-of-file marker in DOS
                 continue
@@ -422,7 +425,7 @@ class AccountStatementImport(models.TransientModel):
                     line_vals["date"] = fields.Date.to_string(
                         n43_line.get(journal.n43_date_type or "fecha_valor")
                     )
-                # This can't be used, as Odoo doesn't present the lines
+                # This can't be used, as the system doesn't present the lines
                 # that already have a counterpart account as final
                 # verification, making this very counter intuitive to the user
                 # line_vals['account_id'] = self._get_n43_account(

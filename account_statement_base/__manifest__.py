@@ -8,7 +8,7 @@
     "category": "Accounting",
     "license": "LGPL-3",
     "summary": "Base module for Bank Statements",
-    "author": "Akretion,Odoo Community Association (OCA)",
+    "author": "Akretion,OCA (OCA)",
     "maintainers": ["alexis-via"],
     "development_status": "Mature",
     "website": "https://github.com/OCA/account-reconcile",

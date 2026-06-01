@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_crm_file_stage_tree" model="ir.ui.view">
+        <field name="name">crm.file.stage.tree</field>
+        <field name="model">crm.file.stage</field>
+        <field name="arch" type="xml">
+            <list string="Phases" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name" class="fw-bold"/>
+                <field name="type_id" widget="badge" decoration-info="1"/>
+                <field name="fold" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_crm_file_stage_kanban" model="ir.ui.view">
+        <field name="name">crm.file.stage.kanban</field>
+        <field name="model">crm.file.stage</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="type_id" class="o_kanban_dashboard o_emphasize_colors">
+                <field name="name"/>
+                <field name="type_id"/>
+                <field name="fold"/>
+                <field name="sequence"/>
+                <templates>
+                    <t t-name="kanban-menu">
+                        <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                        <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                    </t>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click p-0 border border-light rounded-4 shadow-sm overflow-hidden d-flex flex-column h-100 bg-white" style="transition: transform 0.2s;">
+                            <!-- Header with neon accent -->
+                            <div class="px-3 py-3 d-flex align-items-center justify-content-between border-bottom border-light position-relative" style="background-color: rgba(17, 34, 73, 0.02);">
+                                <div class="position-absolute top-0 start-0 w-100" style="height: 4px; background-color: #112249; opacity: 0.8;"></div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="d-flex align-items-center justify-content-center rounded-circle" style="width: 32px; height: 32px; background-color: rgba(17, 34, 73, 0.1);">
+                                        <i class="fa fa-map-signs" style="color: #112249;"/>
+                                    </div>
+                                    <strong class="fs-5 text-dark"><field name="name"/></strong>
+                                </div>
+                            </div>
+                            
+                            <!-- Body Area -->
+                            <div class="p-3 flex-grow-1 d-flex flex-column justify-content-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="text-muted small text-uppercase fw-bold mb-1" style="letter-spacing: 0.5px; font-size: 0.65rem;">Workspace</div>
+                                        <div class="fw-bold" style="color: #112249;"><field name="type_id"/></div>
+                                    </div>
+                                    <t t-if="record.fold.raw_value">
+                                        <span class="badge rounded-pill text-white" style="background-color: #112249; padding: 5px 10px;">Folded</span>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_crm_file_stage" model="ir.actions.act_window">
+        <field name="name">File Phases</field>
+        <field name="res_model">crm.file.stage</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <menuitem id="menu_crm_file_stage" 
+              name="File Phases" 
+              parent="crm.crm_menu_config" 
+              sequence="20"
+              action="action_crm_file_stage"/>
+</odoo>

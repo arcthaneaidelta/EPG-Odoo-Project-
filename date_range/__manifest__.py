@@ -6,7 +6,7 @@
     "version": "18.0.5.0.0",
     "category": "Uncategorized",
     "website": "https://github.com/OCA/server-ux",
-    "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
+    "author": "ACSONE SA/NV, OCA (OCA)",
     "license": "LGPL-3",
     "installable": True,
     "depends": ["web"],

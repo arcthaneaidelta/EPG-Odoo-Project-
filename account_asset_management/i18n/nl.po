@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # * account_asset_management
 #
@@ -33,7 +33,7 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "\n"
@@ -55,7 +55,7 @@ msgid "<span class=\"o_stat_text\"> Asset(s)</span>"
 msgstr "<span class=\"o_stat_text\"> Activa </span>"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model,name:account_asset_management.model_account_account
 msgid "Account"
@@ -78,7 +78,7 @@ msgid "Active"
 msgstr "Actief"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Active Assets"
 msgstr "Actieve activa"
@@ -167,7 +167,7 @@ msgid "Asset"
 msgstr "Activa"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 #, fuzzy
 msgid "Asset '%s' Removal Journal Entry"
@@ -236,7 +236,7 @@ msgid "Asset Removal"
 msgstr "Activa verwijderen"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__date_remove
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_remove__date_remove
@@ -249,7 +249,7 @@ msgid "Asset Sale Account"
 msgstr "Activa verkoop rekening"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__date_start
 msgid "Asset Start Date"
@@ -261,7 +261,7 @@ msgid "Asset depreciation table line"
 msgstr "Activa afschrijvingsregel"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid "Asset name must be set in the label of the line."
 msgstr "Activa naam moet zijn ingesteld in het naamvak van de regel."
@@ -290,7 +290,7 @@ msgid "Assets"
 msgstr "Activa"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Assets to be corrected"
 msgstr "Aan te passen activa"
@@ -422,7 +422,7 @@ msgid "Completion Date"
 msgstr "Voltooingsdatum"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Comput. Method"
 msgstr "Berekeningsmethode"
@@ -449,13 +449,13 @@ msgid "Compute Assets"
 msgstr "Bereken activa"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_compute.py:0
 msgid "Compute Assets errors"
 msgstr "Fouten in berekening activa"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_compute.py:0
 msgid "Compute Assets result"
 msgstr "Bereken activa resultaat"
@@ -481,7 +481,7 @@ msgid "Create an asset by product item"
 msgstr "Maak een activa aan per product"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_compute.py:0
 msgid "Created Asset Moves"
 msgstr "Maak activa mutaties"
@@ -535,13 +535,13 @@ msgstr ""
 "Default activa profiel bij aanmaken van een factuurregel met deze rekening."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive"
 msgstr "Degressief"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive  up to Salvage Value"
 msgstr "Degressief tot aan de restwaarde"
@@ -553,13 +553,13 @@ msgid "Degressive Factor"
 msgstr "Degressief factor"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive-Linear"
 msgstr "Degressief-lineair"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive-Linear is only supported for Time Method = Year."
@@ -591,7 +591,7 @@ msgid "Depreciation Account"
 msgstr "Afschrijvingsrekening"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__depreciation_base
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_line__depreciation_base
@@ -662,7 +662,7 @@ msgid "Draft"
 msgstr "Concept"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Duplicate reporting entries"
 msgstr "Dupliceer reporting entries"
@@ -688,7 +688,7 @@ msgid "Entries"
 msgstr "Boekingen"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "Error while processing asset '{ref}': \n"
@@ -738,7 +738,7 @@ msgid "Force accounting date"
 msgstr "Forceer boekhoud datum"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid "Gain/Loss on Sale"
 msgstr "Winst/verlies op verkoop"
@@ -749,7 +749,7 @@ msgid "General"
 msgstr "Algemeen"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "Generate Asset Removal entries"
 msgstr "Genereer Activa verwijderingsboekingen"
@@ -868,7 +868,7 @@ msgstr ""
 "gevraagd om de journaalpost om te keren, in plaats van deze te verwijderen."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "Illegal value %s in asset.method."
 msgstr "Illegale waarde %s in asset.method."
@@ -879,7 +879,7 @@ msgid "Include draft assets"
 msgstr "Inclusief concept activa"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid ""
 "Inconsistent reporting structure.\n"
@@ -920,14 +920,14 @@ msgid "Journal"
 msgstr "Dagboek"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 #: model_terms:ir.ui.view,arch_db:account_asset_management.account_asset_view_form
 msgid "Journal Entries"
 msgstr "Boekingsregels"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 #: model:ir.model,name:account_asset_management.model_account_move
 msgid "Journal Entry"
@@ -970,13 +970,13 @@ msgid "Last Updated on"
 msgstr "Laatst bijgewerkt op"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Linear"
 msgstr "Lineair"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Linear up to Salvage Value"
 msgstr "Lineair tot aan de restwaarde"
@@ -998,13 +998,13 @@ msgid "Min-Value Account"
 msgstr "Min-waarde rekening"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Missing depreciation table"
 msgstr "Ontbrekende afschrijvingstabel"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Month"
 msgstr "Maand"
@@ -1015,7 +1015,7 @@ msgid "My Activity Deadline"
 msgstr "Deadline voor mijn activiteit"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_group__name
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__name
@@ -1023,7 +1023,7 @@ msgid "Name"
 msgstr "Naam"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "New Acquisitions"
 msgstr "Nieuwe aanwinsten"
@@ -1049,7 +1049,7 @@ msgid "Next Period Depreciation"
 msgstr "Volgende afschrijf periode"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "No"
 msgstr "Nee"
@@ -1075,13 +1075,13 @@ msgid "Number of Actions"
 msgstr "Aantal acties"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Number of Depreciations"
 msgstr "Aantal afschrijvingen"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__method_number
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__method_number
@@ -1089,7 +1089,7 @@ msgid "Number of Years"
 msgstr "Aantal Jaren"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Number of Years or end date"
 msgstr "Aantal jaren tot einddatum"
@@ -1140,13 +1140,13 @@ msgid "Percentage of Price"
 msgstr ""
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Period Depreciation"
 msgstr "Periodieke afschrijving"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #, fuzzy
 msgid "Period End Value"
@@ -1159,7 +1159,7 @@ msgid "Period Length"
 msgstr "Periodelengte"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Period Start Value"
 msgstr "Waarde bij start periode"
@@ -1192,7 +1192,7 @@ msgid "Profile"
 msgstr "Profiel"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__prorata
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__prorata
@@ -1200,20 +1200,20 @@ msgid "Prorata Temporis"
 msgstr "Prorata Temporis"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__purchase_value
 msgid "Purchase Value"
 msgstr "Aanschafwaarde"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Quarter"
 msgstr "Kwartaal"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_recompute_trigger__reason
 #: model:ir.model.fields,field_description:account_asset_management.field_wiz_asset_move_reverse__reason
@@ -1221,7 +1221,7 @@ msgid "Reason"
 msgstr "Oorzaak"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__code
 msgid "Reference"
@@ -1272,13 +1272,13 @@ msgid "Removed"
 msgstr "verwijderd"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Removed Assets"
 msgstr "Verwijderde activa"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__value_residual
 msgid "Residual Value"
@@ -1311,7 +1311,7 @@ msgid "Reverse Journal Entry"
 msgstr "Draai boeking om"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid "Reverse Move"
 msgstr "Omgekeerde boeking"
@@ -1338,7 +1338,7 @@ msgid "Salvage Type"
 msgstr ""
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__salvage_value
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__salvage_value
@@ -1353,10 +1353,10 @@ msgstr "Zoek in activa categorie"
 #. module: account_asset_management
 #: model:ir.model.fields,help:account_asset_management.field_account_asset_line__init_entry
 msgid ""
-"Set this flag for entries of previous fiscal years for which Odoo has not "
+"Set this flag for entries of previous fiscal years for which System has not "
 "generated accounting entries."
 msgstr ""
-"Stel deze markering in voor boekingen van voorgaande boekjaren waarvoor Odoo "
+"Stel deze markering in voor boekingen van voorgaande boekjaren waarvoor System "
 "geen boekingen heeft gegenereerd."
 
 #. module: account_asset_management
@@ -1385,7 +1385,7 @@ msgid "State of Asset"
 msgstr "Status van activa"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__state
 #: model_terms:ir.ui.view,arch_db:account_asset_management.account_asset_view_search
@@ -1406,7 +1406,7 @@ msgstr ""
 "Gepland: Toekomstige activiteiten."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "The '_compute_year_amount' method is only intended for Time Method 'Number "
@@ -1416,13 +1416,13 @@ msgstr ""
 "'Aantal jaren'."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "The 'account' field is a mandatory entry of the '_xls_%s_fields' list !"
 msgstr "Het veld 'account' is verplicht in de lijst '_xls_%s_fields' !"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_account.py:0
 msgid ""
 "The Asset Account defined in the Asset Profile must be equal to the account."
@@ -1431,20 +1431,20 @@ msgstr ""
 "rekening."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid "The Sale Value must be positive!"
 msgstr "De verkoopwaarde moet positief zijn!"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 #: code:addons/account_asset_management/wizard/wiz_account_asset_report.py:0
 msgid "The Start Date must precede the Ending Date."
 msgstr "De startdatum dient voor de einddatum te liggen."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "The duration of the asset conflicts with the posted depreciation table entry "
@@ -1472,7 +1472,7 @@ msgid "The number of years needed to depreciate your asset"
 msgstr "Het aantal jaren om de activa af te schrijven"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid "The removal date must be after the last depreciation date."
 msgstr "De verwijderingsdatum moet na de laatste afschrijfdatum liggen."
@@ -1499,7 +1499,7 @@ msgstr ""
 "Aankoopwaarde - Aanschafwaarde."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid "This invoice created the asset(s): %s"
 msgstr "Deze factuur heeft de volgende activa aangemaakt: %s"
@@ -1511,7 +1511,7 @@ msgid "Time Method"
 msgstr "Tijdmethode"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Tot. Depreciation"
 msgstr "Totale afschrijving"
@@ -1522,7 +1522,7 @@ msgid "Total Days"
 msgstr "Totaal dagen"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Totals"
 msgstr "Totalen"
@@ -1543,7 +1543,7 @@ msgid "Type of the exception activity on record."
 msgstr "Type van de geregistreerde uitzonderingsactiviteit."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Undetermined error"
 msgstr "Onbekende fout"
@@ -1606,13 +1606,13 @@ msgstr ""
 "status 'Verwijderd'."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Year"
 msgstr "Jaar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
 "You are not allowed to link an accounting entry to an asset.\n"
@@ -1622,7 +1622,7 @@ msgstr ""
 "Je moet dergelijke boekingen genereren vanuit het bedrijfsmiddel."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
@@ -1634,13 +1634,13 @@ msgstr ""
 "Je moet dergelijke boekingen van het bedrijfsmiddel verwijderen."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "You can only delete assets in draft state."
 msgstr "Enkel activa in een concept status kunnen worden verwijdert."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid ""
 "You can't make an early removal if all the depreciation lines for previous "
@@ -1650,7 +1650,7 @@ msgstr ""
 "voorgaande perioden zijn geboekt."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot change a depreciation line with an associated accounting entry."
@@ -1659,21 +1659,21 @@ msgstr ""
 "wijzigen."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
 "You cannot change an accounting entry linked to an asset depreciation line."
 msgstr ""
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
 "You cannot change an accounting item linked to an asset depreciation line."
 msgstr ""
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "You cannot change the profile of an asset with accounting entries."
 msgstr ""
@@ -1681,14 +1681,14 @@ msgstr ""
 "zijn."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot delete a depreciation line with an associated accounting entry."
 msgstr ""
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "You cannot delete an asset that contains posted depreciation lines."
 msgstr ""
@@ -1696,7 +1696,7 @@ msgstr ""
 "afwaarderingsregels zijn."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 #, fuzzy
 msgid "You cannot remove an asset line of type 'Depreciation Base'."
@@ -1705,7 +1705,7 @@ msgstr ""
 "afwaarderingsregels zijn."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot set the 'Initial Balance Entry' flag on a depreciation line with "
@@ -1713,7 +1713,7 @@ msgid ""
 msgstr ""
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 #, fuzzy
 msgid "You cannot set the Asset Start Date after already posted entries."
@@ -1722,7 +1722,7 @@ msgstr ""
 "afwaarderingsregels zijn."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot set the date on a depreciation line prior to already posted "

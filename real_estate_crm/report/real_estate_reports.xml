@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Property Report -->
+    <record id="action_report_property" model="ir.actions.report">
+        <field name="name">Property Report</field>
+        <field name="model">real.estate.property</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">real_estate_crm.report_property_document</field>
+        <field name="report_file">real_estate_crm.report_property_document</field>
+        <field name="binding_model_id" ref="model_real_estate_property"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Commission Report -->
+    <record id="action_report_commission" model="ir.actions.report">
+        <field name="name">Commission Report</field>
+        <field name="model">real.estate.commission</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">real_estate_crm.report_commission_document</field>
+        <field name="report_file">real_estate_crm.report_commission_document</field>
+        <field name="binding_model_id" ref="model_real_estate_commission"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

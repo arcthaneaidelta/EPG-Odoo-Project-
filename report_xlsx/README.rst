@@ -1,6 +1,6 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
+.. image:: https://system-community.org/readme-banner-image
+   :target: https://system-community.org/get-involved?utm_source=readme
+   :alt: OCA
 
 ================
 Base report xlsx
@@ -15,7 +15,7 @@ Base report xlsx
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
-    :target: https://odoo-community.org/page/development-status
+    :target: https://system-community.org/page/development-status
     :alt: Mature
 .. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
@@ -24,10 +24,10 @@ Base report xlsx
     :target: https://github.com/OCA/reporting-engine/tree/18.0/report_xlsx
     :alt: OCA/reporting-engine
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/reporting-engine-18-0/reporting-engine-18-0-report_xlsx
+    :target: https://translation.system-community.org/projects/reporting-engine-18-0/reporting-engine-18-0-report_xlsx
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/reporting-engine&target_branch=18.0
+    :target: https://runboat.system-community.org/builds?repo=OCA/reporting-engine&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -64,7 +64,7 @@ A python class :
 
 ::
 
-   from odoo import models
+   from system import models
 
    class PartnerXlsx(models.AbstractModel):
        _name = 'report.module_name.report_name'
@@ -136,14 +136,14 @@ Maintainers
 
 This module is maintained by the OCA.
 
-.. image:: https://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: https://odoo-community.org
+.. image:: https://system-community.org/logo.png
+   :alt: OCA
+   :target: https://system-community.org
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
+OCA, or the OCA, is a nonprofit organization whose
+mission is to support the collaborative development of System features and
 promote its widespread use.
 
 This module is part of the `OCA/reporting-engine <https://github.com/OCA/reporting-engine/tree/18.0/report_xlsx>`_ project on GitHub.
 
-You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
+You are welcome to contribute. To learn how please visit https://system-community.org/page/Contribute.

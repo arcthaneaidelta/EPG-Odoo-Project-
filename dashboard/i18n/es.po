@@ -1,0 +1,280 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* dashboard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-21 21:07+0000\n"
+"PO-Revision-Date: 2026-05-21 21:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Alerts"
+msgstr "Alertas"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Balance"
+msgstr "Saldo"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Client KPIs"
+msgstr "KPI de Clientes"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Commercial KPIs"
+msgstr "KPI Comerciales"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Conversion Rate by Origin"
+msgstr "Tasa de Conversión por Origen"
+
+#. module: dashboard
+#: model:ir.actions.client,name:dashboard.action_dashboard
+#: model:ir.ui.menu,name:dashboard.menu_dashboard_custom
+msgid "Dashboard"
+msgstr "Tablero"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Expenses"
+msgstr "Gastos"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Export Excel"
+msgstr "Exportar Excel"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Export PDF"
+msgstr "Exportar PDF"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Financial KPIs"
+msgstr "KPI Financieros"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "From"
+msgstr "Desde"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Income"
+msgstr "Ingresos"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Income vs. Expenses"
+msgstr "Ingresos vs. Gastos"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Leads"
+msgstr "Clientes Potenciales"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Leads vs Won"
+msgstr "Potenciales vs Ganados"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "No alerts right now."
+msgstr "No hay alertas en este momento."
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "No client revenue data for this date range."
+msgstr "No hay datos de ingresos por cliente para este rango de fechas."
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "No historical movement data for this period."
+msgstr "No hay datos de movimiento histórico para este período."
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "No lead origin data available."
+msgstr "No hay datos de origen de clientes potenciales disponibles."
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "No recent activity found."
+msgstr "No se encontró actividad reciente."
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Open Alerts"
+msgstr "Alertas Abiertas"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Origin"
+msgstr "Origen"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Overview"
+msgstr "Resumen General"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Page scroll controls"
+msgstr "Controles de desplazamiento de página"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Pipeline flow"
+msgstr "Flujo de pipeline"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Rate"
+msgstr "Tasa"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Recent Activity"
+msgstr "Actividad Reciente"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Recent Events"
+msgstr "Eventos Recientes"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Refresh"
+msgstr "Actualizar"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Revenue KPIs"
+msgstr "KPI de Ingresos"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Sales"
+msgstr "Ventas"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Scroll down"
+msgstr "Desplazar hacia abajo"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Scroll up"
+msgstr "Desplazar hacia arriba"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Search"
+msgstr "Buscar"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Search leads, clients, orders, invoices"
+msgstr "Buscar clientes potenciales, clientes, pedidos, facturas"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Sections"
+msgstr "Secciones"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "To"
+msgstr "Hasta"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Top Clients"
+msgstr "Mejores Clientes"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Top Clients Ranking (by revenue)"
+msgstr "Ranking de Mejores Clientes (por ingresos)"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Total Leads"
+msgstr "Total de Potenciales"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Total Won"
+msgstr "Total Ganados"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Updating dashboard KPIs..."
+msgstr "Actualizando KPI del tablero..."
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "Won"
+msgstr "Ganados"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
+msgid "days"
+msgstr "días"

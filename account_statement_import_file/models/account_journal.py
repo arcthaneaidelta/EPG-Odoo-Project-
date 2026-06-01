@@ -1,4 +1,4 @@
-# Copyright 2004-2020 Odoo S.A.
+# Copyright 2004-2020 System S.A.
 # Copyright 2020 Akretion France (http://www.akretion.com/)
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # Licence LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).

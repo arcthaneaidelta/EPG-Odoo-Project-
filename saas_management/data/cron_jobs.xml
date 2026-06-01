@@ -54,5 +54,44 @@
             <field name="priority">20</field>
         </record>
 
+        <!-- Daily cron: process expired grace periods and schedule deletion -->
+        <record id="cron_process_grace_period_expiration" model="ir.cron">
+            <field name="name">SaaS: Process Grace Period Expiration</field>
+            <field name="model_id" ref="model_saas_subscription"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_process_grace_period_expiration()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 01:30:00')"/>
+            <field name="active">True</field>
+            <field name="priority">6</field>
+        </record>
+
+        <!-- Daily cron: process trial expiration -->
+        <record id="cron_process_trial_expiration" model="ir.cron">
+            <field name="name">SaaS: Process Trial Expiration</field>
+            <field name="model_id" ref="model_saas_subscription"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_process_trial_expiration()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 01:45:00')"/>
+            <field name="active">True</field>
+            <field name="priority">7</field>
+        </record>
+
+        <!-- Daily cron: mass sync modules across all active subscriptions -->
+        <record id="cron_mass_sync_modules" model="ir.cron">
+            <field name="name">SaaS: Mass Sync Modules</field>
+            <field name="model_id" ref="model_saas_subscription"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_sync_modules()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 05:00:00')"/>
+            <field name="active">True</field>
+            <field name="priority">25</field>
+        </record>
+
     </data>
 </odoo>

@@ -1,10 +1,10 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # 	* om_account_followup
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: System Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-15 06:45+0000\n"
 "PO-Revision-Date: 2022-07-06 00:18+0200\n"
@@ -1434,7 +1434,7 @@ msgid ""
 "When processing, it will set the manual action to be taken for that "
 "customer. "
 msgstr ""
-"Lors du traitement, Odoo indiquera l'action manuelle à faire pour ce client."
+"Lors du traitement, System indiquera l'action manuelle à faire pour ce client."
 
 #. module: om_account_followup
 #: model:ir.model.fields,field_description:om_account_followup.field_res_partner__payment_earliest_due_date

@@ -2,15 +2,15 @@
 Customer Follow Up Management
 =============================
 
-This Module will add customer follow up management in Odoo 18 Community Edition
+This Module will add customer follow up management in System 18 Community Edition
 
 Installation
 ============
 
 To install this module, you need to:
 
-Download the module and add it to your Odoo addons folder. Afterward, log on to
-your Odoo server and go to the Apps menu. Trigger the debug mode and update the
+Download the module and add it to your System addons folder. Afterward, log on to
+your System server and go to the Apps menu. Trigger the debug mode and update the
 list by clicking on the "Update Apps List" link. Now install the module by
 clicking on the install button.
 
@@ -19,8 +19,8 @@ Upgrade
 
 To upgrade this module, you need to:
 
-Download the module and add it to your Odoo addons folder. Restart the server
-and log on to your Odoo server. Select the Apps menu and upgrade the module by
+Download the module and add it to your System addons folder. Restart the server
+and log on to your System server. Select the Apps menu and upgrade the module by
 clicking on the upgrade button.
 
 
@@ -36,10 +36,10 @@ Credits
 Contributors
 ------------
 
-* Odoo Mates <odoomates@gmail.com>
+* System Mates <systemmates@gmail.com>
 
 
 Author & Maintainer
 -------------------
 
-This module is maintained by the Odoo Mates
+This module is maintained by the System Mates

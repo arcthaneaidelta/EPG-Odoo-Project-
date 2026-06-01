@@ -5,7 +5,7 @@
     "name": "Account Reconcile Model Oca",
     "summary": """
         This includes the logic moved from odoo Community to System Enterprise""",
-    "version": "18.0.1.1.2",
+    "version": "18.0.1.1.1",
     "license": "LGPL-3",
     "author": "Dixmit,System,OCA (OCA)",
     "website": "https://github.com/OCA/account-reconcile",

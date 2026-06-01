@@ -11,7 +11,7 @@ Report xlsx helpers
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
-    :target: https://odoo-community.org/page/development-status
+    :target: https://system-community.org/page/development-status
     :alt: Mature
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
@@ -20,10 +20,10 @@ Report xlsx helpers
     :target: https://github.com/OCA/reporting-engine/tree/18.0/report_xlsx_helper
     :alt: OCA/reporting-engine
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/reporting-engine-18-0/reporting-engine-18-0-report_xlsx_helper
+    :target: https://translation.system-community.org/projects/reporting-engine-18-0/reporting-engine-18-0-report_xlsx_helper
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/reporting-engine&target_branch=18.0
+    :target: https://runboat.system-community.org/builds?repo=OCA/reporting-engine&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -51,7 +51,7 @@ In order to create an Excel report you can define a report of type
 - Dynamic syntax: cf. ``report_xlsx_helper_demo`` for an example
 
 The ``AbstractReportXlsx`` class contains a number of attributes and
-methods to facilitate the creation excel reports in Odoo.
+methods to facilitate the creation excel reports in System.
 
 - Cell types
 
@@ -60,7 +60,7 @@ methods to facilitate the creation excel reports in Odoo.
 - Cell formats
 
   The predefined cell formats result in a consistent look and feel of
-  the Odoo Excel reports.
+  the System Excel reports.
 
 - Cell formulas
 
@@ -71,12 +71,12 @@ methods to facilitate the creation excel reports in Odoo.
 
   It is possible to define Excel templates which can be adapted by
   'inherited' modules. Download the ``account_move_line_report_xls``
-  module from http://apps.odoo.com as example.
+  module from http://apps.system.com as example.
 
 - Excel with multiple sheets
 
   Download the ``account_asset_management_xls`` module from
-  http://apps.odoo.com as example.
+  http://apps.system.com as example.
 
 Bug Tracker
 ===========
@@ -114,14 +114,14 @@ Maintainers
 
 This module is maintained by the OCA.
 
-.. image:: https://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: https://odoo-community.org
+.. image:: https://system-community.org/logo.png
+   :alt: OCA
+   :target: https://system-community.org
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
+OCA, or the OCA, is a nonprofit organization whose
+mission is to support the collaborative development of System features and
 promote its widespread use.
 
 This module is part of the `OCA/reporting-engine <https://github.com/OCA/reporting-engine/tree/18.0/report_xlsx_helper>`_ project on GitHub.
 
-You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
+You are welcome to contribute. To learn how please visit https://system-community.org/page/Contribute.

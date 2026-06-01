@@ -33,6 +33,7 @@
                         <!-- Renew/Upgrade moved to Portal -->
 
                         <button name="action_open_tenant" string="Open Tenant" type="object" class="oe_highlight" invisible="state not in ('active', 'suspended')"/>
+                        <button name="action_sync_modules" string="Sync Modules" type="object" invisible="state not in ('active', 'trial')" help="Install any missing modules based on the current plan and settings"/>
                         <button name="action_cancel_subscription" string="Cancel" type="object" invisible="state not in ('active', 'suspended')"/>
                         <button name="action_reactivate_subscription" string="Reactivate" type="object" class="oe_highlight" invisible="state != 'grace_period'"/>
                         <button name="action_suspend_subscription" string="Suspend" type="object" invisible="state != 'active'"/>
@@ -58,6 +59,8 @@
                                 <field name="subdomain" readonly="1"/>
                                 <field name="tenant_url" widget="url" readonly="1"/>
                                 <field name="activation_date" readonly="1"/>
+                                <field name="trial_start_date" invisible="not trial_start_date"/>
+                                <field name="trial_end_date" invisible="not trial_end_date"/>
                                 <field name="expiration_date"/>
                                 <field name="next_billing_date"/>
                             </group>
@@ -132,6 +135,19 @@
                   parent="menu_saas_subscriptions"
                   action="action_saas_subscription"
                   sequence="10"/>
+
+        <!-- Server Action for Mass Syncing Modules -->
+        <record id="action_mass_sync_modules" model="ir.actions.server">
+            <field name="name">Sync Modules</field>
+            <field name="model_id" ref="saas_management.model_saas_subscription"/>
+            <field name="binding_model_id" ref="saas_management.model_saas_subscription"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    action = records.action_mass_sync_modules()
+            </field>
+        </record>
 
     </data>
 </odoo>

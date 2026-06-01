@@ -72,7 +72,7 @@ class TestAccountStatementImportFile(common.TransactionCase):
                 "1111111111", self.eur_currency
             )
 
-        # ERROR: The bank account with number '%(account_number)s' exists in Odoo
+        # ERROR: The bank account with number '%(account_number)s' exists in the system
         # but it is not set on any bank journal. You should
         # set it on the related bank journal. If the related
         # bank journal doesn't exist yet, you should create
@@ -125,7 +125,7 @@ class TestAccountStatementImportFile(common.TransactionCase):
             import_wizard.import_single_statement(vals, result)
 
         # ERROR: The bank statement file uses currency '%s' but there is no
-        # such currency in Odoo."
+        # such currency in the system."
         vals = (
             "NOK",
             "2910907154",

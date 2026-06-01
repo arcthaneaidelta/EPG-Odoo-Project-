@@ -1,0 +1,435 @@
+/* =============================================================
+   CRM Kanban Theme — Odoo 18 CE
+   Dark mode  → [data-bs-theme="dark"]  .o_crm_kanban_dark
+   Light mode → [data-bs-theme="light"] .o_crm_kanban_dark
+   ============================================================= */
+
+/* Hide the original Odoo progress bar */
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_counter,
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_counter {
+    display: none !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .crm_revenue_line,
+[data-bs-theme="light"] .o_crm_kanban_dark .crm_revenue_line {
+    display: none !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .crm_partner_line,
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .crm_partner_line {
+    display: block !important;
+    margin-top: 3px;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header::after {
+    content: '';
+    display: block;
+    height: 2px;
+    margin: 10px 0 4px;
+    background: linear-gradient(90deg, #00b8d4 0%, #f59e0b 55%, #10b981 100%);
+    border-radius: 2px;
+    opacity: 0.85;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record [name="user_id"] .o_avatar img,
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record [name="user_id"] .o_avatar img {
+    border: 2px solid #10b981 !important;
+    border-radius: 6px !important;
+}
+
+.o-mail-DiscussSystray-class .fa-comments::before {
+    content: '\f075' !important; /* fa-comment */
+}
+.fa-clock-o[aria-label="Activities"]::before {
+    content: '\f0ae' !important; /* fa-tasks */
+}
+
+/* ===============================================================
+   DARK THEME
+   =============================================================== */
+
+/* 1. Board background */
+[data-bs-theme="dark"] .o_crm_kanban_dark.o_kanban_renderer,
+[data-bs-theme="dark"] .o_kanban_renderer.o_crm_kanban_dark {
+    background: linear-gradient(160deg, #0d1b3e 0%, #0a1628 60%, #061020 100%);
+    min-height: 100vh;
+    padding: 20px 12px;
+    gap: 14px;
+    
+}
+
+
+/* 2. Stage columns */
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group {
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    margin: 0 6px !important;
+    padding: 0 !important;
+    min-width: 295px;
+    max-width: 330px;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark.o_crm_kanban_dark .o_kanban_group {
+    background: linear-gradient(160deg, #0a295a 0%, #092042 50%, #0a295a 100%) !important;
+}
+
+
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header {
+    background: transparent !important;
+    border-bottom: none !important;
+    padding: 16px 16px 0 16px !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header_title .o_column_title,
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_column_title {
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.10em !important;
+    text-transform: uppercase !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header_title {
+    border-bottom: none !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header::after {
+    content: '';
+    display: block;
+    height: 2px;
+    margin: 10px 0 4px;
+    background: linear-gradient(90deg, #00b8d4 0%, #f59e0b 55%, #10b981 100%);
+    border-radius: 2px;
+    opacity: 0.85;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header .o_kanban_header_count,
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header small,
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_counter {
+    color: rgba(255, 255, 255, 0.50) !important;
+    font-size: 12px !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header .o_kanban_progressbar {
+    display: none !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_quick_add button,
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_column_quick_create {
+    color: #00d4f5 !important;
+    background: rgba(0, 212, 245, 0.08) !important;
+    border: 1px solid rgba(0, 212, 245, 0.28) !important;
+    border-radius: 6px !important;
+    transition: background 0.18s;
+}
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_quick_add button:hover {
+    background: rgba(0, 212, 245, 0.18) !important;
+}
+
+/* 3. Cards container — gap gives vertical spacing between cards */
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_record_container {
+    padding: 10px 10px 16px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 4. Individual card */
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record {
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    overflow: hidden;
+    width: 93.5% !important;
+    margin: 10px 10px 10px 10px !important;}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark.o_crm_kanban_dark .o_kanban_record {
+    background: linear-gradient(135deg, #152857 0%, #072757 50%, #072757 100%) !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55) !important;
+    border-color: rgba(0, 212, 245, 0.22) !important;
+}
+
+/* 5. Card content colours — dark */
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record [name="name"] span,
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .crm_lead_title {
+    color: #e2ecf8 !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .crm_revenue_line,
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .crm_revenue_line .o_field_monetary {
+    color: #38bdf8 !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record [name="partner_id"],
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record [name="partner_id"] a {
+    color: rgba(180, 200, 235, 0.60) !important;
+    text-decoration: none !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .o_priority .o_priority_star {
+    color: #f59e0b !important;
+}
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .o_priority .o_priority_star.fa-star-o {
+    color: rgba(200, 210, 230, 0.25) !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .o_activity_btn,
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .o_field_activity {
+    color: rgba(180, 200, 235, 0.65) !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record footer.crm_card_footer,
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .o_kanban_record_bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .o_status.o_status_green { background: #10b981 !important; }
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .o_status.o_status_red   { background: #ef4444 !important; }
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record .o_status                { background: rgba(255,255,255,0.2) !important; }
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group .o_kanban_load_more {
+    color: #00d4f5 !important;
+    background: transparent !important;
+    border: 1px solid rgba(0, 212, 245, 0.22) !important;
+    border-radius: 8px !important;
+    margin: 0 10px 12px;
+    width: calc(100% - 20px);
+    font-size: 12px !important;
+}
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_record.o_dragged { opacity: 0.35; }
+
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group::-webkit-scrollbar { width: 3px; }
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group::-webkit-scrollbar-track { background: transparent; }
+[data-bs-theme="dark"] .o_crm_kanban_dark .o_kanban_group::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.12);
+    border-radius: 3px;
+}
+
+
+/* ===============================================================
+   LIGHT THEME
+   =============================================================== */
+
+/* 1. Board background */
+[data-bs-theme="light"] .o_crm_kanban_dark.o_kanban_renderer,
+[data-bs-theme="light"] .o_kanban_renderer.o_crm_kanban_dark {
+    background: #eef1f7;
+    min-height: 100vh;
+    padding: 20px 12px;
+    gap: 14px;
+}
+
+/* 2. Stage columns */
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group {
+    background: #ffffff !important;
+    border: 1px solid #dde3ed !important;
+    border-radius: 14px !important;
+    margin: 0 6px !important;
+    padding: 0 !important;
+    min-width: 295px;
+    max-width: 330px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header {
+    background: transparent !important;
+    border-bottom: none !important;
+    padding: 16px 16px 0 16px !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header_title .o_column_title,
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_column_title {
+    color: #1a2540 !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.10em !important;
+    text-transform: uppercase !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header_title {
+    border-bottom: none !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header::after {
+    content: '';
+    display: block;
+    height: 2px;
+    margin: 10px 0 4px;
+    background: linear-gradient(90deg, #0ea5e9 0%, #f59e0b 55%, #10b981 100%);
+    border-radius: 2px;
+    opacity: 0.9;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header .o_kanban_header_count,
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header small,
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_counter {
+    color: #7a8aaa !important;
+    font-size: 12px !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_header .o_kanban_progressbar {
+    display: none !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_quick_add button,
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_column_quick_create {
+    color: #0ea5e9 !important;
+    background: rgba(14, 165, 233, 0.07) !important;
+    border: 1px solid rgba(14, 165, 233, 0.30) !important;
+    border-radius: 6px !important;
+    transition: background 0.18s;
+}
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_quick_add button:hover {
+    background: rgba(14, 165, 233, 0.15) !important;
+}
+
+/* 3. Cards container — gap = vertical spacing between cards */
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_record_container {
+    padding: 10px 10px 16px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 4. Individual card */
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record {
+    background: #f7f9fc !important;
+    border: 1px solid #dde3ed !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    overflow: hidden;
+    width: 93.5% !important;
+    margin: 10px 10px 10px 10px !important;}
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.12) !important;
+    border-color: #0ea5e9 !important;
+}
+
+/* 5. Card content colours — light */
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record [name="name"] span,
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .crm_lead_title {
+    color: #1a2540 !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .crm_revenue_line,
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .crm_revenue_line .o_field_monetary {
+    color: #0369a1 !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record [name="partner_id"],
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record [name="partner_id"] a {
+    color: #5c6f8a !important;
+    text-decoration: none !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .o_priority .o_priority_star {
+    color: #f59e0b !important;
+}
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .o_priority .o_priority_star.fa-star-o {
+    color: #d1d9e6 !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .o_activity_btn,
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .o_field_activity {
+    color: #7a8aaa !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record footer.crm_card_footer,
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .o_kanban_record_bottom {
+    border-top: 1px solid #e8edf5 !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .o_status.o_status_green { background: #10b981 !important; }
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .o_status.o_status_red   { background: #ef4444 !important; }
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record .o_status                { background: #c8d3e6 !important; }
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group .o_kanban_load_more {
+    color: #0ea5e9 !important;
+    background: transparent !important;
+    border: 1px solid rgba(14, 165, 233, 0.28) !important;
+    border-radius: 8px !important;
+    margin: 0 10px 12px;
+    width: calc(100% - 20px);
+    font-size: 12px !important;
+}
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_record.o_dragged { opacity: 0.4; }
+
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group::-webkit-scrollbar { width: 3px; }
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group::-webkit-scrollbar-track { background: transparent; }
+[data-bs-theme="light"] .o_crm_kanban_dark .o_kanban_group::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.10);
+    border-radius: 3px;
+}
+
+
+/* ===============================================================
+   SHARED — accent bar & card body structure (theme-independent)
+   =============================================================== */
+
+.crm_card_accent_bar {
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg, #00b8d4 0%, #00b8d4 33%, #f59e0b 33%, #f59e0b 66%, #10b981 66%, #10b981 100%);
+    border-radius: 12px 12px 0 0;
+    flex-shrink: 0;
+}
+
+.crm_card_body {
+    padding: 12px 14px 10px !important;
+}
+
+.crm_card_body [name="name"] span {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 1.35 !important;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.crm_revenue_line {
+    font-size: 12px !important;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.crm_card_body [name="partner_id"] {
+    font-size: 12px !important;
+}
+
+.crm_card_body .o_field_many2many_tags .badge {
+    font-size: 10px !important;
+}
+
+footer.crm_card_footer,
+.o_crm_kanban_dark .o_kanban_record .o_kanban_record_bottom {
+    padding-top: 8px !important;
+    margin-top: 8px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.o_crm_kanban_dark .o_kanban_record .o_priority .o_priority_star {
+    font-size: 13px !important;
+}
+
+.o_crm_kanban_dark .o_kanban_record .o_m2o_avatar img,
+.o_crm_kanban_dark .o_kanban_record .o_many2one_avatar img {
+    border-radius: 50%;
+}

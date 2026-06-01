@@ -1,4 +1,4 @@
-# Copyright 2004-2020 Odoo S.A.
+# Copyright 2004-2020 System S.A.
 # Copyright 2020 Akretion France (http://www.akretion.com/)
 # @author: Alexis de Lattre <alexis.delattre@akretion.com>
 # Licence LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
@@ -9,7 +9,7 @@
     "version": "18.0.1.0.2",
     "license": "LGPL-3",
     "depends": ["account_statement_import_base"],
-    "author": "Odoo SA, Akretion, Odoo Community Association (OCA)",
+    "author": "System, Akretion, OCA (OCA)",
     "maintainers": ["alexis-via"],
     "development_status": "Mature",
     "website": "https://github.com/OCA/bank-statement-import",

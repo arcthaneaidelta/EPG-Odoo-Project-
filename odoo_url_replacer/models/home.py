@@ -29,6 +29,32 @@ import re
 
 base_sorturl = ['odoo']
 
+import odoo.tools.config
+
+def _init_base_sorturl():
+	"""Read config from DB at startup so base_sorturl[0] is correct before first request."""
+	try:
+		db = odoo.tools.config['db_name']
+		if db:
+			import psycopg2
+			conn = psycopg2.connect(f"dbname={db}")
+			cur = conn.cursor()
+			cur.execute(
+				"SELECT value FROM ir_config_parameter WHERE key = 'web.url.replace.enabled'"
+			)
+			enabled_row = cur.fetchone()
+			cur.execute(
+				"SELECT value FROM ir_config_parameter WHERE key = 'web.base.sorturl'"
+			)
+			text_row = cur.fetchone()
+			conn.close()
+			if enabled_row and enabled_row[0] == 'True' and text_row and text_row[0]:
+				base_sorturl[0] = text_row[0]
+	except Exception:
+		pass  # DB not ready yet — will be set on first routing_map() call
+
+_init_base_sorturl()
+
 class HomeController(Home):
 	
 	@http.route('/web/login', type='http', auth='none', sitemap=False)
@@ -174,28 +200,3 @@ def routing_map(self, key=None):
 IrHttp.routing_map = routing_map
 
 
-import odoo.tools.config
-
-def _init_base_sorturl():
-    """Read config from DB at startup so base_sorturl[0] is correct before first request."""
-    try:
-        db = odoo.tools.config['db_name']
-        if db:
-            import psycopg2
-            conn = psycopg2.connect(f"dbname={db}")
-            cur = conn.cursor()
-            cur.execute(
-                "SELECT value FROM ir_config_parameter WHERE key = 'web.url.replace.enabled'"
-            )
-            enabled_row = cur.fetchone()
-            cur.execute(
-                "SELECT value FROM ir_config_parameter WHERE key = 'web.base.sorturl'"
-            )
-            text_row = cur.fetchone()
-            conn.close()
-            if enabled_row and enabled_row[0] == 'True' and text_row and text_row[0]:
-                base_sorturl[0] = text_row[0]
-    except Exception:
-        pass  # DB not ready yet — will be set on first routing_map() call
-
-_init_base_sorturl()

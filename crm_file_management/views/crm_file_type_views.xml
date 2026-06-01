@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_crm_file_type_form" model="ir.ui.view">
+        <field name="name">crm.file.type.form</field>
+        <field name="model">crm.file.type</field>
+        <field name="arch" type="xml">
+            <form string="Workspace">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="action_view_files" icon="fa-folder-open">
+                            <field string="Cases" name="file_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="e.g. Law Suits"/>
+                        </h1>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_crm_file_type_kanban" model="ir.ui.view">
+        <field name="name">crm.file.type.kanban</field>
+        <field name="model">crm.file.type</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_dashboard o_emphasize_colors" action="action_view_files" type="object">
+                <field name="name"/>
+                <field name="color"/>
+                <field name="file_count"/>
+                <templates>
+                    <t t-name="kanban-menu">
+                        <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Settings</a></t>
+                        <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                        <field name="color" widget="kanban_color_picker"/>
+                    </t>
+                    <t t-name="card">
+                        <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click p-0 border-0 rounded-4 shadow-sm overflow-hidden d-flex flex-column h-100 o_workspace_card">
+                            <!-- Top Header Area -->
+                            <div class="px-4 py-3 d-flex align-items-center justify-content-between border-bottom border-light" style="background-color: rgba(255, 255, 255, 0.4);">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="d-flex align-items-center justify-content-center rounded-3 shadow-sm text-white" style="width: 42px; height: 42px; background-color: #112249;">
+                                        <i class="fa fa-briefcase fa-lg"/>
+                                    </div>
+                                    <span class="fs-4 fw-bold text-dark text-truncate"><field name="name"/></span>
+                                </div>
+                            </div>
+                            
+                            <!-- Body Area -->
+                            <div class="px-4 py-4 flex-grow-1 bg-white">
+                                <a name="action_view_files" type="object" class="text-decoration-none">
+                                    <div class="d-flex flex-column justify-content-center align-items-center p-3 rounded-4 bg-light hover-shadow transition-base h-100 border border-light">
+                                        <span class="fs-1 fw-bold" style="color: #112249;"><field name="file_count"/></span>
+                                        <span class="fw-medium text-uppercase small mt-1" style="color: rgba(17, 34, 73, 0.7); letter-spacing: 1px;">Active Cases</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_crm_file_type" model="ir.actions.act_window">
+        <field name="name">Workspaces</field>
+        <field name="res_model">crm.file.type</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Workspace
+            </p>
+            <p>
+                Group your case files into workspaces (e.g., Law Suits, Training).
+            </p>
+        </field>
+    </record>
+</odoo>

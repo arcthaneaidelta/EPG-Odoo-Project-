@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Real Estate Groups -->
+    <record id="group_real_estate_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="base.module_category_sales_sales"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_real_estate_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="base.module_category_sales_sales"/>
+        <field name="implied_ids" eval="[(4, ref('group_real_estate_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <!-- Multi-tenant Record Rules -->
+    <!-- Properties -->
+    <record id="real_estate_property_comp_rule" model="ir.rule">
+        <field name="name">Real Estate Property Multi-Company</field>
+        <field name="model_id" ref="model_real_estate_property"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- Rental Contracts -->
+    <record id="real_estate_rental_contract_comp_rule" model="ir.rule">
+        <field name="name">Rental Contract Multi-Company</field>
+        <field name="model_id" ref="model_real_estate_rental_contract"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- Visits -->
+    <record id="real_estate_visit_comp_rule" model="ir.rule">
+        <field name="name">Real Estate Visit Multi-Company</field>
+        <field name="model_id" ref="model_real_estate_visit"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- Commissions -->
+    <record id="real_estate_commission_comp_rule" model="ir.rule">
+        <field name="name">Real Estate Commission Multi-Company</field>
+        <field name="model_id" ref="model_real_estate_commission"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- Property Types (global, no company restriction) -->
+    <record id="real_estate_property_type_rule" model="ir.rule">
+        <field name="name">Property Type Global Access</field>
+        <field name="model_id" ref="model_real_estate_property_type"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+</odoo>

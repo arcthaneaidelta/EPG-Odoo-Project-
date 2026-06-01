@@ -50,6 +50,7 @@ class SaaSSubscription(models.Model):
 	# Subscription Status
 	state = fields.Selection([
 		('pending', 'Pending Provisioning'),
+		('trial', 'Trial'),
 		('active', 'Active'),
 		('suspended', 'Suspended'),
 		('grace_period', 'Grace Period'),
@@ -57,6 +58,10 @@ class SaaSSubscription(models.Model):
 		('deleted', 'Deleted'),
 		('error', 'Error'),
 	], string='Status', default='pending', required=True, tracking=True)
+	
+	# Trial
+	trial_start_date = fields.Datetime(string='Trial Start Date', readonly=True)
+	trial_end_date = fields.Datetime(string='Trial End Date', readonly=True)
 	
 	# Dates
 	
@@ -243,15 +248,115 @@ class SaaSSubscription(models.Model):
 
 
 		# ────────────────────────────────────────────────────────────────────
+		
 		order.message_subscribe(partner_ids=[self.partner_id.id])
 		order.write({'state': 'sent'})  # Visible in portal
-
+		
 		return {
 			'type': 'ir.actions.act_window',
 			'res_model': 'sale.order',
 			'res_id': order.id,
 			'view_mode': 'form',
 			'target': 'current',
+		}
+	def action_sync_modules(self):
+		"""Install missing modules based on the subscription plan and configuration"""
+		self.ensure_one()
+		if not self.database_name or self.state not in ('active', 'trial'):
+			raise UserError(_('Database is not active.'))
+			
+		# 1. Get expected modules
+		prov_service = self.env['saas.provisioning.service']
+		expected_modules = prov_service._get_modules_for_plan(self)
+		
+		# 2. Install them
+		if expected_modules:
+			db_service = self.env['saas.database.service']
+			try:
+				db_service.install_modules(self.database_name, expected_modules)
+				self.message_post(body=_("Modules synchronized successfully: %s") % ", ".join(expected_modules))
+				return {
+					'type': 'ir.actions.client',
+					'tag': 'display_notification',
+					'params': {
+						'title': _('Success'),
+						'message': _('Modules have been successfully installed/synchronized on the tenant database.'),
+						'type': 'success',
+						'sticky': False,
+					}
+				}
+			except Exception as e:
+				raise UserError(_("Failed to sync modules: %s") % str(e))
+
+	@api.model
+	def _cron_sync_modules(self):
+		"""Cron job to automatically sync modules for all active databases"""
+		active_subs = self.search([('state', 'in', ('active', 'trial')), ('database_name', '!=', False)])
+		if not active_subs:
+			return
+			
+		import odoo
+		import logging
+		_logger = logging.getLogger('cron_mass_sync')
+		
+		db_name = self.env.cr.dbname
+		try:
+			registry = odoo.registry(db_name)
+			with registry.cursor() as cr:
+				env = api.Environment(cr, odoo.SUPERUSER_ID, {})
+				subs = env['saas.subscription'].browse(active_subs.ids)
+				for sub in subs:
+					try:
+						expected_modules = env['saas.provisioning.service']._get_modules_for_plan(sub)
+						if expected_modules:
+							env['saas.database.service'].install_modules(sub.database_name, expected_modules)
+					except Exception as e:
+						_logger.error(f"Cron failed to sync {sub.database_name}: {e}")
+		except Exception as e:
+			_logger.error(f"Cron thread failed: {e}")
+
+	def action_mass_sync_modules(self):
+		"""Trigger module sync for multiple subscriptions in the background"""
+		active_subs = self.filtered(lambda s: s.database_name and s.state in ('active', 'trial'))
+		if not active_subs:
+			return {'type': 'ir.actions.client', 'tag': 'display_notification', 'params': {'message': 'No valid active databases selected.', 'type': 'warning'}}
+		
+		# Define background thread
+		def sync_thread(subscription_ids, db_name):
+			import odoo
+			from odoo import api
+			import logging
+			_logger = logging.getLogger('mass_sync')
+			try:
+				registry = odoo.registry(db_name)
+				with registry.cursor() as cr:
+					env = api.Environment(cr, odoo.SUPERUSER_ID, {})
+					subs = env['saas.subscription'].browse(subscription_ids)
+					for sub in subs:
+						_logger.info(f"Background syncing modules for {sub.database_name}")
+						try:
+							expected_modules = env['saas.provisioning.service']._get_modules_for_plan(sub)
+							if expected_modules:
+								env['saas.database.service'].install_modules(sub.database_name, expected_modules)
+								sub.message_post(body=f"Background Sync: Modules synchronized successfully.")
+						except Exception as e:
+							_logger.error(f"Failed to sync {sub.database_name}: {e}")
+			except Exception as e:
+				_logger.error(f"Thread failed: {e}")
+
+		import threading
+		thread = threading.Thread(target=sync_thread, args=(active_subs.ids, self.env.cr.dbname))
+		thread.start()
+
+		return {
+			'type': 'ir.actions.client',
+			'tag': 'display_notification',
+			'params': {
+				'title': _('Mass Sync Started'),
+				'message': _('Modules are being synchronized for %d databases in the background.') % len(active_subs),
+				'type': 'success',
+				'sticky': False,
+			}
 		}
 
 	def _create_renewal_line(self, order, product, qty=1):
@@ -373,6 +478,20 @@ class SaaSSubscription(models.Model):
 			sub.message_post(body=_("Grace period ended. Subscription suspended."))
 			# TODO: Send email
 
+	@api.model
+	def _cron_process_trial_expiration(self):
+		"""Process trial expiration (Trial -> Suspended)"""
+		print("Process trial expiration (Trial -> Suspended)Process trial expiration (Trial -> Suspended)")
+		now = fields.Datetime.now()
+		print(now)
+		expired_trials = self.search([
+			('state', '=', 'trial'),
+			('trial_end_date', '<', now)
+		])
+		print(expired_trials)
+		for sub in expired_trials:
+			sub.action_suspend_subscription()
+			sub.message_post(body=_("7-Day Free Trial ended. Database suspended until subscription is paid."))
 
 	@api.model
 	def create(self, vals):
@@ -590,12 +709,13 @@ class SaaSSubscription(models.Model):
 	
 	@api.model
 	def _cron_process_grace_period_expiration(self):
-		"""Cron job to process expired grace periods"""
+		"""Cron job to process suspended subscriptions and delete them after 7 days"""
 		now = fields.Datetime.now()
+		deletion_limit = now - timedelta(days=7)
 		
 		expired_subscriptions = self.search([
-			('state', '=', 'grace_period'),
-			('grace_period_end', '<=', now)
+			('state', '=', 'suspended'),
+			('grace_period_end', '<=', deletion_limit)
 		])
 		
 		for subscription in expired_subscriptions:

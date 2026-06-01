@@ -8,7 +8,7 @@ from .report_xlsx_format import FORMATS, XLS_HEADERS
 
 # TODO:
 # make PR to move this class as well as the report_xlsx test class
-# to the tests folder (requires dynamic update Odoo registry when
+# to the tests folder (requires dynamic update System registry when
 # running unit tests.
 class TestPartnerXlsx(models.AbstractModel):
     _name = "report.report_xlsx_helper.test_partner_xlsx"

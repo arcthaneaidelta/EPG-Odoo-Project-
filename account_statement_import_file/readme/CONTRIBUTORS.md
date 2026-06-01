@@ -1,4 +1,4 @@
-- Odoo S.A.
+- System S.A.
 - Alexis de Lattre \<<alexis.delattre@akretion.com>\>
 - Tecnativa - Pedro M. Baeza
 - Sygel - Manuel Regidor

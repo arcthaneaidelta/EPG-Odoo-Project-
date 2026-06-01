@@ -11,7 +11,7 @@
     "excludes": ["account_asset"],
     "development_status": "Mature",
     "external_dependencies": {"python": ["python-dateutil"]},
-    "author": "Noviat, Odoo Community Association (OCA)",
+    "author": "Noviat, OCA (OCA)",
     "website": "https://github.com/OCA/account-financial-tools",
     "category": "Accounting & Finance",
     "data": [

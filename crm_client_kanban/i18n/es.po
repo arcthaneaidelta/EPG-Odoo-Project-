@@ -1,128 +1,232 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * crm_client_kanban
+# 	* crm_client_kanban
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-29 18:36+0000\n"
-"PO-Revision-Date: 2025-03-18 08:36+0000\n"
-"Last-Translator: Usman Dev <usman@example.com>\n"
-"Language-Team: Spanish\n"
-"Language: es\n"
+"POT-Creation-Date: 2026-05-21 21:07+0000\n"
+"PO-Revision-Date: 2026-05-21 21:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: crm_client_kanban
-msgid "+ New Deal"
-msgstr "+ Nuevo trato"
+#: model_terms:ir.ui.view,arch_db:crm_client_kanban.res_partner_kanban_view_dark
+msgid "<span class=\"ckd_stat_label\">Total Calls</span>"
+msgstr "<span class=\"ckd_stat_label\">Total Llamadas</span>"
 
 #. module: crm_client_kanban
+#: model_terms:ir.ui.view,arch_db:crm_client_kanban.res_partner_kanban_view_dark
+msgid "<span class=\"ckd_stat_label\">Total Invoices</span>"
+msgstr "<span class=\"ckd_stat_label\">Total Facturas</span>"
+
+#. module: crm_client_kanban
+#: model_terms:ir.ui.view,arch_db:crm_client_kanban.res_partner_kanban_view_dark
+msgid "<span class=\"ckd_stat_label\">Total Meetings</span>"
+msgstr "<span class=\"ckd_stat_label\">Total Reuniones</span>"
+
+#. module: crm_client_kanban
+#: model_terms:ir.ui.view,arch_db:crm_client_kanban.res_partner_kanban_view_dark
+msgid "<span class=\"ckd_stat_label\">Total Sales</span>"
+msgstr "<span class=\"ckd_stat_label\">Total Ventas</span>"
+
+#. module: crm_client_kanban
+#: model:ir.ui.menu,name:crm_client_kanban.menu_contacts_activities_root
 msgid "Activity"
 msgstr "Actividad"
 
 #. module: crm_client_kanban
+#: model_terms:ir.actions.act_window,help:crm_client_kanban.action_report_partner_statistics
 msgid "Analysis of your client base."
 msgstr "Análisis de su base de clientes."
 
 #. module: crm_client_kanban
-msgid "Client Statistics"
-msgstr "Estadísticas de clientes"
+#: model_terms:ir.ui.view,arch_db:crm_client_kanban.res_partner_kanban_view_dark
+msgid "Avatar"
+msgstr "Avatar"
 
 #. module: crm_client_kanban
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_partner__cif
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_users__cif
+msgid "CIF"
+msgstr "CIF"
+
+#. module: crm_client_kanban
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_partner__kanban_call_count_month
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_users__kanban_call_count_month
+msgid "Calls This Month"
+msgstr "Llamadas este mes"
+
+#. module: crm_client_kanban
+#: model:ir.actions.act_window,name:crm_client_kanban.action_report_partner_statistics
+msgid "Client Statistics"
+msgstr "Estadísticas de Clientes"
+
+#. module: crm_client_kanban
+#: model:ir.actions.act_window,name:crm_client_kanban.action_contacts_activity_management
 msgid "Commercial Activity"
 msgstr "Actividad Comercial"
 
 #. module: crm_client_kanban
-msgid "Contact History"
-msgstr "Historial de contactos"
+#: model:ir.model,name:crm_client_kanban.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
 
 #. module: crm_client_kanban
+#: model:ir.actions.act_window,name:crm_client_kanban.action_contact_history
+msgid "Contact History"
+msgstr "Historial de Contacto"
+
+#. module: crm_client_kanban
+#: model_terms:ir.ui.view,arch_db:crm_client_kanban.res_partner_kanban_view_dark
 msgid "Contact Person"
-msgstr "Persona de contacto"
+msgstr "Persona de Contacto"
 
 #. module: crm_client_kanban
 #: model:ir.actions.act_window,name:crm_client_kanban.action_contacts_dark_kanban
+#: model:ir.ui.menu,name:crm_client_kanban.menu_contacts_dark_kanban
 msgid "Contacts"
 msgstr "Contactos"
 
 #. module: crm_client_kanban
-msgid "Edit"
-msgstr "Editar"
+#: model:ir.model.fields.selection,name:crm_client_kanban.selection__res_partner__l10n_es_id_type__dni
+msgid "DNI"
+msgstr "DNI"
 
 #. module: crm_client_kanban
-msgid "False"
-msgstr "FALSO"
-
-#. module: crm_client_kanban
+#: model:ir.ui.menu,name:crm_client_kanban.menu_contact_history
 msgid "History"
-msgstr "Historia"
+msgstr "Historial"
 
 #. module: crm_client_kanban
-msgid "Manage your commercial follow-ups"
-msgstr "Gestiona tus seguimientos comerciales"
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_partner__l10n_es_id_number
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_users__l10n_es_id_number
+msgid "ID Number"
+msgstr "Número de Identificación"
 
 #. module: crm_client_kanban
-msgid "No clients found. Create your first contact!"
-msgstr "No se encontraron clientes. ¡Crea tu primer contacto!"
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_partner__l10n_es_id_type
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_users__l10n_es_id_type
+msgid "ID Type"
+msgstr "Tipo de Identificación"
 
 #. module: crm_client_kanban
-#: model:ir.actions.act_window,help:crm_client_kanban.action_contacts_dark_kanban
+#: model_terms:ir.ui.view,arch_db:crm_client_kanban.view_partner_form_id_extension
+msgid "Identification"
+msgstr "Identificación"
+
+#. module: crm_client_kanban
+#. odoo-python
+#: code:addons/crm_client_kanban/models/res_partner.py:0
 msgid ""
-"<p class=\"o_view_nocontent_smiling_face\">\n"
-"                No clients found. Create your first contact!\n"
-"            </p>\n"
-"        "
+"Invalid DNI format in ID Number: Expected 8 digits followed by a letter."
 msgstr ""
-"<p class=\"o_view_nocontent_smiling_face\">\n"
-"                No se encontraron clientes. ¡Crea tu primer contacto!\n"
-"            </p>\n"
-"        "
+"Formato de DNI inválido en Número de Identificación: Se esperaban 8 dígitos seguidos de una letra."
 
 #. module: crm_client_kanban
+#. odoo-python
+#: code:addons/crm_client_kanban/models/res_partner.py:0
+msgid ""
+"Invalid DNI: The control letter '%s' does not match for number %s. Expected "
+"'%s'."
+msgstr ""
+"DNI inválido: La letra de control '%s' no coincide con el número %s. Se esperaba "
+"'%s'."
+
+#. module: crm_client_kanban
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_partner__kanban_invoice_count_month
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_users__kanban_invoice_count_month
+msgid "Invoices This Month"
+msgstr "Facturas este mes"
+
+#. module: crm_client_kanban
+#: model_terms:ir.ui.view,arch_db:crm_client_kanban.res_partner_kanban_view_dark
+msgid "Logo"
+msgstr "Logo"
+
+#. module: crm_client_kanban
+#: model_terms:ir.actions.act_window,help:crm_client_kanban.action_contacts_activity_management
+msgid "Manage your commercial follow-ups"
+msgstr "Gestionar sus seguimientos comerciales"
+
+#. module: crm_client_kanban
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_partner__kanban_meeting_count_month
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_users__kanban_meeting_count_month
+msgid "Meetings This Month"
+msgstr "Reuniones este mes"
+
+#. module: crm_client_kanban
+#: model:ir.model.fields.selection,name:crm_client_kanban.selection__res_partner__l10n_es_id_type__nie
+msgid "NIE"
+msgstr "NIE"
+
+#. module: crm_client_kanban
+#: model_terms:ir.actions.act_window,help:crm_client_kanban.action_contacts_dark_kanban
+msgid "No clients found. Create your first contact!"
+msgstr "No se encontraron clientes. ¡Cree su primer contacto!"
+
+#. module: crm_client_kanban
+#: model_terms:ir.ui.view,arch_db:crm_client_kanban.view_partner_form_id_extension
+msgid "Number"
+msgstr "Número"
+
+#. module: crm_client_kanban
+#: model:ir.model.fields.selection,name:crm_client_kanban.selection__res_partner__l10n_es_id_type__passport
+msgid "PASSPORT"
+msgstr "PASAPORTE"
+
+#. module: crm_client_kanban
+#: model:ir.ui.menu,name:crm_client_kanban.menu_contacts_reports_root
 msgid "Reports"
 msgstr "Informes"
 
 #. module: crm_client_kanban
-msgid "Settings"
-msgstr "Ajustes"
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_partner__kanban_sales_growth
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_users__kanban_sales_growth
+msgid "Sales Growth %"
+msgstr "Crecimiento de Ventas %"
 
 #. module: crm_client_kanban
+#: model:ir.model.fields,help:crm_client_kanban.field_res_partner__l10n_es_id_type
+#: model:ir.model.fields,help:crm_client_kanban.field_res_users__l10n_es_id_type
+msgid "Spanish Identification Type (DNI/NIE/PASSPORT)"
+msgstr "Tipo de Identificación Española (DNI/NIE/PASAPORTE)"
+
+#. module: crm_client_kanban
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_partner__kanban_call_count
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_users__kanban_call_count
 msgid "Total Calls"
-msgstr "Llamadas totales"
+msgstr "Total Llamadas"
 
 #. module: crm_client_kanban
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_partner__kanban_invoice_count
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_users__kanban_invoice_count
 msgid "Total Invoices"
-msgstr "Facturas totales"
+msgstr "Total Facturas"
 
 #. module: crm_client_kanban
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_partner__kanban_meeting_count
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_users__kanban_meeting_count
 msgid "Total Meetings"
-msgstr "Total de reuniones"
+msgstr "Total Reuniones"
 
 #. module: crm_client_kanban
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_partner__kanban_total_sales
+#: model:ir.model.fields,field_description:crm_client_kanban.field_res_users__kanban_total_sales
 msgid "Total Sales"
-msgstr "Ventas totales"
+msgstr "Total Ventas"
 
 #. module: crm_client_kanban
-msgid "activity"
-msgstr "actividad"
+#: model_terms:ir.ui.view,arch_db:crm_client_kanban.view_partner_form_id_extension
+msgid "Type"
+msgstr "Tipo"
 
 #. module: crm_client_kanban
+#: model_terms:ir.ui.view,arch_db:crm_client_kanban.res_partner_kanban_view_dark
 msgid "este mes"
 msgstr "este mes"
-
-#. module: crm_client_kanban
-msgid "graph"
-msgstr "gráfico"
-
-#. module: crm_client_kanban
-msgid "kanban,list,form,activity"
-msgstr "Kanban, lista, formulario, actividad"
-
-#. module: crm_client_kanban
-msgid "list,form"
-msgstr "lista, formulario"
-

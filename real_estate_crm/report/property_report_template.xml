@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_property_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Property Information</h2>
+                        <div class="row mt32 mb32">
+                            <div class="col-6">
+                                <strong>Reference:</strong> <span t-field="o.reference"/><br/>
+                                <strong>Name:</strong> <span t-field="o.name"/><br/>
+                                <strong>Type:</strong> <span t-field="o.property_type_id"/><br/>
+                                <strong>Transaction Type:</strong> <span t-field="o.transaction_type"/><br/>
+                                <strong>Status:</strong> <span t-field="o.state"/><br/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Agent:</strong> <span t-field="o.agent_id"/><br/>
+                                <strong>Owner:</strong> <span t-field="o.owner_id"/><br/>
+                                <t t-if="o.transaction_type in ['sale', 'both']">
+                                    <strong>Sale Price:</strong> <span t-field="o.price" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/><br/>
+                                </t>
+                                <t t-if="o.transaction_type in ['rent', 'both']">
+                                    <strong>Rental Price:</strong> <span t-field="o.rental_price" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/><br/>
+                                </t>
+                            </div>
+                        </div>
+
+                        <h3>Location</h3>
+                        <p t-field="o.full_address"/>
+
+                        <h3>Property Details</h3>
+                        <div class="row">
+                            <div class="col-6">
+                                <strong>Bedrooms:</strong> <span t-field="o.bedrooms"/><br/>
+                                <strong>Bathrooms:</strong> <span t-field="o.bathrooms"/><br/>
+                                <strong>Living Area:</strong> <span t-field="o.living_area"/> m²<br/>
+                                <strong>Total Area:</strong> <span t-field="o.total_area"/> m²<br/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Floor:</strong> <span t-field="o.floor"/>/<span t-field="o.total_floors"/><br/>
+                                <strong>Year Built:</strong> <span t-field="o.year_built"/><br/>
+                                <strong>Garage:</strong> <span t-if="o.garage">Yes</span><span t-else="">No</span><br/>
+                                <strong>Furnished:</strong> <span t-if="o.furnished">Yes</span><span t-else="">No</span><br/>
+                            </div>
+                        </div>
+
+                        <t t-if="o.description">
+                            <h3>Description</h3>
+                            <div t-field="o.description"/>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

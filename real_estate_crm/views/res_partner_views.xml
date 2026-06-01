@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_real_estate" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.real.estate</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_owned_properties" type="object" class="oe_stat_button" icon="fa-building" invisible="owned_property_count == 0">
+                    <field name="owned_property_count" widget="statinfo" string="Properties"/>
+                </button>
+                <button name="action_view_rental_contracts" type="object" class="oe_stat_button" icon="fa-file-text" invisible="rental_contract_count == 0">
+                    <field name="rental_contract_count" widget="statinfo" string="Contracts"/>
+                </button>
+                <button name="action_view_visits" type="object" class="oe_stat_button" icon="fa-calendar" invisible="visit_count == 0">
+                    <field name="visit_count" widget="statinfo" string="Visits"/>
+                </button>
+            </xpath>
+            
+            <!-- <xpath expr="//field[@name='category_id']" position="after">
+                <field name="is_property_owner"/>
+                <field name="is_tenant"/>
+            </xpath> -->
+        </field>
+    </record>
+</odoo>

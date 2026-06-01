@@ -17,4 +17,4 @@ Board" tab, or automatically by two ways:
 These options are compatibles each other.
 
 The module contains a large number of functional enhancements compared
-to the standard account_asset module from Odoo.
+to the standard account_asset module from odoo.

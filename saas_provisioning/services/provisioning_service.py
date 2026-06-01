@@ -40,7 +40,7 @@ class SaaSProvisioningService(models.AbstractModel):
 			db_service.create_database(db_name, admin_password)
 			
 			# Step 3: Install base modules based on plan
-			modules_to_install = self._get_modules_for_plan(subscription.plan_id)
+			modules_to_install = self._get_modules_for_plan(subscription)
 			if modules_to_install:
 				db_service.install_modules(db_name, modules_to_install)
 			
@@ -48,13 +48,17 @@ class SaaSProvisioningService(models.AbstractModel):
 			self._post_provisioning_setup(db_name, subscription)
 			
 			# Step 5: Update subscription with tenant info
-			subscription.write({
+			vals = {
 				'database_name': db_name,
 				'subdomain': subdomain,
-				'state': 'active',
 				'provisioning_status': 'completed',
 				'admin_password': admin_password,  # Store password
-			})
+			}
+			# Don't overwrite state if it was created as a 'trial'
+			if subscription.state == 'pending':
+				vals['state'] = 'active'
+				
+			subscription.write(vals)
 			
 			# Step 6: Send welcome email (TODO)
 			self._send_welcome_email(subscription, admin_password)
@@ -96,8 +100,19 @@ class SaaSProvisioningService(models.AbstractModel):
 						main_company.email = subscription.partner_id.email
 						main_company.phone = subscription.partner_id.phone
 				
-				# 2. Set Admin User Login/Details? (Optional, kept at 'admin' for now)
+				# 2. Inject SaaS Manager details to link tenant back to main db
+				env['ir.config_parameter'].sudo().set_param('saas.manager_db', self.env.cr.dbname)
 				
+				# Get main URL or fallback
+				main_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url', '')
+				if main_url:
+					env['ir.config_parameter'].sudo().set_param('saas.manager_url', main_url)
+					
+				# 3. Ensure Custom URL Replacer is enabled and set to 'epg'
+				env['ir.config_parameter'].sudo().set_param('web.url.replace.enabled', 'True')
+				env['ir.config_parameter'].sudo().set_param('web.base.sorturl', 'epg')
+				
+				# 4. Set Admin User Login/Details? (Optional, kept at 'admin' for now)
 				# 3. Create Technical/SaaS User? (Optional)
 				
 		except Exception as e:
@@ -170,9 +185,9 @@ class SaaSProvisioningService(models.AbstractModel):
 		)
 		
 		# 2. Generate Database Name (Postgres safe: a-z, 0-9, _)
-		# Use simple mapping from subdomain, replace hyphens with underscores
+		# Use simple mapping from subdomain
 		db_safe_name = subdomain.replace('-', '_')
-		db_name = f'{db_safe_name}_{base_domain.replace(".", "_")}'
+		db_name = db_safe_name
 		
 		# Check for uniqueness and add suffix if needed (excluding deleted subscriptions)
 		counter = 1
@@ -192,14 +207,37 @@ class SaaSProvisioningService(models.AbstractModel):
 		return db_name, subdomain
 	
 	@api.model
-	def _get_modules_for_plan(self, plan):
-		"""Get list of modules to install based on subscription plan"""
-		modules = []
+	def _get_modules_for_plan(self, subscription):
+		"""Get list of modules to install based on subscription plan and add-ons"""
+		plan_name = subscription.plan_id.name.lower() if subscription.plan_id else ''
 		
-		if plan.module_names:
-			# Parse comma-separated module names
-			modules = [m.strip() for m in plan.module_names.split(',') if m.strip()]
+		# Base modules for all plans
+		base_modules = [
+			'sale_management', 'account', 'hr', 'crm', 'calendar', 'muk_web_appsbar',
+			'crm_base', 'crm_automation_engine', 'crm_client_kanban', 'dashboard',
+			'odoo_url_replacer', 'ai_assistant', 'saas_client','client_document_management','crm_file_management'
+		]
 		
+		# Accounting modules (Early Adopter gets them automatically, or if checkbox is checked)
+		accounting_modules = [
+			'hr_expense', 'account_tax_balance', 'l10n_es_aeat', 'om_account_accountant',
+			'l10n_es_account_asset', 'account_reconcile_oca', 'account_bank_sync_yapily',
+			'l10n_es_edi_verifactu','l10n_es_aeat_mod130','l10n_es_aeat_mod303'
+		]
+		
+		modules = list(base_modules)
+		
+		# Add accounting modules if early adopter, if plan name implies it, or if accounting addon is checked
+		if subscription.is_early_adopter or 'early' in plan_name or subscription.accounting_module:
+			modules.extend(accounting_modules)
+			
+		# Optional: Also add any modules they manually typed in the plan form view
+		if subscription.plan_id.module_names:
+			extra_modules = [m.strip() for m in subscription.plan_id.module_names.split(',') if m.strip()]
+			for m in extra_modules:
+				if m not in modules:
+					modules.append(m)
+					
 		return modules
 	
 	@api.model

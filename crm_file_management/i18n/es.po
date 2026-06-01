@@ -1,0 +1,713 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* crm_file_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-21 21:07+0000\n"
+"PO-Revision-Date: 2026-05-21 21:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_stage_kanban
+msgid ""
+"<span class=\"badge rounded-pill text-white\" style=\"background-color: "
+"#112249; padding: 5px 10px;\">Folded</span>"
+msgstr ""
+"<span class=\"badge rounded-pill text-white\" style=\"background-color: "
+"#112249; padding: 5px 10px;\">Plegado</span>"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_type_kanban
+msgid ""
+"<span class=\"fw-medium text-uppercase small mt-1\" style=\"color: rgba(17, "
+"34, 73, 0.7); letter-spacing: 1px;\">Active Cases</span>"
+msgstr ""
+"<span class=\"fw-medium text-uppercase small mt-1\" style=\"color: rgba(17, "
+"34, 73, 0.7); letter-spacing: 1px;\">Casos Activos</span>"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__message_needaction
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__message_needaction
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__message_needaction
+msgid "Action Needed"
+msgstr "Acción Requerida"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__activity_ids
+msgid "Activities"
+msgstr "Actividades"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decoración de Excepción de Actividad"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__activity_state
+msgid "Activity State"
+msgstr "Estado de Actividad"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icono de Tipo de Actividad"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__user_id
+msgid "Assignee"
+msgstr "Asignado a"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__message_attachment_count
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__message_attachment_count
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__message_attachment_count
+msgid "Attachment Count"
+msgstr "Cantidad de Adjuntos"
+
+#. module: crm_file_management
+#: model:ir.model.fields.selection,name:crm_file_management.selection__crm_file__kanban_state__blocked
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_search
+msgid "Blocked"
+msgstr "Bloqueado"
+
+#. module: crm_file_management
+#: model:ir.model,name:crm_file_management.model_crm_file
+msgid "CRM File"
+msgstr "Expediente CRM"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_dms_file_form_inherit_crm
+msgid "CRM Information"
+msgstr "Información CRM"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_lead_to_file_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: crm_file_management
+#. odoo-python
+#: code:addons/crm_file_management/wizard/crm_lead_to_file_wizard.py:0
+msgid "Case File"
+msgstr "Expediente"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_type_form
+msgid "Cases"
+msgstr "Casos"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__checklist_ids
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_form
+msgid "Checklist"
+msgstr "Lista de Verificación"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__partner_id
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead_to_file_wizard__partner_id
+msgid "Client"
+msgstr "Cliente"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__color
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_type__color
+msgid "Color Index"
+msgstr "Índice de Color"
+
+#. module: crm_file_management
+#: model:ir.model.fields.selection,name:crm_file_management.selection__crm_file_checklist__state__completed
+#: model:ir.model.fields.selection,name:crm_file_management.selection__crm_file_task__state__completed
+msgid "Completed"
+msgstr "Completado"
+
+#. module: crm_file_management
+#. odoo-python
+#: code:addons/crm_file_management/models/crm_lead.py:0
+#: model:ir.actions.act_window,name:crm_file_management.action_crm_lead_to_file_wizard
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_lead_to_file_wizard_form
+msgid "Create Case File"
+msgstr "Crear Expediente"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.crm_lead_view_form_inherit_file
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_lead_to_file_wizard_form
+msgid "Create File"
+msgstr "Crear Expediente"
+
+#. module: crm_file_management
+#: model_terms:ir.actions.act_window,help:crm_file_management.action_crm_file
+msgid "Create your first File"
+msgstr "Cree su primer Expediente"
+
+#. module: crm_file_management
+#: model_terms:ir.actions.act_window,help:crm_file_management.action_crm_file_type
+msgid "Create your first Workspace"
+msgstr "Cree su primer Espacio de Trabajo"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__create_uid
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__create_uid
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_stage__create_uid
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__create_uid
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_type__create_uid
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead_to_file_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__create_date
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__create_date
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_stage__create_date
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__create_date
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_type__create_date
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead_to_file_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_kanban
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_stage_kanban
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_type_kanban
+msgid "Delete"
+msgstr "Eliminar"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: crm_file_management
+#: model:crm.file.stage,name:crm_file_management.crm_file_stage_detail
+msgid "Detail"
+msgstr "Detalle"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__display_name
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__display_name
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_stage__display_name
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__display_name
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_type__display_name
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead_to_file_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre Mostrado"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__document_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__document_ids
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_form
+msgid "Documents"
+msgstr "Documentos"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_kanban
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_stage_kanban
+msgid "Edit"
+msgstr "Editar"
+
+#. module: crm_file_management
+#: model:ir.model,name:crm_file_management.model_dms_file
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__file_id
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__file_id
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_form
+msgid "File"
+msgstr "Expediente"
+
+#. module: crm_file_management
+#: model:ir.model,name:crm_file_management.model_crm_file_checklist
+msgid "File Checklist Item"
+msgstr "Ítem de Lista de Verificación"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_type__file_count
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead__file_count
+msgid "File Count"
+msgstr "Cantidad de Expedientes"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__name
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead_to_file_wizard__name
+msgid "File Name"
+msgstr "Nombre del Expediente"
+
+#. module: crm_file_management
+#: model:ir.model,name:crm_file_management.model_crm_file_stage
+msgid "File Phase"
+msgstr "Fase del Expediente"
+
+#. module: crm_file_management
+#: model:ir.actions.act_window,name:crm_file_management.action_crm_file_stage
+#: model:ir.ui.menu,name:crm_file_management.menu_crm_file_stage
+msgid "File Phases"
+msgstr "Fases del Expediente"
+
+#. module: crm_file_management
+#: model:ir.model,name:crm_file_management.model_crm_file_task
+msgid "File Task"
+msgstr "Tarea del Expediente"
+
+#. module: crm_file_management
+#: model:ir.model,name:crm_file_management.model_crm_file_type
+msgid "File Workspace / Category"
+msgstr "Espacio de Trabajo / Categoría"
+
+#. module: crm_file_management
+#. odoo-python
+#: code:addons/crm_file_management/wizard/crm_lead_to_file_wizard.py:0
+msgid "File for %s"
+msgstr "Expediente para %s"
+
+#. module: crm_file_management
+#. odoo-python
+#: code:addons/crm_file_management/models/crm_lead.py:0
+#: model:ir.actions.act_window,name:crm_file_management.action_crm_file
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_type__file_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead__file_ids
+#: model:ir.ui.menu,name:crm_file_management.menu_crm_file
+#: model_terms:ir.ui.view,arch_db:crm_file_management.crm_lead_view_form_inherit_file
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_search
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_tree
+msgid "Files"
+msgstr "Expedientes"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_stage__fold
+msgid "Folded in Kanban"
+msgstr "Plegado en Kanban"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__message_follower_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__message_follower_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__message_follower_ids
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__message_partner_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__message_partner_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidores (Contactos)"
+
+#. module: crm_file_management
+#: model:ir.model.fields,help:crm_file_management.field_crm_file__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icono Font Awesome ej. fa-tasks"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: crm_file_management
+#: model_terms:ir.actions.act_window,help:crm_file_management.action_crm_file_type
+msgid "Group your case files into workspaces (e.g., Law Suits, Training)."
+msgstr "Agrupe sus expedientes en espacios de trabajo (ej. Juicios, Capacitación)."
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__has_message
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__has_message
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__has_message
+msgid "Has Message"
+msgstr "Tiene Mensaje"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__id
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__id
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_stage__id
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__id
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_type__id
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead_to_file_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__activity_exception_icon
+msgid "Icon"
+msgstr "Icono"
+
+#. module: crm_file_management
+#: model:ir.model.fields,help:crm_file_management.field_crm_file__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icono para indicar una actividad de excepción."
+
+#. module: crm_file_management
+#: model:ir.model.fields,help:crm_file_management.field_crm_file__message_needaction
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_checklist__message_needaction
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_task__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si está marcado, los nuevos mensajes requieren su atención."
+
+#. module: crm_file_management
+#: model:ir.model.fields,help:crm_file_management.field_crm_file__message_has_error
+#: model:ir.model.fields,help:crm_file_management.field_crm_file__message_has_sms_error
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_checklist__message_has_error
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_checklist__message_has_sms_error
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_task__message_has_error
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_task__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si está marcado, algunos mensajes tienen error de entrega."
+
+#. module: crm_file_management
+#: model:crm.file.stage,name:crm_file_management.crm_file_stage_in_progress
+#: model:ir.model.fields.selection,name:crm_file_management.selection__crm_file__kanban_state__normal
+#: model:ir.model.fields.selection,name:crm_file_management.selection__crm_file_task__state__in_progress
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_search
+msgid "In Progress"
+msgstr "En Progreso"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_form
+msgid "Information"
+msgstr "Información"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__message_is_follower
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__message_is_follower
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__message_is_follower
+msgid "Is Follower"
+msgstr "Es Seguidor"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__name
+msgid "Item"
+msgstr "Ítem"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__date_last_stage_update
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_kanban
+msgid "Last Stage Update"
+msgstr "Última Actualización de Etapa"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__write_uid
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__write_uid
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_stage__write_uid
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__write_uid
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_type__write_uid
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead_to_file_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__write_date
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__write_date
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_stage__write_date
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__write_date
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_type__write_date
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead_to_file_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: crm_file_management
+#: model:ir.model,name:crm_file_management.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Lead/Oportunidad"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_form
+msgid "Link documents..."
+msgstr "Vincular documentos..."
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__attachment_ids
+msgid "Linked Documents"
+msgstr "Documentos Vinculados"
+
+#. module: crm_file_management
+#: model:ir.model.fields,help:crm_file_management.field_crm_file__partner_id
+#: model:ir.model.fields,help:crm_file_management.field_crm_lead_to_file_wizard__partner_id
+msgid ""
+"Linked partner (optional). Usually created when converting the lead. You can"
+" find a partner by its Name, TIN, Email or Internal Reference."
+msgstr ""
+"Contacto vinculado (opcional). Normalmente se crea al convertir el lead. "
+"Puede encontrar un contacto por su Nombre, CUIT, Correo Electrónico o "
+"Referencia Interna."
+
+#. module: crm_file_management
+#: model_terms:ir.actions.act_window,help:crm_file_management.action_crm_file
+msgid ""
+"Manage your opportunities as files with checklists, tasks, and documents."
+msgstr ""
+"Administre sus oportunidades como expedientes con listas de verificación, "
+"tareas y documentos."
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_form
+msgid "Mark as Completed"
+msgstr "Marcar como Completado"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_form
+msgid "Mark as Pending"
+msgstr "Marcar como Pendiente"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__message_has_error
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__message_has_error
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__message_has_error
+msgid "Message Delivery error"
+msgstr "Error de Entrega de Mensaje"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__message_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__message_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__message_ids
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Mi Fecha Límite de Actividad"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_search
+msgid "My Files"
+msgstr "Mis Expedientes"
+
+#. module: crm_file_management
+#: model:crm.file.stage,name:crm_file_management.crm_file_stage_new
+msgid "New"
+msgstr "Nuevo"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Próximo Evento de Calendario"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Próxima Fecha Límite de Actividad"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resumen de Próxima Actividad"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipo de Próxima Actividad"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__message_needaction_counter
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__message_needaction_counter
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Cantidad de Acciones"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__message_has_error_counter
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__message_has_error_counter
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__message_has_error_counter
+msgid "Number of errors"
+msgstr "Cantidad de errores"
+
+#. module: crm_file_management
+#: model:ir.model.fields,help:crm_file_management.field_crm_file__message_needaction_counter
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_checklist__message_needaction_counter
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_task__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Cantidad de mensajes que requieren acción"
+
+#. module: crm_file_management
+#: model:ir.model.fields,help:crm_file_management.field_crm_file__message_has_error_counter
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_checklist__message_has_error_counter
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_task__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Cantidad de mensajes con error de entrega"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__lead_id
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead_to_file_wizard__lead_id
+msgid "Opportunity"
+msgstr "Oportunidad"
+
+#. module: crm_file_management
+#: model:ir.model.fields.selection,name:crm_file_management.selection__crm_file_checklist__state__pending
+#: model:ir.model.fields.selection,name:crm_file_management.selection__crm_file_task__state__pending
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__stage_id
+msgid "Phase"
+msgstr "Fase"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_stage__name
+msgid "Phase Name"
+msgstr "Nombre de Fase"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_stage_tree
+msgid "Phases"
+msgstr "Fases"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__rating_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__rating_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__rating_ids
+msgid "Ratings"
+msgstr "Calificaciones"
+
+#. module: crm_file_management
+#: model:ir.model.fields.selection,name:crm_file_management.selection__crm_file__kanban_state__done
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_search
+msgid "Ready"
+msgstr "Listo"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_dms_file__crm_task_ids
+msgid "Related CRM Tasks"
+msgstr "Tareas CRM Relacionadas"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_dms_file__crm_file_ids
+msgid "Related Case Files"
+msgstr "Expedientes Relacionados"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_dms_file__crm_checklist_ids
+msgid "Related Checklists"
+msgstr "Listas de Verificación Relacionadas"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__user_id
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_search
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__activity_user_id
+msgid "Responsible User"
+msgstr "Usuario Responsable"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__message_has_sms_error
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__message_has_sms_error
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error de Entrega SMS"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__sequence
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_stage__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_type_kanban
+msgid "Settings"
+msgstr "Configuración"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_form
+msgid "Size"
+msgstr "Tamaño"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_search
+msgid "Stage"
+msgstr "Etapa"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__kanban_state
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__state
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__state
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_search
+msgid "Status"
+msgstr "Estado"
+
+#. module: crm_file_management
+#: model:ir.model.fields,help:crm_file_management.field_crm_file__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estado basado en actividades\n"
+"Atrasada: La fecha de vencimiento ya pasó\n"
+"Hoy: La fecha de actividad es hoy\n"
+"Planificada: Actividades futuras."
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__name
+msgid "Task Summary"
+msgstr "Resumen de Tarea"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_form
+msgid "Task description..."
+msgstr "Descripción de tarea..."
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__task_ids
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_form
+msgid "Tasks"
+msgstr "Tareas"
+
+#. module: crm_file_management
+#: model:ir.model.fields,help:crm_file_management.field_crm_file__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipo de actividad de excepción en el registro."
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__website_message_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_checklist__website_message_ids
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_task__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del Sitio Web"
+
+#. module: crm_file_management
+#: model:ir.model.fields,help:crm_file_management.field_crm_file__website_message_ids
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_checklist__website_message_ids
+#: model:ir.model.fields,help:crm_file_management.field_crm_file_task__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+
+#. module: crm_file_management
+#: model:ir.model,name:crm_file_management.model_crm_lead_to_file_wizard
+msgid "Wizard to create Case File from Lead"
+msgstr "Asistente para crear Expediente desde Lead"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file__type_id
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_stage__type_id
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_lead_to_file_wizard__type_id
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_search
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_stage_kanban
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_type_form
+msgid "Workspace"
+msgstr "Espacio de Trabajo"
+
+#. module: crm_file_management
+#: model:ir.model.fields,field_description:crm_file_management.field_crm_file_type__name
+msgid "Workspace Name"
+msgstr "Nombre del Espacio de Trabajo"
+
+#. module: crm_file_management
+#: model:ir.actions.act_window,name:crm_file_management.action_crm_file_type
+msgid "Workspaces"
+msgstr "Espacios de Trabajo"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_form
+msgid "e.g. File for client Juan Pérez"
+msgstr "ej. Expediente para cliente Juan Pérez"
+
+#. module: crm_file_management
+#: model_terms:ir.ui.view,arch_db:crm_file_management.view_crm_file_type_form
+msgid "e.g. Law Suits"
+msgstr "ej. Juicios"

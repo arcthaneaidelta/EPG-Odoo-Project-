@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # * account_asset_management
 #
@@ -58,7 +58,7 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "\n"
@@ -82,7 +82,7 @@ msgid "<span class=\"o_stat_text\"> Asset(s)</span>"
 msgstr "<span class=\"o_stat_text\"> Tillgång(ar)</span>"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model,name:account_asset_management.model_account_account
 msgid "Account"
@@ -105,7 +105,7 @@ msgid "Active"
 msgstr "Aktiv"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Active Assets"
 msgstr "Aktiva tillgångar"
@@ -193,7 +193,7 @@ msgid "Asset"
 msgstr "Tillgång"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid "Asset '%s' Removal Journal Entry"
 msgstr "Tillgång \"%s\" Borttagning Verifikat"
@@ -261,7 +261,7 @@ msgid "Asset Removal"
 msgstr "Borttagning av tillgångar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__date_remove
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_remove__date_remove
@@ -274,7 +274,7 @@ msgid "Asset Sale Account"
 msgstr "Konto för försäljning av tillgångar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__date_start
 msgid "Asset Start Date"
@@ -286,7 +286,7 @@ msgid "Asset depreciation table line"
 msgstr "Rad i tabellen för avskrivning av tillgångar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid "Asset name must be set in the label of the line."
 msgstr "Tillgångsnamnet måste anges i etiketten på raden."
@@ -315,7 +315,7 @@ msgid "Assets"
 msgstr "Tillgångar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Assets to be corrected"
 msgstr "Tillgångar som ska korrigeras"
@@ -446,7 +446,7 @@ msgid "Completion Date"
 msgstr "Datum för slutförande"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Comput. Method"
 msgstr "Comput. Metod"
@@ -473,13 +473,13 @@ msgid "Compute Assets"
 msgstr "Beräkna tillgång"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_compute.py:0
 msgid "Compute Assets errors"
 msgstr "Beräkna tillgångsfel"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_compute.py:0
 msgid "Compute Assets result"
 msgstr "Beräkna tillgångsresultat"
@@ -505,7 +505,7 @@ msgid "Create an asset by product item"
 msgstr "Skapa en tillgång per produktartikel"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_compute.py:0
 msgid "Created Asset Moves"
 msgstr "Skapade tillgångsändringar"
@@ -560,13 +560,13 @@ msgid "Default Asset Profile when creating invoice lines with this account."
 msgstr "Standardtillgångsprofil när fakturarader skapas med detta konto."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive"
 msgstr "Stegvis avskrivning"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive  up to Salvage Value"
 msgstr "Nedbrytning upp till återvinningsvärde"
@@ -578,13 +578,13 @@ msgid "Degressive Factor"
 msgstr "Avskrivnings faktor"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive-Linear"
 msgstr "Degressiv-linjär"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive-Linear is only supported for Time Method = Year."
@@ -616,7 +616,7 @@ msgid "Depreciation Account"
 msgstr "Avskrivningskonto"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__depreciation_base
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_line__depreciation_base
@@ -687,7 +687,7 @@ msgid "Draft"
 msgstr "Preliminär"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Duplicate reporting entries"
 msgstr "Dubbla rapporteringsposter"
@@ -713,7 +713,7 @@ msgid "Entries"
 msgstr "Poster"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "Error while processing asset '{ref}': \n"
@@ -762,7 +762,7 @@ msgid "Force accounting date"
 msgstr "Force redovisningsdatum"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid "Gain/Loss on Sale"
 msgstr "Vinst/förlust vid försäljning"
@@ -773,7 +773,7 @@ msgid "General"
 msgstr "Allmän"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "Generate Asset Removal entries"
 msgstr "Generera poster för borttagning av tillgångar"
@@ -887,7 +887,7 @@ msgstr ""
 "istället för att radera den."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "Illegal value %s in asset.method."
 msgstr "Olagligt värde %s i asset.method."
@@ -898,7 +898,7 @@ msgid "Include draft assets"
 msgstr "Inkludera utkast till tillgångar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid ""
 "Inconsistent reporting structure.\n"
@@ -938,14 +938,14 @@ msgid "Journal"
 msgstr "Verifikat"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 #: model_terms:ir.ui.view,arch_db:account_asset_management.account_asset_view_form
 msgid "Journal Entries"
 msgstr "Verifikat"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 #: model:ir.model,name:account_asset_management.model_account_move
 msgid "Journal Entry"
@@ -988,13 +988,13 @@ msgid "Last Updated on"
 msgstr "Senast uppdaterad"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Linear"
 msgstr "Linjär"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Linear up to Salvage Value"
 msgstr "Linjärt upp till bärgningsvärde"
@@ -1016,13 +1016,13 @@ msgid "Min-Value Account"
 msgstr "Min-Value-konto"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Missing depreciation table"
 msgstr "Saknad avskrivningstabell"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Month"
 msgstr "Månad"
@@ -1033,7 +1033,7 @@ msgid "My Activity Deadline"
 msgstr "Min aktivitet Deadline"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_group__name
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__name
@@ -1041,7 +1041,7 @@ msgid "Name"
 msgstr "Namn"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "New Acquisitions"
 msgstr "Nyförvärv"
@@ -1067,7 +1067,7 @@ msgid "Next Period Depreciation"
 msgstr "Nästa periods avskrivningar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "No"
 msgstr "Nej"
@@ -1093,13 +1093,13 @@ msgid "Number of Actions"
 msgstr "Antal åtgärder"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Number of Depreciations"
 msgstr "Antal avskrivningar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__method_number
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__method_number
@@ -1107,7 +1107,7 @@ msgid "Number of Years"
 msgstr "Antal år"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Number of Years or end date"
 msgstr "Antal år eller slutdatum"
@@ -1158,13 +1158,13 @@ msgid "Percentage of Price"
 msgstr "Procent av pris"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Period Depreciation"
 msgstr "Period Avskrivningar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Period End Value"
 msgstr "Värde vid periodens slut"
@@ -1176,7 +1176,7 @@ msgid "Period Length"
 msgstr "Periodlängd"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Period Start Value"
 msgstr "Period Startvärde"
@@ -1209,7 +1209,7 @@ msgid "Profile"
 msgstr "Profil"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__prorata
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__prorata
@@ -1217,20 +1217,20 @@ msgid "Prorata Temporis"
 msgstr "Prorata temporis"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__purchase_value
 msgid "Purchase Value"
 msgstr "Inköpsvärde"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Quarter"
 msgstr "Kvartal"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_recompute_trigger__reason
 #: model:ir.model.fields,field_description:account_asset_management.field_wiz_asset_move_reverse__reason
@@ -1238,7 +1238,7 @@ msgid "Reason"
 msgstr "Orsak"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__code
 msgid "Reference"
@@ -1289,13 +1289,13 @@ msgid "Removed"
 msgstr "Borttagen"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Removed Assets"
 msgstr "Borttagna tillgångar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__value_residual
 msgid "Residual Value"
@@ -1328,7 +1328,7 @@ msgid "Reverse Journal Entry"
 msgstr "Omvänt verifikat"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid "Reverse Move"
 msgstr "Omvänd rörelse"
@@ -1355,7 +1355,7 @@ msgid "Salvage Type"
 msgstr "Typ av bärgning"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__salvage_value
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__salvage_value
@@ -1370,10 +1370,10 @@ msgstr "Sök tillgångsgrupp"
 #. module: account_asset_management
 #: model:ir.model.fields,help:account_asset_management.field_account_asset_line__init_entry
 msgid ""
-"Set this flag for entries of previous fiscal years for which Odoo has not "
+"Set this flag for entries of previous fiscal years for which System has not "
 "generated accounting entries."
 msgstr ""
-"Sätt denna flagga för poster från tidigare räkenskapsår för vilka Odoo inte "
+"Sätt denna flagga för poster från tidigare räkenskapsår för vilka System inte "
 "har genererat bokföringsposter."
 
 #. module: account_asset_management
@@ -1402,7 +1402,7 @@ msgid "State of Asset"
 msgstr "Tillgångens status"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__state
 #: model_terms:ir.ui.view,arch_db:account_asset_management.account_asset_view_search
@@ -1423,7 +1423,7 @@ msgstr ""
 "Planerad: Framtida aktiviteter."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "The '_compute_year_amount' method is only intended for Time Method 'Number "
@@ -1433,13 +1433,13 @@ msgstr ""
 "\"Antal år\"."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "The 'account' field is a mandatory entry of the '_xls_%s_fields' list !"
 msgstr "Fältet \"account\" är en obligatorisk post i listan \"_xls_%s_fields\"!"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_account.py:0
 msgid ""
 "The Asset Account defined in the Asset Profile must be equal to the account."
@@ -1448,20 +1448,20 @@ msgstr ""
 "kontot."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid "The Sale Value must be positive!"
 msgstr "Försäljningsvärdet måste vara positivt!"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 #: code:addons/account_asset_management/wizard/wiz_account_asset_report.py:0
 msgid "The Start Date must precede the Ending Date."
 msgstr "Startdatumet måste föregå slutdatumet."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "The duration of the asset conflicts with the posted depreciation table entry "
@@ -1489,7 +1489,7 @@ msgid "The number of years needed to depreciate your asset"
 msgstr "Det antal år som behövs för att skriva av din tillgång"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid "The removal date must be after the last depreciation date."
 msgstr "Utrangeringsdatumet måste ligga efter det senaste avskrivningsdatumet."
@@ -1515,7 +1515,7 @@ msgstr ""
 "Inköpsvärde - återvinningsvärde."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid "This invoice created the asset(s): %s"
 msgstr "Denna faktura skapade tillgång(ar): %s"
@@ -1527,7 +1527,7 @@ msgid "Time Method"
 msgstr "Tidmetoden"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Tot. Depreciation"
 msgstr "Totalt Avskrivningar"
@@ -1538,7 +1538,7 @@ msgid "Total Days"
 msgstr "Totalt antal dagar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Totals"
 msgstr "Totalt"
@@ -1559,7 +1559,7 @@ msgid "Type of the exception activity on record."
 msgstr "Typ av undantagsaktivitet som registreras."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Undetermined error"
 msgstr "Obestämt fel"
@@ -1622,13 +1622,13 @@ msgstr ""
 "."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Year"
 msgstr "År"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
 "You are not allowed to link an accounting entry to an asset.\n"
@@ -1638,7 +1638,7 @@ msgstr ""
 "Du bör generera sådana poster från tillgången."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
@@ -1650,13 +1650,13 @@ msgstr ""
 "Du bör ta bort sådana poster från tillgången."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "You can only delete assets in draft state."
 msgstr "Du kan bara ta bort tillgångar i utkaststadiet."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid ""
 "You can't make an early removal if all the depreciation lines for previous "
@@ -1666,14 +1666,14 @@ msgstr ""
 "tidigare perioder har bokförts."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot change a depreciation line with an associated accounting entry."
 msgstr "Du kan inte ändra en avskrivningsrad med en tillhörande bokföringspost."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
 "You cannot change an accounting entry linked to an asset depreciation line."
@@ -1682,7 +1682,7 @@ msgstr ""
 "tillgång."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
 "You cannot change an accounting item linked to an asset depreciation line."
@@ -1691,13 +1691,13 @@ msgstr ""
 "tillgång."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "You cannot change the profile of an asset with accounting entries."
 msgstr "Du kan inte ändra profilen för en tillgång med bokföringsposter."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot delete a depreciation line with an associated accounting entry."
@@ -1705,20 +1705,20 @@ msgstr ""
 "Du kan inte ta bort en avskrivningsrad med en tillhörande bokföringspost."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "You cannot delete an asset that contains posted depreciation lines."
 msgstr ""
 "Du kan inte ta bort en tillgång som innehåller bokförda avskrivningsrader."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid "You cannot remove an asset line of type 'Depreciation Base'."
 msgstr "Du kan inte ta bort en tillgångsrad av typen \"Avskrivningsunderlag\"."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot set the 'Initial Balance Entry' flag on a depreciation line with "
@@ -1728,7 +1728,7 @@ msgstr ""
 "med tidigare bokförda poster."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid "You cannot set the Asset Start Date after already posted entries."
 msgstr ""
@@ -1736,7 +1736,7 @@ msgstr ""
 "posterna."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot set the date on a depreciation line prior to already posted "

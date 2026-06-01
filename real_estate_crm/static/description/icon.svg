@@ -1,0 +1,66 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+
+<linearGradient id="panelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#1A2F5A"/>
+<stop offset="100%" stop-color="#0A1633"/>
+</linearGradient>
+
+<linearGradient id="buildingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#223D75"/>
+<stop offset="100%" stop-color="#132754"/>
+</linearGradient>
+
+<linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#35D0FF"/>
+<stop offset="100%" stop-color="#0A4DFF"/>
+</linearGradient>
+
+</defs>
+
+<!-- panel -->
+<rect x="10" y="10" width="80" height="80" rx="18"
+fill="url(#panelGrad)"/>
+
+<!-- building -->
+<rect x="34" y="30" width="32" height="44" rx="6"
+fill="url(#buildingGrad)"
+stroke="url(#accentGrad)"
+stroke-width="1.3"/>
+
+<!-- windows -->
+<rect x="38" y="34" width="6" height="6" rx="1.5" fill="#35D0FF"/>
+<rect x="48" y="34" width="6" height="6" rx="1.5" fill="#7FE6FF"/>
+<rect x="58" y="34" width="6" height="6" rx="1.5" fill="#35D0FF"/>
+
+<rect x="38" y="44" width="6" height="6" rx="1.5" fill="#7FE6FF"/>
+<rect x="48" y="44" width="6" height="6" rx="1.5" fill="#35D0FF"/>
+<rect x="58" y="44" width="6" height="6" rx="1.5" fill="#7FE6FF"/>
+
+<rect x="38" y="54" width="6" height="6" rx="1.5" fill="#35D0FF"/>
+<rect x="48" y="54" width="6" height="6" rx="1.5" fill="#7FE6FF"/>
+<rect x="58" y="54" width="6" height="6" rx="1.5" fill="#35D0FF"/>
+
+<!-- door -->
+<rect x="48" y="62" width="8" height="12" rx="2"
+fill="#0E1F44"
+stroke="url(#accentGrad)"
+stroke-width="1"/>
+
+<!-- location pin -->
+<path d="M70 40
+C70 34, 65 30, 60 30
+C55 30, 50 34, 50 40
+C50 48, 60 58, 60 58
+C60 58, 70 48, 70 40 Z"
+fill="#132754"
+stroke="url(#accentGrad)"
+stroke-width="1.2"/>
+
+<circle cx="60" cy="40" r="2.5" fill="#35D0FF"/>
+
+<!-- highlight -->
+<circle cx="30" cy="28" r="2.5" fill="#35D0FF"/>
+
+</svg>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_crm_lead_form_inherit_real_estate" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.real.estate</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='email_from']" position="before">
+                <field name="property_id" domain="[('company_id', '=', company_id)]"/>
+            </xpath>
+            
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_schedule_visit" type="object" class="oe_stat_button" icon="fa-calendar" invisible="not property_id">
+                    <span>Schedule Visit</span>
+                </button>
+                <button name="action_view_visits" type="object" class="oe_stat_button" icon="fa-eye" invisible="not property_id">
+                    <field name="visit_count" widget="statinfo" string="Visits"/>
+                </button>
+                <button name="action_view_commissions" type="object" class="oe_stat_button" icon="fa-money" invisible="not property_id">
+                    <field name="commission_count" widget="statinfo" string="Commissions"/>
+                </button>
+            </xpath>
+
+            <!-- <xpath expr="//field[@name='stage_id']" position="attributes">
+                <attribute name="domain">[('team_id', '=', team_id)]</attribute>
+            </xpath>
+             -->
+            <xpath expr="//page[@name='lead']" position="after">
+                <page string="Visits" name="visits" invisible="not property_id">
+                    <field name="visit_ids" readonly="1">
+                        <list>
+                            <field name="visit_datetime"/>
+                            <field name="property_id"/>
+                            <field name="state"/>
+                            <field name="visitor_feedback"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_tree_inherit_real_estate" model="ir.ui.view">
+        <field name="name">crm.lead.tree.inherit.real.estate</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="property_id" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_search_inherit_real_estate" model="ir.ui.view">
+        <field name="name">crm.lead.search.inherit.real.estate</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <!-- <xpath expr="//field[@name='team_id']" position="after">
+                <field name="property_id"/>
+            </xpath> -->
+            
+            <!-- <xpath expr="//filter[@name='unassigned_leads']" position="after">
+                <separator/>
+                <filter string="With Property" name="with_property" domain="[('property_id', '!=', False)]"/>
+                <filter string="Without Property" name="without_property" domain="[('property_id', '=', False)]"/>
+            </xpath> -->
+            
+            <xpath expr="//group/filter[@name='country']" position="after">
+                <filter string="Property" name="property" context="{'group_by': 'property_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

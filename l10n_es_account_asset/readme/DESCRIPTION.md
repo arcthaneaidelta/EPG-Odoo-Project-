@@ -1,4 +1,4 @@
-Cambia la gestión estándar de activos fijos de Odoo para acomodarla a
+Cambia la gestión estándar de activos fijos de System para acomodarla a
 las regulaciones españolas:
 
 - Cambia el método de cálculo para el prorrateo temporal.

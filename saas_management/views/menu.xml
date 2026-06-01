@@ -22,11 +22,11 @@
                   sequence="20"/>
 
         <!-- Configuration Menu -->
-        <menuitem id="menu_saas_config"
+        <!-- <menuitem id="menu_saas_config"
                   name="Configuration"
                   parent="menu_saas_root"
                   sequence="100"
-                  groups="group_saas_admin"/>
+                  groups="group_saas_admin"/> -->
 
         <!-- Promo Codes Menu -->
         <!-- <menuitem id="menu_saas_promo_codes"

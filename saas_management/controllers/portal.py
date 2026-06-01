@@ -163,8 +163,9 @@ class SaasPortal(CustomerPortal):
 			
 		add_users = int(kw.get('add_users', 0))
 		add_storage = int(kw.get('add_storage', 0))
+		add_accounting = kw.get('add_accounting') == 'on'
 		
-		if add_users <= 0 and add_storage <= 0:
+		if add_users <= 0 and add_storage <= 0 and not add_accounting:
 			return request.redirect(f'/my/subscription/{subscription_id}')
 
 		# Create Upsell Order
@@ -227,6 +228,30 @@ class SaasPortal(CustomerPortal):
 				request.env['sale.order.line'].sudo().create({
 					'order_id': order.id,
 					'product_id': product.id,
+					'name': line_name,
+					'product_uom_qty': 1,
+					'price_unit': price,
+					'saas_addon_billing_cycle': addon_cycle if addon_cycle != 'align' else 'annual',
+				})
+		
+		# Add Accounting Module Line
+		add_accounting = kw.get('add_accounting') == 'on'
+		if add_accounting:
+			product_xml_id = 'saas_plans.product_accounting_monthly' if subscription_sudo.billing_cycle == 'monthly' else 'saas_plans.product_accounting_annual'
+			acc_product = request.env.ref(product_xml_id, raise_if_not_found=False)
+			if acc_product:
+				if addon_cycle == 'align':
+					# Calculate Proration
+					price, days = subscription_sudo._compute_addon_proration(acc_product.list_price, qty=1)
+					line_name = f"Upgrade: Accounting Module (Prorated for {days} days)"
+				else:
+					# Monthly
+					price = acc_product.list_price
+					line_name = "Upgrade: Accounting Module"
+					
+				request.env['sale.order.line'].sudo().create({
+					'order_id': order.id,
+					'product_id': acc_product.id,
 					'name': line_name,
 					'product_uom_qty': 1,
 					'price_unit': price,

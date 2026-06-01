@@ -3,6 +3,7 @@
 from odoo import models, fields, api, _
 from datetime import datetime, timedelta
 import logging
+import psycopg2
 
 _logger = logging.getLogger(__name__)
 
@@ -192,10 +193,10 @@ class SaleOrder(models.Model):
 					 
 				# Reactivation Safety: 
 				# Only move to 'active' if this is a FULL renewal of the plan itself
-				# or we are activating a 'pending' subscription.
+				# or we are activating a 'pending' or 'trial' subscription.
 				# Paying for just a monthly addon should NOT reactivate a suspended/grace annual sub.
 				if subscription.state != 'active':
-					if is_full_renewal or subscription.state == 'pending':
+					if is_full_renewal or subscription.state in ['pending', 'trial']:
 						vals['state'] = 'active'
 						vals['grace_period_start'] = False
 						vals['grace_period_end'] = False
@@ -236,10 +237,9 @@ class SaleOrder(models.Model):
 				
 				_logger.info(f'Subscription %s created from order %s', subscription.name, self.name)
 			
-			# ── COMMON LOGIC: Create saas.addon records for all extra resources ────
+			# ── COMMON LOGIC: Create or Update saas.addon records ─────────────────
 			# This runs for both NEW subscriptions and UPDATES to capture
 			# extra users and storage purchased in this order.
-			# ── COMMON LOGIC: Create or Update saas.addon records ─────────────────
 			for line in self.order_line:
 				product_code = line.product_id.default_code or ''
 				addon_type = False
@@ -258,16 +258,13 @@ class SaleOrder(models.Model):
 					# 1. Handle Renewal (Update existing addon)
 					if line.saas_renewed_addon_id:
 						addon = line.saas_renewed_addon_id
-						# Monthly addons renew every 30 days from their specific date
-						# Annual addons (aligned) renew with the subscription
 						if addon.billing_cycle == 'monthly':
 							new_renewal = (addon.next_renewal_date or fields.Date.today()) + timedelta(days=30)
 						else:
 							new_renewal = subscription.expiration_date or (fields.Date.today() + timedelta(days=365))
-						
 						addon.write({
 							'next_renewal_date': new_renewal,
-							'state': 'active', # Reactivate if it was cancelled
+							'state': 'active',
 						})
 						_logger.info("Renewed %s addon %s: New renewal date %s", addon.billing_cycle, addon.id, new_renewal)
 						continue
@@ -279,17 +276,13 @@ class SaleOrder(models.Model):
 					], limit=1)
 					
 					if not existing_addon:
-						# Determine Billing Cycle and Renewal Date
 						line_cycle = line.saas_addon_billing_cycle or subscription.billing_cycle
-						
 						if line_cycle == 'monthly':
 							next_renewal = fields.Date.today() + timedelta(days=30)
 						else:
 							next_renewal = subscription.expiration_date or (fields.Date.today() + timedelta(days=365))
-						
 						mon_price = per_unit_price if line_cycle == 'monthly' else (per_unit_price / 12.0)
 						ann_price = per_unit_price if line_cycle == 'annual' else (per_unit_price * 12.0)
-
 						self.env['saas.addon'].create({
 							'subscription_id': subscription.id,
 							'product_id': line.product_id.id,
@@ -305,20 +298,19 @@ class SaleOrder(models.Model):
 							'state': 'active',
 						})
 						_logger.info('Created new %s addon: %s for %s (%s, Renew: %s)', addon_type, qty, subscription.name, line_cycle, next_renewal)
-				
-				# Check and Create/Reactivate Portal User if needed
-				if self.partner_id:
-					user = self.env['res.users'].sudo().with_context(active_test=False).search([
-						('login', '=', self.partner_id.email)
-					], limit=1)
-					
-					if user:
-						if not user.active:
-							user.write({'active': True})
-							_logger.info(f"Reactivated existing user {user.login}")
-					else:
-						try:
-							# Create Portal User
+
+			# ── Portal User: create/reactivate ONCE per order, isolated in savepoint ──
+			if self.partner_id and self.partner_id.email:
+				try:
+					with self.env.cr.savepoint():
+						user = self.env['res.users'].sudo().with_context(active_test=False).search([
+							('login', '=', self.partner_id.email)
+						], limit=1)
+						if user:
+							if not user.active:
+								user.write({'active': True})
+								_logger.info("Reactivated existing user %s", user.login)
+						else:
 							user = self.env['res.users'].create({
 								'name': self.partner_id.name,
 								'login': self.partner_id.email,
@@ -326,35 +318,43 @@ class SaleOrder(models.Model):
 								'partner_id': self.partner_id.id,
 								'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])]
 							})
-							# Send password reset email (invitation)
 							user.action_reset_password()
-							_logger.info(f"Created portal user {user.login} for partner {self.partner_id.name}")
-						except Exception as e:
-							_logger.error(f"Failed to create portal user for {self.partner_id.name}: {e}")
-				
-				# Provisioning Trigger (Safe fallback for blocked payment layers)
-				auto_provision = self.env['ir.config_parameter'].sudo().get_param('saas.auto_provision_on_payment', 'True')
-				if auto_provision == 'True' and not subscription.database_name:
-					provision_method = False
-					for mname in ['action_provision_tenant', 'action_provision_subscription']:
-						if hasattr(subscription, mname):
-							provision_method = mname
-							break
-					
-					if provision_method:
-						_logger.info("SaaS: Auto-provisioning %s for %s via Confirm Transition", subscription.name, provision_method)
-						try:
+							_logger.info("Created portal user %s for partner %s", user.login, self.partner_id.name)
+				except psycopg2.OperationalError:
+					raise
+				except Exception as e:
+					_logger.error("Failed to create portal user for %s: %s", self.partner_id.name, str(e))
+					# Savepoint was rolled back automatically; main transaction continues
+
+			# ── Auto-provisioning: isolated in savepoint so failure doesn't abort tx ──
+			try:
+				with self.env.cr.savepoint():
+					auto_provision = self.env['ir.config_parameter'].sudo().get_param(
+						'saas.auto_provision_on_payment', 'True'
+					)
+					if auto_provision == 'True' and not subscription.database_name:
+						provision_method = next(
+							(m for m in ['action_provision_tenant', 'action_provision_subscription']
+							 if hasattr(subscription, m)),
+							None
+						)
+						if provision_method:
+							_logger.info("SaaS: Auto-provisioning %s for %s via Confirm Transition",
+										 subscription.name, provision_method)
 							getattr(subscription, provision_method)()
-						except Exception as e:
-							_logger.error("SaaS: Auto-provisioning failed for %s: %s", subscription.name, str(e))
-					else:
-						_logger.warning("SaaS: No provisioning method found for %s", subscription.name)
-		
+						else:
+							_logger.warning("SaaS: No provisioning method found for %s", subscription.name)
+			except psycopg2.OperationalError:
+				raise
+			except Exception as e:
+				_logger.error("SaaS: Auto-provisioning failed for %s: %s", subscription.name, str(e))
+				# Savepoint was rolled back automatically; main transaction continues
+
+		except psycopg2.OperationalError:
+			raise
 		except Exception as e:
-			_logger.error(f'Failed to process subscription for order {self.name}: {str(e)}')
-			# Don't rollback transaction, just log error. 
-			# Or should we raise? If we raise, payment confirmation might fail. 
-			# Better to log and allow manual fix.
+			_logger.error("Failed to process subscription for order %s: %s", self.name, str(e))
+			# Don't raise — allow payment to complete and fix subscription manually.
 	
 	def apply_promo_code(self, promo_code):
 		"""Apply promo code to the sale order.

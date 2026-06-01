@@ -64,6 +64,6 @@
               sequence="20"
               action="action_account_recurring_template"
               groups="account.group_account_user,account.group_account_manager"
-              parent="account.menu_recurring_payments"/>
+              parent="menu_recurring_payments"/>
 
 </odoo>

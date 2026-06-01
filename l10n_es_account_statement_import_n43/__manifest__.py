@@ -11,7 +11,7 @@
     "maintainers": ["pedrobaeza"],
     "author": "Spanish Localization Team,"
     "Tecnativa,"
-    "Odoo Community Association (OCA)",
+    "OCA (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "depends": ["account_statement_import_file"],
     "external_dependencies": {"python": ["chardet"]},

@@ -199,7 +199,7 @@ class PaymentTransaction(models.Model):
         api_url = "https://sis.redsys.es/sis/rest/trataPeticionREST" if self.provider_id.state == 'enabled' else "https://sis-t.redsys.es:25443/sis/rest/trataPeticionREST"
         
         try:
-            response = requests.post(api_url, json=payload, timeout=60)
+            response = requests.post(api_url, json=payload, timeout=15)
             response.raise_for_status()
             
             response_json = response.json()

@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # * account_bank_statement_import
 #
@@ -8,16 +8,16 @@
 # Linda Stockelova <stockeloval@btlnet.com>, 2018
 # Linkup <link-up@naver.com>, 2018
 # Seongseok Shin <shinss61@hotmail.com>, 2018
-# Mark Lee <odoos@soti.33mail.com>, 2018
+# Mark Lee <systems@soti.33mail.com>, 2018
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~11.5\n"
+"Project-Id-Version: System Server saas~11.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-26 09:11+0000\n"
 "PO-Revision-Date: 2018-08-24 09:15+0000\n"
-"Last-Translator: Mark Lee <odoos@soti.33mail.com>, 2018\n"
-"Language-Team: Korean (https://www.transifex.com/odoo/teams/41243/ko/)\n"
+"Last-Translator: Mark Lee <systems@soti.33mail.com>, 2018\n"
+"Language-Team: Korean (https://www.transifex.com/system/teams/41243/ko/)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,13 +25,13 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "%d transactions had already been imported and were ignored."
 msgstr "%d개 거래를 가져왔고 해당 거래가 무시되었습니다."
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "1 transaction had already been imported and was ignored."
 msgstr "1개 거래를 가져왔고 해당 거래가 무시되었습니다."
@@ -47,7 +47,7 @@ msgid "Cancel"
 msgstr "취소"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "Could not find any bank account with number '%(account_number)s'  linked to "
@@ -82,7 +82,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/models/account_journal.py:0
 msgid "Import (OCA) (%s)"
 msgstr ""
@@ -130,13 +130,13 @@ msgid "Last Updated on"
 msgstr "최근 갱신 날짜"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "Missing currency code in the bank statement file."
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 #, fuzzy
 msgid "Missing payment_ref on a transaction."
@@ -160,31 +160,31 @@ msgid "Supported formats:"
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 #, fuzzy
 msgid "The Bank Accounting Account is not set on the journal '%s'."
 msgstr "이 명세서의 계정이 분개장(%s)과 동일하지 않습니다."
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
-"The bank account with number '%(account_number)s' exists in Odoo but it is "
+"The bank account with number '%(account_number)s' exists in System but it is "
 "not set on any bank journal. You should set it on the related bank journal. "
 "If the related bank journal doesn't  exist yet, you should create a new one."
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The bank statement file uses currency '%s' but there is no such currency in "
-"Odoo."
+"System."
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The currency of the bank statement (%(currency_name)s) is not the same as "
@@ -192,7 +192,7 @@ msgid ""
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The format of this bank statement file doesn't contain the bank account "
@@ -201,7 +201,7 @@ msgid ""
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The journal found for the file (%(journal_match)s) is different from the "
@@ -209,18 +209,18 @@ msgid ""
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "The parsing of the statement file returned an invalid result."
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 #, fuzzy
 msgid ""
 "This bank statement file format is not supported.\n"
-"Did you install the Odoo module to support this format?"
+"Did you install the System module to support this format?"
 msgstr ""
 "해당 파일을 해석할 수 없습니다.\n"
 "이 유형의 파일을 지원할 모듈을 설치하셨습니까?"
@@ -238,7 +238,7 @@ msgid "Upload a bank statement file"
 msgstr "가져올 예금거래 명세서 파일 선택"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "You have already imported this file, or this file only contains already "

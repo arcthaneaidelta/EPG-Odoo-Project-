@@ -26,10 +26,10 @@
         <field name="context">{'module': 'saas_management', 'bin_size': False}</field>
     </record>
 
-    <menuitem id="menu_saas_general_settings"
+    <!-- <menuitem id="menu_saas_general_settings"
               name="Settings"
               parent="menu_saas_config"
               sequence="0"
               action="saas_config_settings_action"
-              groups="base.group_system"/>
+              groups="base.group_system"/> -->
 </odoo>

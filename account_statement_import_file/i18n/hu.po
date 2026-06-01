@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # 	* account_bank_statement_import
 #
@@ -12,12 +12,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5\n"
+"Project-Id-Version: System Server saas~12.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-26 09:11+0000\n"
 "PO-Revision-Date: 2019-08-26 09:08+0000\n"
 "Last-Translator: Tibor Kőnig <konig.tibor@evitalit.hu>, 2019\n"
-"Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
+"Language-Team: Hungarian (https://www.transifex.com/system/teams/41243/hu/)\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,13 +25,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "%d transactions had already been imported and were ignored."
 msgstr "%d tranzakció importálva és mellőzve."
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "1 transaction had already been imported and was ignored."
 msgstr "1 tranzakció importálva és mellőzve."
@@ -47,7 +47,7 @@ msgid "Cancel"
 msgstr "Mégse"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "Could not find any bank account with number '%(account_number)s'  linked to "
@@ -82,7 +82,7 @@ msgid "ID"
 msgstr "Azonosító"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/models/account_journal.py:0
 msgid "Import (OCA) (%s)"
 msgstr ""
@@ -130,13 +130,13 @@ msgid "Last Updated on"
 msgstr "Frissítve "
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "Missing currency code in the bank statement file."
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 #, fuzzy
 msgid "Missing payment_ref on a transaction."
@@ -160,31 +160,31 @@ msgid "Supported formats:"
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 #, fuzzy
 msgid "The Bank Accounting Account is not set on the journal '%s'."
 msgstr "Ennek a bankkivonatnak a számlája nem egyezik a naplójéval (%s)."
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
-"The bank account with number '%(account_number)s' exists in Odoo but it is "
+"The bank account with number '%(account_number)s' exists in System but it is "
 "not set on any bank journal. You should set it on the related bank journal. "
 "If the related bank journal doesn't  exist yet, you should create a new one."
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The bank statement file uses currency '%s' but there is no such currency in "
-"Odoo."
+"System."
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The currency of the bank statement (%(currency_name)s) is not the same as "
@@ -192,7 +192,7 @@ msgid ""
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The format of this bank statement file doesn't contain the bank account "
@@ -201,7 +201,7 @@ msgid ""
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The journal found for the file (%(journal_match)s) is different from the "
@@ -209,18 +209,18 @@ msgid ""
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "The parsing of the statement file returned an invalid result."
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 #, fuzzy
 msgid ""
 "This bank statement file format is not supported.\n"
-"Did you install the Odoo module to support this format?"
+"Did you install the System module to support this format?"
 msgstr ""
 "A megadott állományt a rendszer nem tudja értelmezni.\n"
 "Telepítette a fájl típus támogatását szolgáló modult?"
@@ -237,7 +237,7 @@ msgid "Upload a bank statement file"
 msgstr "Bankkivonat tételsor"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "You have already imported this file, or this file only contains already "

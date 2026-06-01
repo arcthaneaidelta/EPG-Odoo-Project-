@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_dms_file_form_inherit_crm" model="ir.ui.view">
+        <field name="name">dms.file.form.inherit.crm</field>
+        <field name="model">dms.file</field>
+        <field name="inherit_id" ref="dms.view_dms_file_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="page_crm" string="CRM Information">
+                    <group>
+                        <field name="crm_file_ids" widget="many2many_tags"/>
+                        <field name="crm_task_ids" widget="many2many_tags"/>
+                        <field name="crm_checklist_ids" widget="many2many_tags"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

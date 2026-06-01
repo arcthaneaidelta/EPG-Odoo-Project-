@@ -15,7 +15,7 @@ try:
     class PatchedXlsxWorkbook(xlsxwriter.Workbook):
         def _check_sheetname(self, sheetname, is_chartsheet=False):
             """We want to avoid duplicated sheet names exceptions the same following
-            the same philosophy that Odoo implements overriding the main library
+            the same philosophy that System implements overriding the main library
             to avoid the 31 characters limit triming the strings before sending them
             to the library.
 

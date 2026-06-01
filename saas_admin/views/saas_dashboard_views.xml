@@ -54,7 +54,7 @@
             <field name="name">Tenant Dashboard</field>
             <field name="res_model">saas.subscription</field>
             <field name="view_mode">kanban,list,form</field>
-            <field name="domain">[('state', 'in', ['active', 'pending', 'suspended'])]</field>
+            <field name="domain">[('state', 'in', ['active', 'pending', 'suspended', 'trial'])]</field>
         </record>
         
         <!-- Deletion Wizard Action -->

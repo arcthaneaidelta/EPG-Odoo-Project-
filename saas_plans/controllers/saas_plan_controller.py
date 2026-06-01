@@ -4,9 +4,9 @@ from odoo import http, fields, _
 from odoo.http import request
 import logging
 import re
+from datetime import timedelta
 
 _logger = logging.getLogger(__name__)
-
 
 class SaaSPlanController(http.Controller):
 	
@@ -78,9 +78,30 @@ class SaaSPlanController(http.Controller):
 		billing_cycle = post.get('billing_cycle', plan.billing_cycle)
 		auto_renew = post.get('auto_renew', '0') == '1'
 		
+		# Handle partner if public user
+		customer_name = post.get('customer_name')
+		customer_email = post.get('customer_email')
+		
+		if customer_name and customer_email and request.env.user._is_public():
+			# Check if partner already exists
+			partner = request.env['res.partner'].sudo().search([('email', '=', customer_email)], limit=1)
+			if not partner:
+				partner = request.env['res.partner'].sudo().create({
+					'name': customer_name,
+					'email': customer_email,
+				})
+			
+			order.sudo().write({
+				'partner_id': partner.id,
+			})
+		
 		if not company_name:
 			return request.redirect('/saas/plan/%s/subscribe' % plan_id)
 		
+		# Clear existing subscription from cart if company name changed
+		if order.saas_subscription_id and order.saas_subscription_id.company_name != company_name:
+			order.sudo().write({'saas_subscription_id': False})
+
 		# Store SaaS-specific data in order
 		order.write({
 			'saas_plan_id': plan.id,
@@ -153,7 +174,195 @@ class SaaSPlanController(http.Controller):
 				storage_code = f'SAAS_STORAGE_{storage_gb}GB'
 				add_product_by_code(storage_code, cycle='monthly')
 		
+		checkout_action = post.get('checkout_action')
+		if checkout_action == 'trial':
+			if not order.saas_subscription_id:
+				order.sudo()._create_saas_subscription()
+				
+			if order.saas_subscription_id and not order.saas_subscription_id.database_name:
+				order.saas_subscription_id.sudo().write({
+					'state': 'trial',
+					'trial_start_date': fields.Datetime.now(),
+					'trial_end_date': fields.Datetime.now() + timedelta(days=7),
+				})
+				try:
+					order.saas_subscription_id.sudo().action_provision_tenant()
+				except Exception as e:
+					_logger.error("Auto-provisioning failed for trial: %s", str(e))
+					
+			sub_id = order.saas_subscription_id.id if order.saas_subscription_id else ''
+			return request.redirect(f'/saas/trial/success?sub_id={sub_id}')
+			
 		return request.redirect('/shop/checkout')
+		
+	@http.route('/saas/trial/success', type='http', auth='public', website=True)
+	def trial_success(self, sub_id=None, **kwargs):
+		"""Show trial success message"""
+		sub_id_js = f"'{sub_id}'" if sub_id else "null"
+		html_content = f"""
+		<!DOCTYPE html>
+		<html lang="es">
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Creación en progreso</title>
+			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+			<style>
+				:root {{
+					--primary: #5A67D8; /* Modern Indigo */
+					--bg-color: #0F172A; /* Slate 900 */
+					--card-bg: #1E293B; /* Slate 800 */
+					--text-main: #F1F5F9; /* Slate 100 */
+					--text-muted: #94A3B8; /* Slate 400 */
+					--success: #10B981; /* Emerald 500 */
+				}}
+				body {{
+					margin: 0;
+					padding: 0;
+					font-family: 'Inter', sans-serif;
+					background-color: var(--bg-color);
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					min-height: 100vh;
+					color: var(--text-main);
+				}}
+				.container {{
+					background-color: var(--card-bg);
+					padding: 3rem 4rem;
+					border-radius: 16px;
+					box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5), 0 10px 10px -5px rgba(0,0,0,0.3);
+					max-width: 500px;
+					text-align: center;
+					animation: fadeIn 0.5s ease-out;
+					border: 1px solid #334155;
+				}}
+				.icon-box {{
+					width: 80px;
+					height: 80px;
+					background-color: rgba(16, 185, 129, 0.1);
+					border-radius: 50%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin: 0 auto 1.5rem auto;
+				}}
+				.icon-box svg {{
+					width: 40px;
+					height: 40px;
+					color: var(--success);
+				}}
+				h1 {{
+					font-weight: 800;
+					font-size: 1.8rem;
+					margin: 0 0 1rem 0;
+				}}
+				p {{
+					font-size: 1rem;
+					line-height: 1.6;
+					color: var(--text-muted);
+					margin: 0 0 2rem 0;
+				}}
+				.btn {{
+					display: inline-block;
+					background-color: var(--primary);
+					color: white;
+					text-decoration: none;
+					font-weight: 600;
+					padding: 0.8rem 2rem;
+					border-radius: 8px;
+					transition: all 0.2s ease;
+				}}
+				.btn:hover {{
+					background-color: #434190;
+				}}
+				@keyframes fadeIn {{
+					from {{ opacity: 0; transform: translateY(20px); }}
+					to {{ opacity: 1; transform: translateY(0); }}
+				}}
+				.spinner-border {{
+					display: inline-block;
+					width: 2rem;
+					height: 2rem;
+					vertical-align: text-bottom;
+					border: .25em solid currentColor;
+					border-right-color: transparent;
+					border-radius: 50%;
+					animation: spinner-border .75s linear infinite;
+					margin-bottom: 1rem;
+					color: var(--primary);
+				}}
+				@keyframes spinner-border {{
+					100% {{ transform: rotate(360deg); }}
+				}}
+			</style>
+		</head>
+		<body>
+			<div class="container" id="status_container">
+				<div class="spinner-border" id="loading_spinner" role="status"></div>
+				<div class="icon-box" id="success_icon" style="display: none;">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+					</svg>
+				</div>
+				<h1 id="status_title">Creando Base de Datos</h1>
+				<p id="status_message">Por favor espere, su base de datos está en creación. Recibirá las credenciales de acceso por correo electrónico en unos minutos.</p>
+				<a href="/" class="btn" id="home_btn" style="display: none;">Ir al Panel de Control</a>
+			</div>
+			
+			<script>
+				document.addEventListener('DOMContentLoaded', function() {{
+					const subId = {sub_id_js};
+					if (!subId) return;
+
+					const spinner = document.getElementById('loading_spinner');
+					const successIcon = document.getElementById('success_icon');
+					const title = document.getElementById('status_title');
+					const message = document.getElementById('status_message');
+					const homeBtn = document.getElementById('home_btn');
+
+					const checkStatus = () => {{
+						fetch('/saas/trial/status/' + subId, {{
+							method: 'POST',
+							headers: {{ 'Content-Type': 'application/json' }},
+							body: JSON.stringify({{ jsonrpc: '2.0', method: 'call', params: {{}} }})
+						}})
+						.then(res => res.json())
+						.then(data => {{
+							if (data.result && data.result.status === 'completed') {{
+								spinner.style.display = 'none';
+								successIcon.style.display = 'flex';
+								title.innerText = '¡Base de Datos Creada!';
+								message.innerText = 'Su entorno está listo. Hemos enviado las credenciales y el enlace de acceso a su correo electrónico.';
+								homeBtn.style.display = 'inline-block';
+							}} else if (data.result && data.result.status === 'failed') {{
+								spinner.style.display = 'none';
+								title.innerText = 'Error en la Creación';
+								message.innerText = 'Hubo un problema al crear su base de datos. Por favor, contacte con soporte.';
+							}} else {{
+								setTimeout(checkStatus, 3000);
+							}}
+						}})
+						.catch(err => {{
+							console.error(err);
+							setTimeout(checkStatus, 3000);
+						}});
+					}};
+					
+					setTimeout(checkStatus, 3000);
+				}});
+			</script>
+		</body>
+		</html>
+		"""
+		return request.make_response(html_content, headers=[('Content-Type', 'text/html')])
+		
+	@http.route('/saas/trial/status/<int:sub_id>', type='json', auth='public')
+	def trial_status(self, sub_id, **kwargs):
+		sub = request.env['saas.subscription'].sudo().browse(sub_id)
+		if not sub.exists():
+			return {'status': 'error'}
+		return {'status': sub.provisioning_status}
 	
 	def _create_plan_product(self, plan, billing_cycle):
 		"""Create or get product for a SaaS plan"""

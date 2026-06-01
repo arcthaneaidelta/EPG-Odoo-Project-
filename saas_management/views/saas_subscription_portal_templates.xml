@@ -47,6 +47,7 @@
                         <td><span t-field="subscription.plan_id.name"/></td>
                         <td class="text-end">
                             <span t-if="subscription.state == 'active'" class="badge rounded-pill text-bg-success">Active</span>
+                            <span t-if="subscription.state == 'trial'" class="badge rounded-pill text-bg-primary">Trial</span>
                             <span t-if="subscription.state == 'pending'" class="badge rounded-pill text-bg-info">Pending</span>
                             <span t-if="subscription.state == 'suspended'" class="badge rounded-pill text-bg-danger">Suspended</span>
                             <span t-if="subscription.state == 'grace_period'" class="badge rounded-pill text-bg-warning">Grace Period</span>
@@ -76,6 +77,10 @@
                             <a t-if="subscription.state in ['grace_period', 'suspended']"
                                t-att-href="'/my/subscription/%s/renew' % subscription.id"
                                class="btn btn-primary d-block mb-2">Renew Subscription</a>
+                               
+                            <a t-if="subscription.state == 'trial'"
+                               t-att-href="'/my/subscription/%s/renew' % subscription.id"
+                               class="btn btn-success d-block mb-2">Buy Subscription</a>
                             
                             <a t-if="subscription.state == 'active'"
                                t-att-href="'/my/subscription/%s/upgrade' % subscription.id"
@@ -100,12 +105,17 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <strong>Status:</strong> <span t-field="subscription.state"/><br/>
-                                        <strong>Expiration:</strong> <span t-field="subscription.expiration_date"/><br/>
-                                        <strong>Next Billing:</strong> <span t-field="subscription.next_billing_date"/><br/>
+                                        <t t-if="subscription.state == 'trial'">
+                                            <strong>Trial Ends:</strong> <span t-field="subscription.trial_end_date"/><br/>
+                                        </t>
+                                        <t t-else="">
+                                            <strong>Expiration:</strong> <span t-field="subscription.expiration_date"/><br/>
+                                            <strong>Next Billing:</strong> <span t-field="subscription.next_billing_date"/><br/>
+                                        </t>
                                         <strong>Tenant URL:</strong> <a t-if="subscription.tenant_url" t-att-href="subscription.tenant_url" target="_blank"><t t-esc="subscription.tenant_url"/></a><br/><br/>
                                         
                                         <!-- Auto Renew Toggle -->
-                                        <form t-attf-action="/my/subscription/#{subscription.id}/toggle_auto_renew" method="post" class="d-flex align-items-center">
+                                        <form t-if="subscription.state != 'trial'" t-attf-action="/my/subscription/#{subscription.id}/toggle_auto_renew" method="post" class="d-flex align-items-center">
                                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                             <input type="hidden" name="access_token" t-att-value="subscription.access_token"/>
                                             <strong>Auto-Renew:</strong>
@@ -206,8 +216,8 @@
                     <input type="hidden" name="access_token" t-att-value="subscription.access_token"/>
                     
                     <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="card">
+                        <div class="col-md-4">
+                            <div class="card h-100">
                                 <div class="card-header">Add Extra Users</div>
                                 <div class="card-body">
                                     <p>Current Extra Users: <span t-esc="subscription.extra_users"/></p>
@@ -219,8 +229,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card">
+                        <div class="col-md-4">
+                            <div class="card h-100">
                                 <div class="card-header">Add Extra Storage</div>
                                 <div class="card-body">
                                     <p>Current Extra Storage: <span t-esc="subscription.extra_storage_gb"/> GB</p>
@@ -236,6 +246,23 @@
                                 </div>
                             </div>
                         </div>
+                        <t t-if="not subscription.accounting_module and not subscription.is_early_adopter">
+                            <div class="col-md-4">
+                                <div class="card h-100 border-primary">
+                                    <div class="card-header bg-primary text-white">Add Accounting Module</div>
+                                    <div class="card-body">
+                                        <p>Enable full accounting features for your subscription.</p>
+                                        <div class="form-check form-switch mt-3">
+                                            <input class="form-check-input" type="checkbox" name="add_accounting" id="add_accounting"/>
+                                            <label class="form-check-label font-weight-bold" for="add_accounting">Enable Accounting</label>
+                                        </div>
+                                        <small class="text-muted d-block mt-2">
+                                            Price: €<t t-esc="15.00 if subscription.billing_cycle == 'monthly' else 150.00"/> / <t t-esc="'month' if subscription.billing_cycle == 'monthly' else 'year'"/>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
                     </div>
                     
                     <div class="row mt-4">

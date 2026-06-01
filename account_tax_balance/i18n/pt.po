@@ -1,12 +1,12 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # * account_tax_balance
 #
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# OCA Transbot <transbot@system-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: System Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-27 12:02+0000\n"
 "PO-Revision-Date: 2021-07-02 22:50+0000\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/wizard/open_tax_balances.py:0
 msgid "%(name)s: %(target)s from %(from)s to %(to)s"
 msgstr "%(name)s: %(target)s de %(from)s até %(to)s"
@@ -147,7 +147,7 @@ msgid "Last Updated on"
 msgstr "Última atualização por"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Liquidity"
 msgstr "Liquidez"
@@ -158,31 +158,31 @@ msgid "Open Taxes"
 msgstr "Abrir impostos"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Other"
 msgstr "Outro"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Payable"
 msgstr "A pagar"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Payable refund"
 msgstr "Crédito a pagar"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Receivable"
 msgstr "A receber"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Receivable refund"
 msgstr "Crédito a receber"
@@ -243,7 +243,7 @@ msgid "Total Base Balance"
 msgstr "Saldo da base total"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_tax.py:0
 msgid "Unsupported search operator"
 msgstr "Operador de pesquisa não suportado"

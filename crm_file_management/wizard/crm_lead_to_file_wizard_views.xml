@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_crm_lead_to_file_wizard_form" model="ir.ui.view">
+        <field name="name">crm.lead.to.file.wizard.form</field>
+        <field name="model">crm.lead.to.file.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Case File">
+                <group>
+                    <field name="lead_id" invisible="1"/>
+                    <field name="partner_id"/>
+                    <field name="type_id" options="{'no_create': True, 'no_open': True}"/>
+                    <field name="name"/>
+                </group>
+                <footer>
+                    <button name="action_create_file" string="Create File" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_crm_lead_to_file_wizard" model="ir.actions.act_window">
+        <field name="name">Create Case File</field>
+        <field name="res_model">crm.lead.to.file.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

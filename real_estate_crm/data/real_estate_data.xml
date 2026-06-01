@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sequences -->
+    <record id="seq_real_estate_property" model="ir.sequence">
+        <field name="name">Real Estate Property</field>
+        <field name="code">real.estate.property</field>
+        <field name="prefix">PROP-</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_real_estate_rental_contract" model="ir.sequence">
+        <field name="name">Rental Contract</field>
+        <field name="code">real.estate.rental.contract</field>
+        <field name="prefix">RENT-</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_real_estate_visit" model="ir.sequence">
+        <field name="name">Property Visit</field>
+        <field name="code">real.estate.visit</field>
+        <field name="prefix">VISIT-</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_real_estate_commission" model="ir.sequence">
+        <field name="name">Real Estate Commission</field>
+        <field name="code">real.estate.commission</field>
+        <field name="prefix">COMM-</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Real Estate CRM Team -->
+    <record id="crm_team_real_estate" model="crm.team">
+        <field name="name">Real Estate</field>
+        <field name="use_opportunities">True</field>
+        <field name="use_leads">True</field>
+    </record>
+
+    <!-- <function model="crm.stage" name="write">
+        <value model="crm.stage" search="[('name', 'in', ['New', 'Qualified', 'Proposition'])]"/>
+        <value eval="{'team_id': ref('sales_team.salesteam_website_sales')}"/>
+    </function> -->
+
+    <!-- CRM Stages for Real Estate -->
+    <record id="stage_lead_1" model="crm.stage">
+        <field name="name">Lead Generation</field>
+        <field name="sequence">1</field>
+        <field name="team_id" ref="crm_team_real_estate"/>
+    </record>
+
+    <record id="stage_lead_2" model="crm.stage">
+        <field name="name">Visit</field>
+        <field name="sequence">2</field>
+        <field name="team_id" ref="crm_team_real_estate"/>
+    </record>
+
+    <record id="stage_lead_3" model="crm.stage">
+        <field name="name">Negotiation</field>
+        <field name="sequence">3</field>
+        <field name="team_id" ref="crm_team_real_estate"/>
+    </record>
+
+    <record id="stage_lead_4" model="crm.stage">
+        <field name="name">Closing</field>
+        <field name="sequence">4</field>
+        <field name="team_id" ref="crm_team_real_estate"/>
+    </record>
+
+    <!-- <record id="stage_lead_won" model="crm.stage">
+        <field name="name">Cerrado Ganado</field>
+        <field name="sequence">5</field>
+        <field name="is_won">True</field>
+        <field name="team_id" ref="crm_team_real_estate"/>
+    </record>
+
+    <record id="stage_lead_lost" model="crm.stage">
+        <field name="name">Cerrado Perdido</field>
+        <field name="sequence">6</field>
+        <field name="fold">True</field>
+        <field name="team_id" ref="crm_team_real_estate"/>
+    </record> -->
+
+    <!-- Default Property Types -->
+    <record id="property_type_apartment" model="real.estate.property.type">
+        <field name="name">Apartment</field>
+        <field name="code">APT</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="property_type_house" model="real.estate.property.type">
+        <field name="name">House</field>
+        <field name="code">HSE</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="property_type_commercial" model="real.estate.property.type">
+        <field name="name">Commercial</field>
+        <field name="code">COM</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="property_type_land" model="real.estate.property.type">
+        <field name="name">Land</field>
+        <field name="code">LND</field>
+        <field name="sequence">40</field>
+    </record>
+
+    <record id="property_type_office" model="real.estate.property.type">
+        <field name="name">Office</field>
+        <field name="code">OFF</field>
+        <field name="sequence">50</field>
+    </record>
+</odoo>

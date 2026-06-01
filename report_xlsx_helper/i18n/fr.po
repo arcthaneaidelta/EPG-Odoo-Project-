@@ -1,10 +1,10 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # 	* report_xlsx_helper
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: System Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""
@@ -24,14 +24,14 @@ msgid ""
 msgstr ""
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/models/ir_actions_report.py:0
 #, python-format
 msgid "%s model was not found"
 msgstr ""
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ", cellvalue %s"
@@ -43,7 +43,7 @@ msgid "Abstract XLSX Report"
 msgstr ""
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""
@@ -53,7 +53,7 @@ msgid ""
 msgstr ""
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""
@@ -63,7 +63,7 @@ msgid ""
 msgstr ""
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""
@@ -73,7 +73,7 @@ msgid ""
 msgstr ""
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""
@@ -83,7 +83,7 @@ msgid ""
 msgstr ""
 
 #. module: report_xlsx_helper
-#. odoo-python
+#. system-python
 #: code:addons/report_xlsx_helper/report/report_xlsx_abstract.py:0
 #, python-format
 msgid ""

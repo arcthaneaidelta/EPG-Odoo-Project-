@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # * account_asset_management
 #
@@ -39,7 +39,7 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "\n"
@@ -63,7 +63,7 @@ msgid "<span class=\"o_stat_text\"> Asset(s)</span>"
 msgstr "<span class=\"o_stat_text\"> Demirbaş(lar)</span>"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model,name:account_asset_management.model_account_account
 msgid "Account"
@@ -86,7 +86,7 @@ msgid "Active"
 msgstr "Etkin"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Active Assets"
 msgstr "Aktif Demirbaşlar"
@@ -175,7 +175,7 @@ msgid "Asset"
 msgstr "Demirbaş"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid "Asset '%s' Removal Journal Entry"
 msgstr "'%s' Demirbaşı Kaldırılması Yevmiye Kaydı"
@@ -243,7 +243,7 @@ msgid "Asset Removal"
 msgstr "Demirbaş Kaldırma"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__date_remove
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_remove__date_remove
@@ -256,7 +256,7 @@ msgid "Asset Sale Account"
 msgstr "Demirbaş Satış Hesabı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__date_start
 msgid "Asset Start Date"
@@ -268,7 +268,7 @@ msgid "Asset depreciation table line"
 msgstr "Demirbaş amortisman tablosu satırı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid "Asset name must be set in the label of the line."
 msgstr "Demirbaş adı satır etiketinde ayarlanmalıdır."
@@ -297,7 +297,7 @@ msgid "Assets"
 msgstr "Demirbaşlar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Assets to be corrected"
 msgstr "Düzeltilecek demirbaşlar"
@@ -427,7 +427,7 @@ msgid "Completion Date"
 msgstr "Tamamlama tarihi"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Comput. Method"
 msgstr "Hesaplama yöntemi"
@@ -454,13 +454,13 @@ msgid "Compute Assets"
 msgstr "Demirbaşları Hesapla"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_compute.py:0
 msgid "Compute Assets errors"
 msgstr "Demirbaşları Hesapla hataları"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_compute.py:0
 msgid "Compute Assets result"
 msgstr "Demirbaşları Hesapla sonucu"
@@ -486,7 +486,7 @@ msgid "Create an asset by product item"
 msgstr "Ürün kalemine göre bir demirbaş oluştur"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_compute.py:0
 msgid "Created Asset Moves"
 msgstr "Oluşturulan Demirbaş Hareketleri"
@@ -540,13 +540,13 @@ msgid "Default Asset Profile when creating invoice lines with this account."
 msgstr "Bu hesapla fatura oluştururken Varsayılan Demirbaş Profili."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive"
 msgstr "Azalan"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive  up to Salvage Value"
 msgstr "Hurda Değerine dek azalan"
@@ -558,13 +558,13 @@ msgid "Degressive Factor"
 msgstr "Azalma Faktörü"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive-Linear"
 msgstr "Azalma Faktörü"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Degressive-Linear is only supported for Time Method = Year."
@@ -596,7 +596,7 @@ msgid "Depreciation Account"
 msgstr "Amortisman Hesabı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__depreciation_base
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_line__depreciation_base
@@ -667,7 +667,7 @@ msgid "Draft"
 msgstr "Taslak"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Duplicate reporting entries"
 msgstr "Raporlama girdilerini çoğalt"
@@ -693,7 +693,7 @@ msgid "Entries"
 msgstr "Kayıtlar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "Error while processing asset '{ref}': \n"
@@ -742,7 +742,7 @@ msgid "Force accounting date"
 msgstr "Muhasebe tarihine zorla"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid "Gain/Loss on Sale"
 msgstr "Satışta Kazanç/Kayıp"
@@ -753,7 +753,7 @@ msgid "General"
 msgstr "Genel"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "Generate Asset Removal entries"
 msgstr "Demirbaş Kaldırma Girdileri Oluştur"
@@ -865,7 +865,7 @@ msgstr ""
 "görüntülenir."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "Illegal value %s in asset.method."
 msgstr "Demirbaş yönteminde yasadışı değer %s."
@@ -876,7 +876,7 @@ msgid "Include draft assets"
 msgstr "Taslak demirbaşları dahil et"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid ""
 "Inconsistent reporting structure.\n"
@@ -916,14 +916,14 @@ msgid "Journal"
 msgstr "Günlük"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 #: model_terms:ir.ui.view,arch_db:account_asset_management.account_asset_view_form
 msgid "Journal Entries"
 msgstr "Yevmiye Kayıtları"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 #: model:ir.model,name:account_asset_management.model_account_move
 msgid "Journal Entry"
@@ -966,13 +966,13 @@ msgid "Last Updated on"
 msgstr "Son güncelleme"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Linear"
 msgstr "Doğrusal"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Linear up to Salvage Value"
 msgstr "Hurda Değerine dek Doğrusal"
@@ -994,13 +994,13 @@ msgid "Min-Value Account"
 msgstr "Min-Değer Hesabı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Missing depreciation table"
 msgstr "Amortisman tablosu yok"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Month"
 msgstr "Ay"
@@ -1011,7 +1011,7 @@ msgid "My Activity Deadline"
 msgstr "Aktivite Zaman Sınırım"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_group__name
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__name
@@ -1019,7 +1019,7 @@ msgid "Name"
 msgstr "Adı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "New Acquisitions"
 msgstr "Yeni Alımlar"
@@ -1045,7 +1045,7 @@ msgid "Next Period Depreciation"
 msgstr "Sonraki dönemdeki Amortisman"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "No"
 msgstr "Yok"
@@ -1071,13 +1071,13 @@ msgid "Number of Actions"
 msgstr "Eylemlerin Sayısı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Number of Depreciations"
 msgstr "Amortisman Sayısı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__method_number
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__method_number
@@ -1085,7 +1085,7 @@ msgid "Number of Years"
 msgstr "Yıl Sayısı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Number of Years or end date"
 msgstr "Yıl Sayısı veya bitiş tarihi"
@@ -1136,13 +1136,13 @@ msgid "Percentage of Price"
 msgstr "Fiyat Yüzdesi"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Period Depreciation"
 msgstr "Amortisman Dönemi"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Period End Value"
 msgstr "Dönem Bitiş Değeri"
@@ -1154,7 +1154,7 @@ msgid "Period Length"
 msgstr "Dönem Uzunluğu"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Period Start Value"
 msgstr "Dönem Başlangıç Değeri"
@@ -1187,7 +1187,7 @@ msgid "Profile"
 msgstr "Profil"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__prorata
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__prorata
@@ -1195,20 +1195,20 @@ msgid "Prorata Temporis"
 msgstr "Kısmi Süreyle Orantılı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__purchase_value
 msgid "Purchase Value"
 msgstr "Satınalma Değeri"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Quarter"
 msgstr "Çeyrek"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_recompute_trigger__reason
 #: model:ir.model.fields,field_description:account_asset_management.field_wiz_asset_move_reverse__reason
@@ -1216,7 +1216,7 @@ msgid "Reason"
 msgstr "Neden"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__code
 msgid "Reference"
@@ -1266,13 +1266,13 @@ msgid "Removed"
 msgstr "Kaldırıldı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Removed Assets"
 msgstr "Kaldırılan Demirbaşlar"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__value_residual
 msgid "Residual Value"
@@ -1305,7 +1305,7 @@ msgid "Reverse Journal Entry"
 msgstr "Ters Yevmiye Kaydı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid "Reverse Move"
 msgstr "Ters Hareket"
@@ -1332,7 +1332,7 @@ msgid "Salvage Type"
 msgstr "Kurtarma Türü"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__salvage_value
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset_profile__salvage_value
@@ -1347,10 +1347,10 @@ msgstr "Demirbaş Grubu Ara"
 #. module: account_asset_management
 #: model:ir.model.fields,help:account_asset_management.field_account_asset_line__init_entry
 msgid ""
-"Set this flag for entries of previous fiscal years for which Odoo has not "
+"Set this flag for entries of previous fiscal years for which System has not "
 "generated accounting entries."
 msgstr ""
-"Odoo'nun muhasebe kayıtları oluşturmadığı önceki mali yıl kayıtları için bu "
+"System'nun muhasebe kayıtları oluşturmadığı önceki mali yıl kayıtları için bu "
 "bayrağı ayarlayın."
 
 #. module: account_asset_management
@@ -1379,7 +1379,7 @@ msgid "State of Asset"
 msgstr "Demirbaş Durumu"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 #: model:ir.model.fields,field_description:account_asset_management.field_account_asset__state
 #: model_terms:ir.ui.view,arch_db:account_asset_management.account_asset_view_search
@@ -1400,7 +1400,7 @@ msgstr ""
 "Planlanan: Gelecek etkinlikler."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "The '_compute_year_amount' method is only intended for Time Method 'Number "
@@ -1410,13 +1410,13 @@ msgstr ""
 "tasarlanmıştır."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "The 'account' field is a mandatory entry of the '_xls_%s_fields' list !"
 msgstr "'hesap' alanı '_xls_%s_fields' listesinin mecburi alanıdır !"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_account.py:0
 msgid ""
 "The Asset Account defined in the Asset Profile must be equal to the account."
@@ -1425,20 +1425,20 @@ msgstr ""
 "olmalıdır."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid "The Sale Value must be positive!"
 msgstr "Satış Değeri pozitif olmalıdır!"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 #: code:addons/account_asset_management/wizard/wiz_account_asset_report.py:0
 msgid "The Start Date must precede the Ending Date."
 msgstr "Başlama Değeri Bitiş Değeri'nden önce olmalıdır."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid ""
 "The duration of the asset conflicts with the posted depreciation table entry "
@@ -1464,7 +1464,7 @@ msgid "The number of years needed to depreciate your asset"
 msgstr "Demirbaşınızın amortize edilmesi için gereken yıl sayısı"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid "The removal date must be after the last depreciation date."
 msgstr "Kaldırma tarihi, son amortisman tarihinden sonra olmalıdır."
@@ -1491,7 +1491,7 @@ msgstr ""
 "Satınalma Değeri - Hurda Değeri."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid "This invoice created the asset(s): %s"
 msgstr "Bu faturanın oluşturduğu demirbaş(lar): %s"
@@ -1503,7 +1503,7 @@ msgid "Time Method"
 msgstr "Zaman Yöntemi"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Tot. Depreciation"
 msgstr "Topl. Amortisman"
@@ -1514,7 +1514,7 @@ msgid "Total Days"
 msgstr "Toplam Gün"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Totals"
 msgstr "Toplamlar"
@@ -1535,7 +1535,7 @@ msgid "Type of the exception activity on record."
 msgstr "Kayıttaki istisna faaliyetinin türü."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/report/account_asset_report_xls.py:0
 msgid "Undetermined error"
 msgstr "Belirsiz hata"
@@ -1596,13 +1596,13 @@ msgstr ""
 "Kaldırma kayıtları oluşturulduğunda, demirbaş 'Kaldırıldı' durumuna geçer."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_profile.py:0
 msgid "Year"
 msgstr "Yıl"
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
 "You are not allowed to link an accounting entry to an asset.\n"
@@ -1612,7 +1612,7 @@ msgstr ""
 "Böyle kayıtları demirbaştan oluşturmalısınız."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
@@ -1623,13 +1623,13 @@ msgstr ""
 "Böyle kayıtları demirbaştan silmelisiniz."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "You can only delete assets in draft state."
 msgstr "Yalnızca 'Taslak' durumundaki demirbaşları dilebilirsiniz."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/wizard/account_asset_remove.py:0
 msgid ""
 "You can't make an early removal if all the depreciation lines for previous "
@@ -1639,7 +1639,7 @@ msgstr ""
 "yapamazsınız."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot change a depreciation line with an associated accounting entry."
@@ -1648,7 +1648,7 @@ msgstr ""
 "değiştiremezsiniz."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
 "You cannot change an accounting entry linked to an asset depreciation line."
@@ -1657,7 +1657,7 @@ msgstr ""
 "değiştiremezsiniz."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_move.py:0
 msgid ""
 "You cannot change an accounting item linked to an asset depreciation line."
@@ -1666,13 +1666,13 @@ msgstr ""
 "değiştiremezsiniz."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "You cannot change the profile of an asset with accounting entries."
 msgstr "Muhasebe kaydı olan bir demirbaşın profilini değiştiremezsiniz."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot delete a depreciation line with an associated accounting entry."
@@ -1680,19 +1680,19 @@ msgstr ""
 "Bir muhasebe kaydıyla ilişkili olan bir amortisman kalemini silemezsiniz."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset.py:0
 msgid "You cannot delete an asset that contains posted depreciation lines."
 msgstr "İşlenmiş yıpranma kalemleri içeren bir varlığı silemezsiniz."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid "You cannot remove an asset line of type 'Depreciation Base'."
 msgstr "'Amortisman Tabanı' türündeki bir varlık satırını kaldıramazsınız."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot set the 'Initial Balance Entry' flag on a depreciation line with "
@@ -1702,7 +1702,7 @@ msgstr ""
 "Girişi' bayrağını ayarlayamazsınız."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid "You cannot set the Asset Start Date after already posted entries."
 msgstr ""
@@ -1710,7 +1710,7 @@ msgstr ""
 "ayarlayamazsınız."
 
 #. module: account_asset_management
-#. odoo-python
+#. system-python
 #: code:addons/account_asset_management/models/account_asset_line.py:0
 msgid ""
 "You cannot set the date on a depreciation line prior to already posted "

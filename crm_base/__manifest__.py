@@ -6,6 +6,7 @@
 	"depends": [
 		"crm",
 		"mail",
+		"mail_bot",
 		"base_automation",
 		"sale_management",
 		"sale",
@@ -26,11 +27,20 @@
 		"views/account_move_views.xml",
 		"views/sale_order_views.xml",
 		"views/res_config_settings_views.xml",
+		"views/crm_lead_kanban_view.xml",
 		# "data/crm_automation.xml",
 		"data/mail_templates.xml",
 		"data/res_country_data.xml",
 		# "data/menu_order.xml",
 	],
+
+	'assets': {
+        'web.assets_backend': [
+            'crm_base/static/src/css/crm_kanban_dark.css',
+        ],
+    },
+
+
 	"post_init_hook": "post_init_hook",
 	"application": True,
 }

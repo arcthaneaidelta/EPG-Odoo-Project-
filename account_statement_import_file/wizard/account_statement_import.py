@@ -1,4 +1,4 @@
-# Copyright 2004-2020 Odoo S.A.
+# Copyright 2004-2020 System S.A.
 # Licence LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 import base64
@@ -159,7 +159,7 @@ class AccountStatementImport(models.TransientModel):
                     - 'amount': float
                     - 'unique_import_id': string
                     -o 'account_number': string
-                        Will be used to find/create the res.partner.bank in odoo
+                        Will be used to find/create the res.partner.bank in the system
                     -o 'partner_name': string
         If the file is a multi-statement file, this method must return
         a list of triplets.
@@ -167,7 +167,7 @@ class AccountStatementImport(models.TransientModel):
         raise UserError(
             self.env._(
                 "This bank statement file format is not supported.\n"
-                "Did you install the Odoo module to support this format?"
+                "Did you install the module to support this format?"
             )
         )
 
@@ -199,7 +199,7 @@ class AccountStatementImport(models.TransientModel):
             raise UserError(
                 self.env._(
                     "The bank statement file uses currency '%s' "
-                    "but there is no such currency in Odoo.",
+                    "but there is no such currency in the system.",
                     currency_code,
                 )
             )
@@ -258,7 +258,7 @@ class AccountStatementImport(models.TransientModel):
                     raise UserError(
                         self.env._(
                             "The bank account with number '%(account_number)s'"
-                            " exists in Odoo but it is not set on any bank "
+                            " exists in the system but it is not set on any bank "
                             "journal. You should set it on the related bank "
                             "journal. If the related bank journal doesn't "
                             " exist yet, you should create a new one.",

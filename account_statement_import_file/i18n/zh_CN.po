@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # 	* account_bank_statement_import
 #
@@ -16,18 +16,18 @@
 # Jeanphy <hzh0292@qq.com>, 2019
 # Sage <263737@qq.com>, 2019
 # ChinaMaker <liuct@chinamaker.net>, 2019
-# Manga Tsang <mts@odoo.com>, 2019
-# Felix Yuen <fyu@odoo.com>, 2019
+# Manga Tsang <mts@system.com>, 2019
+# Felix Yuen <fyu@system.com>, 2019
 # ryan ryan <itechr@outlook.com>, 2019
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server saas~12.5\n"
+"Project-Id-Version: System Server saas~12.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-26 09:11+0000\n"
 "PO-Revision-Date: 2024-06-12 08:50+0000\n"
 "Last-Translator: xtanuiha <feihu.zhang@live.com>\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/odoo/teams/41243/"
+"Language-Team: Chinese (China) (https://www.transifex.com/system/teams/41243/"
 "zh_CN/)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -37,13 +37,13 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "%d transactions had already been imported and were ignored."
 msgstr "%d 个已导入的交易将被忽略。"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "1 transaction had already been imported and was ignored."
 msgstr "1个 已导入的交易将被忽略."
@@ -59,7 +59,7 @@ msgid "Cancel"
 msgstr "取消日期"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "Could not find any bank account with number '%(account_number)s'  linked to "
@@ -94,7 +94,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/models/account_journal.py:0
 msgid "Import (OCA) (%s)"
 msgstr ""
@@ -140,13 +140,13 @@ msgid "Last Updated on"
 msgstr "最后更新于"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "Missing currency code in the bank statement file."
 msgstr "银行对账单文件中缺少货币代码。"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "Missing payment_ref on a transaction."
 msgstr "交易中缺少payment_ref字段。"
@@ -167,30 +167,30 @@ msgid "Supported formats:"
 msgstr "支持的格式："
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "The Bank Accounting Account is not set on the journal '%s'."
 msgstr "日记账 ‘%s’ 上未设置银行科目。"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
-"The bank account with number '%(account_number)s' exists in Odoo but it is "
+"The bank account with number '%(account_number)s' exists in System but it is "
 "not set on any bank journal. You should set it on the related bank journal. "
 "If the related bank journal doesn't  exist yet, you should create a new one."
 msgstr ""
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The bank statement file uses currency '%s' but there is no such currency in "
-"Odoo."
-msgstr "银行对账单文件使用币种 '%s'，但 Odoo 中没有这个币种。"
+"System."
+msgstr "银行对账单文件使用币种 '%s'，但 System 中没有这个币种。"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The currency of the bank statement (%(currency_name)s) is not the same as "
@@ -200,7 +200,7 @@ msgstr ""
 "(%(journal_currency_name)s) 不一致。"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The format of this bank statement file doesn't contain the bank account "
@@ -211,7 +211,7 @@ msgstr ""
 "启动向导。"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "The journal found for the file (%(journal_match)s) is different from the "
@@ -221,20 +221,20 @@ msgstr ""
 "(%(journal_selected)s) 不一致。"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid "The parsing of the statement file returned an invalid result."
 msgstr "解析对账单文件返回了无效的结果。"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "This bank statement file format is not supported.\n"
-"Did you install the Odoo module to support this format?"
+"Did you install the System module to support this format?"
 msgstr ""
 "此银行对账单文件格式不受支持。 \n"
-"您是否安装了支持此格式的 Odoo 模块？"
+"您是否安装了支持此格式的 System 模块？"
 
 #. module: account_statement_import_file
 #: model_terms:ir.ui.view,arch_db:account_statement_import_file.account_statement_import_form
@@ -247,7 +247,7 @@ msgid "Upload a bank statement file"
 msgstr "上传一个银行对账单文件"
 
 #. module: account_statement_import_file
-#. odoo-python
+#. system-python
 #: code:addons/account_statement_import_file/wizard/account_statement_import.py:0
 msgid ""
 "You have already imported this file, or this file only contains already "

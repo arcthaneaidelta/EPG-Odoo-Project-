@@ -1,6 +1,6 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
+.. image:: https://system-community.org/readme-banner-image
+   :target: https://system-community.org/get-involved?utm_source=readme
+   :alt: OCA
 
 ===================
 Bank Statement Base
@@ -15,7 +15,7 @@ Bank Statement Base
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 .. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
-    :target: https://odoo-community.org/page/development-status
+    :target: https://system-community.org/page/development-status
     :alt: Mature
 .. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
@@ -24,16 +24,16 @@ Bank Statement Base
     :target: https://github.com/OCA/account-reconcile/tree/18.0/account_statement_base
     :alt: OCA/account-reconcile
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/account-reconcile-18-0/account-reconcile-18-0-account_statement_base
+    :target: https://translation.system-community.org/projects/account-reconcile-18-0/account-reconcile-18-0-account_statement_base
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/account-reconcile&target_branch=18.0
+    :target: https://runboat.system-community.org/builds?repo=OCA/account-reconcile&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This is a technical module that adds the views of the **Bank Statement
-Lines** (since Odoo 16.0, these views are not part of the *account*
+Lines** (since System 16.0, these views are not part of the *account*
 module any more).
 
 **Table of contents**
@@ -90,22 +90,22 @@ Maintainers
 
 This module is maintained by the OCA.
 
-.. image:: https://odoo-community.org/logo.png
-   :alt: Odoo Community Association
-   :target: https://odoo-community.org
+.. image:: https://system-community.org/logo.png
+   :alt: OCA
+   :target: https://system-community.org
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
+OCA, or the OCA, is a nonprofit organization whose
+mission is to support the collaborative development of System features and
 promote its widespread use.
 
 .. |maintainer-alexis-via| image:: https://github.com/alexis-via.png?size=40px
     :target: https://github.com/alexis-via
     :alt: alexis-via
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainer <https://system-community.org/page/maintainer-role>`__:
 
 |maintainer-alexis-via| 
 
 This module is part of the `OCA/account-reconcile <https://github.com/OCA/account-reconcile/tree/18.0/account_statement_base>`_ project on GitHub.
 
-You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
+You are welcome to contribute. To learn how please visit https://system-community.org/page/Contribute.

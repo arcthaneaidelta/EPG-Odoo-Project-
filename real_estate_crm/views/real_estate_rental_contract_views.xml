@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_real_estate_rental_contract_tree" model="ir.ui.view">
+        <field name="name">real.estate.rental.contract.tree</field>
+        <field name="model">real.estate.rental.contract</field>
+        <field name="arch" type="xml">
+            <list string="Rental Contracts">
+                <field name="name"/>
+                <field name="property_id"/>
+                <field name="partner_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="recurring_amount" widget="monetary"/>
+                <field name="state" widget="badge" decoration-success="state == 'active'" decoration-muted="state in ['draft', 'closed', 'cancelled']"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_real_estate_rental_contract_form" model="ir.ui.view">
+        <field name="name">real.estate.rental.contract.form</field>
+        <field name="model">real.estate.rental.contract</field>
+        <field name="arch" type="xml">
+            <form string="Rental Contract">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" invisible="state != 'draft'" class="btn-primary"/>
+                    <button name="action_close" string="Close Contract" type="object" invisible="state != 'active'"/>
+                    <button name="action_cancel" string="Cancel" type="object" invisible="state in ['closed', 'cancelled']"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoices" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                            <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="contract_info" string="Contract Information">
+                            <field name="property_id" options="{'no_create': True}"/>
+                            <field name="partner_id"/>
+                            <field name="agent_id" widget="many2one_avatar_user"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group name="dates" string="Dates">
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="next_invoice_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group name="financial" string="Financial Terms">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="recurring_amount" widget="monetary"/>
+                            <field name="recurring_unit"/>
+                        </group>
+                        <group name="deposit" string="Security Deposit">
+                            <field name="deposit_amount" widget="monetary"/>
+                            <field name="deposit_paid"/>
+                            <field name="deposit_date" invisible="not deposit_paid"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Terms &amp; Conditions" name="terms">
+                            <field name="terms"/>
+                        </page>
+                        <page string="Invoices" name="invoices">
+                            <field name="invoice_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="invoice_date"/>
+                                    <field name="amount_total"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_real_estate_rental_contract_search" model="ir.ui.view">
+        <field name="name">real.estate.rental.contract.search</field>
+        <field name="model">real.estate.rental.contract</field>
+        <field name="arch" type="xml">
+            <search string="Rental Contracts">
+                <field name="name"/>
+                <field name="property_id"/>
+                <field name="partner_id"/>
+                <field name="agent_id"/>
+                <separator/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Active" name="active" domain="[('state', '=', 'active')]"/>
+                <filter string="Closed" name="closed" domain="[('state', '=', 'closed')]"/>
+                <separator/>
+                <filter string="My Contracts" name="my_contracts" domain="[('agent_id', '=', uid)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Property" name="property" context="{'group_by': 'property_id'}"/>
+                    <filter string="Tenant" name="tenant" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Agent" name="agent" context="{'group_by': 'agent_id'}"/>
+                    <filter string="State" name="state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_real_estate_rental_contract" model="ir.actions.act_window">
+        <field name="name">Rental Contracts</field>
+        <field name="res_model">real.estate.rental.contract</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new rental contract
+            </p>
+        </field>
+    </record>
+</odoo>

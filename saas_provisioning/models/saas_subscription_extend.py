@@ -101,7 +101,7 @@ class SaaSSubscription(models.Model):
                 _logger.error(f"Failed to push limits to tenant {sub.database_name}: {str(e)}")
 
     def action_provision_tenant(self):
-        """Manually trigger tenant provisioning"""
+        """Trigger tenant provisioning asynchronously"""
         self.ensure_one()
         
         if self.database_name:
@@ -110,26 +110,53 @@ class SaaSSubscription(models.Model):
         if not self.company_name:
             raise UserError(_('Company name is required for provisioning'))
         
-        # Call provisioning service
-        provisioning_service = self.env['saas.provisioning.service']
-        try:
-            result = provisioning_service.provision_tenant(self.id)
-            if result:
-                # Push initial limits
-                self._push_limits_to_tenant()
+        # Mark as in progress immediately
+        self.write({
+            'provisioning_status': 'in_progress',
+            'provisioning_error': False
+        })
+        
+        # We will spawn the thread ONLY AFTER the current transaction commits
+        import threading
+        import odoo
+        from odoo import api
+        
+        sub_id = self.id
+        db_name = self.env.cr.dbname
+        
+        def provision_task():
+            try:
+                registry = odoo.registry(db_name)
+                with registry.cursor() as cr:
+                    env = api.Environment(cr, odoo.SUPERUSER_ID, {})
+                    provisioning_service = env['saas.provisioning.service']
+                    result = provisioning_service.provision_tenant(sub_id)
+                    
+                    if result:
+                        # Push initial limits
+                        subscription = env['saas.subscription'].browse(sub_id)
+                        subscription._push_limits_to_tenant()
+            except Exception as e:
+                _logger.error(f"Async provisioning thread failed: {str(e)}")
                 
-                return {
-                    'type': 'ir.actions.client',
-                    'tag': 'display_notification',
-                    'params': {
-                        'title': _('Success'),
-                        'message': _('Tenant provisioned successfully!'),
-                        'type': 'success',
-                        'sticky': False,
-                    }
-                }
-        except Exception as e:
-            raise UserError(_('Provisioning failed: %s') % str(e))
+        def spawn_thread():
+            thread = threading.Thread(target=provision_task)
+            thread.daemon = True
+            thread.start()
+            
+        # Hook into the postcommit phase so it is guaranteed to exist
+        self.env.cr.postcommit.add(spawn_thread)
+        
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Provisioning Started'),
+                'message': _('Tenant is being provisioned in the background. This may take a few minutes.'),
+                'type': 'success',
+                'sticky': False,
+            }
+        }
     
     def _schedule_tenant_deletion(self):
         """Override from saas_management to actually delete tenant"""

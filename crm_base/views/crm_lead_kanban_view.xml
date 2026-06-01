@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit the original CRM kanban view and restyle it -->
+    <record id="crm_lead_kanban_dark_view" model="ir.ui.view">
+        <field name="name">crm.lead.kanban.dark</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+        <field name="priority">16</field>
+        <field name="arch" type="xml">
+
+            <!-- 1. Add dark class to the kanban root element -->
+            <xpath expr="//kanban" position="attributes">
+                <attribute name="class">o_kanban_small_column o_opportunity_kanban o_crm_kanban_dark</attribute>
+            </xpath>
+
+            <!-- 2. Replace the card template (Odoo 18 uses t-name="card") -->
+            <xpath expr="//t[@t-name='card']" position="replace">
+                <t t-name="card">
+                    <t t-set="lost_ribbon" t-value="!record.active.raw_value and record.probability and record.probability.raw_value == 0"/>
+
+                    <!-- Lost ribbon -->
+                    <widget name="web_ribbon" title="lost" bg_color="text-bg-danger" invisible="probability &gt; 0 or active"/>
+
+                    <!-- Tricolor accent bar -->
+                    <div class="crm_card_accent_bar"/>
+
+                    <!-- Card body -->
+                    <div class="crm_card_body">
+
+                        <!-- Title -->
+                        <field class="fw-bold crm_lead_title" name="name"/>
+
+                        <!-- Revenue line -->
+                        <div class="crm_revenue_line">
+                            <t t-if="record.expected_revenue.raw_value">
+                                <field name="expected_revenue" widget="monetary" options="{'currency_field': 'company_currency'}"/>
+                                <span t-if="record.recurring_revenue and record.recurring_revenue.raw_value" groups="crm.group_use_recurring_revenues"> + </span>
+                            </t>
+                            <t t-if="record.recurring_revenue and record.recurring_revenue.raw_value">
+                                <field class="me-1" name="recurring_revenue" widget="monetary" options="{'currency_field': 'company_currency'}" groups="crm.group_use_recurring_revenues"/>
+                                <field name="recurring_plan" groups="crm.group_use_recurring_revenues"/>
+                            </t>
+                        </div>
+
+                        <!-- Partner name -->
+                        <field name="partner_id" class="crm_partner_line text-truncate"/>
+
+                        <!-- Tags -->
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+
+                        <!-- Lead properties -->
+                        <field name="lead_properties" widget="properties"/>
+
+                        <!-- Footer -->
+                        <footer class="crm_card_footer pt-1">
+                            <div class="d-flex mt-auto align-items-center">
+                                <field name="priority" widget="priority" groups="base.group_user" class="me-2"/>
+                                <field name="activity_ids" widget="kanban_activity"/>
+                            </div>
+                            <field name="user_id" widget="many2one_avatar_user" domain="[('share', '=', False)]" class="ms-auto"/>
+                        </footer>
+
+                    </div>
+                </t>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

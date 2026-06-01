@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="saas_onboarding_template" name="SaaS Client Onboarding">
+        <html>
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <title>Welcome to Your New Database</title>
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+                <style>
+                    :root {
+                        --bg-dark: #0f172a;
+                        --bg-card: rgba(30, 41, 59, 0.7);
+                        --border-color: rgba(255, 255, 255, 0.1);
+                        --primary: #6366f1;
+                        --primary-hover: #4f46e5;
+                        --text-main: #f8fafc;
+                        --text-muted: #94a3b8;
+                        --input-bg: rgba(15, 23, 42, 0.6);
+                    }
+                    
+                    * {
+                        box-sizing: border-box;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    
+                    body {
+                        font-family: 'Inter', sans-serif;
+                        background-color: var(--bg-dark);
+                        color: var(--text-main);
+                        min-height: 100vh;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        background-image: 
+                            radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                            radial-gradient(at 50% 0%, hsla(225,39%,30%,0.2) 0, transparent 50%), 
+                            radial-gradient(at 100% 0%, hsla(339,49%,30%,0.2) 0, transparent 50%);
+                        background-attachment: fixed;
+                    }
+                    
+                    .onboarding-container {
+                        width: 100%;
+                        max-width: 600px;
+                        background: var(--bg-card);
+                        backdrop-filter: blur(16px);
+                        -webkit-backdrop-filter: blur(16px);
+                        border: 1px solid var(--border-color);
+                        border-radius: 24px;
+                        padding: 40px;
+                        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+                        animation: fadeInUp 0.6s ease-out;
+                    }
+                    
+                    .header-section {
+                        text-align: center;
+                        margin-bottom: 32px;
+                    }
+                    
+                    .header-section h1 {
+                        font-size: 28px;
+                        font-weight: 700;
+                        margin-bottom: 8px;
+                        background: linear-gradient(to right, #a5b4fc, #c4b5fd);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                    
+                    .header-section p {
+                        color: var(--text-muted);
+                        font-size: 15px;
+                        line-height: 1.5;
+                    }
+                    
+                    .form-group {
+                        margin-bottom: 20px;
+                    }
+                    
+                    .form-group label {
+                        display: block;
+                        font-size: 14px;
+                        font-weight: 500;
+                        margin-bottom: 8px;
+                        color: #e2e8f0;
+                    }
+                    
+                    .form-control {
+                        width: 100%;
+                        padding: 12px 16px;
+                        background-color: var(--input-bg);
+                        border: 1px solid var(--border-color);
+                        border-radius: 12px;
+                        color: var(--text-main);
+                        font-family: 'Inter', sans-serif;
+                        font-size: 15px;
+                        transition: all 0.3s ease;
+                    }
+                    
+                    .form-control:focus {
+                        outline: none;
+                        border-color: var(--primary);
+                        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+                    }
+                    
+                    .form-control::placeholder {
+                        color: #64748b;
+                    }
+                    
+                    .file-upload-wrapper {
+                        position: relative;
+                        width: 100%;
+                        height: 120px;
+                        border: 2px dashed var(--border-color);
+                        border-radius: 12px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        background-color: var(--input-bg);
+                        overflow: hidden;
+                    }
+                    
+                    .file-upload-wrapper:hover {
+                        border-color: var(--primary);
+                        background-color: rgba(99, 102, 241, 0.05);
+                    }
+                    
+                    .file-upload-wrapper input[type="file"] {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                        cursor: pointer;
+                        z-index: 2;
+                    }
+                    
+                    .upload-icon {
+                        width: 32px;
+                        height: 32px;
+                        margin-bottom: 8px;
+                        color: var(--primary);
+                    }
+                    
+                    .upload-text {
+                        font-size: 14px;
+                        color: var(--text-muted);
+                    }
+                    
+                    .upload-preview {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        z-index: 1;
+                        background-color: var(--input-bg);
+                        display: none;
+                    }
+                    
+                    .form-row {
+                        display: flex;
+                        gap: 20px;
+                    }
+                    
+                    .form-col {
+                        flex: 1;
+                    }
+                    
+                    .submit-btn {
+                        width: 100%;
+                        padding: 14px;
+                        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+                        color: white;
+                        border: none;
+                        border-radius: 12px;
+                        font-size: 16px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        margin-top: 12px;
+                        font-family: 'Inter', sans-serif;
+                        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+                    }
+                    
+                    .submit-btn:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 16px rgba(99, 102, 241, 0.4);
+                    }
+                    
+                    @keyframes fadeInUp {
+                        from {
+                            opacity: 0;
+                            transform: translateY(20px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                    
+                    @media (max-width: 640px) {
+                        .onboarding-container {
+                            padding: 30px 20px;
+                            border-radius: 0;
+                            min-height: 100vh;
+                        }
+                        .form-row {
+                            flex-direction: column;
+                            gap: 0;
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="onboarding-container">
+                    <div class="header-section">
+                        <h1>Let's setup your workspace</h1>
+                        <p>Complete this quick setup to personalize your experience. We just need a few details to get started.</p>
+                    </div>
+                    
+                    <form action="/saas/onboarding/submit" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        
+                        <div class="form-group">
+                            <label for="company_logo">Company Logo</label>
+                            <div class="file-upload-wrapper" id="dropZone">
+                                <svg class="upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                                </svg>
+                                <div class="upload-text" id="uploadText">Click or drag image to upload</div>
+                                <img id="logoPreview" class="upload-preview" src=""/>
+                                <input type="file" id="company_logo" name="company_logo" accept="image/*"/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company_name">Company Name</label>
+                            <input type="text" class="form-control" id="company_name" name="company_name" 
+                                   t-att-value="company.name" required="required" placeholder="e.g. Acme Corporation"/>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group form-col">
+                                <label for="company_phone">Phone Number</label>
+                                <input type="tel" class="form-control" id="company_phone" name="company_phone" 
+                                       t-att-value="company.phone" placeholder="+1 (555) 000-0000"/>
+                            </div>
+                            
+                            <div class="form-group form-col">
+                                <label for="company_email">Email Address</label>
+                                <input type="email" class="form-control" id="company_email" name="company_email" 
+                                       t-att-value="company.email" placeholder="hello@company.com"/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company_street">Street Address</label>
+                            <input type="text" class="form-control" id="company_street" name="company_street" 
+                                   t-att-value="company.street" placeholder="123 Main St, Suite 100"/>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="invoice_target">Monthly Invoice Target</label>
+                            <input type="number" class="form-control" id="invoice_target" name="invoice_target" 
+                                   placeholder="e.g. 50000" min="0" step="100"/>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Complete Setup</button>
+                    </form>
+                </div>
+                
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const fileInput = document.getElementById('company_logo');
+                        const logoPreview = document.getElementById('logoPreview');
+                        const uploadText = document.getElementById('uploadText');
+                        const uploadIcon = document.querySelector('.upload-icon');
+                        
+                        fileInput.addEventListener('change', function() {
+                            if (this.files &amp;&amp; this.files[0]) {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    logoPreview.src = e.target.result;
+                                    logoPreview.style.display = 'block';
+                                    uploadText.style.display = 'none';
+                                    uploadIcon.style.display = 'none';
+                                }
+                                reader.readAsDataURL(this.files[0]);
+                            } else {
+                                logoPreview.style.display = 'none';
+                                uploadText.style.display = 'block';
+                                uploadIcon.style.display = 'block';
+                            }
+                        });
+                    });
+                </script>
+            </body>
+        </html>
+    </template>
+</odoo>

@@ -17,11 +17,19 @@
     """,
     'author': 'Your Company',
     'website': 'https://abc.com',
-    'depends': ['base', 'odoo_url_replacer'],
+    'depends': ['base', 'odoo_url_replacer', 'sales_team'],
     'data': [
         'views/res_config_settings_views.xml',
         'views/login_templates.xml',
+        'views/onboarding_templates.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'saas_client/static/src/suggestion_box/suggestion_box.js',
+            'saas_client/static/src/suggestion_box/suggestion_box.xml',
+            'saas_client/static/src/suggestion_box/suggestion_box.scss',
+        ],
+    },
     'installable': True,
     'application': False,
     'auto_install': False,

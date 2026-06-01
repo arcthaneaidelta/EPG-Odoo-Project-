@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_crm_file_form" model="ir.ui.view">
+        <field name="name">crm.file.form</field>
+        <field name="model">crm.file</field>
+        <field name="arch" type="xml">
+            <form string="File">
+                <header>
+                    <field name="stage_id" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="e.g. File for client Juan Pérez"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="type_id" required="1"/>
+                            <field name="lead_id"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                            <field name="kanban_state" widget="state_selection"/>
+                            <field name="date_last_stage_update"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Information" name="information">
+                            <group>
+                                <field name="lead_id" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Checklist" name="checklist">
+                            <field name="checklist_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <button name="action_toggle_state" type="object" icon="fa-square-o" invisible="state == 'completed'" aria-label="Mark as Completed" title="Mark as Completed"/>
+                                    <button name="action_toggle_state" type="object" icon="fa-check-square-o" invisible="state == 'pending'" aria-label="Mark as Pending" title="Mark as Pending"/>
+                                    <field name="name"/>
+                                    <field name="state" widget="badge" decoration-success="state == 'completed'" decoration-warning="state == 'pending'"/>
+                                    <field name="attachment_ids" widget="many2many_tags" placeholder="Link documents..."/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Tasks" name="tasks">
+                            <field name="task_ids">
+                                <list editable="">
+                                    <field name="name"/>
+                                    <field name="user_id" widget="many2one_avatar_user"/>
+                                    <field name="state" widget="badge" decoration-success="state == 'completed'" decoration-info="state == 'in_progress'" decoration-warning="state == 'pending'"/>
+                                </list>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="name"/>
+                                            <field name="user_id"/>
+                                        </group>
+                                        <group>
+                                            <field name="state"/>
+                                        </group>
+                                    </group>
+                                    <field name="description" placeholder="Task description..."/>
+                                    <notebook>
+                                        <page string="Documents" name="documents">
+                                            <field name="document_ids" widget="many2many_tags" placeholder="Link documents..."/>
+                                        </page>
+                                    </notebook>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Documents" name="documents">
+                            <field name="document_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="extension"/>
+                                    <field name="human_size" string="Size"/>
+                                    <field name="create_date"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="view_crm_file_tree" model="ir.ui.view">
+        <field name="name">crm.file.tree</field>
+        <field name="model">crm.file</field>
+        <field name="arch" type="xml">
+            <list string="Files">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="stage_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_crm_file_kanban" model="ir.ui.view">
+        <field name="name">crm.file.kanban</field>
+        <field name="model">crm.file</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage_id" class="o_kanban_small_column o_opportunity_kanban" archivable="false">
+                <field name="name"/>
+                <field name="lead_id"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <field name="stage_id"/>
+                <field name="color"/>
+                <field name="kanban_state"/>
+                <field name="date_last_stage_update"/>
+                <field name="activity_ids"/>
+                <field name="activity_state"/>
+                <progressbar field="kanban_state" colors='{"done": "success", "blocked": "danger", "normal": "muted"}'/>
+                <templates>
+                    <t t-name="menu">
+                        <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                        <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                        <field name="color" widget="kanban_color_picker"/>
+                    </t>
+                    <t t-name="card">
+                        <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click oe_kanban_card d-flex flex-column h-100" style="transition: all 0.2s ease;">
+                            <div class="oe_kanban_content flex-grow-1 p-2 pb-1">
+                                <div class="o_kanban_record_title d-flex justify-content-between align-items-start mb-2">
+                                    <strong class="fw-bolder fs-5 text-truncate w-100"><field name="name"/></strong>
+                                </div>
+                                <div class="o_kanban_record_subtitle small mt-2">
+                                    <t t-if="record.partner_id.value">
+                                        <div class="d-flex align-items-center mb-1 text-body">
+                                            <i class="fa fa-user me-2 text-secondary" style="width: 14px;"/>
+                                            <span class="text-truncate fw-medium"><field name="partner_id"/></span>
+                                        </div>
+                                    </t>
+                                    <t t-if="record.lead_id.value">
+                                        <div class="d-flex align-items-center text-muted">
+                                            <i class="fa fa-star me-2 text-warning" style="width: 14px;"/>
+                                            <span class="text-truncate"><field name="lead_id"/></span>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                            <footer class="p-2 px-3 border-top border-light mt-auto">
+                                <div class="d-flex align-items-center w-100">
+                                    <field name="activity_ids" widget="kanban_activity"/>
+                                    <span class="text-muted small ms-2 me-auto" t-if="record.date_last_stage_update.value" title="Last Stage Update">
+                                        <i class="fa fa-clock-o text-secondary"/> <field name="date_last_stage_update" widget="date"/>
+                                    </span>
+                                    <field name="kanban_state" widget="state_selection" class="mx-2"/>
+                                    <field name="user_id" widget="many2one_avatar_user"/>
+                                </div>
+                            </footer>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_crm_file_search" model="ir.ui.view">
+        <field name="name">crm.file.search</field>
+        <field name="model">crm.file</field>
+        <field name="arch" type="xml">
+            <search string="Files">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <filter string="My Files" name="my_files" domain="[('user_id', '=', uid)]"/>
+                <separator/>
+                <filter string="Ready" name="state_done" domain="[('kanban_state', '=', 'done')]"/>
+                <filter string="Blocked" name="state_blocked" domain="[('kanban_state', '=', 'blocked')]"/>
+                <filter string="In Progress" name="state_normal" domain="[('kanban_state', '=', 'normal')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Stage" name="group_stage" context="{'group_by': 'stage_id'}"/>
+                    <filter string="Workspace" name="group_type" context="{'group_by': 'type_id'}"/>
+                    <filter string="Responsible" name="group_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Status" name="group_state" context="{'group_by': 'kanban_state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_crm_file" model="ir.actions.act_window">
+        <field name="name">Files</field>
+        <field name="res_model">crm.file</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first File
+            </p>
+            <p>
+                Manage your opportunities as files with checklists, tasks, and documents.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_crm_file" 
+              name="Files" 
+              parent="crm.crm_menu_root" 
+              sequence="25"
+              action="action_crm_file_type"/>
+</odoo>

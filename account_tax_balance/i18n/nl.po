@@ -1,4 +1,4 @@
-# Translation of Odoo Server.
+# Translation of System Server.
 # This file contains the translation of the following modules:
 # * account_tax_balance
 #
@@ -6,7 +6,7 @@
 # Melroy van den Berg <webmaster1989@gmail.com>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: System Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-27 12:02+0000\n"
 "PO-Revision-Date: 2018-03-27 12:02+0000\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/wizard/open_tax_balances.py:0
 msgid "%(name)s: %(target)s from %(from)s to %(to)s"
 msgstr ""
@@ -149,7 +149,7 @@ msgid "Last Updated on"
 msgstr "Laatst Geüpdatet op"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Liquidity"
 msgstr "Liquiditeit"
@@ -160,31 +160,31 @@ msgid "Open Taxes"
 msgstr "Open Belastingen"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Other"
 msgstr "Overige"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Payable"
 msgstr "Te betalen"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Payable refund"
 msgstr "Te betalen restitutie"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Receivable"
 msgstr "Ontvangbaar"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_move.py:0
 msgid "Receivable refund"
 msgstr "Vorderbare restitutie"
@@ -245,7 +245,7 @@ msgid "Total Base Balance"
 msgstr "Totale basissaldo"
 
 #. module: account_tax_balance
-#. odoo-python
+#. system-python
 #: code:addons/account_tax_balance/models/account_tax.py:0
 msgid "Unsupported search operator"
 msgstr "Ongeldige zoekoperatie"

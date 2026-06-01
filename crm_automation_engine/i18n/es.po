@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-18 05:52+0000\n"
-"PO-Revision-Date: 2026-03-18 05:52+0000\n"
+"POT-Creation-Date: 2026-05-21 21:07+0000\n"
+"PO-Revision-Date: 2026-05-21 21:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -119,9 +119,10 @@ msgstr ""
 "    El índice de salud de su empresa está en riesgo."
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__action_taken
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_form
 msgid "Action Taken"
-msgstr "Acción tomada"
+msgstr "Acción Tomada"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
@@ -131,16 +132,12 @@ msgstr "Actividades"
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
 msgid "Alert Manager if salesperson logs zero CRM activity for X days"
-msgstr ""
-"Alertar al responsable si el vendedor no registra actividad en CRM durante X"
-" días"
+msgstr "Alertar al responsable si el vendedor no registra actividad en CRM durante X días"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
 msgid "Alert Manager/Rep if they exceed open opportunity limit"
-msgstr ""
-"Alertar al responsable/vendedor si supera el límite de oportunidades "
-"abiertas"
+msgstr "Alertar al responsable/vendedor si supera el límite de oportunidades abiertas"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
@@ -148,9 +145,51 @@ msgid "Alert if lead is untouched for X hours"
 msgstr "Alertar si el lead no se ha gestionado durante X horas"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_lead_cold_alert
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_lead_cold_alert
+msgid "Alert on Cold Leads"
+msgstr "Alertar sobre leads fríos"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_client_inactive_alert
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_client_inactive_alert
+msgid "Alert on Inactive Client"
+msgstr "Alertar sobre cliente inactivo"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_invoice_overdue_alert
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_invoice_overdue_alert
+msgid "Alert on Overdue"
+msgstr "Alertar sobre vencimiento"
+
+#. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
 msgid "Alert when client is inactive for X days"
 msgstr "Alertar cuando el cliente está inactivo durante X días"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_lead_no_activity_alert
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_lead_no_activity_alert
+msgid "Alert: Leads w/o Logged Activities"
+msgstr "Alerta: Leads sin actividades registradas"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_opportunity_overload_alert
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_opportunity_overload_alert
+msgid "Alert: Opportunity Overload"
+msgstr "Alerta: Sobrecarga de oportunidades"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_salesperson_inactivity_warning
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_salesperson_inactivity_warning
+msgid "Alert: Salesperson Inactivity"
+msgstr "Alerta: Inactividad del vendedor"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_stuck_opportunity_alert
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_stuck_opportunity_alert
+msgid "Alert: Stuck Opportunities"
+msgstr "Alerta: Oportunidades estancadas"
 
 #. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__crm_health_report__health_status__attention
@@ -159,11 +198,21 @@ msgid "Attention 🟡"
 msgstr "Atención 🟡"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_lead_auto_assign
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_lead_auto_assign
+msgid "Auto-assign Sales Rep"
+msgstr "Asignar automáticamente vendedor"
+
+#. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
 msgid "Auto-schedule best next action when Lead stage changes"
-msgstr ""
-"Programar automáticamente la mejor acción siguiente cuando cambie la etapa "
-"del lead"
+msgstr "Programar automáticamente la mejor acción siguiente al cambiar la etapa del lead"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_invoice_auto_send
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_invoice_auto_send
+msgid "Auto-send Invoice Email"
+msgstr "Envío automático de factura por correo"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
@@ -178,7 +227,7 @@ msgstr "Enviar factura automáticamente por correo electrónico tras publicarla"
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_form
 msgid "Automation Log"
-msgstr "Registro de automatización"
+msgstr "Registro de Automatización"
 
 #. module: crm_automation_engine
 #: model:ir.actions.act_window,name:crm_automation_engine.action_automation_log
@@ -186,7 +235,13 @@ msgstr "Registro de automatización"
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_search
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_tree
 msgid "Automation Logs"
-msgstr "Registros de automatización"
+msgstr "Registros de Automatización"
+
+#. module: crm_automation_engine
+#. odoo-python
+#: code:addons/crm_automation_engine/models/automation_log.py:0
+msgid "Automation logs cannot be deleted. This is a system policy."
+msgstr "Los registros de automatización no se pueden eliminar. Esta es una política del sistema."
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_company_form_inherit_real_estate_automations
@@ -196,29 +251,29 @@ msgstr "Automatizaciones"
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_kanban
 msgid "Bank Lines"
-msgstr "Líneas bancarias"
+msgstr "Líneas Bancarias"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
 msgid "Bank Unreconciled"
-msgstr "Banco sin conciliar"
+msgstr "Banco sin Conciliar"
 
 #. module: crm_automation_engine
 #: model:ir.actions.act_window,name:crm_automation_engine.action_crm_health_report
 #: model:ir.ui.menu,name:crm_automation_engine.menu_crm_health_report
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
 msgid "Business Health"
-msgstr "Salud empresarial"
+msgstr "Salud Empresarial"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
 msgid "Business Health Index -"
-msgstr "Índice de salud empresarial -"
+msgstr "Índice de Salud Empresarial -"
 
 #. module: crm_automation_engine
 #: model:ir.model,name:crm_automation_engine.model_crm_health_report
 msgid "Business Health Report"
-msgstr "Informe de salud empresarial"
+msgstr "Informe de Salud Empresarial"
 
 #. module: crm_automation_engine
 #: model:ir.actions.server,name:crm_automation_engine.action_cron_lead_no_activity
@@ -288,7 +343,7 @@ msgstr "CRM Auto: Evento de inicio de trimestre"
 #. module: crm_automation_engine
 #: model:ir.model,name:crm_automation_engine.model_automation_log
 msgid "CRM Automation Log"
-msgstr "Registro de automatización CRM"
+msgstr "Registro de Automatización CRM"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
@@ -298,7 +353,7 @@ msgstr "Automatizaciones CRM"
 #. module: crm_automation_engine
 #: model:ir.actions.server,name:crm_automation_engine.ir_cron_calculate_business_health_ir_actions_server
 msgid "Calculate Business Health Index"
-msgstr "Calcular índice de salud empresarial"
+msgstr "Calcular Índice de Salud Empresarial"
 
 #. module: crm_automation_engine
 #: model_terms:ir.actions.act_window,help:crm_automation_engine.action_crm_health_report
@@ -313,7 +368,7 @@ msgstr "Cliente"
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
 msgid "Client Automations"
-msgstr "Automatizaciones de clientes"
+msgstr "Automatizaciones de Clientes"
 
 #. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__trigger_event__client_inactive
@@ -321,9 +376,15 @@ msgid "Client Inactive"
 msgstr "Cliente inactivo"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__client_inactive_days
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__client_inactive_days
+msgid "Client Inactive Days"
+msgstr "Días de inactividad del cliente"
+
+#. module: crm_automation_engine
 #: model:mail.template,name:crm_automation_engine.email_template_client_welcome
 msgid "Client Welcome"
-msgstr "Bienvenida al cliente"
+msgstr "Bienvenida al Cliente"
 
 #. module: crm_automation_engine
 #: model:base.automation,name:crm_automation_engine.auto_client_welcome_email
@@ -336,19 +397,43 @@ msgid "Clients"
 msgstr "Clientes"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__lead_cold_hours
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__lead_cold_hours
+msgid "Cold Lead Hours"
+msgstr "Horas de lead frío"
+
+#. module: crm_automation_engine
 #: model:ir.model,name:crm_automation_engine.model_res_company
 msgid "Companies"
-msgstr "Compañías"
+msgstr "Empresas"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__company_id
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__company_id
+msgid "Company"
+msgstr "Empresa"
 
 #. module: crm_automation_engine
 #: model:ir.model,name:crm_automation_engine.model_res_config_settings
 msgid "Config Settings"
-msgstr "Ajustes de configuración"
+msgstr "Ajustes de Configuración"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
 msgid "Create 'Contact within 24h' task for new leads"
 msgstr "Crear tarea 'Contactar en 24h' para nuevos leads"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_lead_auto_task
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_lead_auto_task
+msgid "Create Contact 24h Task"
+msgstr "Crear tarea de contacto en 24h"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_quote_followup
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_quote_followup
+msgid "Create Quote Follow-up Task"
+msgstr "Crear tarea de seguimiento del presupuesto"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
@@ -361,9 +446,43 @@ msgid "Create follow-up task X days after quote sent"
 msgstr "Crear tarea de seguimiento X días después del envío del presupuesto"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__create_uid
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__create_date
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_form
 msgid "Details"
 msgstr "Detalles"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__display_name
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__display_name
+msgid "Display Name"
+msgstr "Nombre Mostrado"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_action_recommendations
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_action_recommendations
+msgid "Enable Action Recommendations"
+msgstr "Activar Recomendaciones de Acción"
 
 #. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__trigger_event__month_end
@@ -376,9 +495,10 @@ msgid "End of Quarter"
 msgstr "Fin de trimestre"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__error_message
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_form
 msgid "Error Details"
-msgstr "Detalles del error"
+msgstr "Detalles del Error"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_search
@@ -402,7 +522,7 @@ msgstr "Evento"
 #: model:ir.actions.server,name:crm_automation_engine.action_quote_sent_followup
 #: model:ir.actions.server,name:crm_automation_engine.action_recommendation_stage_change
 msgid "Execute Code"
-msgstr "Ejecutar código"
+msgstr "Ejecutar Código"
 
 #. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__result__fail
@@ -413,7 +533,12 @@ msgstr "Fallido"
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
 msgid "Financial Health"
-msgstr "Salud financiera"
+msgstr "Salud Financiera"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,help:crm_automation_engine.field_automation_log__record_ref
+msgid "Format: model_name,record_id"
+msgstr "Formato: nombre_modelo,id_registro"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_search
@@ -432,9 +557,21 @@ msgid "Healthy 🟢"
 msgstr "Saludable 🟢"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__id
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__id
+msgid "ID"
+msgstr "ID"
+
+#. module: crm_automation_engine
+#. odoo-python
+#: code:addons/crm_automation_engine/models/automation_log.py:0
+msgid "Inactive client — no activity in %s days"
+msgstr "Cliente inactivo — sin actividad en %s días"
+
+#. module: crm_automation_engine
 #: model_terms:ir.actions.act_window,help:crm_automation_engine.action_crm_health_report
 msgid "Initialize your Business Health Dashboard!"
-msgstr "¡Inicialice su panel de salud empresarial!"
+msgstr "¡Inicialice su Panel de Salud Empresarial!"
 
 #. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__automation_type__invoice
@@ -444,12 +581,12 @@ msgstr "Factura"
 #. module: crm_automation_engine
 #: model:mail.template,name:crm_automation_engine.email_template_invoice_auto_send
 msgid "Invoice Auto-send"
-msgstr "Envío automático de factura"
+msgstr "Envío Automático de Factura"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
 msgid "Invoice Automations"
-msgstr "Automatizaciones de facturas"
+msgstr "Automatizaciones de Facturas"
 
 #. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__trigger_event__invoice_generated
@@ -507,19 +644,36 @@ msgid "Invoices"
 msgstr "Facturas"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__last_calculated
+msgid "Last Calculated"
+msgstr "Último Cálculo"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__write_uid
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__write_date
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
 msgid "Last Updated:"
-msgstr "Última actualización:"
+msgstr "Última Actualización:"
 
 #. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__automation_type__lead
 msgid "Lead"
-msgstr ""
+msgstr "Lead"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
 msgid "Lead Automations"
-msgstr "Automatizaciones de leads"
+msgstr "Automatizaciones de Leads"
 
 #. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__trigger_event__lead_cold
@@ -529,12 +683,18 @@ msgstr "Lead frío (sin contacto)"
 #. module: crm_automation_engine
 #: model:mail.template,name:crm_automation_engine.email_template_lead_confirmation
 msgid "Lead Confirmation"
-msgstr "Confirmación de lead"
+msgstr "Confirmación de Lead"
 
 #. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__trigger_event__lead_converted
 msgid "Lead Converted to Client"
 msgstr "Lead convertido en cliente"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__lead_no_activity_days
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__lead_no_activity_days
+msgid "Lead No Activity Days"
+msgstr "Días sin actividad del lead"
 
 #. module: crm_automation_engine
 #: model:base.automation,name:crm_automation_engine.auto_action_recommendation
@@ -570,11 +730,16 @@ msgstr "Lead: Registro de ganado/convertido"
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_search
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
 msgid "Leads"
-msgstr ""
+msgstr "Leads"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
 msgid "Leads Without Follow-up"
+msgstr "Leads sin seguimiento"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__leads_no_followup_count
+msgid "Leads without Follow-up"
 msgstr "Leads sin seguimiento"
 
 #. module: crm_automation_engine
@@ -583,9 +748,20 @@ msgid "Lines"
 msgstr "Líneas"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_temporal_events
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_temporal_events
+msgid "Log Temporal Events (Month/Quarter)"
+msgstr "Registrar eventos temporales (Mes/Trimestre)"
+
+#. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_kanban
 msgid "Lost Leads"
 msgstr "Leads perdidos"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__model_name
+msgid "Model"
+msgstr "Modelo"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
@@ -595,7 +771,19 @@ msgstr "Modelos"
 #. module: crm_automation_engine
 #: model_terms:ir.actions.act_window,help:crm_automation_engine.action_automation_log
 msgid "No automation logs found yet."
-msgstr "Aún no se han encontrado registros de automatización."
+msgstr "Aún no se encontraron registros de automatización."
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_quote_confirmed_notify
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_quote_confirmed_notify
+msgid "Notify Rep on confirmation"
+msgstr "Notificar al vendedor al confirmar"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_invoice_paid_notify
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_invoice_paid_notify
+msgid "Notify on Payment"
+msgstr "Notificar al pagar"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
@@ -606,6 +794,12 @@ msgstr "Notificar al vendedor cuando se confirme el presupuesto"
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
 msgid "Notify when invoice is paid"
 msgstr "Notificar cuando se pague la factura"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__opportunity_overload_threshold
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__opportunity_overload_threshold
+msgid "Opportunity Overload Threshold"
+msgstr "Límite de Sobrecarga de Oportunidades"
 
 #. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__trigger_event__order_confirmed
@@ -623,9 +817,15 @@ msgid "Overdue Activities (Leads)"
 msgstr "Actividades vencidas (Leads)"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__overdue_sales_activity_count
+msgid "Overdue Sales Activities"
+msgstr "Actividades de Ventas Vencidas"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__pending_fiscal_models_count
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
 msgid "Pending Fiscal Models"
-msgstr "Modelos fiscales pendientes"
+msgstr "Modelos Fiscales Pendientes"
 
 #. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__trigger_event__quote_accepted
@@ -643,9 +843,20 @@ msgid "Quote Created"
 msgstr "Presupuesto creado"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__quote_followup_days
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__quote_followup_days
+msgid "Quote Follow-up Days"
+msgstr "Días de seguimiento del presupuesto"
+
+#. module: crm_automation_engine
 #: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__trigger_event__quote_rejected
 msgid "Quote Rejected"
 msgstr "Presupuesto rechazado"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__trigger_event__quote_sent
+msgid "Quote Sent"
+msgstr "Presupuesto enviado"
 
 #. module: crm_automation_engine
 #: model:base.automation,name:crm_automation_engine.auto_quote_created_log
@@ -668,16 +879,28 @@ msgid "Quote: Rejected/Cancelled Log"
 msgstr "Presupuesto: Registro de rechazo/cancelación"
 
 #. module: crm_automation_engine
-#: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
-msgid "Refresh Metrics"
-msgstr "Actualizar métricas"
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__record_ref
+msgid "Record Reference"
+msgstr "Referencia de Registro"
 
 #. module: crm_automation_engine
+#: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
+msgid "Refresh Metrics"
+msgstr "Actualizar Métricas"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_sale_order__rejection_reason
+msgid "Rejection Reason"
+msgstr "Motivo de Rechazo"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__result
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_search
 msgid "Result"
 msgstr "Resultado"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields.selection,name:crm_automation_engine.selection__crm_health_report__health_status__risk
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_kanban
 msgid "Risk 🔴"
 msgstr "Riesgo 🔴"
@@ -690,7 +913,7 @@ msgstr "Venta"
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
 msgid "Sale Automations"
-msgstr "Automatizaciones de ventas"
+msgstr "Automatizaciones de Ventas"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_search
@@ -700,12 +923,30 @@ msgstr "Ventas"
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
 msgid "Sales Health"
-msgstr "Salud de ventas"
+msgstr "Salud de Ventas"
 
 #. module: crm_automation_engine
 #: model:ir.model,name:crm_automation_engine.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr "Pedido de Venta"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__salesperson_inactivity_days
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__salesperson_inactivity_days
+msgid "Salesperson Inactivity Days"
+msgstr "Días de inactividad del vendedor"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_client_welcome_email
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_client_welcome_email
+msgid "Send Client Welcome Email"
+msgstr "Enviar correo de bienvenida al cliente"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_lead_auto_email
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_lead_auto_email
+msgid "Send Lead Confirmation Email"
+msgstr "Enviar correo de confirmación de lead"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
@@ -728,24 +969,72 @@ msgid "Start of Quarter"
 msgstr "Inicio de trimestre"
 
 #. module: crm_automation_engine
-#: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
-msgid "Team Control"
-msgstr "Control de equipo"
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__health_status
+msgid "Status"
+msgstr "Estado"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__opportunity_stuck_days
+#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__opportunity_stuck_days
+msgid "Stuck Opportunity Days"
+msgstr "Días de oportunidad estancada"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__result__success
+msgid "Success"
+msgstr "Éxito"
+
+#. module: crm_automation_engine
+#: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
+msgid "Team Control"
+msgstr "Control de Equipo"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields.selection,name:crm_automation_engine.selection__automation_log__automation_type__temporal
+msgid "Temporal"
+msgstr "Temporal"
+
+#. module: crm_automation_engine
+#. odoo-python
+#: code:addons/crm_automation_engine/models/automation_log.py:0
+msgid ""
+"This customer has had no sale orders or invoices in the last %s days. "
+"Consider reaching out."
+msgstr ""
+"Este cliente no ha tenido pedidos de venta ni facturas en los últimos %s días. "
+"Considere contactarlo."
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__trigger_event
+msgid "Trigger Event"
+msgstr "Evento Desencadenante"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_automation_log__automation_type
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_automation_log_search
 msgid "Type"
 msgstr "Tipo"
 
 #. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__unpaid_invoices_amount
+msgid "Unpaid Amount"
+msgstr "Monto Impago"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__unpaid_invoices_count
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_form
 msgid "Unpaid Invoices"
-msgstr "Facturas sin pagar"
+msgstr "Facturas Impagas"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_kanban
 msgid "Unpaid Invs"
-msgstr "Facts. sin pagar"
+msgstr "Facts. Impagas"
+
+#. module: crm_automation_engine
+#: model:ir.model.fields,field_description:crm_automation_engine.field_crm_health_report__bank_unreconciled_count
+msgid "Unreconciled Bank Lines"
+msgstr "Líneas Bancarias sin Conciliar"
 
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.view_crm_health_report_kanban
@@ -765,9 +1054,7 @@ msgstr "Advertir si la oportunidad lleva X días en la misma etapa"
 #. module: crm_automation_engine
 #: model_terms:ir.ui.view,arch_db:crm_automation_engine.res_config_settings_view_form_crm_auto
 msgid "Warn if lead has NO logged activities (messages/tasks) for X days"
-msgstr ""
-"Advertir si el lead no tiene actividades registradas (mensajes/tareas) en X "
-"días"
+msgstr "Advertir si el lead no tiene actividades registradas (mensajes/tareas) en X días"
 
 #. module: crm_automation_engine
 #: model:mail.template,subject:crm_automation_engine.email_template_lead_confirmation
@@ -778,148 +1065,3 @@ msgstr "Hemos recibido su solicitud: {{ object.name }}"
 #: model:mail.template,subject:crm_automation_engine.email_template_client_welcome
 msgid "Welcome to {{ object.company_id.name }}!"
 msgstr "¡Bienvenido/a a {{ object.company_id.name }}!"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_lead_auto_assign
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_lead_auto_assign
-msgid "Auto-assign Sales Rep"
-msgstr "Asignar automáticamente un vendedor"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_lead_auto_task
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_lead_auto_task
-msgid "Create Contact 24h Task"
-msgstr "Crear tarea de contacto en 24h"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_lead_auto_email
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_lead_auto_email
-msgid "Send Lead Confirmation Email"
-msgstr "Enviar correo de confirmación de lead"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_lead_cold_alert
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_lead_cold_alert
-msgid "Alert on Cold Leads"
-msgstr "Alertar sobre leads fríos"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__lead_cold_hours
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__lead_cold_hours
-msgid "Cold Lead Hours"
-msgstr "Horas de lead frío"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_lead_no_activity_alert
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_lead_no_activity_alert
-msgid "Alert: Leads w/o Logged Activities"
-msgstr "Alerta: Leads sin actividades registradas"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__lead_no_activity_days
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__lead_no_activity_days
-msgid "Lead No Activity Days"
-msgstr "Días sin actividad del lead"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_stuck_opportunity_alert
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_stuck_opportunity_alert
-msgid "Alert: Stuck Opportunities"
-msgstr "Alerta: Oportunidades estancadas"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__opportunity_stuck_days
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__opportunity_stuck_days
-msgid "Stuck Opportunity Days"
-msgstr "Días de oportunidad estancada"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_action_recommendations
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_action_recommendations
-msgid "Enable Action Recommendations"
-msgstr "Activar recomendaciones de acción"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_opportunity_overload_alert
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_opportunity_overload_alert
-msgid "Alert: Opportunity Overload"
-msgstr "Alerta: Sobrecarga de oportunidades"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__opportunity_overload_threshold
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__opportunity_overload_threshold
-msgid "Opportunity Overload Threshold"
-msgstr "Límite de sobrecarga de oportunidades"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_salesperson_inactivity_warning
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_salesperson_inactivity_warning
-msgid "Alert: Salesperson Inactivity"
-msgstr "Alerta: Inactividad del vendedor"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__salesperson_inactivity_days
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__salesperson_inactivity_days
-msgid "Salesperson Inactivity Days"
-msgstr "Días de inactividad del vendedor"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_quote_followup
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_quote_followup
-msgid "Create Quote Follow-up Task"
-msgstr "Crear tarea de seguimiento del presupuesto"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__quote_followup_days
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__quote_followup_days
-msgid "Quote Follow-up Days"
-msgstr "Días de seguimiento del presupuesto"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_quote_confirmed_notify
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_quote_confirmed_notify
-msgid "Notify Rep on confirmation"
-msgstr "Notificar al vendedor al confirmar"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_invoice_auto_send
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_invoice_auto_send
-msgid "Auto-send Invoice Email"
-msgstr "Envío automático de factura por correo"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_invoice_paid_notify
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_invoice_paid_notify
-msgid "Notify on Payment"
-msgstr "Notificar al pagar"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_invoice_overdue_alert
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_invoice_overdue_alert
-msgid "Alert on Overdue"
-msgstr "Alerta por vencimiento"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_client_welcome_email
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_client_welcome_email
-msgid "Send Client Welcome Email"
-msgstr "Enviar correo de bienvenida al cliente"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_client_inactive_alert
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_client_inactive_alert
-msgid "Alert on Inactive Client"
-msgstr "Alerta por cliente inactivo"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__client_inactive_days
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__client_inactive_days
-msgid "Client Inactive Days"
-msgstr "Días de inactividad del cliente"
-
-#. module: crm_automation_engine
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_company__enable_temporal_events
-#: model:ir.model.fields,field_description:crm_automation_engine.field_res_config_settings__enable_temporal_events
-msgid "Log Temporal Events (Month/Quarter)"
-msgstr "Registrar eventos temporales (Mes/Trimestre)"
-

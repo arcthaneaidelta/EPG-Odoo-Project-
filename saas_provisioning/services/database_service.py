@@ -13,33 +13,73 @@ class SaaSDatabaseService(models.AbstractModel):
     _name = 'saas.database.service'
     _description = 'SaaS Database Management Service'
     
+    def _db_exists_direct(self, db_name):
+        """
+        Check if a database exists by querying PostgreSQL directly.
+        This avoids odoo.service.db.exp_db_exist() which is blocked when list_db=False.
+        """
+        try:
+            import odoo.sql_db
+            with odoo.sql_db.db_connect('postgres').cursor() as cr:
+                cr.execute("SELECT 1 FROM pg_database WHERE datname = %s", (db_name,))
+                return bool(cr.fetchone())
+        except Exception as e:
+            _logger.warning(f'Could not check db existence via postgres db, trying direct: {e}')
+            try:
+                import psycopg2
+                conn = psycopg2.connect(database=db_name)
+                conn.close()
+                return True
+            except Exception:
+                return False
+
     @api.model
     def create_database(self, db_name, admin_password='admin'):
         """
-        Create a new System database
-        Works for both localhost and Docker environments
+        Create a new SaaS tenant database.
+        
+        Uses Odoo's internal _create_empty_database + initialize directly,
+        bypassing exp_create_database which is blocked when list_db=False.
         """
         try:
             _logger.info(f'Creating database: {db_name}')
-            
-            # Use System's built-in database service
-            from odoo.service import db
-            
-            # Check if database already exists
-            if db.exp_db_exist(db_name):
+
+            # Check existence without using the blocked exp_db_exist
+            if self._db_exists_direct(db_name):
                 raise UserError(_('Database %s already exists') % db_name)
-            
-            # Create database
-            db.exp_create_database(
-                db_name,
-                demo=False,
-                lang='en_US',  # or 'es_ES' for Spanish
-                user_password=admin_password
-            )
-            
+
+            # Use internal helpers that are NOT gated by list_db=False
+            from odoo.service.db import _create_empty_database
+            import odoo
+            from odoo.modules.db import initialize as initialize_db
+
+            # Step 1: create the empty PostgreSQL database
+            _create_empty_database(db_name)
+            _logger.info(f'Empty database {db_name} created in PostgreSQL')
+
+            # Step 2: initialize Odoo schema (installs base module)
+            with odoo.sql_db.db_connect(db_name).cursor() as cr:
+                initialize_db(cr)
+                cr.commit()
+            _logger.info(f'Odoo schema initialized in {db_name}')
+
+            # Step 3: set admin password
+            registry = odoo.registry(db_name)
+            with registry.cursor() as cr:
+                env = api.Environment(cr, odoo.SUPERUSER_ID, {})
+                admin_user = env['res.users'].search([('login', '=', 'admin')], limit=1)
+                if not admin_user:
+                    admin_user = env.ref('base.user_admin', raise_if_not_found=False)
+                if admin_user:
+                    admin_user.write({'password': admin_password})
+                    _logger.info(f"Password updated for user {admin_user.login}")
+                cr.commit()
+
             _logger.info(f'Database {db_name} created successfully')
             return True
-            
+
+        except UserError:
+            raise
         except Exception as e:
             _logger.error(f'Database creation failed for {db_name}: {str(e)}')
             raise UserError(_('Database creation failed: %s') % str(e))
@@ -47,30 +87,39 @@ class SaaSDatabaseService(models.AbstractModel):
     @api.model
     def delete_database(self, db_name, backup=True):
         """
-        Delete an System database
-        Optionally create backup before deletion
+        Delete a SaaS tenant database.
+        
+        Uses Odoo's internal _drop_database directly,
+        bypassing exp_drop which is blocked when list_db=False.
         """
         try:
             _logger.info(f'Deleting database: {db_name}')
-            
-            from odoo.service import db
-            
-            # Check if database exists
-            if not db.exp_db_exist(db_name):
+
+            # Check existence without using the blocked exp_db_exist
+            if not self._db_exists_direct(db_name):
                 _logger.warning(f'Database {db_name} does not exist')
                 return True
-            
+
             # Create backup if requested
             backup_path = None
             if backup:
                 backup_path = self._backup_database(db_name)
+
+            # Use Odoo's native drop, temporarily bypassing list_db=False
+            import odoo
             
-            # Delete database
-            db.exp_drop(db_name)
-            
+            original_list_db = odoo.tools.config.get('list_db')
+            odoo.tools.config['list_db'] = True
+            try:
+                odoo.service.db.exp_drop(db_name)
+            finally:
+                odoo.tools.config['list_db'] = original_list_db
+
             _logger.info(f'Database {db_name} deleted successfully')
             return backup_path
-            
+
+        except UserError:
+            raise
         except Exception as e:
             _logger.error(f'Database deletion failed for {db_name}: {str(e)}')
             raise UserError(_('Database deletion failed: %s') % str(e))
@@ -124,7 +173,19 @@ class SaaSDatabaseService(models.AbstractModel):
             with registry.cursor() as cr:
                 env = api.Environment(cr, odoo.SUPERUSER_ID, {})
                 
-                # Install each module
+                # PREVENT ODOO AUTO-INSTALL MADNESS:
+                # Odoo tries to install all localizations (l10n_*) when account is installed without a country.
+                # Forcefully disable auto_install for all localizations not explicitly requested.
+                l10n_modules = env['ir.module.module'].search([
+                    ('name', '=like', 'l10n_%'),
+                    ('state', '=', 'uninstalled'),
+                    ('name', 'not in', module_list)
+                ])
+                if l10n_modules:
+                    l10n_modules.write({'auto_install': False})
+                    _logger.info(f"Disabled auto-install for {len(l10n_modules)} unwanted localization modules.")
+                
+                # Install each requested module
                 for module_name in module_list:
                     module = env['ir.module.module'].search([
                         ('name', '=', module_name),

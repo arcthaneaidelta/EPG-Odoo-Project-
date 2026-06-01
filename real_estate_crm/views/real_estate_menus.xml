@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_real_estate_root"
+        name="Real Estate"
+        sequence="10"
+        web_icon="real_estate_crm,static/description/icon.svg"/>
+
+    <!-- Properties Menu -->
+    <menuitem id="menu_real_estate_properties"
+        name="Properties"
+        parent="menu_real_estate_root"
+        sequence="10"/>
+
+    <menuitem id="menu_real_estate_property"
+        name="All Properties"
+        parent="menu_real_estate_properties"
+        action="action_real_estate_property"
+        sequence="10"/>
+
+    <menuitem id="menu_real_estate_property_type"
+        name="Property Types"
+        parent="menu_real_estate_properties"
+        action="action_real_estate_property_type"
+        sequence="20"
+        groups="real_estate_crm.group_real_estate_manager"/>
+
+    <!-- Rentals Menu -->
+    <menuitem id="menu_real_estate_rentals"
+        name="Rentals"
+        parent="menu_real_estate_root"
+        sequence="20"/>
+
+    <menuitem id="menu_real_estate_rental_contract"
+        name="Rental Contracts"
+        parent="menu_real_estate_rentals"
+        action="action_real_estate_rental_contract"
+        sequence="10"/>
+
+    <!-- CRM Menu -->
+    <menuitem id="menu_real_estate_crm"
+        name="CRM"
+        parent="menu_real_estate_root"
+        sequence="30"/>
+
+    <menuitem id="menu_real_estate_visit"
+        name="Visits"
+        parent="menu_real_estate_crm"
+        action="action_real_estate_visit"
+        sequence="10"/>
+
+    <menuitem id="menu_real_estate_lead"
+        name="Opportunities"
+        parent="menu_real_estate_crm"
+        action="crm.crm_lead_opportunities"
+        sequence="20"/>
+
+    <!-- Commissions Menu -->
+    <menuitem id="menu_real_estate_finance"
+        name="Finance"
+        parent="menu_real_estate_root"
+        sequence="40"/>
+
+    <menuitem id="menu_real_estate_commission"
+        name="Commissions"
+        parent="menu_real_estate_finance"
+        action="action_real_estate_commission"
+        sequence="10"/>
+
+    <!-- Configuration Menu -->
+    <menuitem id="menu_real_estate_config"
+        name="Configuration"
+        parent="menu_real_estate_root"
+        sequence="100"
+        groups="real_estate_crm.group_real_estate_manager"/>
+
+    <menuitem id="menu_real_estate_team"
+        name="Sales Teams"
+        parent="menu_real_estate_config"
+        action="sales_team.crm_team_action_config"
+        sequence="10"/>
+</odoo>
