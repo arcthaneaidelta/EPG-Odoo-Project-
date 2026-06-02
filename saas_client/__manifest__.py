@@ -17,11 +17,12 @@
     """,
     'author': 'Your Company',
     'website': 'https://abc.com',
-    'depends': ['base', 'odoo_url_replacer', 'sales_team'],
+    'depends': ['base', 'odoo_url_replacer', 'sales_team', 'web', 'portal'],
     'data': [
         'views/res_config_settings_views.xml',
         'views/login_templates.xml',
         'views/onboarding_templates.xml',
+        'views/portal_templates.xml',
     ],
     'assets': {
         'web.assets_backend': [
