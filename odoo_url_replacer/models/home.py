@@ -136,6 +136,10 @@ def content(self):
 		if self.name == "/web/static/src/webclient/navbar/navbar.js":
 			content = content.replace("'/odoo'", "'/" + replacement_text + "'")
 			content = content.replace('"/odoo"', '"/' + replacement_text + '"')
+			
+		# Replace hardcoded website preview action URL in all Javascript files
+		if '/odoo/action-website.website_preview' in content:
+			content = content.replace('/odoo/action-website.website_preview', '/' + replacement_text + '/action-website.website_preview')
 
 	if self.is_transpiled:
 		if not self._converted_content:
@@ -198,5 +202,23 @@ def routing_map(self, key=None):
 
 
 IrHttp.routing_map = routing_map
+
+# Monkey-patch Website.get_client_action_url to support custom URL replacer
+try:
+	from odoo.addons.website.models.website import Website
+	
+	original_get_client_action_url = Website.get_client_action_url
+	
+	def patched_get_client_action_url(self, url, mode_edit=False, mode_debug=0):
+		res = original_get_client_action_url(self, url, mode_edit, mode_debug)
+		replacement = base_sorturl[0]
+		if replacement and replacement != 'odoo':
+			if res.startswith('/odoo/'):
+				res = '/' + replacement + '/' + res[6:]
+		return res
+		
+	Website.get_client_action_url = patched_get_client_action_url
+except ImportError:
+	pass
 
 

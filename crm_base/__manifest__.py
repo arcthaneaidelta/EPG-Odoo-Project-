@@ -16,6 +16,7 @@
 		"account",
 		"sign_oca",
 		"dms",
+		"portal",
 	],
 	"data": [
 		"security/ir.model.access.csv",
@@ -28,6 +29,7 @@
 		"views/sale_order_views.xml",
 		"views/res_config_settings_views.xml",
 		"views/crm_lead_kanban_view.xml",
+		"views/portal_templates.xml",
 		# "data/crm_automation.xml",
 		"data/mail_templates.xml",
 		"data/res_country_data.xml",
