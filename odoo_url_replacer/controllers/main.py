@@ -14,7 +14,7 @@ class CustomHome(Home):
             
         return url
 
-    @route('/', type='http', auth="none")
+    @route()
     def index(self, *args, **kw):
         response = super().index(*args, **kw)
         replacement = _get_replacement_text(request.env)
