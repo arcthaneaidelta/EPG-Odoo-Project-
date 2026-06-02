@@ -15,8 +15,8 @@ class CustomHome(Home):
         return url
 
     @route('/', type='http', auth="none")
-    def index(self, s_action=None, db=None, **kw):
-        response = super().index(s_action, db, **kw)
+    def index(self, *args, **kw):
+        response = super().index(*args, **kw)
         replacement = _get_replacement_text(request.env)
         if hasattr(response, 'status_code') and response.status_code in (301, 302, 303) and hasattr(response, 'location') and response.location.endswith('/odoo') and replacement != 'odoo':
             response.location = response.location.replace('/odoo', f'/{replacement}')
