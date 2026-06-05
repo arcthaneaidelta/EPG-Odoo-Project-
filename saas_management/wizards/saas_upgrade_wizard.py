@@ -41,17 +41,17 @@ class SaasUpgradeWizard(models.TransientModel):
         for db_name in db_names:
             _logger.info("Starting background upgrade for db %s with modules %s", db_name, modules)
             try:
-                registry = odoo.registry(db_name)
-                with registry.cursor() as cr:
-                    env = api.Environment(cr, odoo.SUPERUSER_ID, {})
-                    mods = env['ir.module.module'].search([
-                        ('name', 'in', modules),
-                        ('state', '=', 'installed')
-                    ])
-                    if mods:
-                        mods.button_immediate_upgrade()
-                        _logger.info("Successfully upgraded %s on %s", mods.mapped('name'), db_name)
+                # 1. Direct SQL to mark modules for upgrade to avoid registry load crashes
+                db = odoo.sql_db.db_connect(db_name)
+                with db.cursor() as cr:
+                    if len(modules) == 1:
+                        cr.execute("UPDATE ir_module_module SET state='to upgrade' WHERE name = %s AND state='installed'", (modules[0],))
                     else:
-                        _logger.warning("No matching installed modules found to upgrade on %s", db_name)
+                        cr.execute("UPDATE ir_module_module SET state='to upgrade' WHERE name IN %s AND state='installed'", (tuple(modules),))
+                
+                # 2. Trigger the actual upgrade by rebuilding the registry in update mode
+                registry = odoo.modules.registry.Registry.new(db_name, update_module=True)
+                
+                _logger.info("Successfully upgraded modules on %s", db_name)
             except Exception as e:
                 _logger.error("Failed to upgrade modules on %s: %s", db_name, str(e))
