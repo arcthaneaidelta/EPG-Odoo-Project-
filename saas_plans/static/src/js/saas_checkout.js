@@ -7,6 +7,7 @@ publicWidget.registry.SaaSCheckout = publicWidget.Widget.extend({
     events: {
         'input #company_name': '_onCompanyNameInput',
         'input #customer_email': '_onEmailInput',
+        'change #epg-privacy-check': '_onPrivacyChange',
     },
 
     init: function () {
@@ -15,6 +16,8 @@ publicWidget.registry.SaaSCheckout = publicWidget.Widget.extend({
         this.emailCheckTimeout = null;
         this.isSubdomainValid = false;
         this.isEmailValid = true; // True by default if email field doesn't exist
+        this.isPrivacyValid = false;
+        this.isCaptchaValid = false;
         console.log('[SaaS Checkout] Widget initialized');
     },
 
@@ -45,7 +48,50 @@ publicWidget.registry.SaaSCheckout = publicWidget.Widget.extend({
             this.$companyName.trigger('input');
         }
 
+        this._loadRecaptcha();
+
         return this._super.apply(this, arguments);
+    },
+
+    _onPrivacyChange: function (ev) {
+        this.isPrivacyValid = $(ev.currentTarget).is(':checked');
+        this._updateButtons();
+    },
+
+    _loadRecaptcha: function () {
+        if (typeof grecaptcha === 'undefined') {
+            var script = document.createElement('script');
+            script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadSaasCaptcha&render=explicit';
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+
+            window.onloadSaasCaptcha = () => this._renderRecaptcha();
+        } else {
+            this._renderRecaptcha();
+        }
+    },
+
+    _renderRecaptcha: function () {
+        var el = this.$('#epg-recaptcha-element')[0];
+        if (el && !el.hasChildNodes()) {
+            grecaptcha.render(el, {
+                'sitekey' : '6LccAj4sAAAAADJ4G-nOiqlwFTGQZoTYxY7LWwKR',
+                'callback' : (token) => {
+                    this.isCaptchaValid = true;
+                    this._updateButtons();
+                    // Remove Google's hidden field to avoid sending it in normal POST (Odoo controllers don't expect it)
+                    const googleField = document.querySelector('textarea[name="g-recaptcha-response"]');
+                    if (googleField) {
+                        googleField.removeAttribute('name');
+                    }
+                },
+                'expired-callback' : () => {
+                    this.isCaptchaValid = false;
+                    this._updateButtons();
+                }
+            });
+        }
     },
 
     _onCompanyNameInput: function (ev) {
@@ -170,9 +216,24 @@ publicWidget.registry.SaaSCheckout = publicWidget.Widget.extend({
     },
 
     _updateButtons: function () {
-        const canSubmit = this.isSubdomainValid && this.isEmailValid;
+        const canSubmit = this.isSubdomainValid && this.isEmailValid && this.isPrivacyValid && this.isCaptchaValid;
         this.$continueBtn.prop('disabled', !canSubmit);
         this.$trialBtn.prop('disabled', !canSubmit);
+        
+        if (!canSubmit) {
+            let reasons = [];
+            if (!this.isSubdomainValid) reasons.push("subdominio válido");
+            if (!this.isEmailValid) reasons.push("email válido");
+            if (!this.isPrivacyValid) reasons.push("aceptar privacidad");
+            if (!this.isCaptchaValid) reasons.push("completar captcha");
+            
+            const title = "Requerido: " + reasons.join(", ");
+            this.$continueBtn.attr('title', title);
+            this.$trialBtn.attr('title', title);
+        } else {
+            this.$continueBtn.removeAttr('title');
+            this.$trialBtn.removeAttr('title');
+        }
     },
 });
 

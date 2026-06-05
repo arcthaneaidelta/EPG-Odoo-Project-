@@ -342,7 +342,36 @@
                                             </div>
                                         </t>
                                         
-                                        <div class="d-grid gap-2 mt-4">
+                                        <div id="epg-custom-logic-container" class="mt-4">
+                                            <style>
+                                                #epg-custom-logic-container .form-check-input:checked {
+                                                    background-color: #4FA3D1 !important;
+                                                    border-color: #4FA3D1 !important;
+                                                }
+                                                #epg-custom-logic-container .form-check-input:focus {
+                                                    border-color: #4FA3D1;
+                                                    box-shadow: 0 0 0 0.25rem rgba(79, 163, 209, 0.25);
+                                                }
+                                            </style>
+
+                                            <div class="form-check mb-2 text-start">
+                                                <input type="checkbox" id="epg-privacy-check" class="form-check-input" style="cursor: pointer;"/>
+                                                <label for="epg-privacy-check" class="form-check-label small" style="cursor: pointer; color: #cbd5e1;">
+                                                    He leído y acepto la <a href="/politica-de-privacidad" target="_blank" style="color: #4FA3D1;">Política de Privacidad</a>. <span class="text-danger">*</span>
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check mb-3 text-start">
+                                                <input type="checkbox" id="epg-commercial-check" class="form-check-input" name="commercial_consent" style="cursor: pointer;"/>
+                                                <label for="epg-commercial-check" class="form-check-label small" style="cursor: pointer; color: #cbd5e1;">
+                                                    Acepto recibir información comercial.
+                                                </label>
+                                            </div>
+
+                                            <div id="epg-recaptcha-element" class="mb-4 d-flex justify-content-center"></div>
+                                        </div>
+
+                                        <div class="d-grid gap-2 mt-2">
                                             <button type="submit" name="checkout_action" value="trial" class="plan-btn" style="background: #475569; color: white;" id="trial_btn" disabled="disabled">
                                                 Prueba gratuita (7 días)
                                             </button>
