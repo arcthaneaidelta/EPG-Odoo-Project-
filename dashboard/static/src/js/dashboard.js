@@ -342,10 +342,14 @@ export class Dashboard extends Component {
         if (!target) {
             return;
         }
-        target.scrollIntoView({
+        
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const scrollTop = container.scrollTop + (targetRect.top - containerRect.top) - 20; // 20px padding
+        
+        container.scrollTo({
+            top: scrollTop,
             behavior: "smooth",
-            block: "start",
-            inline: "nearest",
         });
     }
 

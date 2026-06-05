@@ -26,6 +26,13 @@ class ResUsers(models.Model):
 		currency_field='company_currency_id'
 	)
 
+	tour_enabled = fields.Boolean(default=False, compute='_compute_tour_enabled_epg', store=True, readonly=False)
+
+	@api.depends('create_date')
+	def _compute_tour_enabled_epg(self):
+		for user in self:
+			user.tour_enabled = False
+
 	@api.depends('sale_order_ids.commission_amount', 'sale_order_ids.state')
 	def _compute_total_commission(self):
 		for user in self:

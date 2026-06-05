@@ -37,6 +37,40 @@
             </field>
         </record>
 
+        <record id="view_users_form_mail_inherit" model="ir.ui.view">
+            <field name="name">res.users.form.mail.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="mail.view_users_form_mail"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='notification_type']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_users_form_mail_bot_inherit" model="ir.ui.view">
+            <field name="name">res.users.form.mail.bot.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="mail_bot.res_users_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='odoobot_state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_users_form_web_tour_inherit" model="ir.ui.view">
+            <field name="name">res.users.form.web.tour.inherit.crm.base</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="web_tour.res_users_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tour_enabled']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
         <!-- Rename SystemBot Partner -->
         <record id="base.partner_root" model="res.partner">
             <field name="name">Asistente de EPG</field>

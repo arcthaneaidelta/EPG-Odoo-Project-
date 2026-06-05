@@ -18,6 +18,7 @@
 		"dms",
 		"portal",
 		"mail",
+		"web_tour",
 	],
 	"data": [
 		"security/ir.model.access.csv",
@@ -32,6 +33,7 @@
 		"views/crm_lead_kanban_view.xml",
 		# "data/crm_automation.xml",
 		"data/mail_templates.xml",
+		"data/white_label_templates.xml",
 		"data/res_country_data.xml",
 		# "data/menu_order.xml",
 	],
