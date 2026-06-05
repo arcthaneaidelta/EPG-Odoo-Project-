@@ -22,10 +22,34 @@ msgid "Alerts"
 msgstr "Alertas"
 
 #. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Annual Invoicing"
+msgstr "Facturación anual"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Avg Days to Close"
+msgstr "Días promedio para cerrar"
+
+#. module: dashboard
 #. odoo-javascript
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Balance"
 msgstr "Saldo"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Cash Flow"
+msgstr "Flujo de fondos"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Cash Flow (Real-time liquidity)"
+msgstr "Flujo de caja (liquidez en tiempo real)"
 
 #. module: dashboard
 #. odoo-javascript
@@ -34,10 +58,36 @@ msgid "Client KPIs"
 msgstr "KPI de Clientes"
 
 #. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Client KPIs (CTA)"
+msgstr "KPI del cliente (CTA)"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Closed Sales"
+msgstr "Ventas Cerradas"
+
+#. module: dashboard
 #. odoo-javascript
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Commercial KPIs"
 msgstr "KPI Comerciales"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Configurable Range Invoicing"
+msgstr "Facturación de rango configurable"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Contract status, payment state, new clients and top client ranking."
+msgstr "Estado del contrato, estado del pago, nuevos clientes y clasificación de los mejores clientes."
 
 #. module: dashboard
 #. odoo-javascript
@@ -46,10 +96,34 @@ msgid "Conversion Rate by Origin"
 msgstr "Tasa de Conversión por Origen"
 
 #. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Customer invoices with passed due dates."
+msgstr "Facturas de clientes con fechas de vencimiento vencidas."
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Daily Invoicing"
+msgstr "Facturación diaria"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Daily, weekly, monthly, annual, range-based invoicing and growth."
+msgstr "Facturación y crecimiento diarios, semanales, mensuales y anuales, basados ​​en rangos."
+
+#. module: dashboard
 #: model:ir.actions.client,name:dashboard.action_dashboard
 #: model:ir.ui.menu,name:dashboard.menu_dashboard_custom
 msgid "Dashboard"
 msgstr "Tablero"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Estimated Profit"
+msgstr "Beneficio estimado"
 
 #. module: dashboard
 #. odoo-javascript
@@ -94,6 +168,24 @@ msgid "Income vs. Expenses"
 msgstr "Ingresos vs. Gastos"
 
 #. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Invoice lifecycle, cash-flow and income versus expenses."
+msgstr "Ciclo de vida de las facturas, flujo de caja e ingresos frente a gastos."
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Invoicing & Financial KPIs"
+msgstr "Indicadores clave de rendimiento (KPI) de facturación y finanzas"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Issued Invoices"
+msgstr "Facturas emitidas"
+
+#. module: dashboard
 #. odoo-javascript
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Leads"
@@ -104,6 +196,42 @@ msgstr "Clientes Potenciales"
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Leads vs Won"
 msgstr "Potenciales vs Ganados"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Leads, quotations, sales outcomes, conversion and active pipeline."
+msgstr "Clientes potenciales, cotizaciones, resultados de ventas, conversión y cartera de clientes activa."
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Lost Sales"
+msgstr "Ventas perdidas"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Monthly Growth"
+msgstr "Crecimiento mensual"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Monthly Invoicing"
+msgstr "Facturación mensual"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "New Clients (Current Month)"
+msgstr "Nuevos clientes (mes actual)"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "New Leads"
+msgstr "Nuevos clientes potenciales"
 
 #. module: dashboard
 #. odoo-javascript
@@ -136,6 +264,12 @@ msgid "No recent activity found."
 msgstr "No se encontró actividad reciente."
 
 #. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "No updates in the last 7 days."
+msgstr "No ha habido actualizaciones en los últimos 7 días."
+
+#. module: dashboard
 #. odoo-javascript
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Open Alerts"
@@ -146,6 +280,18 @@ msgstr "Alertas Abiertas"
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Origin"
 msgstr "Origen"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Overdue Invoices"
+msgstr "Facturas vencidas"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Overdue invoices"
+msgstr "Facturas vencidas"
 
 #. module: dashboard
 #. odoo-javascript
@@ -160,10 +306,52 @@ msgid "Page scroll controls"
 msgstr "Controles de desplazamiento de página"
 
 #. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Paid Invoices"
+msgstr "Facturas pagadas"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Pending Invoices"
+msgstr "Facturas pendientes"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Pending Quotes"
+msgstr "Cotizaciones pendientes"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Pipeline Value"
+msgstr "Valor de canalización"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Pipeline Volume"
+msgstr "Volumen de tubería"
+
+#. module: dashboard
 #. odoo-javascript
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Pipeline flow"
 msgstr "Flujo de pipeline"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Quarter-end reminders"
+msgstr "Recordatorios de fin de trimestre"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Quotations sent more than 10 days ago."
+msgstr "Cotizaciones enviadas hace más de 10 días."
 
 #. module: dashboard
 #. odoo-javascript
@@ -184,6 +372,12 @@ msgid "Recent Events"
 msgstr "Eventos Recientes"
 
 #. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Rectified Invoices"
+msgstr "Facturas rectificadas"
+
+#. module: dashboard
 #. odoo-javascript
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Refresh"
@@ -191,6 +385,8 @@ msgstr "Actualizar"
 
 #. module: dashboard
 #. odoo-javascript
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Revenue KPIs"
 msgstr "KPI de Ingresos"
@@ -200,6 +396,12 @@ msgstr "KPI de Ingresos"
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Sales"
 msgstr "Ventas"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Sales Conversion"
+msgstr "Conversión de ventas"
 
 #. module: dashboard
 #. odoo-javascript
@@ -232,6 +434,24 @@ msgid "Sections"
 msgstr "Secciones"
 
 #. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Sent Quotes"
+msgstr "Cotizaciones enviadas"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Signed & Paid"
+msgstr "Firmado y pagado"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Signed (Contract accepted)"
+msgstr "Firmado (Contrato aceptado)"
+
+#. module: dashboard
 #. odoo-javascript
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "To"
@@ -250,6 +470,12 @@ msgid "Top Clients Ranking (by revenue)"
 msgstr "Ranking de Mejores Clientes (por ingresos)"
 
 #. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Total Income"
+msgstr "Ingresos totales"
+
+#. module: dashboard
 #. odoo-javascript
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Total Leads"
@@ -262,10 +488,46 @@ msgid "Total Won"
 msgstr "Total Ganados"
 
 #. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Unattended leads"
+msgstr "Clientes potenciales desatendidos"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Unresponsive quotes"
+msgstr "Cotizaciones que no responden"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Unsigned & Unpaid"
+msgstr "No firmado y sin pagar"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Unsigned but Paid"
+msgstr "No firmado pero pagado"
+
+#. module: dashboard
 #. odoo-javascript
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "Updating dashboard KPIs..."
 msgstr "Actualizando KPI del tablero..."
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Weekly Invoicing"
+msgstr "Facturación semanal"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid "Weighted Forecast"
+msgstr "Pronóstico ponderado"
 
 #. module: dashboard
 #. odoo-javascript
@@ -278,3 +540,59 @@ msgstr "Ganados"
 #: code:addons/dashboard/static/src/xml/dashboard_templates.xml:0
 msgid "days"
 msgstr "días"
+
+#. module: dashboard
+#. odoo-python
+#: code:addons/dashboard/controllers/main.py:0
+msgid ""
+"{days_to_quarter_end} days remaining to close the quarter ({quarter_end})."
+msgstr "{days_to_quarter_end} días restantes para cerrar el trimestre ({quarter_end})."
+
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/js/dashboard.js:0
+msgid "Leads in selected range"
+msgstr "Potenciales en rango seleccionado"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/js/dashboard.js:0
+msgid "Total Leads"
+msgstr "Total de Potenciales"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/js/dashboard.js:0
+msgid "Total Sales"
+msgstr "Ventas Totales"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/js/dashboard.js:0
+msgid "Revenue in selected range"
+msgstr "Ingresos en rango seleccionado"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/js/dashboard.js:0
+msgid "Total Invoices"
+msgstr "Facturas Totales"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/js/dashboard.js:0
+msgid "Issued invoice volume"
+msgstr "Volumen de facturas emitidas"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/js/dashboard.js:0
+msgid "Total Won"
+msgstr "Total Ganados"
+
+#. module: dashboard
+#. odoo-javascript
+#: code:addons/dashboard/static/src/js/dashboard.js:0
+msgid "Closed sales outcomes"
+msgstr "Resultados de ventas cerradas"

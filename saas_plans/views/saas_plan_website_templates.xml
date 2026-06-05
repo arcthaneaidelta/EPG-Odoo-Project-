@@ -50,7 +50,7 @@
                                             </div>
                                             <t t-if="plan.billing_cycle == 'annual'">
                                                 <p class="plan-price-equiv">
-                                                    Equivalente a €<t t-esc="'%.2f' % plan.early_adopter_price"/>/mes
+                                                    Equivalente a €29.80/mes
                                                 </p>
                                             </t>
                                             <ul class="plan-features">
@@ -373,7 +373,7 @@
 
                                         <div class="d-grid gap-2 mt-2">
                                             <button type="submit" name="checkout_action" value="trial" class="plan-btn" style="background: #475569; color: white;" id="trial_btn" disabled="disabled">
-                                                Prueba gratuita (7 días)
+                                                Prueba gratuita (5 días)
                                             </button>
                                             <button type="submit" name="checkout_action" value="pay" class="plan-btn" id="continue_btn" disabled="disabled">
                                                 Pagar ahora

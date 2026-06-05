@@ -46,8 +46,9 @@ class SaaSPlanController(http.Controller):
 		if not plan.exists():
 			return request.redirect('/saas/plans')
 			
-
-		
+		# Prevent buying if it's an early adopter plan and limit is reached
+		if plan.is_early_adopter and not plan.can_use_early_adopter():
+			return request.redirect('/saas/plans')
 		# Create or get sale order
 		order = request.website.sale_get_order(force_create=True)
 		
@@ -68,6 +69,9 @@ class SaaSPlanController(http.Controller):
 		
 		plan = request.env['saas.plan'].sudo().browse(int(plan_id))
 		if not plan.exists():
+			return request.redirect('/saas/plans')
+			
+		if plan.is_early_adopter and not plan.can_use_early_adopter():
 			return request.redirect('/saas/plans')
 		
 		# Get or create sale order
@@ -183,7 +187,7 @@ class SaaSPlanController(http.Controller):
 				order.saas_subscription_id.sudo().write({
 					'state': 'trial',
 					'trial_start_date': fields.Datetime.now(),
-					'trial_end_date': fields.Datetime.now() + timedelta(days=7),
+					'trial_end_date': fields.Datetime.now() + timedelta(days=5),
 				})
 				try:
 					order.saas_subscription_id.sudo().action_provision_tenant()

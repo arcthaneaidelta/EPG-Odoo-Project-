@@ -156,8 +156,10 @@ class SaasHome(Home):
         if request.session.uid:
             # We use sudo to avoid access rights issues if they are restricted
             user = request.env['res.users'].sudo().browse(request.session.uid)
-            if user._is_admin() and not user.company_id.saas_onboarding_done:
-                return request.redirect('/saas/onboarding')
+            manager_db = request.env['ir.config_parameter'].sudo().get_param('saas.manager_db', 'eficienciayproductividadglobal')
+            if request.env.cr.dbname != manager_db:
+                if user._is_admin() and not user.company_id.saas_onboarding_done:
+                    return request.redirect('/saas/onboarding')
         return super(SaasHome, self).web_client(s_action, **kw)
 
 
@@ -169,8 +171,10 @@ class SaasOnboardingController(http.Controller):
         if not user._is_admin() or user.company_id.sudo().saas_onboarding_done:
             return request.redirect('/web')
             
+        countries = request.env['res.country'].sudo().search([])
         return request.render('saas_client.saas_onboarding_template', {
             'company': user.company_id.sudo(),
+            'countries': countries,
         })
 
     @http.route('/saas/onboarding/submit', type='http', auth='user', methods=['POST'], csrf=True)
@@ -198,6 +202,24 @@ class SaasOnboardingController(http.Controller):
             update_vals['email'] = email
         if street:
             update_vals['street'] = street
+            
+        country_id = post.get('company_country_id')
+        if country_id:
+            try:
+                update_vals['country_id'] = int(country_id)
+            except ValueError:
+                pass
+            
+        industry = post.get('company_type_industry')
+        employees = post.get('employee_count_range')
+        use_case = post.get('primary_use_case')
+
+        if industry:
+            update_vals['company_type_industry'] = industry
+        if employees:
+            update_vals['employee_count_range'] = employees
+        if use_case:
+            update_vals['primary_use_case'] = use_case
             
         if logo_file and logo_file.filename:
             update_vals['logo'] = base64.b64encode(logo_file.read())

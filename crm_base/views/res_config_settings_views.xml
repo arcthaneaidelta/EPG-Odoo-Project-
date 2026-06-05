@@ -113,6 +113,8 @@
             <!-- Remove Digitization Block -->
             <xpath expr="//block[@id='account_digitalization']" position="replace" raise_if_not_found="0"/>
 
+            <xpath expr="//widget[@name='res_config_dev_tool']" position="replace" raise_if_not_found="0"/>
+
             <!-- Remove Bank Statement Imports -->
             <xpath expr="//setting[@id='import_bank_statements_csv']" position="replace" raise_if_not_found="0"/>
             <xpath expr="//setting[descendant::field[@name='module_account_bank_statement_import_qif']]" position="replace" raise_if_not_found="0"/>

@@ -5,7 +5,7 @@
             <head>
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <title>Welcome to Your New Database</title>
+                <title>Bienvenido a su nueva base de datos</title>
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
                 <style>
                     :root {
@@ -221,58 +221,110 @@
             <body>
                 <div class="onboarding-container">
                     <div class="header-section">
-                        <h1>Let's setup your workspace</h1>
-                        <p>Complete this quick setup to personalize your experience. We just need a few details to get started.</p>
+                        <h1>Configuremos su espacio de trabajo</h1>
+                        <p>Complete esta configuración rápida para personalizar su experiencia. Solo necesitamos unos detalles para empezar.</p>
                     </div>
                     
                     <form action="/saas/onboarding/submit" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                         
                         <div class="form-group">
-                            <label for="company_logo">Company Logo</label>
+                            <label for="company_logo">Logotipo de la Empresa</label>
                             <div class="file-upload-wrapper" id="dropZone">
                                 <svg class="upload-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
                                 </svg>
-                                <div class="upload-text" id="uploadText">Click or drag image to upload</div>
+                                <div class="upload-text" id="uploadText">Haz clic o arrastra la imagen para subir</div>
                                 <img id="logoPreview" class="upload-preview" src=""/>
                                 <input type="file" id="company_logo" name="company_logo" accept="image/*"/>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="company_name">Company Name</label>
+                            <label for="company_name">Nombre de la Empresa</label>
                             <input type="text" class="form-control" id="company_name" name="company_name" 
-                                   t-att-value="company.name" required="required" placeholder="e.g. Acme Corporation"/>
+                                   t-att-value="company.name" required="required" placeholder="ej. Acme Corporation"/>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group form-col">
-                                <label for="company_phone">Phone Number</label>
+                                <label for="company_phone">Número de Teléfono</label>
                                 <input type="tel" class="form-control" id="company_phone" name="company_phone" 
                                        t-att-value="company.phone" placeholder="+1 (555) 000-0000"/>
                             </div>
                             
                             <div class="form-group form-col">
-                                <label for="company_email">Email Address</label>
+                                <label for="company_email">Correo Electrónico</label>
                                 <input type="email" class="form-control" id="company_email" name="company_email" 
-                                       t-att-value="company.email" placeholder="hello@company.com"/>
+                                       t-att-value="company.email" placeholder="hola@empresa.com"/>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group form-col">
+                                <label for="company_street">Dirección</label>
+                                <input type="text" class="form-control" id="company_street" name="company_street" 
+                                       t-att-value="company.street" placeholder="Calle Principal 123, Oficina 100"/>
+                            </div>
+                            
+                            <div class="form-group form-col">
+                                <label for="company_country_id">País</label>
+                                <select class="form-control" id="company_country_id" name="company_country_id" required="required">
+                                    <option value="" disabled="disabled" t-att-selected="not company.country_id">Seleccione su país...</option>
+                                    <t t-foreach="countries" t-as="c">
+                                        <option t-att-value="c.id" t-att-selected="company.country_id.id == c.id">
+                                            <t t-esc="c.name"/>
+                                        </option>
+                                    </t>
+                                </select>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="company_street">Street Address</label>
-                            <input type="text" class="form-control" id="company_street" name="company_street" 
-                                   t-att-value="company.street" placeholder="123 Main St, Suite 100"/>
+                            <label for="company_type_industry">Sector de la Empresa</label>
+                            <select class="form-control" id="company_type_industry" name="company_type_industry" required="required">
+                                <option value="" disabled="disabled" selected="selected">Seleccione su sector...</option>
+                                <option value="services">Servicios</option>
+                                <option value="tech">Tecnología e IT</option>
+                                <option value="retail">Comercio / Retail</option>
+                                <option value="real_estate">Real Estate / Inmobiliaria</option>
+                                <option value="accounting">Contabilidad / Gestoría</option>
+                                <option value="manufacturing">Fabricación / Industria</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group form-col">
+                                <label for="employee_count_range">Número de Empleados</label>
+                                <select class="form-control" id="employee_count_range" name="employee_count_range" required="required">
+                                    <option value="" disabled="disabled" selected="selected">Seleccione el tamaño...</option>
+                                    <option value="1-5">1 - 5</option>
+                                    <option value="6-20">6 - 20</option>
+                                    <option value="21-50">21 - 50</option>
+                                    <option value="50+">50+</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group form-col">
+                                <label for="primary_use_case">Uso Principal</label>
+                                <select class="form-control" id="primary_use_case" name="primary_use_case" required="required">
+                                    <option value="" disabled="disabled" selected="selected">Seleccione el uso...</option>
+                                    <option value="crm">Ventas y CRM</option>
+                                    <option value="accounting">Facturación y Contabilidad</option>
+                                    <option value="projects">Gestión de Proyectos / Operaciones</option>
+                                    <option value="all">Todo en Uno</option>
+                                </select>
+                            </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="invoice_target">Monthly Invoice Target</label>
+                            <label for="invoice_target">Objetivo de Facturación Mensual</label>
                             <input type="number" class="form-control" id="invoice_target" name="invoice_target" 
-                                   placeholder="e.g. 50000" min="0" step="100"/>
+                                   placeholder="ej. 50000" min="0" step="100"/>
                         </div>
                         
-                        <button type="submit" class="submit-btn">Complete Setup</button>
+                        <button type="submit" class="submit-btn">Completar Configuración</button>
                     </form>
                 </div>
                 

@@ -13,7 +13,7 @@
 
         <!-- CRM Early Adopter Plans -->
         <record id="plan_crm_early_annual" model="saas.plan">
-            <field name="name">CRM Early Adopter (Annual)</field>
+            <field name="name">Suscripción a CRM Early Adopter (Annual)</field>
             <field name="sequence">1</field>
             <field name="plan_type">crm_early</field>
             <field name="billing_cycle">annual</field>
@@ -37,7 +37,7 @@
         </record>
 
         <record id="plan_crm_early_monthly" model="saas.plan">
-            <field name="name">CRM Early Adopter (Monthly)</field>
+            <field name="name">Suscripción a CRM Early Adopter (Monthly)</field>
             <field name="sequence">2</field>
             <field name="plan_type">crm_early</field>
             <field name="billing_cycle">monthly</field>
@@ -62,7 +62,7 @@
 
         <!-- CRM Official Plans -->
         <record id="plan_crm_official_annual" model="saas.plan">
-            <field name="name">CRM Official (Annual)</field>
+            <field name="name">Suscripción a CRM Official (Annual)</field>
             <field name="sequence">10</field>
             <field name="plan_type">crm_official</field>
             <field name="billing_cycle">annual</field>
@@ -83,7 +83,7 @@
         </record>
 
         <record id="plan_crm_official_monthly" model="saas.plan">
-            <field name="name">CRM Official (Monthly)</field>
+            <field name="name">Suscripción a CRM Official (Monthly)</field>
             <field name="sequence">11</field>
             <field name="plan_type">crm_official</field>
             <field name="billing_cycle">monthly</field>

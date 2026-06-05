@@ -502,7 +502,7 @@
                 Add a new File.
             </p>
             <p>
-                Files are used to save content directly in Odoo.
+                Files are used to save content directly in EPG.
             </p>
         </field>
     </record>
@@ -588,7 +588,7 @@
                 Add a new File.
             </p>
             <p>
-                Files are used to save content directly in Odoo.
+                Files are used to save content directly in EPG.
             </p>
         </field>
     </record>

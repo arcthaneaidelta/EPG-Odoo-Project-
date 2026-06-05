@@ -29,7 +29,7 @@
             </p>
             <p>
                 Directories can be used to structure and organize
-                files directly in Odoo.
+                files directly in EPG.
             </p>
         </field>
     </record>
@@ -53,7 +53,7 @@
                 Click to add a new file.
             </p>
             <p>
-                Files are used to save content directly in Odoo.
+                Files are used to save content directly in EPG.
             </p>
         </field>
     </record>
@@ -79,7 +79,7 @@
             </p>
             <p>
                 Directories can be used to structure and organize
-                files directly in Odoo.
+                files directly in EPG.
             </p>
         </field>
     </record>
@@ -103,7 +103,7 @@
                 Click to add a new file.
             </p>
             <p>
-                Files are used to save content directly in Odoo.
+                Files are used to save content directly in EPG.
             </p>
         </field>
     </record>
@@ -647,7 +647,7 @@
             </p>
             <p>
                 Directories can be used to structure and organize
-                files directly in Odoo.
+                files directly in EPG.
             </p>
         </field>
     </record>

@@ -491,7 +491,7 @@ class SaaSSubscription(models.Model):
 		print(expired_trials)
 		for sub in expired_trials:
 			sub.action_suspend_subscription()
-			sub.message_post(body=_("7-Day Free Trial ended. Database suspended until subscription is paid."))
+			sub.message_post(body=_("5-Day Free Trial ended. Database suspended until subscription is paid."))
 
 	@api.model
 	def create(self, vals):

@@ -8,7 +8,7 @@
         
         <!-- CRM Early Adopter Monthly Product - €25.00/mo -->
         <record id="product_crm_early_adopter_monthly" model="product.product">
-            <field name="name">CRM Early Adopter (Monthly)</field>
+            <field name="name">Usuarios pioneros de CRM (mensual)</field>
             <field name="default_code">SAAS_CRM_EARLY_MONTHLY</field>
             <field name="list_price">34.90</field>
             <field name="type">service</field>
@@ -21,7 +21,7 @@
         
         <!-- CRM Early Adopter Annual Product - €270/yr -->
         <record id="product_crm_early_adopter_annual" model="product.product">
-            <field name="name">CRM Early Adopter (Annual)</field>
+            <field name="name">Usuarios pioneros de CRM (Anual)</field>
             <field name="default_code">SAAS_CRM_EARLY_ANNUAL</field>
             <field name="list_price">358.00</field>
             <field name="type">service</field>
@@ -34,7 +34,7 @@
         
         <!-- CRM Official Monthly Product - €35.00/mo -->
         <record id="product_crm_official_monthly" model="product.product">
-            <field name="name">Base CRM (Monthly)</field>
+            <field name="name">CRM básico (mensual)</field>
             <field name="default_code">SAAS_CRM_OFFICIAL_MONTHLY</field>
             <field name="list_price">59.90</field>
             <field name="type">service</field>
@@ -47,7 +47,7 @@
         
         <!-- CRM Official Annual Product - €378/yr -->
         <record id="product_crm_official_annual" model="product.product">
-            <field name="name">Base CRM (Annual)</field>
+            <field name="name">CRM básico (anual)</field>
             <field name="default_code">SAAS_CRM_OFFICIAL_ANNUAL</field>
             <field name="list_price">598.00</field>
             <field name="type">service</field>

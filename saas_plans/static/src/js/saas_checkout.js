@@ -34,7 +34,7 @@ publicWidget.registry.SaaSCheckout = publicWidget.Widget.extend({
             this.isEmailValid = false; // Must validate if it exists
         }
 
-        console.log('[SaaS Checkout] Elements found:', {
+        console.log('[SaaS Checkout] Elementos encontrados:', {
             companyName: this.$companyName.length,
             subdomainCheck: this.$subdomainCheck.length,
             continueBtn: this.$continueBtn.length,
@@ -95,12 +95,12 @@ publicWidget.registry.SaaSCheckout = publicWidget.Widget.extend({
     },
 
     _onCompanyNameInput: function (ev) {
-        console.log('[SaaS Checkout] Input detected:', $(ev.currentTarget).val());
+        console.log('[SaaS Checkout] Entrada detectada:', $(ev.currentTarget).val());
         clearTimeout(this.checkTimeout);
         var companyName = $(ev.currentTarget).val().trim();
 
         if (companyName.length < 3) {
-            this.$subdomainCheck.html('<span style="color: #94a3b8;">Enter at least 3 characters</span>');
+            this.$subdomainCheck.html('<span style="color: #94a3b8;">Introduzca al menos 3 caracteres.</span>');
             this.isSubdomainValid = false;
             this._updateButtons();
             return;
@@ -116,7 +116,7 @@ publicWidget.registry.SaaSCheckout = publicWidget.Widget.extend({
     },
 
     _checkAvailability: function (companyName) {
-        console.log('[SaaS Checkout] Checking availability for:', companyName);
+        console.log('[[SaaS Checkout] Comprobando disponibilidad para:', companyName);
 
         // Use native fetch to avoid dependency issues with System's RPC modules in frontend
         fetch('/saas/check_company_name', {
@@ -138,18 +138,18 @@ publicWidget.registry.SaaSCheckout = publicWidget.Widget.extend({
                 const result = data.result;
 
                 if (result && result.available) {
-                    this.$subdomainCheck.html('<span style="color: #10b981;">✓ Available! Your subdomain will be: ' + result.subdomain + '.eficienciayproductividadglobal.com</span>');
+                    this.$subdomainCheck.html('<span style="color: #10b981;">✓ ¡Disponible! Tu subdominio será: ' + result.subdomain + '.eficienciayproductividadglobal.com</span>');
                     this.isSubdomainValid = true;
                 } else {
-                    const msg = result ? result.message : 'Unknown error';
+                    const msg = result ? result.message : 'Error desconocido';
                     this.$subdomainCheck.html('<span style="color: #ef4444;">✗ ' + msg + '</span>');
                     this.isSubdomainValid = false;
                 }
                 this._updateButtons();
             })
             .catch((error) => {
-                console.error('[SaaS Checkout] Error checking company name', error);
-                this.$subdomainCheck.html('<span style="color: #f59e0b;">Unable to verify availability</span>');
+                console.error('[SaaS Checkout] Error al verificar el nombre de la empresa', error);
+                this.$subdomainCheck.html('<span style="color: #f59e0b;">No se pudo verificar la disponibilidad</span>');
                 // Allow them to try submission anyway in case of transient error
                 this.isSubdomainValid = true;
                 this._updateButtons();
@@ -164,13 +164,13 @@ publicWidget.registry.SaaSCheckout = publicWidget.Widget.extend({
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailRegex.test(email)) {
-            this.$emailCheck.html('<span style="color: #94a3b8;">Please enter a valid email address</span>');
+            this.$emailCheck.html('<span style="color: #94a3b8;">Por favor, introduce una dirección de correo electrónico válida</span>');
             this.isEmailValid = false;
             this._updateButtons();
             return;
         }
 
-        this.$emailCheck.html('<span style="color: #94a3b8;">Checking...</span>');
+        this.$emailCheck.html('<span style="color: #94a3b8;">De cheques...</span>');
         this.isEmailValid = false;
         this._updateButtons();
 
@@ -198,18 +198,18 @@ publicWidget.registry.SaaSCheckout = publicWidget.Widget.extend({
                 const result = data.result;
 
                 if (result && result.available) {
-                    this.$emailCheck.html('<span style="color: #10b981;">✓ Email available</span>');
+                    this.$emailCheck.html('<span style="color: #10b981;">✓ Correo electrónico disponible</span>');
                     this.isEmailValid = true;
                 } else {
-                    const msg = result ? result.message : 'Email already in use';
-                    this.$emailCheck.html('<span style="color: #ef4444;">✗ ' + msg + ' <a href="/web/login" style="color: #60a5fa; text-decoration: underline;">Log in instead</a></span>');
+                    const msg = result ? result.message : 'Correo electrónico ya en uso';
+                    this.$emailCheck.html('<span style="color: #ef4444;">✗ ' + msg + ' <a href="/web/login" style="color: #60a5fa; text-decoration: underline;">Inicia sesión en su lugar</a></span>');
                     this.isEmailValid = false;
                 }
                 this._updateButtons();
             })
             .catch((error) => {
-                console.error('[SaaS Checkout] Error checking email', error);
-                this.$emailCheck.html('<span style="color: #f59e0b;">Unable to verify email</span>');
+                console.error('[SaaS Checkout] Error al comprobar el correo electrónico', error);
+                this.$emailCheck.html('<span style="color: #f59e0b;">No se pudo verificar el correo electrónico</span>');
                 this.isEmailValid = true;
                 this._updateButtons();
             });

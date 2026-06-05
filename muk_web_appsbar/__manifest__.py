@@ -73,6 +73,7 @@
                 'web/static/src/webclient/webclient.js',
                 'muk_web_appsbar/static/src/webclient/appsbar/appsbar.js',
             ),
+            'muk_web_appsbar/static/src/webclient/menus/user_menu_patch.js',
             'muk_web_appsbar/static/src/webclient/webclient.scss',
             'muk_web_appsbar/static/src/webclient/appsbar/appsbar.xml',
             'muk_web_appsbar/static/src/webclient/appsbar/appsbar.scss',

@@ -215,7 +215,7 @@ class SaaSProvisioningService(models.AbstractModel):
 		base_modules = [
 			'sale_management', 'account', 'hr', 'crm', 'calendar', 'muk_web_appsbar',
 			'crm_base', 'crm_automation_engine', 'crm_client_kanban', 'dashboard',
-			'odoo_url_replacer', 'ai_assistant', 'saas_client','client_document_management','crm_file_management'
+			'odoo_url_replacer', 'ai_assistant', 'saas_client','client_document_management','crm_file_management','saas_ocr_client'
 		]
 		
 		# Accounting modules (Early Adopter gets them automatically, or if checkbox is checked)
@@ -230,13 +230,6 @@ class SaaSProvisioningService(models.AbstractModel):
 		# Add accounting modules if early adopter, if plan name implies it, or if accounting addon is checked
 		if subscription.is_early_adopter or 'early' in plan_name or subscription.accounting_module:
 			modules.extend(accounting_modules)
-			
-		# Optional: Also add any modules they manually typed in the plan form view
-		if subscription.plan_id.module_names:
-			extra_modules = [m.strip() for m in subscription.plan_id.module_names.split(',') if m.strip()]
-			for m in extra_modules:
-				if m not in modules:
-					modules.append(m)
 					
 		return modules
 	

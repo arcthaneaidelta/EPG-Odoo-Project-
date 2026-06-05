@@ -31,6 +31,7 @@
 		"views/sale_order_views.xml",
 		"views/res_config_settings_views.xml",
 		"views/crm_lead_kanban_view.xml",
+		"views/res_company_views.xml",
 		# "data/crm_automation.xml",
 		"data/mail_templates.xml",
 		"data/white_label_templates.xml",

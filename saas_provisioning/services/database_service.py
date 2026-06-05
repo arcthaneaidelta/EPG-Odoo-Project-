@@ -185,6 +185,26 @@ class SaaSDatabaseService(models.AbstractModel):
                     l10n_modules.write({'auto_install': False})
                     _logger.info(f"Disabled auto-install for {len(l10n_modules)} unwanted localization modules.")
                 
+                # --- INSTALL SPANISH LANGUAGE AND SET AS DEFAULT ---
+                try:
+                    lang = env['res.lang'].with_context(active_test=False).search([('code', '=', 'es_ES')], limit=1)
+                    if lang:
+                        lang.active = True
+                        installer = env['base.language.install'].create({'lang_ids': [(6, 0, lang.ids)]})
+                        installer.lang_install()
+                        env['ir.config_parameter'].sudo().set_param('base.lang', 'es_ES')
+                        
+                        # Set it as default for admin and company
+                        env.company.partner_id.lang = 'es_ES'
+                        admin_user = env.ref('base.user_admin', raise_if_not_found=False)
+                        if admin_user:
+                            admin_user.lang = 'es_ES'
+                            admin_user.partner_id.lang = 'es_ES'
+                            
+                        _logger.info("Spanish language installed and set as default.")
+                except Exception as e:
+                    _logger.warning(f"Could not install Spanish language: {e}")
+                
                 # Install each requested module
                 for module_name in module_list:
                     module = env['ir.module.module'].search([

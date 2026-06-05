@@ -17,7 +17,7 @@
     """,
     'author': 'Your Company',
     'website': 'https://abc.com',
-    'depends': ['base', 'odoo_url_replacer', 'sales_team', 'web', 'portal'],
+    'depends': ['base', 'odoo_url_replacer', 'sales_team', 'web', 'portal', 'mail'],
     'data': [
         'views/res_config_settings_views.xml',
         'views/login_templates.xml',

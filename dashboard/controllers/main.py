@@ -1,3 +1,4 @@
+from odoo import _
 import logging
 from datetime import datetime, time
 
@@ -114,26 +115,26 @@ class DashboardController(http.Controller):
             "kpi_groups": [
                 {
                     "key": "revenue",
-                    "title": "Revenue KPIs",
-                    "description": "Daily, weekly, monthly, annual, range-based invoicing and growth.",
+                    "title": _("Revenue KPIs"),
+                    "description": _("Daily, weekly, monthly, annual, range-based invoicing and growth."),
                     "metrics": revenue["metrics"],
                 },
                 {
                     "key": "clients",
-                    "title": "Client KPIs (CTA)",
-                    "description": "Contract status, payment state, new clients and top client ranking.",
+                    "title": _("Client KPIs (CTA)"),
+                    "description": _("Contract status, payment state, new clients and top client ranking."),
                     "metrics": clients["metrics"],
                 },
                 {
                     "key": "commercial",
-                    "title": "Commercial KPIs",
-                    "description": "Leads, quotations, sales outcomes, conversion and active pipeline.",
+                    "title": _("Commercial KPIs"),
+                    "description": _("Leads, quotations, sales outcomes, conversion and active pipeline."),
                     "metrics": commercial["metrics"],
                 },
                 {
                     "key": "financial",
-                    "title": "Invoicing & Financial KPIs",
-                    "description": "Invoice lifecycle, cash-flow and income versus expenses.",
+                    "title": _("Invoicing & Financial KPIs"),
+                    "description": _("Invoice lifecycle, cash-flow and income versus expenses."),
                     "metrics": financial["metrics"],
                 },
             ],
@@ -164,14 +165,14 @@ class DashboardController(http.Controller):
         if invoice_model is None:
             return {
                 "metrics": [
-                    self._build_metric("daily_invoicing", "Daily Invoicing", 0.0, "currency"),
-                    self._build_metric("weekly_invoicing", "Weekly Invoicing", 0.0, "currency"),
-                    self._build_metric("monthly_invoicing", "Monthly Invoicing", 0.0, "currency"),
-                    self._build_metric("annual_invoicing", "Annual Invoicing", 0.0, "currency"),
-                    self._build_metric("range_invoicing", "Configurable Range Invoicing", 0.0, "currency"),
-                    self._build_metric("total_income", "Total Income", 0.0, "currency"),
-                    self._build_metric("estimated_profit", "Estimated Profit", 0.0, "currency"),
-                    self._build_metric("monthly_growth", "Monthly Growth", 0.0, "percent"),
+                    self._build_metric("daily_invoicing", _("Daily Invoicing"), 0.0, "currency"),
+                    self._build_metric("weekly_invoicing", _("Weekly Invoicing"), 0.0, "currency"),
+                    self._build_metric("monthly_invoicing", _("Monthly Invoicing"), 0.0, "currency"),
+                    self._build_metric("annual_invoicing", _("Annual Invoicing"), 0.0, "currency"),
+                    self._build_metric("range_invoicing", _("Configurable Range Invoicing"), 0.0, "currency"),
+                    self._build_metric("total_income", _("Total Income"), 0.0, "currency"),
+                    self._build_metric("estimated_profit", _("Estimated Profit"), 0.0, "currency"),
+                    self._build_metric("monthly_growth", _("Monthly Growth"), 0.0, "percent"),
                 ]
             }
 
@@ -252,63 +253,47 @@ class DashboardController(http.Controller):
             )
 
         metrics = [
-            self._build_metric(
-                "daily_invoicing",
-                "Daily Invoicing",
+            self._build_metric("daily_invoicing", _("Daily Invoicing"),
                 daily,
                 "currency",
                 "account.move",
                 daily_domain,
             ),
-            self._build_metric(
-                "weekly_invoicing",
-                "Weekly Invoicing",
+            self._build_metric("weekly_invoicing", _("Weekly Invoicing"),
                 weekly,
                 "currency",
                 "account.move",
                 weekly_domain,
             ),
-            self._build_metric(
-                "monthly_invoicing",
-                "Monthly Invoicing",
+            self._build_metric("monthly_invoicing", _("Monthly Invoicing"),
                 monthly,
                 "currency",
                 "account.move",
                 monthly_domain,
             ),
-            self._build_metric(
-                "annual_invoicing",
-                "Annual Invoicing",
+            self._build_metric("annual_invoicing", _("Annual Invoicing"),
                 annual,
                 "currency",
                 "account.move",
                 annual_domain,
             ),
-            self._build_metric(
-                "range_invoicing",
-                "Configurable Range Invoicing",
+            self._build_metric("range_invoicing", _("Configurable Range Invoicing"),
                 range_invoicing,
                 "currency",
                 "account.move",
                 range_domain,
             ),
-            self._build_metric(
-                "total_income",
-                "Total Income",
+            self._build_metric("total_income", _("Total Income"),
                 total_income,
                 "currency",
                 "account.move",
                 range_domain,
             ),
-            self._build_metric(
-                "estimated_profit",
-                "Estimated Profit",
+            self._build_metric("estimated_profit", _("Estimated Profit"),
                 estimated_profit,
                 "currency",
             ),
-            self._build_metric(
-                "monthly_growth",
-                "Monthly Growth",
+            self._build_metric("monthly_growth", _("Monthly Growth"),
                 monthly_growth,
                 "percent",
                 trend=growth_trend,
@@ -455,41 +440,31 @@ class DashboardController(http.Controller):
         unsigned_unpaid_clients = len(unsigned_quote_partner_ids - paid_partner_ids)
 
         metrics = [
-            self._build_metric(
-                "signed_clients",
-                "Signed (Contract accepted)",
+            self._build_metric("signed_clients", _("Signed (Contract accepted)"),
                 signed_clients,
                 "number",
                 "res.partner",
                 self._ids_domain(signed_partner_ids),
             ),
-            self._build_metric(
-                "signed_paid_clients",
-                "Signed & Paid",
+            self._build_metric("signed_paid_clients", _("Signed & Paid"),
                 signed_paid_clients,
                 "number",
                 "res.partner",
                 self._ids_domain(signed_paid_partner_ids),
             ),
-            self._build_metric(
-                "unsigned_paid_clients",
-                "Unsigned but Paid",
+            self._build_metric("unsigned_paid_clients", _("Unsigned but Paid"),
                 unsigned_paid_clients,
                 "number",
                 "res.partner",
                 self._ids_domain(paid_partner_ids - signed_partner_ids),
             ),
-            self._build_metric(
-                "unsigned_unpaid_clients",
-                "Unsigned & Unpaid",
+            self._build_metric("unsigned_unpaid_clients", _("Unsigned & Unpaid"),
                 unsigned_unpaid_clients,
                 "number",
                 "res.partner",
                 self._ids_domain(unsigned_quote_partner_ids - paid_partner_ids),
             ),
-            self._build_metric(
-                "new_clients_month",
-                "New Clients (Current Month)",
+            self._build_metric("new_clients_month", _("New Clients (Current Month)"),
                 new_clients,
                 "number",
                 "res.partner",
@@ -604,81 +579,61 @@ class DashboardController(http.Controller):
             closed_sales = sale_model.search_count(closed_sales_domain)
 
         metrics = [
-            self._build_metric(
-                "new_leads",
-                "New Leads",
+            self._build_metric("new_leads", _("New Leads"),
                 new_leads,
                 "number",
                 "crm.lead",
                 new_leads_domain,
             ),
-            self._build_metric(
-                "sent_quotes",
-                "Sent Quotes",
+            self._build_metric("sent_quotes", _("Sent Quotes"),
                 sent_quotes,
                 "number",
                 "sale.order" if sale_model is not None else "",
                 sent_quotes_domain,
             ),
-            self._build_metric(
-                "pending_quotes",
-                "Pending Quotes",
+            self._build_metric("pending_quotes", _("Pending Quotes"),
                 pending_quotes,
                 "number",
                 "sale.order" if sale_model is not None else "",
                 pending_quotes_domain,
             ),
-            self._build_metric(
-                "closed_sales",
-                "Closed Sales",
+            self._build_metric("closed_sales", _("Closed Sales"),
                 closed_sales,
                 "number",
                 "sale.order" if sale_model is not None else "",
                 closed_sales_domain,
             ),
-            self._build_metric(
-                "lost_sales",
-                "Lost Sales",
+            self._build_metric("lost_sales", _("Lost Sales"),
                 lost_sales,
                 "number",
                 "crm.lead",
                 lost_sales_domain,
             ),
-            self._build_metric(
-                "sales_conversion",
-                "Sales Conversion",
+            self._build_metric("sales_conversion", _("Sales Conversion"),
                 conversion,
                 "percent",
                 "crm.lead",
                 won_opportunity_domain,
             ),
-            self._build_metric(
-                "pipeline_value",
-                "Pipeline Value",
+            self._build_metric("pipeline_value", _("Pipeline Value"),
                 pipeline_value,
                 "currency",
                 "crm.lead",
                 pipeline_domain,
             ),
-            self._build_metric(
-                "avg_days_to_close",
-                "Avg Days to Close",
+            self._build_metric("avg_days_to_close", _("Avg Days to Close"),
                 avg_days_to_close,
                 "number",
                 "crm.lead",
                 won_opportunity_domain,
             ),
-            self._build_metric(
-                "weighted_forecast",
-                "Weighted Forecast",
+            self._build_metric("weighted_forecast", _("Weighted Forecast"),
                 weighted_forecast,
                 "currency",
                 "crm.lead",
                 pipeline_domain,
             ),
-            self._build_metric(
-                "pipeline_volume",
-                "Pipeline Volume",
+            self._build_metric("pipeline_volume", _("Pipeline Volume"),
                 pipeline_volume,
                 "number",
                 "crm.lead",
@@ -698,12 +653,12 @@ class DashboardController(http.Controller):
     ):
         if invoice_model is None:
             empty_metrics = [
-                self._build_metric("issued_invoices", "Issued Invoices", 0, "number"),
-                self._build_metric("paid_invoices", "Paid Invoices", 0, "number"),
-                self._build_metric("pending_invoices", "Pending Invoices", 0, "number"),
-                self._build_metric("overdue_invoices", "Overdue Invoices", 0, "number"),
-                self._build_metric("rectified_invoices", "Rectified Invoices", 0, "number"),
-                self._build_metric("cash_flow", "Cash Flow", 0.0, "currency"),
+                self._build_metric("issued_invoices", _("Issued Invoices"), 0, "number"),
+                self._build_metric("paid_invoices", _("Paid Invoices"), 0, "number"),
+                self._build_metric("pending_invoices", _("Pending Invoices"), 0, "number"),
+                self._build_metric("overdue_invoices", _("Overdue Invoices"), 0, "number"),
+                self._build_metric("rectified_invoices", _("Rectified Invoices"), 0, "number"),
+                self._build_metric("cash_flow", _("Cash Flow"), 0.0, "currency"),
             ]
             return {
                 "metrics": empty_metrics,
@@ -801,49 +756,37 @@ class DashboardController(http.Controller):
         balance = income - expenses
 
         metrics = [
-            self._build_metric(
-                "issued_invoices",
-                "Issued Invoices",
+            self._build_metric("issued_invoices", _("Issued Invoices"),
                 issued,
                 "number",
                 "account.move",
                 issued_domain,
             ),
-            self._build_metric(
-                "paid_invoices",
-                "Paid Invoices",
+            self._build_metric("paid_invoices", _("Paid Invoices"),
                 paid,
                 "number",
                 "account.move",
                 paid_domain,
             ),
-            self._build_metric(
-                "pending_invoices",
-                "Pending Invoices",
+            self._build_metric("pending_invoices", _("Pending Invoices"),
                 pending,
                 "number",
                 "account.move",
                 pending_domain,
             ),
-            self._build_metric(
-                "overdue_invoices",
-                "Overdue Invoices",
+            self._build_metric("overdue_invoices", _("Overdue Invoices"),
                 overdue,
                 "number",
                 "account.move",
                 overdue_domain,
             ),
-            self._build_metric(
-                "rectified_invoices",
-                "Rectified Invoices",
+            self._build_metric("rectified_invoices", _("Rectified Invoices"),
                 rectified,
                 "number",
                 "account.move",
                 rectified_domain,
             ),
-            self._build_metric(
-                "cash_flow",
-                "Cash Flow (Real-time liquidity)",
+            self._build_metric("cash_flow", _("Cash Flow (Real-time liquidity)"),
                 cash_flow,
                 "currency",
             ),
@@ -1023,50 +966,57 @@ class DashboardController(http.Controller):
 
         quarter_reminder_value = quarter_end_open if days_to_quarter_end <= 15 else 0
 
-        alerts.append(
-            {
-                "key": "overdue_invoices",
-                "label": "Overdue invoices",
-                "value": overdue_count,
-                "severity": "high" if overdue_count else "info",
-                "model": "account.move" if invoice_model is not None else "",
-                "domain": overdue_domain,
-                "note": "Customer invoices with passed due dates.",
-            }
-        )
-        alerts.append(
-            {
-                "key": "unresponsive_quotes",
-                "label": "Unresponsive quotes",
-                "value": unresponsive_quotes,
-                "severity": "medium" if unresponsive_quotes else "info",
-                "model": "sale.order" if sale_model is not None else "",
-                "domain": unresponsive_domain,
-                "note": "Quotations sent more than 10 days ago.",
-            }
-        )
-        alerts.append(
-            {
-                "key": "unattended_leads",
-                "label": "Unattended leads",
-                "value": unattended_leads,
-                "severity": "medium" if unattended_leads else "info",
-                "model": "crm.lead",
-                "domain": unattended_leads_domain,
-                "note": "No updates in the last 7 days.",
-            }
-        )
-        alerts.append(
-            {
-                "key": "quarter_end",
-                "label": "Quarter-end reminders",
-                "value": quarter_reminder_value,
-                "severity": "high" if quarter_reminder_value else "info",
-                "model": "crm.lead",
-                "domain": quarter_end_domain,
-                "note": f"{days_to_quarter_end} days remaining to close the quarter ({quarter_end}).",
-            }
-        )
+        if overdue_count > 0:
+            alerts.append(
+                {
+                    "key": "overdue_invoices",
+                    "label": _("Overdue invoices"),
+                    "value": overdue_count,
+                    "severity": "high",
+                    "model": "account.move" if invoice_model is not None else "",
+                    "domain": overdue_domain,
+                    "note": _("Customer invoices with passed due dates."),
+                }
+            )
+            
+        if unresponsive_quotes > 0:
+            alerts.append(
+                {
+                    "key": "unresponsive_quotes",
+                    "label": _("Unresponsive quotes"),
+                    "value": unresponsive_quotes,
+                    "severity": "medium",
+                    "model": "sale.order" if sale_model is not None else "",
+                    "domain": unresponsive_domain,
+                    "note": _("Quotations sent more than 10 days ago."),
+                }
+            )
+            
+        if unattended_leads > 0:
+            alerts.append(
+                {
+                    "key": "unattended_leads",
+                    "label": _("Unattended leads"),
+                    "value": unattended_leads,
+                    "severity": "medium",
+                    "model": "crm.lead",
+                    "domain": unattended_leads_domain,
+                    "note": _("No updates in the last 7 days."),
+                }
+            )
+            
+        if quarter_reminder_value > 0:
+            alerts.append(
+                {
+                    "key": "quarter_end",
+                    "label": _("Quarter-end reminders"),
+                    "value": quarter_reminder_value,
+                    "severity": "high",
+                    "model": "crm.lead",
+                    "domain": quarter_end_domain,
+                    "note": _("{days_to_quarter_end} days remaining to close the quarter ({quarter_end})."),
+                }
+            )
 
         return alerts
 

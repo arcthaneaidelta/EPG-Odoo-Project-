@@ -92,6 +92,14 @@ class SaaSSubscription(models.Model):
                         env['ir.config_parameter'].set_param('saas.manager_url', base_url)
                         env['ir.config_parameter'].set_param('saas.subscription_token', sub.access_token)
                         
+                    # Push AI Assistant config
+                    ai_api_key = self.env['ir.config_parameter'].sudo().get_param('ai_assistant.api_key')
+                    if ai_api_key:
+                        env['ir.config_parameter'].set_param('ai_assistant.api_key', ai_api_key)
+                    ai_endpoint = self.env['ir.config_parameter'].sudo().get_param('ai_assistant.endpoint')
+                    if ai_endpoint:
+                        env['ir.config_parameter'].set_param('ai_assistant.endpoint', ai_endpoint)
+                        
                     # Also push initial status if not set? 
                     # Usually active on creation, but let's ensure compliance
                     current_status = 'suspended' if sub.state == 'suspended' else 'active'
