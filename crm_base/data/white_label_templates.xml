@@ -198,5 +198,6 @@
 </table></field>
         </record>
 
+        <function model="res.users" name="_force_sync_signup_translations"/>
     </data>
 </odoo>

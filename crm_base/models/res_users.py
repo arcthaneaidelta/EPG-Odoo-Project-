@@ -33,6 +33,28 @@ class ResUsers(models.Model):
 		for user in self:
 			user.tour_enabled = False
 
+	@api.model
+	def _force_sync_signup_translations(self):
+		template_ids = [
+			self.env.ref('auth_signup.set_password_email', raise_if_not_found=False),
+			self.env.ref('auth_signup.mail_template_user_signup_account_created', raise_if_not_found=False),
+		]
+		langs = self.env['res.lang'].search([('active', '=', True)])
+		
+		for template in template_ids:
+			if not template:
+				continue
+			base_html = template.with_context(lang='en_US').body_html
+			base_subject = template.with_context(lang='en_US').subject
+			if not base_html:
+				continue
+			
+			for lang in langs:
+				template.with_context(lang=lang.code).write({
+					'body_html': base_html,
+					'subject': base_subject,
+				})
+
 	@api.depends('sale_order_ids.commission_amount', 'sale_order_ids.state')
 	def _compute_total_commission(self):
 		for user in self:
