@@ -27,6 +27,16 @@
                 </td></tr>
             </xpath>
         </template>
+    </data>
+
+    <data noupdate="0">
+        <!-- Disable noupdate for auth_signup templates so our overrides take effect -->
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'auth_signup'), ('name', 'in', ['set_password_email', 'mail_template_user_signup_account_created'])]"/>
+            </function>
+            <value eval="{'noupdate': False}"/>
+        </function>
 
         <!-- Override Auth Signup Emails to remove Odoo branding and translate to Spanish -->
         <record id="auth_signup.set_password_email" model="mail.template">
