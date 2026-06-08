@@ -100,6 +100,9 @@ class SaaSSubscription(models.Model):
                     if ai_endpoint:
                         env['ir.config_parameter'].set_param('ai_assistant.endpoint', ai_endpoint)
                         
+                    # Push AI Credits Limit
+                    if getattr(sub, 'ai_credits_limit', False):
+                        env['ir.config_parameter'].set_param('ai_assistant.message_limit', str(sub.ai_credits_limit))
                     # Also push initial status if not set? 
                     # Usually active on creation, but let's ensure compliance
                     current_status = 'suspended' if sub.state == 'suspended' else 'active'

@@ -184,9 +184,10 @@ class SaaSProvisioningService(models.AbstractModel):
 			'abc.com'
 		)
 		
-		# 2. Generate Database Name (Postgres safe: a-z, 0-9, _)
-		# Use simple mapping from subdomain
-		db_safe_name = subdomain.replace('-', '_')
+		# 2. Generate Database Name
+		# Database name must EXACTLY match the subdomain so Odoo's dbfilter=^%d$ works!
+		# PostgreSQL and Odoo fully support hyphens in database names.
+		db_safe_name = subdomain
 		db_name = db_safe_name
 		
 		# Check for uniqueness and add suffix if needed (excluding deleted subscriptions)
@@ -215,7 +216,7 @@ class SaaSProvisioningService(models.AbstractModel):
 		base_modules = [
 			'sale_management', 'account', 'hr', 'crm', 'calendar', 'muk_web_appsbar',
 			'crm_base', 'crm_automation_engine', 'crm_client_kanban', 'dashboard',
-			'odoo_url_replacer', 'ai_assistant', 'saas_client','client_document_management','crm_file_management','saas_ocr_client'
+			'odoo_url_replacer', 'saas_client','client_document_management','crm_file_management'
 		]
 		
 		# Accounting modules (Early Adopter gets them automatically, or if checkbox is checked)
@@ -224,12 +225,21 @@ class SaaSProvisioningService(models.AbstractModel):
 			'l10n_es_account_asset', 'account_reconcile_oca', 'account_bank_sync_yapily',
 			'l10n_es_edi_verifactu','l10n_es_aeat_mod130','l10n_es_aeat_mod303'
 		]
+
+		# AI modules
+		ai_modules = [
+			'ai_assistant', 'saas_ocr_client'
+		]
 		
 		modules = list(base_modules)
 		
 		# Add accounting modules if early adopter, if plan name implies it, or if accounting addon is checked
 		if subscription.is_early_adopter or 'early' in plan_name or subscription.accounting_module:
 			modules.extend(accounting_modules)
+
+		# Add AI modules
+		if subscription.ai_assistant_module:
+			modules.extend(ai_modules)
 					
 		return modules
 	
