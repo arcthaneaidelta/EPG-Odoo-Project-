@@ -6,16 +6,16 @@ class SaasTrainingVideo(models.Model):
     _description = 'Training Video'
     _order = 'sequence, id'
 
-    name = fields.Char('Title', required=True)
-    sequence = fields.Integer(default=10)
+    name = fields.Char('Título', required=True)
+    sequence = fields.Integer(default=10, string="Secuencia")
     category = fields.Selection([
-        ('sales', 'Sales'),
-        ('accounting', 'Accounting'),
-        ('pipeline', 'Pipeline'),
+        ('sales', 'Ventas'),
+        ('accounting', 'Contabilidad'),
+        ('pipeline', 'Flujo'),
         ('general', 'General')
-    ], string='Category', required=True, default='general')
-    video_url = fields.Char('YouTube Link', required=True)
-    description = fields.Text('Description')
+    ], string='Categoría', required=True, default='general')
+    video_url = fields.Char('Enlace de YouTube', required=True)
+    description = fields.Text('Descripción')
 
     def action_open_video(self):
         self.ensure_one()
@@ -29,4 +29,4 @@ class SaasTrainingVideo(models.Model):
         if 'saas.subscription' in self.env:
             self.env['saas.subscription'].sync_training_videos(self)
         else:
-            raise UserError('This action is only available on the master database.')
+            raise UserError('Esta acción solo está disponible en la base de datos maestra.')

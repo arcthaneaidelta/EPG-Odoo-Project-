@@ -7,7 +7,7 @@
             <form string="Training Video">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_open_video" type="object" class="oe_stat_button" icon="fa-youtube-play" string="Watch"/>
+                        <button name="action_open_video" type="object" class="oe_stat_button" icon="fa-youtube-play" string="Mirar"/>
                     </div>
                     <group>
                         <group>
@@ -33,9 +33,9 @@
         <field name="name">saas.training.video.list</field>
         <field name="model">saas.training.video</field>
         <field name="arch" type="xml">
-            <list string="Training Videos">
+            <list string="Vídeos de formación">
                 <header>
-                    <button name="action_push_to_tenants" string="Push to Tenants" type="object" class="oe_highlight"/>
+                    <button name="action_push_to_tenants" string="Empujar a los inquilinos" type="object" class="oe_highlight"/>
                 </header>
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
@@ -65,7 +65,7 @@
                                         <field name="category"/>
                                     </div>
                                     <div class="oe_kanban_bottom_right">
-                                        <a t-att-href="record.video_url.raw_value" target="_blank" class="btn btn-sm btn-primary">Watch</a>
+                                        <a t-att-href="record.video_url.raw_value" target="_blank" class="btn btn-sm btn-primary">Mirar</a>
                                     </div>
                                 </div>
                             </div>
@@ -77,18 +77,18 @@
     </record>
 
     <record id="action_saas_training_video" model="ir.actions.act_window">
-        <field name="name">Training Videos</field>
+        <field name="name">Vídeos de formación</field>
         <field name="res_model">saas.training.video</field>
         <field name="view_mode">kanban,list,form</field>
     </record>
 
     <menuitem id="menu_training_root"
-              name="Training"
+              name="Capacitación"
               web_icon="muk_web_appsbar,static/description/training.svg"
               sequence="6"/>
 
     <menuitem id="menu_training_videos"
-              name="Videos"
+              name="Vídeos"
               parent="menu_training_root"
               action="action_saas_training_video"
               sequence="10"/>
