@@ -15,7 +15,7 @@ class SaasTrainingVideo(models.Model):
         ('general', 'General')
     ], string='Categoría', required=True, default='general')
     video_url = fields.Char('Enlace de YouTube', required=True)
-    description = fields.Text('Descripción')
+    description = fields.Text(string='Descripción')
 
     def action_open_video(self):
         self.ensure_one()

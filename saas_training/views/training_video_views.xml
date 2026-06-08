@@ -20,7 +20,7 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Description" name="description">
+                        <page string="Descripción" name="description">
                             <field name="description"/>
                         </page>
                     </notebook>
