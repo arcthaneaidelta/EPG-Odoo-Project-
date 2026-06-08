@@ -7,7 +7,7 @@
             <field name="name">saas.suggestion.form</field>
             <field name="model">saas.suggestion</field>
             <field name="arch" type="xml">
-                <form string="Tenant Suggestion">
+                <form string="Sugerencia de inquilino">
                     <header>
                         <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
                     </header>
@@ -20,7 +20,7 @@
                             </group>
                             <group>
                                 <field name="email"/>
-                                <field name="create_date" string="Date Submitted" readonly="1"/>
+                                <field name="create_date" string="Fecha de envío" readonly="1"/>
                             </group>
                         </group>
                         <group>
@@ -36,10 +36,10 @@
             <field name="name">saas.suggestion.tree</field>
             <field name="model">saas.suggestion</field>
             <field name="arch" type="xml">
-                <list string="Tenant Suggestions" decoration-info="state == 'new'" decoration-success="state == 'resolved'" decoration-muted="state == 'reviewed'">
+                <list string="Sugerencia de inquilino" decoration-info="state == 'new'" decoration-success="state == 'resolved'" decoration-muted="state == 'reviewed'">
                     <field name="database_name"/>
                     <field name="email"/>
-                    <field name="create_date" string="Date Submitted"/>
+                    <field name="create_date" string="Fecha de envío"/>
                     <field name="state" widget="badge" decoration-info="state == 'new'" decoration-success="state == 'resolved'" decoration-muted="state == 'reviewed'"/>
                 </list>
             </field>
@@ -47,22 +47,22 @@
 
         <!-- Action -->
         <record id="action_saas_suggestion" model="ir.actions.act_window">
-            <field name="name">Tenant Suggestions</field>
+            <field name="name">Sugerencias para inquilinos</field>
             <field name="res_model">saas.suggestion</field>
             <field name="view_mode">list,form</field>
             <field name="help" type="html">
               <p class="o_view_nocontent_smiling_face">
-                No suggestions yet!
+                ¡Aún no hay sugerencias!
               </p>
               <p>
-                Suggestions submitted by tenants will appear here.
+                Las sugerencias enviadas por los inquilinos aparecerán aquí.
               </p>
             </field>
         </record>
 
         <!-- Menu Item -->
         <menuitem id="menu_saas_suggestion"
-                  name="Suggestions"
+                  name="Sugerencias"
                   parent="menu_saas_root"
                   action="action_saas_suggestion"
                   sequence="25"/>

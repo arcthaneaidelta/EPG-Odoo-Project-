@@ -106,6 +106,9 @@ class SaaSSubscription(models.Model):
 	
 	# Modules
 	accounting_module = fields.Boolean(string='Accounting Module', default=False)
+	ai_assistant_module = fields.Boolean(string='Módulo asistente de IA', default=False)
+	ai_credits_limit = fields.Integer(string='AI Messages Limit', default=0)
+	ai_credits_used = fields.Integer(string='AI Messages Used', default=0, readonly=True)
 	
 	# Payment Email Status
 	payment_email_sent = fields.Boolean(string='Payment Confirmation Sent', default=False, copy=False)
@@ -951,3 +954,29 @@ class SaaSSubscription(models.Model):
 				
 				# Send confirmation email
 				# subscription._send_provisioning_email()
+
+	@api.model
+	def _cron_sync_ai_usage(self):
+		"""
+		Daily cron: pulls AI message count from tenant databases to update ai_credits_used
+		"""
+		active_subs = self.search([
+			('state', 'in', ['active', 'grace_period']),
+			('ai_assistant_module', '=', True),
+			('database_name', '!=', False)
+		])
+		
+		for sub in active_subs:
+			try:
+				import odoo
+				registry = odoo.registry(sub.database_name)
+				with registry.cursor() as cr:
+					env = api.Environment(cr, odoo.SUPERUSER_ID, {})
+					count_str = env['ir.config_parameter'].sudo().get_param("ai_assistant.message_count", "0")
+					try:
+						count = int(count_str)
+						sub.ai_credits_used = count
+					except ValueError:
+						pass
+			except Exception as e:
+				_logger.error(f"Failed to sync AI usage from tenant {sub.database_name}: {str(e)}")

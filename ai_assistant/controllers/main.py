@@ -249,8 +249,15 @@ class AiAssistantController(http.Controller):
         api_key = request.env["ir.config_parameter"].sudo().get_param("ai_assistant.api_key")
         endpoint = request.env["ir.config_parameter"].sudo().get_param("ai_assistant.endpoint")
         
+        user = request.env.user
+        assistant = request.env["ai.assistant"].search([("user_id", "=", user.id), ("active", "=", True)], limit=1)
+        has_history = False
+        if assistant:
+            has_history = request.env["ai.message"].search_count([("assistant_id", "=", assistant.id)]) > 0
+            
         return {
             "has_api_key": bool(api_key and api_key.strip()),
             "endpoint": endpoint or "Not configured",
             "configured": bool(api_key and api_key.strip() and endpoint and endpoint.strip()),
+            "has_history": has_history,
         }

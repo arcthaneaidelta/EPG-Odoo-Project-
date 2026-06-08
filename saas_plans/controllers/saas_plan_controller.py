@@ -160,6 +160,11 @@ class SaaSPlanController(http.Controller):
 				# Paid for Official
 				add_product_by_code(acc_code, cycle=billing_cycle)
 
+		# 3. Add AI Assistant
+		ai_qty = int(post.get('ai_assistant_qty', '0'))
+		if ai_qty > 0:
+			add_product_by_code('SAAS_AI_ASSISTANT', qty=ai_qty)
+
 		# 4. Add Additional Users
 		extra_users = int(post.get('extra_users', '0'))
 		if extra_users > 0:

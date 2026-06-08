@@ -6,13 +6,13 @@ class SaasSuggestion(models.Model):
     _description = 'Tenant Suggestion'
     _order = 'create_date desc'
 
-    subscription_id = fields.Many2one('saas.subscription', string='Subscription', ondelete='cascade')
-    database_name = fields.Char(related='subscription_id.database_name', string='Database', store=True)
-    customer_id = fields.Many2one(related='subscription_id.partner_id', string='Customer', store=True)
-    email = fields.Char(string='Sender Email', required=True)
-    suggestion_text = fields.Text(string='Suggestion', required=True)
+    subscription_id = fields.Many2one('saas.subscription', string='Suscripción', ondelete='cascade')
+    database_name = fields.Char(related='subscription_id.database_name', string='Base de datos', store=True)
+    customer_id = fields.Many2one(related='subscription_id.partner_id', string='Cliente', store=True)
+    email = fields.Char(string='Correo electrónico del remitente', required=True)
+    suggestion_text = fields.Text(string='Sugerencia', required=True)
     state = fields.Selection([
-        ('new', 'New'),
-        ('reviewed', 'Reviewed'),
-        ('resolved', 'Resolved')
-    ], string='Status', default='new', tracking=True)
+        ('new', 'Nuevo'),
+        ('reviewed', 'Revisado'),
+        ('resolved', 'Resuelto')
+    ], string='Estado', default='new', tracking=True)

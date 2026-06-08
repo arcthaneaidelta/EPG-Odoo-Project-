@@ -263,6 +263,21 @@
                                 </div>
                             </div>
                         </t>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-info">
+                                <div class="card-header bg-info text-white">Add AI Assistant Credits</div>
+                                <div class="card-body">
+                                    <p>Buy extra AI messages (5000 per pack) for the AI Assistant.</p>
+                                    <div class="form-group mt-3">
+                                        <label class="font-weight-bold">Number of Packs</label>
+                                        <input type="number" name="add_ai_assistant" class="form-control" value="0" min="0"/>
+                                    </div>
+                                    <small class="text-muted d-block mt-2">
+                                        Price: €5.00 / pack (One-off payment)
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="row mt-4">

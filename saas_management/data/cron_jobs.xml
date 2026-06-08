@@ -93,5 +93,16 @@
             <field name="priority">25</field>
         </record>
 
+        <!-- Daily cron: pull AI usage from tenants -->
+        <record id="cron_sync_ai_usage" model="ir.cron">
+            <field name="name">SaaS: Sync AI Usage from Tenants</field>
+            <field name="model_id" ref="saas_management.model_saas_subscription"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_sync_ai_usage()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="True"/>
+        </record>
+
     </data>
 </odoo>

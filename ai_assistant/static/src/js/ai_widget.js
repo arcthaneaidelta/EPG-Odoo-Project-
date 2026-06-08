@@ -4,6 +4,7 @@ import { Component, useState, onWillStart } from "@odoo/owl";
 import { rpc } from "@web/core/network/rpc";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
+import { session } from "@web/session";
 
 export class AiAssistantWidget extends Component {
 	static template = "ai_assistant.AiAssistantWidget";
@@ -44,6 +45,13 @@ export class AiAssistantWidget extends Component {
 		try {
 			const config = await rpc("/ai/config", {});
 			this.state.isConfigured = config.configured;
+			
+			// Prevent localStorage bleed across fresh tenant databases
+			if (config.hasOwnProperty('has_history') && !config.has_history) {
+				this.state.messages = [];
+				localStorage.removeItem(`ai_assistant_messages_${session.db}`);
+				this.state.unreadCount = 0;
+			}
 			
 			if (!this.state.isConfigured) {
 				this.state.messages.push({
@@ -250,7 +258,7 @@ export class AiAssistantWidget extends Component {
 	clearChat() {
 		if (confirm("Are you sure you want to clear the chat history?")) {
 			this.state.messages = [];
-			localStorage.removeItem("ai_assistant_messages");
+			localStorage.removeItem(`ai_assistant_messages_${session.db}`);
 			this.state.unreadCount = 0;
 			this.notificationService.add(
 				"Chat history cleared",
@@ -297,7 +305,7 @@ export class AiAssistantWidget extends Component {
 				}));
 			
 			localStorage.setItem(
-				"ai_assistant_messages", 
+				`ai_assistant_messages_${session.db}`, 
 				JSON.stringify(messagesToSave)
 			);
 		} catch (error) {
@@ -307,7 +315,7 @@ export class AiAssistantWidget extends Component {
 	
 	_loadMessagesFromStorage() {
 		try {
-			const saved = localStorage.getItem("ai_assistant_messages");
+			const saved = localStorage.getItem(`ai_assistant_messages_${session.db}`);
 			if (saved) {
 				const messages = JSON.parse(saved).map(msg => ({
 					...msg,

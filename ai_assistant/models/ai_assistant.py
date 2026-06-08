@@ -49,6 +49,24 @@ class AiAssistant(models.Model):
 			endpoint = "https://api.openai.com/v1/chat/completions"
 			self.env["ir.config_parameter"].sudo().set_param("ai_assistant.endpoint", endpoint)
 
+		# Check if this is the main SaaS database
+		is_main_db = self.env['ir.module.module'].search_count([('name', '=', 'saas_management'), ('state', '=', 'installed')]) > 0
+
+		# Parse current limit and count
+		limit_str = self.env["ir.config_parameter"].sudo().get_param("ai_assistant.message_limit", "0")
+		count_str = self.env["ir.config_parameter"].sudo().get_param("ai_assistant.message_count", "0")
+		try:
+			limit = int(limit_str)
+			count = int(count_str)
+		except ValueError:
+			limit = 0
+			count = 0
+
+		# Check credit limit (bypass for main database)
+		if not is_main_db:
+			if count >= limit:
+				raise UserError("⚠️ AI Message limit reached (0 credits left). Please purchase more AI credits from your SaaS portal.")
+
 		_logger.info(f"Calling LLM API: {endpoint}")
 
 		# Prepare the request
@@ -149,6 +167,10 @@ class AiAssistant(models.Model):
 							
 				# Otherwise Handle Standard Text
 				answer = message.get("content") or "Action complete."
+				
+				# Increment usage
+				self.env["ir.config_parameter"].sudo().set_param("ai_assistant.message_count", str(count + 1))
+				
 				_logger.info(f"LLM Response received: {len(answer)} characters")
 				return answer.strip()
 			else:

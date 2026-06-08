@@ -107,7 +107,7 @@
                             <div class="row g-4">
                                 
                                 <!-- Accounting Module -->
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="addon-card">
                                         <h4>📊 Contabilidad / Gestión</h4>
                                         <div class="addon-price">
@@ -123,7 +123,7 @@
                                 </div>
                                 
                                 <!-- Additional Users -->
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="addon-card">
                                         <h4>👥 Usuarios Adicionales</h4>
                                         <div class="addon-price">
@@ -132,6 +132,19 @@
                                         <p class="addon-desc">
                                             Añada más miembros al equipo más allá de los 3 incluidos.
                                             Cada usuario adicional suma un bono de +1 GB de almacenamiento.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- AI Assistant -->
+                                <div class="col-lg-4">
+                                    <div class="addon-card border-info">
+                                        <h4>🤖 Asistente de IA</h4>
+                                        <div class="addon-price">
+                                            €5<small>/paquete</small>
+                                        </div>
+                                        <p class="addon-desc">
+                                            Paquete de 5000 mensajes interactivos. Obtenga ayuda inteligente de ventas, CRM y facturación. (Pago único)
                                         </p>
                                     </div>
                                 </div>
@@ -280,6 +293,29 @@
                                             </div>
                                             <div class="form-text" style="color: #94a3b8;">
                                                 3 usuarios incluidos en el plan base. +1GB extra de almacenamiento por usuario adicional.
+                                            </div>
+                                        </div>
+
+                                        <!-- AI Assistant -->
+                                        <div class="mb-3">
+                                            <label for="ai_assistant_qty" class="form-label" style="color: #cbd5e1;">
+                                                <strong>Asistente de IA (Mensajes)</strong>
+                                                 (+€5.00 por paquete)
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" style="background: #334155; border-color: #475569; color: white;">
+                                                    <i class="fa fa-robot"></i>
+                                                </span>
+                                                <input type="number" 
+                                                       class="form-control" 
+                                                       id="ai_assistant_qty" 
+                                                       name="ai_assistant_qty" 
+                                                       value="0"
+                                                       min="0"
+                                                       style="background: rgba(15, 23, 42, 0.5); border-color: #475569; color: white;"/>
+                                            </div>
+                                            <div class="text-muted small mt-1" style="color: #94a3b8 !important;">
+                                                Paquete: 5000 mensajes. Pago único.
                                             </div>
                                         </div>
                                         

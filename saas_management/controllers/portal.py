@@ -164,8 +164,9 @@ class SaasPortal(CustomerPortal):
 		add_users = int(kw.get('add_users', 0))
 		add_storage = int(kw.get('add_storage', 0))
 		add_accounting = kw.get('add_accounting') == 'on'
+		add_ai_assistant = int(kw.get('add_ai_assistant', 0))
 		
-		if add_users <= 0 and add_storage <= 0 and not add_accounting:
+		if add_users <= 0 and add_storage <= 0 and not add_accounting and add_ai_assistant <= 0:
 			return request.redirect(f'/my/subscription/{subscription_id}')
 
 		# Create Upsell Order
@@ -256,6 +257,18 @@ class SaasPortal(CustomerPortal):
 					'product_uom_qty': 1,
 					'price_unit': price,
 					'saas_addon_billing_cycle': addon_cycle if addon_cycle != 'align' else 'annual',
+				})
+
+		# Add AI Assistant Line (One-off)
+		if add_ai_assistant > 0:
+			ai_product = request.env.ref('saas_plans.product_ai_assistant', raise_if_not_found=False)
+			if ai_product:
+				request.env['sale.order.line'].sudo().create({
+					'order_id': order.id,
+					'product_id': ai_product.id,
+					'name': f"AI Assistant ({add_ai_assistant * 5000} Messages)",
+					'product_uom_qty': add_ai_assistant,
+					'price_unit': ai_product.list_price,
 				})
 		
 		# set session for direct checkout

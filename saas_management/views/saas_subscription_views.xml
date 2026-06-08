@@ -33,7 +33,7 @@
                         <!-- Renew/Upgrade moved to Portal -->
 
                         <button name="action_open_tenant" string="Open Tenant" type="object" class="oe_highlight" invisible="state not in ('active', 'suspended')"/>
-                        <button name="action_sync_modules" string="Sync Modules" type="object" invisible="state not in ('active', 'trial')" help="Install any missing modules based on the current plan and settings"/>
+                        <button name="action_sync_modules" string="Módulos de sincronización" type="object" invisible="state not in ('active', 'trial')" help="Instale los módulos que falten según el plan y la configuración actuales."/>
                         <button name="action_cancel_subscription" string="Cancel" type="object" invisible="state not in ('active', 'suspended')"/>
                         <button name="action_reactivate_subscription" string="Reactivate" type="object" class="oe_highlight" invisible="state != 'grace_period'"/>
                         <button name="action_suspend_subscription" string="Suspend" type="object" invisible="state != 'active'"/>
@@ -106,7 +106,9 @@
                             <page string="Modules">
                                 <group>
                                     <field name="accounting_module"/>
-
+                                    <field name="ai_assistant_module"/>
+                                    <field name="ai_credits_limit" invisible="not ai_assistant_module"/>
+                                    <field name="ai_credits_used" invisible="not ai_assistant_module"/>
                                 </group>
                             </page>
                             <page string="Grace Period" invisible="state not in ('grace_period', 'pending_deletion')">

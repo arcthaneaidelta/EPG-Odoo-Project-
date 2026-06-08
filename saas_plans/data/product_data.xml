@@ -197,6 +197,23 @@
         </record>
 
         <!-- ===================== -->
+        <!-- AI ASSISTANT PRODUCTS -->
+        <!-- ===================== -->
+        
+        <!-- AI Assistant - 5000 Credits for €5 -->
+        <record id="product_ai_assistant" model="product.product">
+            <field name="name">AI Assistant (5000 Messages)</field>
+            <field name="default_code">SAAS_AI_ASSISTANT</field>
+            <field name="list_price">5.00</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="True"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="invoice_policy">order</field>
+            <field name="description">AI Assistant add-on. Includes 5000 AI messages/chat credits. Can be purchased multiple times.</field>
+        </record>
+
+        <!-- ===================== -->
         <!-- LINK PLANS TO PRODUCTS -->
         <!-- ===================== -->
         <!-- saas_plans depends on saas_management, so plan XML IDs are available here -->

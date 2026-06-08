@@ -103,6 +103,8 @@ class SaleOrder(models.Model):
 			extra_users = 0
 			extra_storage = 0
 			accounting_module = False
+			ai_assistant_module = False
+			ai_credits = 0
 			
 			if is_early_adopter or (is_update and subscription.is_early_adopter):
 				accounting_module = True
@@ -126,6 +128,9 @@ class SaleOrder(models.Model):
 				# Modules
 				elif product_code.startswith('SAAS_ACCOUNTING'):
 					accounting_module = True
+				elif product_code == 'SAAS_AI_ASSISTANT':
+					ai_assistant_module = True
+					ai_credits += 5000 * int(line.product_uom_qty)
 
 			
 			# Bonus storage for additional users (1 GB per user)
@@ -138,6 +143,10 @@ class SaleOrder(models.Model):
 				# Module enablement (unchanged)
 				if accounting_module and not subscription.accounting_module:
 					vals['accounting_module'] = True
+				if ai_assistant_module and not subscription.ai_assistant_module:
+					vals['ai_assistant_module'] = True
+				if ai_credits > 0:
+					vals['ai_credits_limit'] = subscription.ai_credits_limit + ai_credits
 
 				
 				# Plan Change (Upgrade)
@@ -208,9 +217,36 @@ class SaleOrder(models.Model):
 					
 				subscription.write(vals)
 				
-				if vals.get('state') == 'active' and subscription.database_name:
+				new_state = vals.get('state', subscription.state)
+				if new_state == 'active' and subscription.database_name:
 					subscription._push_limits_to_tenant()
 					subscription._push_status_to_tenant('active')
+					# Ensure any newly purchased modules (like AI Assistant) are installed
+					# We use a post-commit thread to avoid blocking the payment checkout flow for the tenant
+					import threading
+					import odoo
+					from odoo import api
+					
+					sub_id = subscription.id
+					db_name = self.env.cr.dbname
+					
+					def sync_task():
+						try:
+							registry = odoo.registry(db_name)
+							with registry.cursor() as cr:
+								env = api.Environment(cr, odoo.SUPERUSER_ID, {})
+								sub_sudo = env['saas.subscription'].browse(sub_id)
+								sub_sudo.action_sync_modules()
+						except Exception as e:
+							import logging
+							logging.getLogger(__name__).error(f"Failed to auto-sync modules async for {sub_id}: {str(e)}")
+							
+					def spawn_sync_thread():
+						thread = threading.Thread(target=sync_task)
+						thread.daemon = True
+						thread.start()
+						
+					self.env.cr.postcommit.add(spawn_sync_thread)
 				
 				if not self.saas_subscription_id:
 					self.write({'saas_subscription_id': subscription.id})
@@ -227,6 +263,8 @@ class SaleOrder(models.Model):
 					'is_early_adopter': is_early_adopter,
 					'promo_code_id': self.promo_code_id.id if self.promo_code_id else False,
 					'accounting_module': accounting_module,
+					'ai_assistant_module': ai_assistant_module,
+					'ai_credits_limit': ai_credits,
 					'auto_renew': self.auto_renew,
 				})
 				

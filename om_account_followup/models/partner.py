@@ -161,11 +161,11 @@ class ResPartner(models.Model):
                 followup_table += '''
                 <table border="2" width=100%%>
                 <tr>
-                    <td>''' + _("Invoice Date") + '''</td>
-                    <td>''' + _("Description") + '''</td>
-                    <td>''' + _("Reference") + '''</td>
-                    <td>''' + _("Due Date") + '''</td>
-                    <td>''' + _("Amount") + " (%s)" % (
+                    <td>''' + _("Fecha de Factura") + '''</td>
+                    <td>''' + _("Descripción") + '''</td>
+                    <td>''' + _("Referencia") + '''</td>
+                    <td>''' + _("Fecha de Vencimiento") + '''</td>
+                    <td>''' + _("Cantidad") + " (%s)" % (
                     currency.symbol) + '''</td>
                     <td>''' + _("Lit.") + '''</td>
                 </tr>
@@ -194,7 +194,7 @@ class ResPartner(models.Model):
                 followup_table += '''<tr> </tr>
                                 </table>
                                 <center>''' + _(
-                    "Amount due") + ''' : %s </center>''' % (total)
+                    "Cantidad a Pagar") + ''' : %s </center>''' % (total)
         return followup_table
 
     def write(self, vals):
@@ -354,19 +354,19 @@ class ResPartner(models.Model):
 
     payment_responsible_id = fields.Many2one(
         'res.users', ondelete='set null',
-        string='Follow-up Responsible', tracking=True, copy=False,
+        string='Responsable de Seguimiento', tracking=True, copy=False,
         help="Optionally you can assign a user to this field, which will make "
              "him responsible for the action.")
     payment_note = fields.Text(
-        'Customer Payment Promise', help="Payment Note", copy=False
+        'Promesa de Pago del Cliente', help="Payment Note", copy=False
     )
     payment_next_action = fields.Text(
-        'Next Action', copy=False, tracking=True,
+        'Próxima Acción', copy=False, tracking=True,
         help="This is the next action to be taken.  It will automatically be "
              "set when the partner gets a follow-up level that requires a manual action. "
     )
     payment_next_action_date = fields.Date(
-        'Next Action Date', copy=False,
+        'Fecha de Próxima Acción', copy=False,
         help="This is when the manual follow-up is needed. The date will be "
              "set to the current date when the partner gets a follow-up level "
              "that requires a manual action. Can be practical to set manually "
@@ -377,12 +377,12 @@ class ResPartner(models.Model):
         domain=[('full_reconcile_id', '=', False), ('account_id.account_type', '=', 'asset_receivable')]
     )
     latest_followup_date = fields.Date(
-        compute='_get_latest', string="Latest Follow-up Date", compute_sudo=True,
+        compute='_get_latest', string="Última Fecha de Seguimiento", compute_sudo=True,
         help="Latest date that the follow-up level of the partner was changed"
     )
     latest_followup_level_id = fields.Many2one(
         'followup.line', compute='_get_latest', compute_sudo=True,
-        string="Latest Follow-up Level", help="The maximum follow-up level"
+        string="Último Nivel de Seguimiento", help="The maximum follow-up level"
     )
 
     latest_followup_sequence = fields.Integer(
@@ -391,18 +391,18 @@ class ResPartner(models.Model):
     )
     latest_followup_level_id_without_lit = fields.Many2one(
         'followup.line', compute='_get_latest', compute_sudo=True,
-        string="Latest Follow-up Level without litigation",
+        string="Último Nivel de Seguimiento sin litigio",
         help="The maximum follow-up level without taking into "
              "account the account move lines with litigation")
     payment_amount_due = fields.Float(
         compute='_get_amounts_and_date',
-        string="Amount Due", search='_payment_due_search'
+        string="Cantidad a Pagar", search='_payment_due_search'
     )
     payment_amount_overdue = fields.Float(
         compute='_get_amounts_and_date',
-        string="Amount Overdue", search='_payment_overdue_search'
+        string="Cantidad Vencida", search='_payment_overdue_search'
     )
     payment_earliest_due_date = fields.Date(
-        compute='_get_amounts_and_date', string="Worst Due Date",
+        compute='_get_amounts_and_date', string="Peor Fecha de Vencimiento",
         search='_payment_earliest_date_search'
     )
