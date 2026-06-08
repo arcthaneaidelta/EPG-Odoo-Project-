@@ -186,3 +186,36 @@ class SaaSSubscription(models.Model):
                 'state': 'error',
                 'error_message': f'Deletion failed: {str(e)}'
             })
+
+    @api.model
+    def sync_training_videos(self, videos=None):
+        import odoo
+        # If videos is not provided, sync all
+        if not videos:
+            if 'saas.training.video' in self.env:
+                videos = self.env['saas.training.video'].search([])
+            else:
+                return
+
+        subs = self.search([('state', 'in', ['active', 'trial', 'suspended']), ('database_name', '!=', False)])
+        for sub in subs:
+            try:
+                registry = odoo.registry(sub.database_name)
+                with registry.cursor() as cr:
+                    tenant_env = api.Environment(cr, odoo.SUPERUSER_ID, {})
+                    if 'saas.training.video' in tenant_env:
+                        for video in videos:
+                            existing = tenant_env['saas.training.video'].search([('name', '=', video.name)], limit=1)
+                            vals = {
+                                'category': video.category,
+                                'video_url': video.video_url,
+                                'description': video.description,
+                                'sequence': video.sequence,
+                            }
+                            if existing:
+                                existing.write(vals)
+                            else:
+                                vals['name'] = video.name
+                                tenant_env['saas.training.video'].create(vals)
+            except Exception as e:
+                _logger.error(f"Failed to sync training videos to tenant {sub.database_name}: {e}")

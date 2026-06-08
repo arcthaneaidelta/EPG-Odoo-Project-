@@ -216,7 +216,8 @@ class SaaSProvisioningService(models.AbstractModel):
 		base_modules = [
 			'sale_management', 'account', 'hr', 'crm', 'calendar', 'muk_web_appsbar',
 			'crm_base', 'crm_automation_engine', 'crm_client_kanban', 'dashboard',
-			'odoo_url_replacer', 'saas_client','client_document_management','crm_file_management'
+			'odoo_url_replacer', 'saas_client','client_document_management','crm_file_management',
+            'saas_training'
 		]
 		
 		# Accounting modules (Early Adopter gets them automatically, or if checkbox is checked)

@@ -21,21 +21,7 @@ export const appMenuService = {
                     reorderApps(apps, menuConfig);
                 }
 
-                // Placeholder apps
-                const placeholderApps = [
-                    {
-                        id: 'placeholder_training',
-                        label: 'Training',
-                        xmlid: 'placeholder.training',
-                        webIconData: '/muk_web_appsbar/static/description/training.svg',
-                        href: '#',
-                        actionID: null,
-                        isPlaceholder: true,
-                        order: 6
-                    }
-                ];
-
-                // ✅ xmlid based order — never changes with language
+                // xmlid based order — never changes with language
                 const customOrderByXmlId = {
                     'dashboard.menu_dashboard_custom': 0,
                     'crm.crm_menu_root': 1,
@@ -43,7 +29,7 @@ export const appMenuService = {
                     'sale.sale_menu_root': 3,
                     'account.menu_finance': 4,
                     'client_document_management.menu_dms_root': 5,
-                    'placeholder.training': 6,
+                    'saas_training.menu_training_root': 6,
                     'ai_assistant.menu_ai_assistant_root': 7,
                     'website.menu_website_configuration': 9,
                     'base.menu_administration': 10,
@@ -62,8 +48,7 @@ export const appMenuService = {
                     return { ...app, order };
                 });
 
-                // Combine and sort
-                apps = [...placeholderApps, ...apps];
+                // Sort apps
                 apps.sort((a, b) => a.order - b.order);
 
                 return apps;
