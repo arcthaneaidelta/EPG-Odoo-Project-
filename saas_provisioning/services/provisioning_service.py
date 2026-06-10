@@ -50,7 +50,7 @@ class SaaSProvisioningService(models.AbstractModel):
 				db_service.install_modules(db_name, modules_to_install)
 			
 			# Step 4: Post-Install Configuration (Company Name, etc.)
-			self._post_provisioning_setup(db_name, subscription)
+			self._post_provisioning_setup(db_name, subscription, subdomain)
 			
 			# Step 5: Update subscription with tenant info
 			vals = {
@@ -82,7 +82,7 @@ class SaaSProvisioningService(models.AbstractModel):
 			raise
 	
 	@api.model
-	def _post_provisioning_setup(self, db_name, subscription):
+	def _post_provisioning_setup(self, db_name, subscription, subdomain):
 		"""
 		Configure the new tenant database after creation
 		"""
@@ -121,7 +121,7 @@ class SaaSProvisioningService(models.AbstractModel):
 				base_domain = self.env['ir.config_parameter'].sudo().get_param(
 					'saas.base_domain', 'eficienciayproductividadglobal.com'
 				)
-				tenant_url = f'https://{subscription.subdomain}.{base_domain}'
+				tenant_url = f'https://{subdomain}.{base_domain}'
 				env['ir.config_parameter'].sudo().set_param('web.base.url', tenant_url)
 				_logger.info(f"Set web.base.url to {tenant_url} for {db_name}")
 				
