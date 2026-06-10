@@ -29,5 +29,7 @@ def post_init_hook(env):
         menu = env.ref(xml_id, raise_if_not_found=False)
         if menu:
             for lang_code, translated_text in translations.items():
-                menu.with_context(lang=lang_code).write({'name': translated_text})
+                # Only apply translation if the language is actually installed and active
+                if lang_code == 'en_US' or env['res.lang'].search_count([('code', '=', lang_code), ('active', '=', True)]):
+                    menu.with_context(lang=lang_code).write({'name': translated_text})
             _logger.info(f"CRM Base: Forced translation for {xml_id}")
