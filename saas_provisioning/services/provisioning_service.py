@@ -37,7 +37,12 @@ class SaaSProvisioningService(models.AbstractModel):
 			db_service = self.env['saas.database.service']
 			admin_password = self._generate_secure_password()
 			
-			db_service.create_database(db_name, admin_password)
+			# Determine which template to clone based on plan/addons
+			plan_name = subscription.plan_id.name.lower() if subscription.plan_id else ''
+			is_premium = subscription.is_early_adopter or 'early' in plan_name or subscription.accounting_module
+			template_db = 'template_premium' if is_premium else 'template_basic'
+			
+			db_service.create_database(db_name, admin_password, template_db=template_db)
 			
 			# Step 3: Install base modules based on plan
 			modules_to_install = self._get_modules_for_plan(subscription)
@@ -217,7 +222,7 @@ class SaaSProvisioningService(models.AbstractModel):
 			'sale_management', 'account', 'hr', 'crm', 'calendar', 'muk_web_appsbar',
 			'crm_base', 'crm_automation_engine', 'crm_client_kanban', 'dashboard',
 			'odoo_url_replacer', 'saas_client','client_document_management','crm_file_management',
-            'saas_training'
+            'saas_training','custom_title'
 		]
 		
 		# Accounting modules (Early Adopter gets them automatically, or if checkbox is checked)

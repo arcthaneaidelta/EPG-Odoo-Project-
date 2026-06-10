@@ -34,12 +34,9 @@ class SaaSDatabaseService(models.AbstractModel):
                 return False
 
     @api.model
-    def create_database(self, db_name, admin_password='admin'):
+    def create_database(self, db_name, admin_password='admin', template_db='template_basic'):
         """
-        Create a new SaaS tenant database.
-        
-        Uses Odoo's internal _create_empty_database + initialize directly,
-        bypassing exp_create_database which is blocked when list_db=False.
+        Create a new SaaS tenant database by cloning a template database.
         """
         try:
             _logger.info(f'Creating database: {db_name}')
@@ -48,22 +45,25 @@ class SaaSDatabaseService(models.AbstractModel):
             if self._db_exists_direct(db_name):
                 raise UserError(_('Database %s already exists') % db_name)
 
-            # Use internal helpers that are NOT gated by list_db=False
-            from odoo.service.db import _create_empty_database
             import odoo
-            from odoo.modules.db import initialize as initialize_db
+            from odoo.service.db import exp_duplicate_database
 
-            # Step 1: create the empty PostgreSQL database
-            _create_empty_database(db_name)
-            _logger.info(f'Empty database {db_name} created in PostgreSQL')
+            # Step 1: Clone the template database
+            template_db = self.env['ir.config_parameter'].sudo().get_param('saas.template_db', template_db)
+            
+            _logger.info(f'Duplicating template {template_db} to {db_name}')
+            
+            # Temporarily bypass list_db=False restriction for the cloning process
+            original_list_db = odoo.tools.config.get('list_db')
+            odoo.tools.config['list_db'] = True
+            try:
+                exp_duplicate_database(template_db, db_name)
+            finally:
+                odoo.tools.config['list_db'] = original_list_db
 
-            # Step 2: initialize Odoo schema (installs base module)
-            with odoo.sql_db.db_connect(db_name).cursor() as cr:
-                initialize_db(cr)
-                cr.commit()
-            _logger.info(f'Odoo schema initialized in {db_name}')
+            _logger.info(f'Template duplicated successfully to {db_name}. Updating password...')
 
-            # Step 3: set admin password
+            # Step 2: set admin password on the cloned database
             registry = odoo.registry(db_name)
             with registry.cursor() as cr:
                 env = api.Environment(cr, odoo.SUPERUSER_ID, {})
@@ -75,7 +75,7 @@ class SaaSDatabaseService(models.AbstractModel):
                     _logger.info(f"Password updated for user {admin_user.login}")
                 cr.commit()
 
-            _logger.info(f'Database {db_name} created successfully')
+            _logger.info(f'Database {db_name} created successfully from template')
             return True
 
         except UserError:
@@ -205,18 +205,18 @@ class SaaSDatabaseService(models.AbstractModel):
                 except Exception as e:
                     _logger.warning(f"Could not install Spanish language: {e}")
                 
-                # Install each requested module
-                for module_name in module_list:
-                    module = env['ir.module.module'].search([
-                        ('name', '=', module_name),
-                        ('state', '=', 'uninstalled')
-                    ], limit=1)
-                    
-                    if module:
-                        module.button_immediate_install()
-                        _logger.info(f'Module {module_name} installed in {db_name}')
-                    else:
-                        _logger.warning(f'Module {module_name} not found or already installed')
+                # Install any extra add-ons (like AI) that weren't in the template
+                modules = env['ir.module.module'].search([
+                    ('name', 'in', module_list),
+                    ('state', '=', 'uninstalled')
+                ])
+                
+                if modules:
+                    _logger.info(f'Installing {len(modules)} add-on modules...')
+                    modules.button_immediate_install()
+                    _logger.info(f'Successfully installed add-ons in {db_name}')
+                else:
+                    _logger.info(f'All required modules were already installed via the template.')
             
             return True
             
