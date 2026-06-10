@@ -117,8 +117,15 @@ class SaaSProvisioningService(models.AbstractModel):
 				env['ir.config_parameter'].sudo().set_param('web.url.replace.enabled', 'True')
 				env['ir.config_parameter'].sudo().set_param('web.base.sorturl', 'epg')
 				
-				# 4. Set Admin User Login/Details? (Optional, kept at 'admin' for now)
-				# 3. Create Technical/SaaS User? (Optional)
+				# 4. Set Admin User Login to Tenant's Email
+				if subscription.partner_id and subscription.partner_id.email:
+					admin_user = env['res.users'].browse(odoo.SUPERUSER_ID)
+					admin_user.write({
+						'login': subscription.partner_id.email,
+						'name': subscription.partner_id.name or subscription.company_name,
+						'email': subscription.partner_id.email,
+					})
+					_logger.info(f"Admin user login updated to {subscription.partner_id.email} for {db_name}")
 				
 		except Exception as e:
 			_logger.warning(f'Post-provisioning setup failed for {db_name}: {str(e)}')

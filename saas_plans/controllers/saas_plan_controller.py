@@ -473,11 +473,14 @@ class SaaSPlanController(http.Controller):
 	def check_company_name(self, company_name):
 		"""Check if company name/subdomain is available"""
 		try:
-			# Generate subdomain from company name
-			subdomain = company_name.lower().replace(' ', '').replace('-', '')
+			# Generate subdomain from company name (Replace spaces with hyphens)
+			subdomain = company_name.lower().replace(' ', '-')
 			
-			# Remove special characters
-			subdomain = re.sub(r'[^a-z0-9]', '', subdomain)
+			# Remove special characters except hyphens
+			subdomain = re.sub(r'[^a-z0-9-]', '', subdomain)
+			
+			# Remove leading/trailing hyphens
+			subdomain = subdomain.strip('-')
 			
 			if not subdomain:
 				return {
