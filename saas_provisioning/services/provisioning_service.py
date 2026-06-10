@@ -116,6 +116,14 @@ class SaaSProvisioningService(models.AbstractModel):
 				# 3. Ensure Custom URL Replacer is enabled and set to 'epg'
 				env['ir.config_parameter'].sudo().set_param('web.url.replace.enabled', 'True')
 				env['ir.config_parameter'].sudo().set_param('web.base.sorturl', 'epg')
+
+				# 4. Set correct web.base.url for this tenant (fixes localhost in password reset links)
+				base_domain = self.env['ir.config_parameter'].sudo().get_param(
+					'saas.base_domain', 'eficienciayproductividadglobal.com'
+				)
+				tenant_url = f'https://{subscription.subdomain}.{base_domain}'
+				env['ir.config_parameter'].sudo().set_param('web.base.url', tenant_url)
+				_logger.info(f"Set web.base.url to {tenant_url} for {db_name}")
 				
 				# 4. Set Admin User Login to Tenant's Email
 				if subscription.partner_id and subscription.partner_id.email:
