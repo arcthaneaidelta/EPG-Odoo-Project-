@@ -119,13 +119,16 @@ class SaaSProvisioningService(models.AbstractModel):
 				
 				# 4. Set Admin User Login to Tenant's Email
 				if subscription.partner_id and subscription.partner_id.email:
-					admin_user = env['res.users'].browse(odoo.SUPERUSER_ID)
-					admin_user.write({
-						'login': subscription.partner_id.email,
-						'name': subscription.partner_id.name or subscription.company_name,
-						'email': subscription.partner_id.email,
-					})
-					_logger.info(f"Admin user login updated to {subscription.partner_id.email} for {db_name}")
+					admin_user = env['res.users'].search([('login', '=', 'admin')], limit=1)
+					if admin_user:
+						admin_user.write({
+							'login': subscription.partner_id.email,
+							'name': subscription.partner_id.name or subscription.company_name,
+							'email': subscription.partner_id.email,
+						})
+						_logger.info(f"Admin user login updated to {subscription.partner_id.email} for {db_name}")
+					else:
+						_logger.warning(f"Could not find admin user in {db_name} to update login")
 				
 		except Exception as e:
 			_logger.warning(f'Post-provisioning setup failed for {db_name}: {str(e)}')

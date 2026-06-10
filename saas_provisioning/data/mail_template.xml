@@ -5,38 +5,41 @@
         <record id="email_template_saas_welcome" model="mail.template">
             <field name="name">SaaS Welcome Email</field>
             <field name="model_id" ref="saas_management.model_saas_subscription"/>
-            <field name="subject">Welcome to EPG CRM - Access successfully activated 🎉</field>
+            <field name="subject">Bienvenido a EPG CRM - Acceso activado con éxito 🎉</field>
             <field name="email_from">{{ (object.company_id.email or object.env.company.email or 'soporte@eficienciayproductividadglobal.com') }}</field>
             <field name="email_to">{{ object.partner_id.email }}</field>
             <field name="body_html" type="html">
                 <div style="margin: 0px; padding: 0px;">
-                    <p>Hello <t t-out="object.partner_id.name or ''"/>,</p>
+                    <p>Hola <t t-out="object.partner_id.name or ''"/>,</p>
 
-                    <p>We confirm that your subscription to EPG CRM has been successfully activated.</p>
-                    <p>Your account has been adhered to the following commercial condition:</p>
-                    <p>Preferential launch condition limited to the first 1,000 customers.</p>
-                    <p>This condition keeps its advantages active as long as your subscription remains active and up to date with payments.</p>
-                    <p>Access to your platform:</p>
+                    <p>Confirmamos que tu suscripción a EPG CRM ha sido activada con éxito.</p>
+                    <p>Tu cuenta ha sido adherida a la siguiente condición comercial:</p>
+                    <p>Condición preferencial de lanzamiento limitada a los primeros 1.000 clientes.</p>
+                    <p>Esta condición mantiene sus ventajas activas mientras tu suscripción permanezca activa y al corriente de pago.</p>
+                    <p>Acceso a tu plataforma:</p>
 
                     <ul>
-                        <li><strong>Database:</strong> <t t-out="object.database_name or ''"/></li>
                         <li><strong>URL:</strong> https://<t t-out="object.subdomain or ''"/>.eficienciayproductividadglobal.com</li>
-                        <li><strong>Username:</strong> admin</li>
-                        <li><strong>Password:</strong> <t t-out="ctx.get('admin_password', '')"/></li>
-
-                        <li>For security, we recommend changing your password after the first login.</li>
-                        <li>Active conditions in your account:</li>
-                        <li>50% permanent discount on the official price</li>
-                        <li>Complete CRM (clients and commercial management)</li>
-                        <li>Accounting/management module included at no cost</li>
-                        <li>24/7 cloud access</li>
+                        <li><strong>Usuario:</strong> <t t-out="object.partner_id.email or ''"/></li>
+                        <li><strong>Contraseña:</strong> <t t-out="ctx.get('admin_password', '')"/></li>
+                        <li>Por seguridad, te recomendamos cambiar tu contraseña tras el primer inicio de sesión.</li>
                     </ul>
-                    <p><strong>Support:</strong> soporte@eficienciayproductividadglobal.com</p>
-                    <p>Thank you for trusting EPG CRM.</p>
+
+                    <p><strong>Condiciones activas en tu cuenta:</strong></p>
+                    <ul>
+                        <li>50% de descuento permanente sobre el precio oficial</li>
+                        <li>CRM completo (gestión de clientes y comercial)</li>
+                        <li>Módulo de contabilidad/gestión incluido sin coste</li>
+                        <li>Acceso en la nube 24/7</li>
+                    </ul>
+
+                    <p><strong>Soporte:</strong> soporte@eficienciayproductividadglobal.com</p>
+                    <p>Gracias por confiar en EPG CRM.</p>
                     <p>EPG CRM.</p>
                 </div>
             </field>
         </record>
+
 
         <!-- 2. Payment Confirmation / Invoice Issued — SaaS Subscriptions -->
         <record id="email_template_saas_invoice_payment_confirmation" model="mail.template">
