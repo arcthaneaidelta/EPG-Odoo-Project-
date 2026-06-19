@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import { Component } from "@odoo/owl";
+import { Component, useState, onMounted } from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks";
 import { registry } from "@web/core/registry";
 import { Dropdown } from "@web/core/dropdown/dropdown";
@@ -9,9 +9,22 @@ import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 export class VideoTutorialSystray extends Component {
     setup() {
         this.menuService = useService("menu");
+        this.state = useState({ tick: 0 });
+        
+        // Listen to URL hash changes so we know when the user switches apps
+        window.addEventListener('hashchange', () => {
+            this.state.tick++;
+        });
+        
+        onMounted(() => {
+            // Force re-evaluate after mount so if they loaded directly into an app, it shows
+            setTimeout(() => { this.state.tick++; }, 500);
+        });
     }
 
     get currentAppVideo() {
+        // Access state.tick to ensure Owl tracks it as a dependency for re-rendering
+        const _trigger = this.state.tick;
         const currentApp = this.menuService.getCurrentApp();
         if (!currentApp) return null;
         
