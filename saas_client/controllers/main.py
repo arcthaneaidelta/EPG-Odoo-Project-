@@ -273,12 +273,12 @@ class SaasOnboardingController(http.Controller):
             # --- 4. Accounting Setup (Step 7) ---
             if data.get('issue_invoices') or data.get('record_supplier_invoices') or data.get('use_accounting'):
                 # In Odoo 16+, load the Spanish Chart of Accounts (España - Completo 2008) directly using the code 'es_full'
-                if not company.chart_template:
-                    try:
-                        env['account.chart.template'].sudo().try_loading('es_full', company=company)
+                try:
+                    if company.chart_template != 'es_full':
+                        env['account.chart.template'].sudo().try_loading('es_full', company=company, install_demo=False)
                         _logger.info(f"Successfully loaded es_full chart of accounts for {company.name}")
-                    except Exception as e:
-                        _logger.error(f"Failed to load chart of accounts: {str(e)}")
+                except Exception as e:
+                    _logger.error(f"Failed to load chart of accounts: {str(e)}")
 
         except Exception as e:
             _logger.error(f"Error processing onboarding: {str(e)}")

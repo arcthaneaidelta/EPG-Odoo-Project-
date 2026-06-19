@@ -23,6 +23,7 @@
         'views/login_templates.xml',
         'views/onboarding_templates.xml',
         'views/portal_templates.xml',
+        'views/res_company_views.xml',
     ],
     'assets': {
         'web.assets_backend': [
