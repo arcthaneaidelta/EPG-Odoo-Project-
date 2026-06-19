@@ -272,15 +272,11 @@ class SaasOnboardingController(http.Controller):
             
             # --- 4. Accounting Setup (Step 7) ---
             if data.get('issue_invoices') or data.get('record_supplier_invoices') or data.get('use_accounting'):
-                # Try to load the Spanish Chart of Accounts if l10n_es is installed
-                l10n_es_chart = env.ref('l10n_es.account_chart_template_pymes', raise_if_not_found=False)
-                if not l10n_es_chart:
-                    l10n_es_chart = env.ref('l10n_es.account_chart_template_full', raise_if_not_found=False)
-                
-                if l10n_es_chart and not company.chart_template_id:
-                    # In Odoo 16+, loading a chart of accounts is done via account.chart.template
+                # In Odoo 16+, load the Spanish Chart of Accounts (España - Completo 2008) directly using the code 'es_full'
+                if not company.chart_template:
                     try:
-                        l10n_es_chart.sudo().try_loading(company)
+                        env['account.chart.template'].sudo().try_loading('es_full', company=company)
+                        _logger.info(f"Successfully loaded es_full chart of accounts for {company.name}")
                     except Exception as e:
                         _logger.error(f"Failed to load chart of accounts: {str(e)}")
 

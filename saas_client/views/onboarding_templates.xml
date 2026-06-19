@@ -119,6 +119,11 @@
                         cursor: pointer;
                         transition: all 0.2s ease;
                         text-align: center;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 110px;
                     }
                     .selection-card:hover {
                         border-color: #818cf8;
@@ -431,9 +436,10 @@
                                 <div class="form-group form-col">
                                     <label>País *</label>
                                     <select class="form-control" id="country_id" name="country_id" required="required">
-                                        <option value="" disabled="disabled" selected="selected">Seleccione su país...</option>
+                                        <option value="" disabled="disabled" t-att-selected="not company.country_id">Seleccione su país...</option>
                                         <t t-foreach="countries" t-as="c">
-                                            <option t-att-value="c.id">
+                                            <!-- Default to Spain (code 'ES') if company has no country -->
+                                            <option t-att-value="c.id" t-att-selected="(company.country_id and company.country_id.id == c.id) or (not company.country_id and c.code == 'ES')">
                                                 <t t-esc="c.name"/>
                                             </option>
                                         </t>
@@ -596,21 +602,34 @@
                             <p class="step-subtitle">Seleccione cómo desea comenzar en su base de datos.</p>
                             
                             <div class="card-grid">
-                                <div class="selection-card" data-value="excel" onclick="selectCard(this, 'import_strategy'); document.getElementById('importInstructions').style.display='block';">
+                                <div class="selection-card" data-value="excel" onclick="selectCard(this, 'import_strategy', false); document.getElementById('importInstructions').style.display='block';">
                                     <h3>Importar Excel</h3>
-                                    <p style="color: var(--text-muted); font-size: 14px;">Tengo datos que quiero traer</p>
+                                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Tengo datos que quiero traer</p>
                                 </div>
-                                <div class="selection-card" data-value="scratch" onclick="selectCard(this, 'import_strategy'); document.getElementById('importInstructions').style.display='none';">
+                                <div class="selection-card" data-value="scratch" onclick="selectCard(this, 'import_strategy', false); document.getElementById('importInstructions').style.display='none';">
                                     <h3>Empezar desde cero</h3>
-                                    <p style="color: var(--text-muted); font-size: 14px;">Crearé los datos manualmente</p>
+                                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Crearé los datos manualmente</p>
                                 </div>
                             </div>
                             
                             <div id="importInstructions" style="display: none; margin-top: 20px; padding: 15px; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary); border-radius: 8px;">
                                 <h4 style="margin-bottom: 8px; color: #a5b4fc;">Instrucciones de Importación</h4>
-                                <p style="font-size: 14px; line-height: 1.5; color: var(--text-main);">
-                                    Una vez que finalice la configuración, podrá importar sus datos fácilmente. Diríjase a las aplicaciones de <strong>Contactos</strong> o <strong>Inventario</strong> en su plataforma EPG CRM, pulse en el icono de ajustes (engranaje) y seleccione "Importar registros" para cargar sus archivos de Excel.
+                                <p style="font-size: 14px; line-height: 1.5; color: var(--text-main); margin-bottom: 12px;">
+                                    Una vez que finalice la configuración, podrá importar sus datos rápidamente utilizando nuestras plantillas prediseñadas. 
+                                    <br/><br/>
+                                    <strong style="color: #fca5a5;">IMPORTANTE:</strong> Por favor, rellene los datos en las plantillas descargables pero <strong>no modifique ni elimine los nombres de las columnas (cabeceras)</strong> para que el sistema los reconozca automáticamente.
                                 </p>
+                                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                    <a href="/saas_client/static/src/files/plantilla_ventas.xlsx" download="Plantilla_Ventas.xlsx" style="background: rgba(99, 102, 241, 0.2); color: #a5b4fc; padding: 8px 12px; font-size: 13px; border-radius: 6px; text-decoration: none; border: 1px dashed #6366f1; transition: 0.2s;">
+                                        ⬇ Descargar Plantilla Ventas
+                                    </a>
+                                    <a href="/saas_client/static/src/files/plantilla_asientos.xlsx" download="Plantilla_Asientos.xlsx" style="background: rgba(99, 102, 241, 0.2); color: #a5b4fc; padding: 8px 12px; font-size: 13px; border-radius: 6px; text-decoration: none; border: 1px dashed #6366f1; transition: 0.2s;">
+                                        ⬇ Descargar Plantilla Contabilidad
+                                    </a>
+                                    <a href="/saas_client/static/src/files/plantilla_contactos.csv" download="Plantilla_Contactos.csv" style="background: rgba(99, 102, 241, 0.2); color: #a5b4fc; padding: 8px 12px; font-size: 13px; border-radius: 6px; text-decoration: none; border: 1px dashed #6366f1; transition: 0.2s;">
+                                        ⬇ Descargar Plantilla Contactos
+                                    </a>
+                                </div>
                             </div>
                             
                             <input type="hidden" id="import_strategy" name="import_strategy" required="required"/>
@@ -706,16 +725,16 @@
                     }
 
                     function changeStep(dir) {
-                        if (dir === 1 &amp;&amp; !validateStep(currentStep)) return;
+                        if (dir === 1 && !validateStep(currentStep)) return;
                         
                         currentStep += dir;
-                        if (currentStep &lt; 1) currentStep = 1;
+                        if (currentStep < 1) currentStep = 1;
                         if (currentStep > totalSteps) currentStep = totalSteps;
                         
                         updateUI();
                     }
 
-                    function selectCard(el, hiddenId) {
+                    function selectCard(el, hiddenId, autoAdvance = true) {
                         // Remove selected from siblings
                         const siblings = el.parentElement.querySelectorAll('.selection-card');
                         siblings.forEach(s => s.classList.remove('selected'));
@@ -727,9 +746,11 @@
                         document.getElementById(hiddenId).value = el.getAttribute('data-value');
                         
                         // Auto-advance
-                        setTimeout(() => {
-                            if (currentStep &lt; totalSteps) changeStep(1);
-                        }, 300);
+                        if (autoAdvance) {
+                            setTimeout(() => {
+                                if (currentStep < totalSteps) changeStep(1);
+                            }, 300);
+                        }
                     }
 
                     function toggleSwitch(row, hiddenId) {
