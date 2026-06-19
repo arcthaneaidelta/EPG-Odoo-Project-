@@ -725,10 +725,10 @@
                     }
 
                     function changeStep(dir) {
-                        if (dir === 1 && !validateStep(currentStep)) return;
+                        if (dir === 1 &amp;&amp; !validateStep(currentStep)) return;
                         
                         currentStep += dir;
-                        if (currentStep < 1) currentStep = 1;
+                        if (currentStep &lt; 1) currentStep = 1;
                         if (currentStep > totalSteps) currentStep = totalSteps;
                         
                         updateUI();
@@ -748,7 +748,7 @@
                         // Auto-advance
                         if (autoAdvance) {
                             setTimeout(() => {
-                                if (currentStep < totalSteps) changeStep(1);
+                                if (currentStep &lt; totalSteps) changeStep(1);
                             }, 300);
                         }
                     }
