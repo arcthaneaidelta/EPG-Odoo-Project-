@@ -17,7 +17,7 @@
     """,
     'author': 'Your Company',
     'website': 'https://abc.com',
-    'depends': ['base', 'odoo_url_replacer', 'sales_team', 'web', 'portal', 'mail'],
+    'depends': ['base', 'odoo_url_replacer', 'sales_team', 'web', 'portal', 'mail', 'account', 'l10n_es'],
     'data': [
         'views/res_config_settings_views.xml',
         'views/login_templates.xml',
@@ -33,6 +33,8 @@
             'saas_client/static/src/video_tutorial/video_tutorial.js',
             'saas_client/static/src/video_tutorial/video_tutorial.xml',
             'saas_client/static/src/video_tutorial/video_tutorial.scss',
+            'saas_client/static/src/expiration_warning/expiration_warning.js',
+            'saas_client/static/src/expiration_warning/expiration_warning.xml',
         ],
     },
     'installable': True,

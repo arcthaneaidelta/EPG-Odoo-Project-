@@ -108,6 +108,11 @@ class SaaSSubscription(models.Model):
                     current_status = 'suspended' if sub.state == 'suspended' else 'active'
                     env['ir.config_parameter'].set_param('saas.subscription_status', current_status)
                     
+                    # Push expiration date (trial or active)
+                    exp_date = sub.trial_end_date if sub.state == 'trial' else sub.expiration_date
+                    if exp_date:
+                        env['ir.config_parameter'].set_param('saas.expiration_date', str(exp_date))
+                    
             except Exception as e:
                 _logger.error(f"Failed to push limits to tenant {sub.database_name}: {str(e)}")
 

@@ -24,6 +24,7 @@
         'security/ir.model.access.csv',
         'data/saas_plan_data.xml',
         'data/cron_jobs.xml',
+        'data/mail_template.xml',
         'views/menu.xml',
         # 'views/res_config_settings_views.xml',
         'views/saas_plan_views.xml',

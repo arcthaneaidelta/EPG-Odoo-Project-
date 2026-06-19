@@ -80,6 +80,19 @@
             <field name="priority">7</field>
         </record>
 
+        <!-- Daily cron: process trial expiration warning -->
+        <record id="cron_process_trial_warning" model="ir.cron">
+            <field name="name">SaaS: Process Trial Expiration Warning</field>
+            <field name="model_id" ref="model_saas_subscription"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_process_trial_warning()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 01:40:00')"/>
+            <field name="active">True</field>
+            <field name="priority">7</field>
+        </record>
+
         <!-- Daily cron: mass sync modules across all active subscriptions -->
         <record id="cron_mass_sync_modules" model="ir.cron">
             <field name="name">SaaS: Mass Sync Modules</field>

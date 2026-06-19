@@ -112,6 +112,7 @@ class SaaSSubscription(models.Model):
 	
 	# Payment Email Status
 	payment_email_sent = fields.Boolean(string='Payment Confirmation Sent', default=False, copy=False)
+	trial_warning_sent = fields.Boolean(string='Trial Warning Sent', default=False, copy=False)
 	
 	# Error Handling
 	error_message = fields.Text(string='Error Message', readonly=True)
@@ -480,6 +481,30 @@ class SaaSSubscription(models.Model):
 			sub.action_suspend_subscription()
 			sub.message_post(body=_("Grace period ended. Subscription suspended."))
 			# TODO: Send email
+
+	@api.model
+	def _cron_process_trial_warning(self):
+		"""Send warning email exactly 1 day before trial expiration"""
+		now = fields.Datetime.now()
+		warning_threshold = now + timedelta(days=1)
+		
+		# Find trials that expire in less than 24 hours but haven't expired yet
+		trials_to_warn = self.search([
+			('state', '=', 'trial'),
+			('trial_warning_sent', '=', False),
+			('trial_end_date', '<=', warning_threshold),
+			('trial_end_date', '>', now)
+		])
+		
+		for sub in trials_to_warn:
+			# Send the email template
+			template = self.env.ref('saas_management.mail_template_trial_warning_es', raise_if_not_found=False)
+			if template:
+				template.send_mail(sub.id, force_send=True)
+				sub.write({'trial_warning_sent': True})
+				sub.message_post(body=_("Sent 1-day trial expiration warning email."))
+			else:
+				_logger.error("Could not find mail_template_trial_warning_es")
 
 	@api.model
 	def _cron_process_trial_expiration(self):
