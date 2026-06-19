@@ -177,68 +177,117 @@ class SaasOnboardingController(http.Controller):
             'countries': countries,
         })
 
-    @http.route('/saas/onboarding/submit', type='http', auth='user', methods=['POST'], csrf=True)
-    def saas_onboarding_submit(self, **post):
+    @http.route('/saas/onboarding/process', type='http', auth='user', methods=['POST'], csrf=True)
+    def saas_onboarding_process(self, **post):
+        import json
+        import base64
+        import logging
+        _logger = logging.getLogger(__name__)
+        
         user = request.env.user
         if not user._is_admin() or user.company_id.sudo().saas_onboarding_done:
             return request.redirect('/web')
-        
+            
         company = user.company_id.sudo()
+        env = request.env
         
-        # Extract fields
-        name = post.get('company_name')
-        phone = post.get('company_phone')
-        email = post.get('company_email')
-        street = post.get('company_street')
-        logo_file = request.httprequest.files.get('company_logo')
-        invoice_target = post.get('invoice_target')
-        
-        update_vals = {}
-        if name:
-            update_vals['name'] = name
-        if phone:
-            update_vals['phone'] = phone
-        if email:
-            update_vals['email'] = email
-        if street:
-            update_vals['street'] = street
+        try:
+            payload_str = post.get('payload_json', '{}')
+            data = json.loads(payload_str)
             
-        country_id = post.get('company_country_id')
-        if country_id:
-            try:
-                update_vals['country_id'] = int(country_id)
-            except ValueError:
-                pass
-            
-        industry = post.get('company_type_industry')
-        employees = post.get('employee_count_range')
-        use_case = post.get('primary_use_case')
+            # --- 1. Company & Tax Data (Steps 1 & 2) ---
+            company_vals = {
+                'saas_client_type': data.get('client_type'),
+                'name': data.get('legal_name', company.name),
+                'saas_commercial_name': data.get('commercial_name'),
+                'vat': data.get('vat'),
+                'street': data.get('street'),
+                'zip': data.get('zip'),
+                'city': data.get('city'),
+                'phone': data.get('phone'),
+                'website': data.get('website'),
+                'saas_activity_type': data.get('activity_type'),
+                'saas_main_objective': data.get('main_objective'),
+                'saas_user_count_expected': data.get('user_count'),
+                'saas_use_quotations': data.get('use_quotations'),
+                'saas_use_sales_followup': data.get('use_sales_followup'),
+                'saas_issue_invoices': data.get('issue_invoices'),
+                'saas_record_supplier_invoices': data.get('record_supplier_invoices'),
+                'saas_use_accounting': data.get('use_accounting'),
+                'saas_accounting_handler': data.get('accounting_handler'),
+                'email': data.get('main_email'),
+                'saas_wants_ai': data.get('wants_ai'),
+                'saas_import_strategy': data.get('import_strategy'),
+                'saas_onboarding_done': True
+            }
 
-        if industry:
-            update_vals['company_type_industry'] = industry
-        if employees:
-            update_vals['employee_count_range'] = employees
-        if use_case:
-            update_vals['primary_use_case'] = use_case
+            if data.get('state_name'):
+                state = env['res.country.state'].sudo().search([('name', 'ilike', data.get('state_name')), ('country_id', '=', int(data.get('country_id')))], limit=1)
+                if state:
+                    company_vals['state_id'] = state.id
+
+            if data.get('country_id'):
+                company_vals['country_id'] = int(data.get('country_id'))
+                
+            logo_file = request.httprequest.files.get('company_logo')
+            if logo_file and logo_file.filename:
+                company_vals['logo'] = base64.b64encode(logo_file.read())
+                
+            company.write(company_vals)
             
-        if logo_file and logo_file.filename:
-            update_vals['logo'] = base64.b64encode(logo_file.read())
+            # --- 2. Users & Permissions (Step 5) ---
+            invited_users = data.get('invited_users', [])
+            for u in invited_users:
+                if u.get('email') and u.get('name'):
+                    # Check if user exists
+                    existing = env['res.users'].sudo().search([('login', '=', u['email'])], limit=1)
+                    if not existing:
+                        # Determine groups based on role
+                        group_ids = [env.ref('base.group_user').id] # Basic Internal User
+                        if u['role'] == 'manager':
+                            sales_mgr = env.ref('sales_team.group_sale_manager', raise_if_not_found=False)
+                            if sales_mgr: group_ids.append(sales_mgr.id)
+                        elif u['role'] == 'admin':
+                            sys_admin = env.ref('base.group_system', raise_if_not_found=False)
+                            if sys_admin: group_ids.append(sys_admin.id)
+                            
+                        new_user = env['res.users'].sudo().create({
+                            'name': u['name'],
+                            'login': u['email'],
+                            'email': u['email'],
+                            'company_id': company.id,
+                            'company_ids': [(4, company.id)],
+                            'groups_id': [(6, 0, group_ids)]
+                        })
+                        # Send invitation email (Odoo standard reset password / invite)
+                        new_user.action_reset_password()
             
-        update_vals['saas_onboarding_done'] = True
-        company.write(update_vals)
-        
-        if invoice_target:
-            try:
-                target_val = float(invoice_target)
-                # Try to get the default sales team
-                sales_team = request.env.ref('sales_team.team_sales_department', raise_if_not_found=False)
+            # --- 3. Sales & Pipeline Setup (Step 6) ---
+            if data.get('use_quotations') or data.get('use_sales_followup'):
+                sales_team = env.ref('sales_team.team_sales_department', raise_if_not_found=False)
                 if not sales_team:
-                    # If the default team was deleted or changed, try to get the first available team
-                    sales_team = request.env['crm.team'].sudo().search([('company_id', 'in', [company.id, False])], limit=1)
-                
+                    sales_team = env['crm.team'].sudo().search([('company_id', 'in', [company.id, False])], limit=1)
                 if sales_team:
-                    sales_team.sudo().write({'invoiced_target': target_val})
-            except Exception:
-                pass
+                    sales_team.sudo().write({'use_quotations': data.get('use_quotations'), 'use_opportunities': data.get('use_sales_followup')})
+            
+            # --- 4. Accounting Setup (Step 7) ---
+            if data.get('issue_invoices') or data.get('record_supplier_invoices') or data.get('use_accounting'):
+                # Try to load the Spanish Chart of Accounts if l10n_es is installed
+                l10n_es_chart = env.ref('l10n_es.account_chart_template_pymes', raise_if_not_found=False)
+                if not l10n_es_chart:
+                    l10n_es_chart = env.ref('l10n_es.account_chart_template_full', raise_if_not_found=False)
                 
+                if l10n_es_chart and not company.chart_template_id:
+                    # In Odoo 16+, loading a chart of accounts is done via account.chart.template
+                    try:
+                        l10n_es_chart.sudo().try_loading(company)
+                    except Exception as e:
+                        _logger.error(f"Failed to load chart of accounts: {str(e)}")
+
+        except Exception as e:
+            _logger.error(f"Error processing onboarding: {str(e)}")
+            # Even if something fails, we mark it done so they don't get stuck forever, 
+            # but in a real prod system we might want to show an error page.
+            company.write({'saas_onboarding_done': True})
+            
         return request.redirect('/web')
