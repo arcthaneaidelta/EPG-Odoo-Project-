@@ -3,8 +3,6 @@
 import { Component, useState, onMounted } from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks";
 import { registry } from "@web/core/registry";
-import { Dropdown } from "@web/core/dropdown/dropdown";
-import { DropdownItem } from "@web/core/dropdown/dropdown_item";
 
 export class VideoTutorialSystray extends Component {
     setup() {
@@ -97,7 +95,6 @@ export class VideoTutorialSystray extends Component {
 }
 
 VideoTutorialSystray.template = "saas_client.VideoTutorialSystray";
-VideoTutorialSystray.components = { Dropdown, DropdownItem };
 
 export const systrayItem = {
     Component: VideoTutorialSystray,
