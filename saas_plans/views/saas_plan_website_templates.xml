@@ -299,8 +299,8 @@
                                         <!-- AI Assistant -->
                                         <div class="mb-3">
                                             <label for="ai_assistant_qty" class="form-label" style="color: #cbd5e1;">
-                                                <strong>Asistente de IA (Mensajes)</strong>
-                                                 (+€5.00 por paquete)
+                                                <strong>Mensajes de IA Adicionales</strong>
+                                                 (+€5.00 por paquete de 5000)
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" style="background: #334155; border-color: #475569; color: white;">
@@ -314,8 +314,8 @@
                                                        min="0"
                                                        style="background: rgba(15, 23, 42, 0.5); border-color: #475569; color: white;"/>
                                             </div>
-                                            <div class="text-muted small mt-1" style="color: #94a3b8 !important;">
-                                                Paquete: 5000 mensajes. Pago único.
+                                            <div class="form-text" style="color: #94a3b8;">
+                                                <strong>¡Gratis!</strong> 5000 mensajes de IA ya vienen incluidos en tu suscripción base de forma gratuita. Usa esta casilla solo si deseas comprar paquetes adicionales de 5000 mensajes.
                                             </div>
                                         </div>
                                         

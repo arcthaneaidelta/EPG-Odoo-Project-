@@ -316,7 +316,7 @@ class SaaSPlanController(http.Controller):
 				</div>
 				<h1 id="status_title">Creando Base de Datos</h1>
 				<p id="status_message">Por favor espere, su base de datos está en creación. Recibirá las credenciales de acceso por correo electrónico en unos minutos.</p>
-				<a href="/" class="btn" id="home_btn" style="display: none;">Ir al Panel de Control</a>
+				<a href="/" class="btn" id="home_btn" style="display: none;" target="_blank">Ir a mi Base de Datos</a>
 			</div>
 			
 			<script>
@@ -343,6 +343,10 @@ class SaaSPlanController(http.Controller):
 								successIcon.style.display = 'flex';
 								title.innerText = '¡Base de Datos Creada!';
 								message.innerText = 'Su entorno está listo. Hemos enviado las credenciales y el enlace de acceso a su correo electrónico.';
+								
+								if (data.result.url) {{
+									homeBtn.href = data.result.url;
+								}}
 								homeBtn.style.display = 'inline-block';
 							}} else if (data.result && data.result.status === 'failed') {{
 								spinner.style.display = 'none';
@@ -371,7 +375,10 @@ class SaaSPlanController(http.Controller):
 		sub = request.env['saas.subscription'].sudo().browse(sub_id)
 		if not sub.exists():
 			return {'status': 'error'}
-		return {'status': sub.provisioning_status}
+		return {
+			'status': sub.provisioning_status,
+			'url': sub.tenant_url
+		}
 	
 	def _create_plan_product(self, plan, billing_cycle):
 		"""Create or get product for a SaaS plan"""

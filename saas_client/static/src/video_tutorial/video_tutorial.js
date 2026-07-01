@@ -1,21 +1,33 @@
 /** @odoo-module **/
 
-import { Component, useState, onMounted } from "@odoo/owl";
-import { useService } from "@web/core/utils/hooks";
+import { Component, useState, onMounted, xml } from "@odoo/owl";
+import { useService, useBus } from "@web/core/utils/hooks";
 import { registry } from "@web/core/registry";
+import { Dialog } from "@web/core/dialog/dialog";
+
+class VideoDialog extends Component {
+    static template = xml`
+        <Dialog title="'Video Tutorial'" size="'lg'">
+            <div style="width: 100%; aspect-ratio: 16 / 9;">
+                <iframe t-att-src="props.videoUrl" allow="autoplay; encrypted-media" allowfullscreen="1" frameborder="0" style="width:100%; height:100%;"></iframe>
+            </div>
+        </Dialog>
+    `;
+    static components = { Dialog };
+}
 
 export class VideoTutorialSystray extends Component {
     setup() {
         this.menuService = useService("menu");
+        this.dialogService = useService("dialog");
         this.state = useState({ tick: 0 });
         
-        // Listen to URL hash changes so we know when the user switches apps
-        window.addEventListener('hashchange', () => {
+        // Listen to URL changes natively in Odoo
+        useBus(this.env.bus, "ROUTE_CHANGE", () => {
             this.state.tick++;
         });
         
         onMounted(() => {
-            // Force re-evaluate after mount so if they loaded directly into an app, it shows
             setTimeout(() => { this.state.tick++; }, 500);
         });
     }
@@ -89,7 +101,21 @@ export class VideoTutorialSystray extends Component {
     openVideo(lang) {
         const video = this.currentAppVideo;
         if (video && video[lang]) {
-            window.open(video[lang], '_blank');
+            const url = video[lang];
+            // Convert youtu.be link to embed link
+            let videoId = '';
+            if (url.includes('youtu.be/')) {
+                videoId = url.split('youtu.be/')[1].split('?')[0];
+            } else if (url.includes('youtube.com/watch?v=')) {
+                videoId = url.split('v=')[1].split('&')[0];
+            }
+            
+            if (videoId) {
+                const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                this.dialogService.add(VideoDialog, { videoUrl: embedUrl });
+            } else {
+                window.open(url, '_blank');
+            }
         }
     }
 }
